@@ -1,0 +1,308 @@
+{
+  "id": "2026-09-10-10764",
+  "hook": "Ev daşınması niyə fərqli çıxır?",
+  "total": 4,
+  "cta": {
+    "line1": "Qiyməti telefonda öyrən",
+    "line2": "yuk.az"
+  },
+  "music": null,
+  "musicVolume": 0.1,
+  "scenes": [
+    {
+      "kind": "hook",
+      "spoken": "Ev daşınması qiyməti niyə dəyişir, indi qısa deyim.",
+      "audio": "render/2026-09-10-10764/s0.mp3",
+      "words": [
+        {
+          "w": "Ev",
+          "start": 0.2,
+          "dur": 0.023
+        },
+        {
+          "w": "daşınması",
+          "start": 0.351,
+          "dur": 0.59
+        },
+        {
+          "w": "qiyməti",
+          "start": 0.976,
+          "dur": 0.382
+        },
+        {
+          "w": "niyə",
+          "start": 1.381,
+          "dur": 0.185
+        },
+        {
+          "w": "dəyişir",
+          "start": 1.589,
+          "dur": 0.428
+        },
+        {
+          "w": "indi",
+          "start": 2.133,
+          "dur": 0.232
+        },
+        {
+          "w": "qısa",
+          "start": 2.388,
+          "dur": 0.243
+        },
+        {
+          "w": "deyim",
+          "start": 2.654,
+          "dur": 0.278
+        }
+      ],
+      "durationInFrames": 122,
+      "media": {
+        "kind": "video",
+        "src": "render/2026-09-10-10764/m0.mp4"
+      }
+    },
+    {
+      "kind": "item",
+      "spoken": "Qiymət hazır cədvəldən yox, yükün həcminə görə hesablanır.",
+      "title": "QİYMƏT NECƏ HESABLANIR",
+      "body": "Hazır tarif yoxdur. Yük, ünvan şəraiti və iş növü hesablanır.",
+      "index": 1,
+      "audio": "render/2026-09-10-10764/s1.mp3",
+      "words": [
+        {
+          "w": "Qiymət",
+          "start": 0.212,
+          "dur": 0.174
+        },
+        {
+          "w": "hazır",
+          "start": 0.536,
+          "dur": 0.301
+        },
+        {
+          "w": "cədvəldən",
+          "start": 0.86,
+          "dur": 0.532
+        },
+        {
+          "w": "yox",
+          "start": 1.416,
+          "dur": 0.22
+        },
+        {
+          "w": "yükün",
+          "start": 1.74,
+          "dur": 0.243
+        },
+        {
+          "w": "həcminə",
+          "start": 2.006,
+          "dur": 0.382
+        },
+        {
+          "w": "görə",
+          "start": 2.411,
+          "dur": 0.185
+        },
+        {
+          "w": "hesablanır",
+          "start": 2.619,
+          "dur": 0.683
+        }
+      ],
+      "durationInFrames": 134,
+      "media": {
+        "kind": "video",
+        "src": "render/2026-09-10-10764/m1.mp4"
+      }
+    },
+    {
+      "kind": "item",
+      "spoken": "Eyni mənzil də fərqli çıxır: lift, mərtəbə, giriş məsafəsi vacibdir.",
+      "title": "NƏ SƏNƏDİR FƏRQİ",
+      "body": "Eyni mənzil liftə, mərtəbəyə və maşının yaxın durmasına görə dəyişir.",
+      "index": 2,
+      "audio": "render/2026-09-10-10764/s2.mp3",
+      "words": [
+        {
+          "w": "Eyni",
+          "start": 0.201,
+          "dur": 0.139
+        },
+        {
+          "w": "mənzil",
+          "start": 0.468,
+          "dur": 0.359
+        },
+        {
+          "w": "də",
+          "start": 0.85,
+          "dur": 0.081
+        },
+        {
+          "w": "fərqli",
+          "start": 0.965,
+          "dur": 0.359
+        },
+        {
+          "w": "çıxır",
+          "start": 1.347,
+          "dur": 0.312
+        },
+        {
+          "w": "lift",
+          "start": 1.81,
+          "dur": 0.243
+        },
+        {
+          "w": "mərtəbə",
+          "start": 2.157,
+          "dur": 0.44
+        },
+        {
+          "w": "giriş",
+          "start": 2.69,
+          "dur": 0.255
+        },
+        {
+          "w": "məsafəsi",
+          "start": 2.968,
+          "dur": 0.521
+        },
+        {
+          "w": "vacibdir",
+          "start": 3.512,
+          "dur": 0.544
+        }
+      ],
+      "durationInFrames": 157,
+      "media": {
+        "kind": "video",
+        "src": "render/2026-09-10-10764/m2.mp4"
+      }
+    },
+    {
+      "kind": "item",
+      "spoken": "Yükazda qablaşdırma materialı və sığorta da qiymətə daxildir.",
+      "title": "NƏ DAXİLDİR",
+      "body": "Maşın, briqada, qablaşdırma, sökülmə, quraşdırma və sığorta daxildir.",
+      "index": 3,
+      "audio": "render/2026-09-10-10764/s3.mp3",
+      "words": [
+        {
+          "w": "Yükazda",
+          "start": 0.19,
+          "dur": 0.324
+        },
+        {
+          "w": "qablaşdırma",
+          "start": 0.641,
+          "dur": 0.637
+        },
+        {
+          "w": "materialı",
+          "start": 1.301,
+          "dur": 0.579
+        },
+        {
+          "w": "və",
+          "start": 1.914,
+          "dur": 0.069
+        },
+        {
+          "w": "sığorta",
+          "start": 2.007,
+          "dur": 0.428
+        },
+        {
+          "w": "da",
+          "start": 2.458,
+          "dur": 0.104
+        },
+        {
+          "w": "qiymətə",
+          "start": 2.597,
+          "dur": 0.37
+        },
+        {
+          "w": "daxildir",
+          "start": 2.991,
+          "dur": 0.532
+        }
+      ],
+      "durationInFrames": 140,
+      "media": {
+        "kind": "video",
+        "src": "render/2026-09-10-10764/m3.mp4"
+      }
+    },
+    {
+      "kind": "item",
+      "spoken": "Zəng edəndə otaq sayını, mərtəbəni və lifti dəqiq de.",
+      "title": "NƏ ETMƏLİSƏN",
+      "body": "Zəngdə otaq sayını, mərtəbəni, lifti və ünvanı dəqiq de.",
+      "index": 4,
+      "audio": "render/2026-09-10-10764/s4.mp3",
+      "words": [
+        {
+          "w": "Zəng",
+          "start": 0.19,
+          "dur": 0.15
+        },
+        {
+          "w": "edəndə",
+          "start": 0.456,
+          "dur": 0.347
+        },
+        {
+          "w": "otaq",
+          "start": 0.826,
+          "dur": 0.243
+        },
+        {
+          "w": "sayını",
+          "start": 1.093,
+          "dur": 0.394
+        },
+        {
+          "w": "mərtəbəni",
+          "start": 1.59,
+          "dur": 0.521
+        },
+        {
+          "w": "və",
+          "start": 2.146,
+          "dur": 0.081
+        },
+        {
+          "w": "lifti",
+          "start": 2.262,
+          "dur": 0.289
+        },
+        {
+          "w": "dəqiq",
+          "start": 2.574,
+          "dur": 0.301
+        },
+        {
+          "w": "de",
+          "start": 2.898,
+          "dur": 0.162
+        }
+      ],
+      "durationInFrames": 127,
+      "media": {
+        "kind": "video",
+        "src": "render/2026-09-10-10764/m4.mp4"
+      }
+    },
+    {
+      "kind": "cta",
+      "spoken": "",
+      "audio": null,
+      "words": [],
+      "durationInFrames": 78,
+      "media": null
+    }
+  ]
+}

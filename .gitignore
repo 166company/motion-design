@@ -1,0 +1,18 @@
+# Açarlar — heç vaxt commit olunmur
+.env
+.env.local
+
+node_modules/
+render.log
+
+# Render nəticələri (GitHub Release-ə gedir, repoda saxlanmır)
+out/
+
+# Yüklənmiş stok assetlər və səs — hər işə düşəndə yenidən yaranır.
+# props.json QALIR: panel ondan oxuyur.
+public/render/**/*.mp4
+public/render/**/*.jpg
+public/render/**/*.mp3
+content/output/
+
+# DİQQƏT: assets/music/ commit OLUNUR — GitHub Actions ona ehtiyac duyur

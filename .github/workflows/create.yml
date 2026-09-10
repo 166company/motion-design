@@ -1,0 +1,99 @@
+name: Reels yarat
+
+on:
+  schedule:
+    # Bazar ertəsi / Çərşənbə / Cümə — 14:30 UTC = 18:30 Bakı
+    - cron: "30 14 * * 1,3,5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  create:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      PYTHONUTF8: "1"
+      PYTHONIOENCODING: utf-8
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      OPENAI_MODEL: ${{ vars.OPENAI_MODEL || 'gpt-5.4-mini' }}
+      PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+      TTS_VOICE: ${{ vars.TTS_VOICE || 'az-AZ-BanuNeural' }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with: { node-version: "24", cache: "npm" }
+
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+
+      - name: Chrome üçün sistem kitabxanaları
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq libnss3 libatk-bridge2.0-0 libgtk-3-0 \
+            libasound2t64 libgbm1 fonts-liberation || true
+
+      - run: npm ci
+      - run: pip install --quiet edge-tts mutagen
+
+      - name: Ssenari + səs + assetlər
+        run: npx tsx pipeline/run.ts
+
+      - name: ID-ni oxu
+        id: reel
+        run: echo "id=$(ls -1t public/render | head -1)" >> $GITHUB_OUTPUT
+
+      - name: Render
+        run: |
+          mkdir -p out
+          npx remotion render src/index.ts TipList "out/${{ steps.reel.outputs.id }}.mp4" \
+            --props="public/render/${{ steps.reel.outputs.id }}/props.json"
+
+      - name: QA
+        run: npx tsx pipeline/qa.ts "out/${{ steps.reel.outputs.id }}.mp4" "public/render/${{ steps.reel.outputs.id }}/props.json"
+
+      - name: Release yarat (ictimai video linki)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "reel-${{ steps.reel.outputs.id }}" \
+            "out/${{ steps.reel.outputs.id }}.mp4" \
+            --title "Reel ${{ steps.reel.outputs.id }}" \
+            --notes "Avtomatik yaradılıb. Təsdiq üçün Issue-ya bax."
+
+      - name: Panel məlumatını yenilə
+        run: npx tsx pipeline/panel.ts "${{ steps.reel.outputs.id }}" "${{ github.repository }}"
+
+      - name: Dəyişiklikləri saxla
+        run: |
+          git config user.name "yukaz-agent"
+          git config user.email "actions@github.com"
+          git add docs/data.json content/data public/render
+          git commit -m "reel: ${{ steps.reel.outputs.id }}" || echo "dəyişiklik yoxdur"
+          git push
+
+      - name: Təsdiq üçün Issue aç
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ID: ${{ steps.reel.outputs.id }}
+          REPO: ${{ github.repository }}
+        run: |
+          CAPTION=$(python -c "import json,io;print(json.load(io.open('content/data/$ID.meta.json',encoding='utf-8'))['caption'])")
+          gh issue create \
+            --title "Təsdiq: $ID" \
+            --label "təsdiq-gözləyir" \
+            --body "$(cat <<BODY
+**Video:** https://github.com/$REPO/releases/download/reel-$ID/$ID.mp4
+
+**Caption:**
+$CAPTION
+
+---
+Yayımlamaq üçün bu Issue-ya şərh yaz: \`/publish\`
+İmtina etmək üçün: \`/skip\`
+BODY
+)"

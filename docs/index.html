@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yuk.az — Reels Paneli</title>
+<link rel="icon" href="logo-icon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --orange:#FF6600; --graphite:#1E2124; --soft:#2A2E32;
+    --white:#fff; --neutral:#F5F5F3; --muted:rgba(255,255,255,.58);
+    --line:rgba(255,255,255,.10);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--graphite);color:var(--white);
+       font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+       -webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px;margin:0 auto;padding:28px 20px 80px}
+  header{display:flex;align-items:center;justify-content:space-between;gap:16px;
+         flex-wrap:wrap;padding-bottom:22px;border-bottom:1px solid var(--line)}
+  .brand{display:flex;align-items:center;gap:14px}
+  .brand img{width:38px;height:38px}
+  .brand h1{margin:0;font-size:20px;font-weight:900;letter-spacing:-.4px}
+  .brand span{color:var(--orange)}
+  .sub{color:var(--muted);font-size:13px;margin-top:2px;font-weight:500}
+  .stats{display:flex;gap:10px;flex-wrap:wrap}
+  .stat{background:var(--soft);border:1px solid var(--line);border-radius:14px;
+        padding:10px 16px;min-width:96px}
+  .stat b{display:block;font-size:22px;font-weight:900;line-height:1.1}
+  .stat small{color:var(--muted);font-size:11px;font-weight:600;
+              text-transform:uppercase;letter-spacing:.5px}
+  .tabs{display:flex;gap:8px;margin:24px 0 20px;flex-wrap:wrap}
+  .tab{background:transparent;border:1px solid var(--line);color:var(--muted);
+       padding:9px 18px;border-radius:999px;font:inherit;font-weight:700;
+       font-size:13px;cursor:pointer}
+  .tab[aria-selected="true"]{background:var(--orange);border-color:var(--orange);color:var(--graphite)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:20px}
+  .card{background:var(--soft);border:1px solid var(--line);border-radius:20px;
+        overflow:hidden;display:flex;flex-direction:column}
+  .card video{width:100%;aspect-ratio:9/16;object-fit:cover;background:#000;display:block}
+  .card .body{padding:16px 16px 18px;display:flex;flex-direction:column;gap:10px;flex:1}
+  .hook{font-weight:900;font-size:16px;line-height:1.25;margin:0}
+  .meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:11px;
+        color:var(--muted);font-weight:600}
+  .pill{padding:4px 10px;border-radius:999px;border:1px solid var(--line);white-space:nowrap}
+  .pill.wait{background:rgba(255,102,0,.14);border-color:rgba(255,102,0,.4);color:#FFB273}
+  .pill.done{background:rgba(76,217,123,.12);border-color:rgba(76,217,123,.35);color:#7EE0A4}
+  .pill.skip{opacity:.6}
+  .cap{font-size:12.5px;line-height:1.5;color:var(--muted);margin:0;
+       display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .actions{display:flex;gap:8px;margin-top:auto;padding-top:4px;flex-wrap:wrap}
+  .btn{flex:1;min-width:110px;text-align:center;text-decoration:none;padding:10px 12px;
+       border-radius:12px;font-size:12.5px;font-weight:800;cursor:pointer;
+       border:1px solid var(--line);background:transparent;color:var(--white);font-family:inherit}
+  .btn.primary{background:var(--orange);border-color:var(--orange);color:var(--graphite)}
+  .empty{text-align:center;padding:70px 20px;color:var(--muted)}
+  footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);
+         color:var(--muted);font-size:12px;display:flex;justify-content:space-between;
+         gap:12px;flex-wrap:wrap}
+  a{color:var(--orange)}
+  @media(max-width:520px){ .grid{grid-template-columns:1fr} .wrap{padding:20px 14px 60px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <img src="logo-icon.svg" alt="">
+      <div>
+        <h1>yuk<span>.az</span> — Reels Paneli</h1>
+        <div class="sub" id="updated">yüklənir…</div>
+      </div>
+    </div>
+    <div class="stats" id="stats"></div>
+  </header>
+
+  <div class="tabs" id="tabs">
+    <button class="tab" data-f="all" aria-selected="true">Hamısı</button>
+    <button class="tab" data-f="təsdiq-gözləyir" aria-selected="false">Təsdiq gözləyir</button>
+    <button class="tab" data-f="yayımlanıb" aria-selected="false">Yayımlanıb</button>
+  </div>
+
+  <div class="grid" id="grid"></div>
+  <div class="empty" id="empty" hidden>Hələ video yoxdur.</div>
+
+  <footer>
+    <span>Mənbə: yuk.az məqalələri · Səs: edge-tts (az-AZ) · Render: Remotion</span>
+    <span id="repo"></span>
+  </footer>
+</div>
+
+<script>
+const ESCAPES = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" };
+const esc = (s) => String(s == null ? "" : s).replace(/[&<>"]/g, (c) => ESCAPES[c]);
+
+let DATA = { entries: [], repo: "" };
+let filter = "all";
+
+const badgeClass = (s) =>
+  s === "yayımlanıb" ? "done" : s === "imtina" ? "skip" : "wait";
+
+function render() {
+  const list = DATA.entries.filter((e) => filter === "all" || e.status === filter);
+  const grid = document.getElementById("grid");
+  document.getElementById("empty").hidden = list.length > 0;
+
+  grid.innerHTML = list.map((e) => {
+    const approve =
+      "https://github.com/" + esc(DATA.repo) +
+      "/issues?q=is%3Aissue+is%3Aopen+" + esc(e.id);
+    const right =
+      e.status === "yayımlanıb"
+        ? '<a class="btn primary" target="_blank" rel="noopener" href="' +
+          esc(e.instagram || "#") + '">Instagram-da bax</a>'
+        : '<a class="btn primary" target="_blank" rel="noopener" href="' +
+          approve + '">Təsdiqlə</a>';
+
+    return '<article class="card">' +
+      '<video src="' + esc(e.video) + '" controls preload="metadata" playsinline></video>' +
+      '<div class="body">' +
+        '<p class="hook">' + esc(e.hook) + '</p>' +
+        '<div class="meta">' +
+          '<span class="pill ' + badgeClass(e.status) + '">' + esc(e.status) + '</span>' +
+          '<span class="pill">' + esc(e.duration) + ' san</span>' +
+          '<span class="pill">' + esc(e.scenes) + ' səhnə</span>' +
+          '<span class="pill">' + esc(e.createdAt) + '</span>' +
+        '</div>' +
+        '<p class="cap">' + esc(e.caption) + '</p>' +
+        '<div class="actions">' +
+          '<button class="btn" data-copy="' +
+            esc(e.caption + " " + (e.hashtags || []).join(" ")) +
+          '">Caption kopyala</button>' +
+          right +
+        '</div>' +
+      '</div>' +
+    '</article>';
+  }).join("");
+
+  grid.querySelectorAll("[data-copy]").forEach((b) => {
+    b.onclick = async () => {
+      await navigator.clipboard.writeText(b.dataset.copy);
+      const t = b.textContent;
+      b.textContent = "Kopyalandı ✓";
+      setTimeout(() => { b.textContent = t; }, 1600);
+    };
+  });
+}
+
+function stats() {
+  const n = (s) => DATA.entries.filter((e) => e.status === s).length;
+  document.getElementById("stats").innerHTML =
+    '<div class="stat"><b>' + DATA.entries.length + '</b><small>cəmi</small></div>' +
+    '<div class="stat"><b>' + n("təsdiq-gözləyir") + '</b><small>gözləyir</small></div>' +
+    '<div class="stat"><b>' + n("yayımlanıb") + '</b><small>yayımlanıb</small></div>';
+}
+
+document.getElementById("tabs").onclick = (e) => {
+  const b = e.target.closest(".tab");
+  if (!b) return;
+  filter = b.dataset.f;
+  document.querySelectorAll(".tab").forEach((t) =>
+    t.setAttribute("aria-selected", String(t === b))
+  );
+  render();
+};
+
+fetch("data.json?" + Date.now())
+  .then((r) => (r.ok ? r.json() : Promise.reject(new Error("yox"))))
+  .then((d) => {
+    DATA = d;
+    document.getElementById("updated").textContent =
+      "Son yenilənmə: " + new Date(d.updatedAt).toLocaleString("az-AZ");
+    document.getElementById("repo").textContent = d.repo;
+    stats();
+    render();
+  })
+  .catch(() => {
+    document.getElementById("updated").textContent = "Məlumat tapılmadı";
+    document.getElementById("empty").hidden = false;
+  });
+</script>
+</body>
+</html>

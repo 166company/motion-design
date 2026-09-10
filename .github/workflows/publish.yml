@@ -1,0 +1,89 @@
+name: Reels yayımla
+
+# Təsdiq Issue-suna "/publish" şərhi yazılanda işə düşür.
+# Beləliklə Meta token GitHub-ın içində qalır — brauzerə heç vaxt düşmür.
+
+on:
+  issue_comment:
+    types: [created]
+  workflow_dispatch:
+    inputs:
+      id:
+        description: "Reel ID (məs: 2026-09-10-10764)"
+        required: true
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  publish:
+    # yalnız təsdiq Issue-larında və yalnız repo sahibinin şərhi ilə
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      (startsWith(github.event.issue.title, 'Təsdiq:') &&
+       contains(github.event.comment.body, '/publish') &&
+       contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.comment.author_association))
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
+      META_PAGE_ID: ${{ secrets.META_PAGE_ID }}
+      META_IG_USER_ID: ${{ secrets.META_IG_USER_ID }}
+      META_GRAPH_VERSION: v21.0
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "24", cache: "npm" }
+      - run: npm ci
+
+      - name: Reel ID-ni müəyyən et
+        id: pick
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "id=${{ inputs.id }}" >> $GITHUB_OUTPUT
+          else
+            echo "id=$(echo '${{ github.event.issue.title }}' | sed 's/^Təsdiq: //')" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Instagram + Facebook-a yayımla
+        id: pub
+        run: |
+          ID="${{ steps.pick.outputs.id }}"
+          URL="https://github.com/${{ github.repository }}/releases/download/reel-$ID/$ID.mp4"
+          npx tsx pipeline/publish.ts "$URL" "content/data/$ID.meta.json" | tee pub.log
+          echo "ig=$(grep -oE 'https://www.instagram.com[^ ]*' pub.log | head -1)" >> $GITHUB_OUTPUT
+          echo "fb=$(grep -oE 'https://www.facebook.com/reel/[0-9]+' pub.log | head -1)" >> $GITHUB_OUTPUT
+
+      - name: Statusu yenilə
+        run: |
+          ID="${{ steps.pick.outputs.id }}"
+          python - <<PY
+          import json, io, os
+          p = "content/data/status.json"
+          d = json.load(io.open(p, encoding="utf-8")) if os.path.exists(p) else {}
+          d["$ID"] = {
+              "status": "yayımlanıb",
+              "instagram": "${{ steps.pub.outputs.ig }}",
+              "facebook": "${{ steps.pub.outputs.fb }}",
+          }
+          io.open(p, "w", encoding="utf-8").write(json.dumps(d, ensure_ascii=False, indent=2))
+          PY
+          npx tsx pipeline/panel.ts "$ID" "${{ github.repository }}"
+          git config user.name "yukaz-agent"
+          git config user.email "actions@github.com"
+          git add content/data/status.json docs/data.json
+          git commit -m "yayımlandı: $ID" || echo "dəyişiklik yoxdur"
+          git push
+
+      - name: Issue-nu bağla
+        if: github.event_name == 'issue_comment'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh issue comment ${{ github.event.issue.number }} \
+            --body "✅ Yayımlandı.
+          Instagram: ${{ steps.pub.outputs.ig }}
+          Facebook: ${{ steps.pub.outputs.fb }}"
+          gh issue close ${{ github.event.issue.number }}
