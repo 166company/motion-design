@@ -1,7 +1,7 @@
-import { AbsoluteFill, Img, OffthreadVideo, staticFile, useCurrentFrame, interpolate } from "remotion";
+import { AbsoluteFill, Img, Loop, OffthreadVideo, staticFile, useVideoConfig, useCurrentFrame, interpolate } from "remotion";
 import { colors } from "../brand/theme";
 
-export type MediaSource = { kind: "video" | "image"; src: string };
+export type MediaSource = { kind: "video" | "image"; src: string; duration?: number | null };
 
 /**
  * Fon: video və ya şəkil + yavaş zoom (Ken Burns) + qradient örtük.
@@ -13,6 +13,7 @@ export const BackgroundMedia: React.FC<{
   dim?: number;
 }> = ({ media, durationInFrames, dim = 0.68 }) => {
   const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
   // public/ içindəki nisbi yolları staticFile ilə həll edirik; xarici URL toxunulmaz qalır
   const src = media && (/^https?:/.test(media.src) ? media.src : staticFile(media.src));
   const scale = interpolate(frame, [0, durationInFrames], [1.06, 1.16], {
@@ -21,13 +22,20 @@ export const BackgroundMedia: React.FC<{
 
   return (
     <AbsoluteFill style={{ backgroundColor: colors.graphite, overflow: "hidden" }}>
-      {media?.kind === "video" && (
-        <OffthreadVideo
-          src={src as string}
-          muted
-          style={{ width: "100%", height: "100%", objectFit: "cover", transform: `scale(${scale})` }}
-        />
-      )}
+      {media?.kind === "video" && (() => {
+        const clip = (
+          <OffthreadVideo
+            src={src as string}
+            muted
+            style={{ width: "100%", height: "100%", objectFit: "cover", transform: `scale(${scale})` }}
+          />
+        );
+        // Mənbə səhnədən qısadırsa təkrarla — əks halda render "no frame found" ilə çökür
+        const srcFrames = media.duration ? Math.floor(media.duration * fps) - 2 : 0;
+        return srcFrames > 0 && srcFrames < durationInFrames
+          ? <Loop durationInFrames={srcFrames}>{clip}</Loop>
+          : clip;
+      })()}
       {media?.kind === "image" && (
         <Img
           src={src as string}

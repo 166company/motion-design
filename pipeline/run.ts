@@ -62,14 +62,15 @@ const main = async () => {
 
   console.log("4. Stok video axtarılır (Pexels)…");
   const queries = [s.hookQuery, ...s.items.map((i) => i.query)];
+  const needs = [tts.s0.duration, ...s.items.map((_, i) => tts[`s${i + 1}`].duration)];
   const medias = await Promise.all(
     queries.map(async (q, i) => {
-      const m = await findMedia(q);
+      const m = await findMedia(q, needs[i]);
       if (!m) { log(`⚠ tapılmadı: ${q}`); return null; }
       const ext = m.kind === "video" ? "mp4" : "jpg";
       const file = `m${i}.${ext}`;
       await download(m.src, path.join(dir, file));
-      return { kind: m.kind, src: `render/${id}/${file}` };
+      return { kind: m.kind, src: `render/${id}/${file}`, duration: m.duration };
     })
   );
   log(`${medias.filter(Boolean).length}/${queries.length} asset yükləndi`);

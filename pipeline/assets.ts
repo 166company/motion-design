@@ -1,11 +1,15 @@
 /** Pexels — portret stok video. Pulsuz açar, kart yoxdur. */
 
-export type Media = { kind: "video" | "image"; src: string };
+export type Media = { kind: "video" | "image"; src: string; duration: number | null };
 
-const MIN_DUR = 4;   // saniyə — səhnədən qısa olmasın
 const MAX_MB = 22;   // render sürəti üçün
 
-export const findVideo = async (query: string): Promise<Media | null> => {
+/**
+ * needSeconds — bu videonun örtməli olduğu səhnənin uzunluğu.
+ * Ehtiyat pay MÜTLƏQdir: video səhnədən qısa olsa, render "no frame found" ilə çökür.
+ */
+export const findVideo = async (query: string, needSeconds = 6): Promise<Media | null> => {
+  const minDur = Math.ceil(needSeconds) + 2;
   const key = process.env.PEXELS_API_KEY;
   if (!key) return null;
 
@@ -18,12 +22,12 @@ export const findVideo = async (query: string): Promise<Media | null> => {
   const data = (await res.json()) as any;
 
   for (const v of data.videos ?? []) {
-    if (v.duration < MIN_DUR) continue;
+    if (v.duration < minDur) continue;
     // 1080x1920-ə ən yaxın, amma çox böyük olmayan faylı seç
     const files = (v.video_files ?? [])
       .filter((f: any) => f.height >= 1000 && f.height <= 2200 && f.file_type === "video/mp4")
       .sort((a: any, b: any) => Math.abs(a.height - 1920) - Math.abs(b.height - 1920));
-    if (files[0]) return { kind: "video", src: files[0].link };
+    if (files[0]) return { kind: "video", src: files[0].link, duration: v.duration };
   }
   return null;
 };
@@ -39,8 +43,8 @@ export const findImage = async (query: string): Promise<Media | null> => {
   if (!res.ok) return null;
   const data = (await res.json()) as any;
   const p = data.photos?.[0];
-  return p ? { kind: "image", src: p.src.large2x ?? p.src.large } : null;
+  return p ? { kind: "image", src: p.src.large2x ?? p.src.large, duration: null } : null;
 };
 
-export const findMedia = async (query: string): Promise<Media | null> =>
-  (await findVideo(query)) ?? (await findImage(query));
+export const findMedia = async (query: string, needSeconds = 6): Promise<Media | null> =>
+  (await findVideo(query, needSeconds)) ?? (await findImage(query));

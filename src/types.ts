@@ -9,6 +9,8 @@ export const wordSchema = z.object({
 export const mediaSchema = z.object({
   kind: z.enum(["video", "image"]),
   src: z.string(),
+  /** video mənbəyinin uzunluğu (saniyə) — səhnədən qısadırsa təkrarlanır */
+  duration: z.number().nullable().default(null),
 });
 
 export const sceneSchema = z.object({
