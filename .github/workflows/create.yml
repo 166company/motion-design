@@ -82,18 +82,5 @@ jobs:
           ID: ${{ steps.reel.outputs.id }}
           REPO: ${{ github.repository }}
         run: |
-          CAPTION=$(python -c "import json,io;print(json.load(io.open('content/data/$ID.meta.json',encoding='utf-8'))['caption'])")
-          gh issue create \
-            --title "Təsdiq: $ID" \
-            --label "təsdiq-gözləyir" \
-            --body "$(cat <<BODY
-**Video:** https://github.com/$REPO/releases/download/reel-$ID/$ID.mp4
-
-**Caption:**
-$CAPTION
-
----
-Yayımlamaq üçün bu Issue-ya şərh yaz: \`/publish\`
-İmtina etmək üçün: \`/skip\`
-BODY
-)"
+          python pipeline/issue_body.py "$ID" "$REPO" > issue.md
+          gh issue create --title "Təsdiq: $ID" --label "təsdiq-gözləyir" --body-file issue.md
