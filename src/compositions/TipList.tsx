@@ -91,6 +91,10 @@ const ItemScene: React.FC<{ scene: Scene; total: number }> = ({ scene, total }) 
 
 export const TipList: React.FC<Reel> = ({ hook, total, cta, scenes, music, musicVolume }) => {
   let cursor = 0;
+  // Loyo yalnız CTA-dan əvvəl görünür — CTA-da onsuz da böyük loyo var
+  const bugUntil = scenes
+    .filter((s) => s.kind !== "cta")
+    .reduce((a, b) => a + b.durationInFrames, 0);
 
   return (
     <AbsoluteFill style={{ backgroundColor: colors.graphite }}>
@@ -111,7 +115,9 @@ export const TipList: React.FC<Reel> = ({ hook, total, cta, scenes, music, music
         );
       })}
 
-      <LogoBug />
+      <Sequence durationInFrames={bugUntil}>
+        <LogoBug />
+      </Sequence>
     </AbsoluteFill>
   );
 };

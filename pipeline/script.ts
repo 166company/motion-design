@@ -34,6 +34,10 @@ QAYDALAR:
 - "spoken" sahəsi səsləndirilir: rəvan, danışıq dilində, qısaltma və simvol olmasın.
   "Yuk.az" əvəzinə "Yukaz" yaz (səs düzgün oxusun).
 - "title" ekranda böyük hərflərlə görünür: qısa və zərbəli.
+  ÇOX VACİB: title tam və qrammatik cəhətdən düzgün azərbaycan ifadəsi olmalıdır.
+  Simvol limitinə sığdırmaq üçün sözləri kəsmə və söz sırasını pozma.
+  Sığmırsa, daha qısa BAŞQA ifadə seç. Pis nümunə: "NƏ SƏNƏDİR FƏRQİ".
+  Yaxşı nümunə: "SƏNƏDLƏRİN FƏRQİ", "NƏ DAXİLDİR?", "LİFT VARMI?"
 - "query" mütləq İNGİLİS dilində, stok video axtarışı üçün (məs: "movers carrying boxes stairs").`;
 
 const schema = {
