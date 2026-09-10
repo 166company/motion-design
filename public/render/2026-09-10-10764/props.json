@@ -1,17 +1,17 @@
 {
   "id": "2026-09-10-10764",
-  "hook": "Ev daşınması niyə fərqli hesablanır?",
+  "hook": "DAŞINMA QİYMƏTİ NƏDƏN ASILIDIR?",
   "total": 4,
   "cta": {
-    "line1": "Qiyməti telefonda öyrən",
-    "line2": "yuk.az"
+    "line1": "Dəqiq qiyməti zənglə öyrən",
+    "line2": "Yuk.az"
   },
   "music": "render/2026-09-10-10764/music.wav",
   "musicVolume": 0.1,
   "scenes": [
     {
       "kind": "hook",
-      "spoken": "Ev daşınması hazır tariflə deyil, şəraitlə hesablanır.",
+      "spoken": "Ev daşınmasında qiymət hazır cədvəllə yox, şəraitlə hesablanır.",
       "audio": "render/2026-09-10-10764/s0.mp3",
       "words": [
         {
@@ -20,90 +20,105 @@
           "dur": 0.023
         },
         {
-          "w": "daşınması",
+          "w": "daşınmasında",
           "start": 0.352,
-          "dur": 0.567
+          "dur": 0.683
         },
         {
-          "w": "hazır",
-          "start": 0.942,
+          "w": "qiymət",
+          "start": 1.069,
           "dur": 0.312
         },
         {
-          "w": "tariflə",
-          "start": 1.278,
+          "w": "hazır",
+          "start": 1.417,
+          "dur": 0.289
+        },
+        {
+          "w": "cədvəllə",
+          "start": 1.729,
           "dur": 0.451
         },
         {
-          "w": "deyil",
-          "start": 1.764,
-          "dur": 0.278
+          "w": "yox",
+          "start": 2.204,
+          "dur": 0.22
         },
         {
           "w": "şəraitlə",
-          "start": 2.157,
-          "dur": 0.498
+          "start": 2.528,
+          "dur": 0.486
         },
         {
           "w": "hesablanır",
-          "start": 2.678,
+          "start": 3.037,
           "dur": 0.648
         }
       ],
-      "durationInFrames": 134,
+      "durationInFrames": 145,
       "media": {
         "kind": "video",
         "src": "render/2026-09-10-10764/m0.mp4",
-        "duration": 11
+        "duration": 8
       }
     },
     {
       "kind": "item",
-      "spoken": "Qiymət yükün həcmindən, mərtəbədən, liftdən və məsafədən asılıdır.",
-      "title": "QİYMƏT NƏDƏN ASILIDIR?",
-      "body": "Yükün həcmi, mərtəbə, lift, məsafə, sökülmə və vaxt.",
+      "spoken": "Əvvəl yükün həcmi baxılır, sonra maşın, briqada və işlər seçilir.",
+      "title": "QİYMƏT NECƏ HESABLANIR?",
+      "body": "Yükün həcmi, mərtəbə, lift, məsafə və əlavə işlər birlikdə sayılır.",
       "index": 1,
       "audio": "render/2026-09-10-10764/s1.mp3",
       "words": [
         {
-          "w": "Qiymət",
-          "start": 0.212,
-          "dur": 0.185
+          "w": "Əvvəl",
+          "start": 0.191,
+          "dur": 0.197
         },
         {
           "w": "yükün",
-          "start": 0.536,
+          "start": 0.503,
           "dur": 0.243
         },
         {
-          "w": "həcmindən",
-          "start": 0.802,
-          "dur": 0.532
+          "w": "həcmi",
+          "start": 0.769,
+          "dur": 0.301
         },
         {
-          "w": "mərtəbədən",
-          "start": 1.439,
-          "dur": 0.579
+          "w": "baxılır",
+          "start": 1.093,
+          "dur": 0.382
         },
         {
-          "w": "liftdən",
-          "start": 2.122,
+          "w": "sonra",
+          "start": 1.58,
+          "dur": 0.266
+        },
+        {
+          "w": "maşın",
+          "start": 1.869,
           "dur": 0.347
         },
         {
+          "w": "briqada",
+          "start": 2.32,
+          "dur": 0.405
+        },
+        {
           "w": "və",
-          "start": 2.492,
-          "dur": 0.069
+          "start": 2.749,
+          "dur": 0.081
         },
         {
-          "w": "məsafədən",
-          "start": 2.585,
-          "dur": 0.532
+          "w": "işlər",
+          "start": 2.853,
+          "dur": 0.301
         },
         {
-          "w": "asılıdır",
-          "start": 3.14,
-          "dur": 0.498
+          "w": "seçilir",
+          "start": 3.177,
+          "dur": 0.463
         }
       ],
       "durationInFrames": 144,
@@ -115,110 +130,130 @@
     },
     {
       "kind": "item",
-      "spoken": "Qiymətə maşın, briqada, qablaşdırma və sığorta daxildir.",
+      "spoken": "Yəni tək maşın yox, daşıma prosesi bütöv şəkildə təmin olunur.",
       "title": "NƏ DAXİLDİR?",
-      "body": "Maşın, briqada, qablaşdırma, sökülmə-yığma, sığorta.",
+      "body": "Maşın, yükləyici, qablaşdırma materialı, sökülmə-yığma və sığorta daxildir.",
       "index": 2,
       "audio": "render/2026-09-10-10764/s2.mp3",
       "words": [
         {
-          "w": "Qiymətə",
-          "start": 0.212,
-          "dur": 0.208
+          "w": "Yəni",
+          "start": 0.201,
+          "dur": 0.127
+        },
+        {
+          "w": "tək",
+          "start": 0.468,
+          "dur": 0.185
         },
         {
           "w": "maşın",
-          "start": 0.559,
+          "start": 0.676,
+          "dur": 0.312
+        },
+        {
+          "w": "yox",
+          "start": 1.012,
+          "dur": 0.208
+        },
+        {
+          "w": "daşıma",
+          "start": 1.324,
           "dur": 0.347
         },
         {
-          "w": "briqada",
-          "start": 1.011,
-          "dur": 0.428
+          "w": "prosesi",
+          "start": 1.706,
+          "dur": 0.44
         },
         {
-          "w": "qablaşdırma",
-          "start": 1.532,
-          "dur": 0.671
+          "w": "bütöv",
+          "start": 2.192,
+          "dur": 0.232
         },
         {
-          "w": "və",
-          "start": 2.237,
-          "dur": 0.069
-        },
-        {
-          "w": "sığorta",
-          "start": 2.33,
+          "w": "şəkildə",
+          "start": 2.447,
           "dur": 0.417
         },
         {
-          "w": "daxildir",
-          "start": 2.77,
-          "dur": 0.532
+          "w": "təmin",
+          "start": 2.887,
+          "dur": 0.255
+        },
+        {
+          "w": "olunur",
+          "start": 3.164,
+          "dur": 0.347
         }
       ],
-      "durationInFrames": 134,
+      "durationInFrames": 139,
       "media": {
         "kind": "video",
         "src": "render/2026-09-10-10764/m2.mp4",
-        "duration": 10
+        "duration": 7
       }
     },
     {
       "kind": "item",
-      "spoken": "Lift olmayanda, gec sifarişdə və əlavə yükdə məbləğ artır.",
-      "title": "NƏ ZAMAN ARTIR?",
-      "body": "Lift yoxdursa, sifariş gecdirsə, yük az deyilsə, qiymət qalxır.",
+      "spoken": "Lift yoxdursa, dar girişdirsə, iş də vaxt da dərhal artır.",
+      "title": "NİYƏ FƏRQ EDİR?",
+      "body": "Eyni mənzil lift, mərtəbə, mebel növü və giriş şəraitinə görə dəyişir.",
       "index": 3,
       "audio": "render/2026-09-10-10764/s3.mp3",
       "words": [
         {
           "w": "Lift",
-          "start": 0.201,
-          "dur": 0.116
+          "start": 0.2,
+          "dur": 0.104
         },
         {
-          "w": "olmayanda",
-          "start": 0.456,
-          "dur": 0.556
+          "w": "yoxdursa",
+          "start": 0.432,
+          "dur": 0.532
         },
         {
-          "w": "gec",
-          "start": 1.104,
-          "dur": 0.185
+          "w": "dar",
+          "start": 1.057,
+          "dur": 0.174
         },
         {
-          "w": "sifarişdə",
-          "start": 1.312,
-          "dur": 0.567
+          "w": "girişdirsə",
+          "start": 1.265,
+          "dur": 0.59
         },
         {
-          "w": "və",
-          "start": 1.914,
+          "w": "iş",
+          "start": 1.948,
+          "dur": 0.139
+        },
+        {
+          "w": "də",
+          "start": 2.11,
           "dur": 0.081
         },
         {
-          "w": "əlavə",
-          "start": 2.018,
-          "dur": 0.336
+          "w": "vaxt",
+          "start": 2.214,
+          "dur": 0.197
         },
         {
-          "w": "yükdə",
-          "start": 2.377,
-          "dur": 0.278
+          "w": "da",
+          "start": 2.434,
+          "dur": 0.093
         },
         {
-          "w": "məbləğ",
-          "start": 2.678,
-          "dur": 0.359
+          "w": "dərhal",
+          "start": 2.562,
+          "dur": 0.324
         },
         {
           "w": "artır",
-          "start": 3.06,
+          "start": 2.909,
           "dur": 0.37
         }
       ],
-      "durationInFrames": 138,
+      "durationInFrames": 133,
       "media": {
         "kind": "video",
         "src": "render/2026-09-10-10764/m3.mp4",
@@ -227,63 +262,68 @@
     },
     {
       "kind": "item",
-      "spoken": "Artıq əşyanı ayır, xırdanı özün qutula, tarixi ortada seç.",
-      "title": "NECƏ AZALDASAN?",
-      "body": "Artıq əşyanı ayır, xırdanı qutula, tarixi ortada seç.",
+      "spoken": "Dəqiq qiymət üçün operatora bu dörd məlumatı bir yerdə de.",
+      "title": "NECƏ DƏQİQ QİYMƏT ALARSAN?",
+      "body": "Zəngdə otaq sayı, mərtəbə, lift və ünvanı dəqiq demək lazımdır.",
       "index": 4,
       "audio": "render/2026-09-10-10764/s4.mp3",
       "words": [
         {
-          "w": "Artıq",
-          "start": 0.191,
+          "w": "Dəqiq",
+          "start": 0.2,
+          "dur": 0.15
+        },
+        {
+          "w": "qiymət",
+          "start": 0.49,
+          "dur": 0.324
+        },
+        {
+          "w": "üçün",
+          "start": 0.837,
+          "dur": 0.185
+        },
+        {
+          "w": "operatora",
+          "start": 1.057,
+          "dur": 0.579
+        },
+        {
+          "w": "bu",
+          "start": 1.67,
+          "dur": 0.093
+        },
+        {
+          "w": "dörd",
+          "start": 1.786,
           "dur": 0.232
         },
         {
-          "w": "əşyanı",
-          "start": 0.538,
-          "dur": 0.37
+          "w": "məlumatı",
+          "start": 2.041,
+          "dur": 0.509
         },
         {
-          "w": "ayır",
-          "start": 0.931,
-          "dur": 0.301
+          "w": "bir",
+          "start": 2.585,
+          "dur": 0.116
         },
         {
-          "w": "xırdanı",
-          "start": 1.348,
-          "dur": 0.417
-        },
-        {
-          "w": "özün",
-          "start": 1.788,
-          "dur": 0.243
-        },
-        {
-          "w": "qutula",
-          "start": 2.054,
-          "dur": 0.347
-        },
-        {
-          "w": "tarixi",
-          "start": 2.494,
-          "dur": 0.347
-        },
-        {
-          "w": "ortada",
-          "start": 2.864,
-          "dur": 0.394
-        },
-        {
-          "w": "seç",
-          "start": 3.281,
+          "w": "yerdə",
+          "start": 2.724,
           "dur": 0.324
+        },
+        {
+          "w": "de",
+          "start": 3.071,
+          "dur": 0.15
         }
       ],
-      "durationInFrames": 143,
+      "durationInFrames": 131,
       "media": {
         "kind": "video",
         "src": "render/2026-09-10-10764/m4.mp4",
-        "duration": 10
+        "duration": 61
       }
     },
     {
