@@ -112,14 +112,31 @@ const main = async () => {
     .readdir("public/music")
     .then((f) => f.filter((x) => /\.(mp3|m4a|wav)$/i.test(x)).sort())
     .catch(() => [] as string[]);
-  const track = tracks.length ? tracks[article.id % tracks.length] : null;
+  let track = tracks.length ? `music/${tracks[article.id % tracks.length]}` : null;
+
+  // Real trek yoxdursa, videonun uzunluğuna uyğun orijinal fon musiqisi sintez et.
+  // Telif riski yoxdur. public/music/ dolduqda bu blok özü sönür.
+  if (!track) {
+    const secs = scenes.reduce((a, b) => a + b.durationInFrames, 0) / FPS;
+    const wav = path.join(dir, "music.wav");
+    await new Promise<void>((res, rej) => {
+      const py = spawn("python", ["pipeline/music.py", wav, String(article.id), secs.toFixed(1)], {
+        env: { ...process.env, PYTHONUTF8: "1" },
+      });
+      let err = "";
+      py.stderr.on("data", (d) => (err += d));
+      py.on("close", (c) => (c === 0 ? res() : rej(new Error(`music.py ${c}: ${err.slice(-300)}`))));
+    });
+    track = `render/${id}/music.wav`;
+    log("fon musiqisi sintez olundu");
+  }
 
   const reel = {
     id,
     hook: s.hook,
     total: s.items.length,
     cta: s.cta,
-    music: track ? `music/${track}` : null,
+    music: track,
     musicVolume: 0.1,
     scenes,
   };
@@ -136,7 +153,7 @@ const main = async () => {
   const total = scenes.reduce((a, b) => a + b.durationInFrames, 0);
   console.log(`\n✓ Hazırdır: ${id}`);
   console.log(`  müddət: ${(total / FPS).toFixed(1)} saniyə (${total} kadr)`);
-  console.log(`  musiqi: ${track ?? "yoxdur — public/music/ boşdur"}`);
+  console.log(`  musiqi: ${track}`);
   console.log(`\n  Render: npm run render -- --props=${dir}/props.json out/${id}.mp4\n`);
 };
 

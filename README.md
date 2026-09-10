@@ -63,12 +63,16 @@ git push -u origin main
 
 Panel: `https://166company.github.io/motion-design/`
 
-### 4. Musiqi
+### 4. Musiqi (istəyə görə)
 
-`public/music/` qovluğuna 10–15 trek at.
-Mənbə: Instagram-ın **Sound Collection**-u (biznes hesab üçün rəsmi pulsuzdur,
-telif iddiası riski yoxdur) və ya Pixabay Music.
-Agent hər video üçün ordan birini seçir. Bir dəfəlik işdir.
+Sistem musiqisiz də tam işləyir: `public/music/` boşdursa,
+[pipeline/music.py](pipeline/music.py) hər video üçün **orijinal fon yastığı**
+sintez edir — telif riski yoxdur, xərc yoxdur, açar yoxdur.
+
+Daha zəngin musiqi istəsən, `public/music/` qovluğuna `.mp3` at —
+sintezator avtomatik sönür və sənin treklərin işlədilir.
+Mənbə: Instagram **Sound Collection** (biznes hesab üçün rəsmi lisenziyalı)
+və ya Pixabay Music.
 
 ---
 
@@ -97,7 +101,7 @@ Etibar yaranandan sonra `create.yml`-dəki Issue addımını silib
 
 ```bash
 npm install
-pip install edge-tts mutagen
+pip install edge-tts mutagen numpy
 
 npx tsx pipeline/run.ts          # ssenari + səs + assetlər
 npm run studio                   # Remotion Studio-da bax və düzəlt
@@ -123,6 +127,7 @@ pipeline/
   assets.ts             Pexels portret video
   run.ts                bütün zənciri birləşdirir
   qa.ts                 render sonrası yoxlamalar
+  music.py              orijinal fon musiqisi sintezatoru
   publish.ts            Meta Graph API
   panel.ts              docs/data.json
 docs/                   statik panel (GitHub Pages)

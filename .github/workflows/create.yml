@@ -38,7 +38,7 @@ jobs:
             libasound2t64 libgbm1 fonts-liberation || true
 
       - run: npm ci
-      - run: pip install --quiet edge-tts mutagen
+      - run: pip install --quiet edge-tts mutagen numpy
 
       - name: Ssenari + səs + assetlər
         run: npx tsx pipeline/run.ts

@@ -13,6 +13,7 @@ out/
 public/render/**/*.mp4
 public/render/**/*.jpg
 public/render/**/*.mp3
+public/render/**/*.wav
 content/output/
 
 # DİQQƏT: public/music/ commit OLUNUR — GitHub Actions ona ehtiyac duyur
