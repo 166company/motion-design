@@ -15,4 +15,4 @@ public/render/**/*.jpg
 public/render/**/*.mp3
 content/output/
 
-# DİQQƏT: assets/music/ commit OLUNUR — GitHub Actions ona ehtiyac duyur
+# DİQQƏT: public/music/ commit OLUNUR — GitHub Actions ona ehtiyac duyur

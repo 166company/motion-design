@@ -106,17 +106,20 @@ const main = async () => {
     },
   ];
 
-  const music = await fs
-    .readdir("assets/music")
-    .then((f) => f.filter((x) => /\.(mp3|m4a)$/i.test(x)))
+  // Musiqi public/music/ qovluğundan götürülür (staticFile yalnız public/ görür).
+  // Trek məqalə ID-sinə görə seçilir — eyni video həmişə eyni musiqi ilə render olunur.
+  const tracks = await fs
+    .readdir("public/music")
+    .then((f) => f.filter((x) => /\.(mp3|m4a|wav)$/i.test(x)).sort())
     .catch(() => [] as string[]);
+  const track = tracks.length ? tracks[article.id % tracks.length] : null;
 
   const reel = {
     id,
     hook: s.hook,
     total: s.items.length,
     cta: s.cta,
-    music: null as string | null,
+    music: track ? `music/${track}` : null,
     musicVolume: 0.1,
     scenes,
   };
@@ -133,7 +136,7 @@ const main = async () => {
   const total = scenes.reduce((a, b) => a + b.durationInFrames, 0);
   console.log(`\n✓ Hazırdır: ${id}`);
   console.log(`  müddət: ${(total / FPS).toFixed(1)} saniyə (${total} kadr)`);
-  console.log(`  musiqi: ${music.length ? music.length + " trek mövcuddur" : "yoxdur — assets/music/ boşdur"}`);
+  console.log(`  musiqi: ${track ?? "yoxdur — public/music/ boşdur"}`);
   console.log(`\n  Render: npm run render -- --props=${dir}/props.json out/${id}.mp4\n`);
 };
 

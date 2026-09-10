@@ -65,7 +65,7 @@ Panel: `https://166company.github.io/motion-design/`
 
 ### 4. Musiqi
 
-`assets/music/` qovluğuna 10–15 trek at.
+`public/music/` qovluğuna 10–15 trek at.
 Mənbə: Instagram-ın **Sound Collection**-u (biznes hesab üçün rəsmi pulsuzdur,
 telif iddiası riski yoxdur) və ya Pixabay Music.
 Agent hər video üçün ordan birini seçir. Bir dəfəlik işdir.
