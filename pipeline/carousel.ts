@@ -11,6 +11,7 @@ import "dotenv/config";
 import "./plan.ts";
 import fs from "node:fs/promises";
 import path from "node:path";
+import { contact } from "../src/brand/contact.ts";
 
 // Söz oyunu yaradıcı işdir — kiçik model mənasız ifadə yazır; burada güclü model (post başına ~1 sent)
 const MODEL = process.env.OPENAI_CREATIVE_MODEL ?? "gpt-5.5";
@@ -34,7 +35,7 @@ const schema = {
     idiom: { type: "string", description: "əsaslandığı orijinal ifadə (məs 'dur burdan get')" },
     punch: { type: "string", description: "2-3 söz, nöqtə ilə, Yük.az faydası (məs 'Sığortalı daşınma.')" },
     photo: { type: "string", description: "İNGİLİSCƏ fotorealist səhnə: Bakı mənzərəsi və ya ev/mənzil, insansız, mətnsiz, 4:5" },
-    caption: { type: "string", description: "1-2 emoji, mətn YOX" },
+    caption: { type: "string", description: "Qısa caption: 1 hazırcavab sətir (emoji ilə, cümləyə göz vurur, amma onu təkrar etmir) + boş sətir + 1 sətir fayda. Sonda CTA sistem özü əlavə edir. 2-3 sətir cəmi." },
     hashtags: { type: "array", minItems: 3, maxItems: 6, items: { type: "string" } },
   },
 } as const;
@@ -69,7 +70,7 @@ QAYDALAR:
 - Azərbaycan dilində HƏQİQƏTƏN tanış danışıq ifadəsi və ya atalar sözü götür (məs "dur burdan get", "evin yıxılsın", "başına dolanım", "qapını çal", "yükünü çək") və köç/daşınma/qutu/yük mövzusuna gözlənilməz, incə çevir. Oxuyan dərhal başa düşməli və gülümsəməlidir.
 - Cümlə 3-5 söz, TƏBİİ azərbaycan dili, qrammatik düzgün, "sən" tonu. Hər söz maks 8 hərf.
 - Punchline 2-3 söz, Yük.az faydası: sığorta, bir zəng, qablaşdırma, sürət. QİYMƏT RƏQƏMİ YOX.
-- Caption yalnız emoji.
+- Caption: 1 hazırcavab sətir + 1 fayda sətri, emojili, qısa. Nömrəni yazma — sistem əlavə edir.
 - "Dur burdan köçək." artıq istifadə olunub — TƏKRAR ETMƏ, təzəsini tap.`;
 
 const writeConcept = async (feedback?: string): Promise<Concept> => {
@@ -129,6 +130,7 @@ const main = async () => {
       return acc === "" ? b : /\.\.\.$/.test(acc) && /^\.\.\./.test(x) ? a + b : a + " " + b;
     }, "").replace(/\s+/g, " ").trim();
   const exactSentence = process.env.EXACT_SENTENCE || (exactSlides ? joinSlides(exactSlides.map((x) => x.replace(/\n/g, " "))) : null);
+  const withCta = (cap: string) => cap.includes(contact.phone) ? cap : `${cap.trim()}${NL}${NL}📞 Zəng et: ${contact.phone}`;
   const c = await writeConcept(
     exactSentence
       ? `${feedback ?? ""}${NL}${NL}DİQQƏT: cümlə ARTIQ VERİLİB, onu dəyişmə, "sentence" sahəsinə olduğu kimi yaz: "${exactSentence}". Yalnız foto, caption, hashtag${process.env.EXACT_PUNCH ? "" : ", punch"} üçün işlə.`
@@ -155,7 +157,7 @@ const main = async () => {
     path.join("content", "data", `${id}.meta.json`),
     JSON.stringify({
       id, template: "Carousel", articleId: null, link: "https://yuk.az",
-      caption: c.caption, hashtags: c.hashtags, slides: 3, spoken: c.sentence, idiom: c.idiom,
+      caption: withCta(c.caption), hashtags: c.hashtags, slides: 3, spoken: c.sentence, idiom: c.idiom,
       music: null, attribution: null, musicTrack: null, voice: null, silent: true,
     }, null, 2),
     "utf-8"

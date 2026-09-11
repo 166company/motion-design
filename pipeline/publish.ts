@@ -124,18 +124,45 @@ export const publishFacebookPhotos = async (imageUrls: string[], message: string
   return { id: post.id as string, permalink: pid ? `https://www.facebook.com/${pg}/posts/${pid}` : `https://www.facebook.com/${post.id}` };
 };
 
+/** Musiqi krediti (CC BY) — caption əvəzinə ilk şərh. Uğursuz olsa yayımı pozmur. */
+const creditComment = async (igMediaId: string | null, fbObjectId: string | null, attribution: string | null) => {
+  if (!attribution) return;
+  const text = attribution.replace(/^🎵\s*/, "🎵 Musiqi: ");
+  if (igMediaId) {
+    await api(`${igMediaId}/comments?message=${encodeURIComponent(text)}&access_token=${TOKEN}`, { method: "POST" })
+      .then(() => console.log("  ✓ IG kredit şərhi")).catch((e) => console.log("  ⚠ IG şərh:", e.message.slice(0, 80)));
+  }
+  if (fbObjectId) {
+    const pt = await pageToken();
+    await api(`${fbObjectId}/comments?message=${encodeURIComponent(text)}&access_token=${pt}`, { method: "POST" })
+      .then(() => console.log("  ✓ FB kredit şərhi")).catch((e) => console.log("  ⚠ FB şərh:", e.message.slice(0, 80)));
+  }
+};
+
 if (process.argv[1]?.endsWith("publish.ts")) {
   const [, , videoUrl, metaPath] = process.argv;
   const meta = JSON.parse(await (await import("node:fs/promises")).readFile(metaPath, "utf-8"));
   const caption = `${meta.caption}\n\n${meta.hashtags.join(" ")}`;
 
-  console.log("Instagram…");
-  const ig = await publishInstagram(videoUrl, caption);
-  console.log("  ✓", ig.permalink);
-
-  console.log("Facebook…");
-  const fb = await publishFacebook(videoUrl, caption);
-  console.log("  ✓", fb.permalink);
+  if (meta.template === "Carousel") {
+    // videoUrl = .../reel-<id>/<id>.mp4 → şəkillər eyni qovluqda <id>-1.png, -2, -3
+    const base = videoUrl.replace(/[^/]+$/, "");
+    const urls = Array.from({ length: meta.slides ?? 3 }, (_, i) => `${base}${meta.id}-${i + 1}.png`);
+    console.log("Instagram (karusel)…");
+    const ig = await publishInstagramCarousel(urls, caption);
+    console.log("  ✓", ig.permalink);
+    console.log("Facebook (foto post)…");
+    const fb = await publishFacebookPhotos(urls, caption);
+    console.log("  ✓", fb.permalink);
+  } else {
+    console.log("Instagram…");
+    const ig = await publishInstagram(videoUrl, caption);
+    console.log("  ✓", ig.permalink);
+    console.log("Facebook…");
+    const fb = await publishFacebook(videoUrl, caption);
+    console.log("  ✓", fb.permalink);
+    await creditComment(ig.id, fb.id, meta.attribution ?? null);
+  }
 }
 process.on("unhandledRejection", (e: any) => {
   console.error("YAYIM XƏTASI:", e?.message ?? e);

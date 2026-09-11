@@ -48,17 +48,46 @@ export const Carousel: React.FC<CarouselProps> = ({ photo, lines, punch, fontSiz
     );
   }
 
-  // aviasales üslubu:
-  //  slayd 1 — BÖYÜK hərf, sağa hizalı, son parça sağ kənarda KƏSİLİR (nöqtə yox, çərçivə kəsir)
-  //  slayd 2 — kiçik hərf, sola hizalı, ilk parça sol kənardan "içəri girir"
-  const raw = lines[i].replace(/^\.\.\.|\.\.\.$/g, "").trim();
+  // aviasales üslubu — əsas qayda: kəsilən söz və davamı EYNİ SƏTİRDƏ (eyni y) olmalıdır.
+  //  slayd 1: BÖYÜK hərf, sağa hizalı, son parça sağ kənarda kəsilir (nöqtə yox)
+  //  slayd 2: kiçik hərf, sola hizalı; ilk sətir = davam parçası, slayd 1-in son sətri ilə eyni y-də;
+  //           qalan sözlər onun altında, eni görə sətirlərə yığılır. Hər iki slayd eyni şrift.
+  const clean = (t: string) => t.replace(/\.\.\./g, "").trim();
+  const wordsOf = (t: string) => clean(t).split(/\s+/).filter(Boolean);
+  const w1 = wordsOf(lines[0]).map((w) => w.toLocaleUpperCase("az"));           // slayd 1: hər söz öz sətrində
+  const w2 = wordsOf(lines[1] ?? "").map((w) => w.toLocaleLowerCase("az"));     // slayd 2
+  const charW = 0.6;                                                            // 1 hərf ≈ 0.6 × şrift
+  const maxW = W - 80;
+  // slayd 2 sətirləri: ilk sətir yalnız davam parçası; qalanı greedy — verilən şriftə görə
+  const packRows = (words: string[], F: number) => {
+    if (!words.length) return [] as string[];
+    const rows = [words[0]];
+    let cur = "";
+    for (const w of words.slice(1)) {
+      const cand = cur ? cur + " " + w : w;
+      if (cand.length * charW * F <= maxW) cur = cand;
+      else { if (cur) rows.push(cur); cur = w; }
+    }
+    if (cur) rows.push(cur);
+    return rows;
+  };
+  const ANCHOR = 800;                // slayd 1-in son sətrinin ALT xətti (y) — 2-ci slaydın davamına yer qalsın
+  const ROW = 0.95;                  // sətir hündürlüyü / şrift
+  // ortaq şrift: slayd 1 eninə, slayd 2 eninə + slayd 2-nin ANCHOR-dan aşağı sığmasına görə
+  let F = Math.min(fontSize, 270);
+  for (let k = 0; k < 6; k++) {
+    const rows2 = packRows(w2, F);
+    const wFit1 = Math.floor(maxW / (Math.max(...w1.map((x) => x.length), 1) * charW));
+    const wFit2 = Math.floor(maxW / (Math.max(...rows2.map((x) => x.length), 1) * charW));
+    const hFit2 = Math.floor((H - 90 - (ANCHOR - F * ROW)) / (Math.max(rows2.length, 1) * ROW)); // ilk sətir ANCHOR-da, qalanı altında
+    const next = Math.min(F, wFit1, wFit2, hFit2);
+    if (next >= F) break;
+    F = next;
+  }
+  const rows2 = packRows(w2, F);
   const isFirst = i === 0;
-  const rowsRaw = raw.includes("\n") ? raw.split("\n") : raw.split(/\s+/).filter(Boolean);
-  const rows = rowsRaw.map((r) => (isFirst ? r.toLocaleUpperCase("az") : r.toLocaleLowerCase("az")));
-  const longest = Math.max(...rows.map((r) => r.length), 1);
-  // 1-ci slayd 2-3 qısa sözdür — nəhəng olsun (aviasales "DUR BURDAN"); 2-ci slayd daha uzun, bir az kiçik
-  const cap = isFirst ? Math.max(fontSize, 270) : fontSize;
-  const fit = Math.min(cap, Math.floor((W - 60) / (longest * 0.6)), Math.floor((H - 560) / (rows.length * 0.95)));
+  const rows = isFirst ? w1 : rows2;
+  const blockTop = isFirst ? ANCHOR - w1.length * F * ROW : ANCHOR - F * ROW;  // slayd 2-nin ilk sətri slayd 1-in son sətri ilə eyni y-də
   return (
     <AbsoluteFill style={{ width: W, height: H, overflow: "hidden", fontFamily: font, background: colors.graphite }}>
       {/* foto — slaydlar arasında davamlılıq: eyni şəkil, hər slayd öz hissəsini göstərir */}
@@ -70,7 +99,7 @@ export const Carousel: React.FC<CarouselProps> = ({ photo, lines, punch, fontSiz
       <Logo />
       <div
         style={{
-          position: "absolute", left: 0, right: 0, bottom: 170,
+          position: "absolute", left: 0, right: 0, top: blockTop,
           display: "flex", flexDirection: "column",
           alignItems: isFirst ? "flex-end" : "flex-start",
         }}
@@ -79,15 +108,15 @@ export const Carousel: React.FC<CarouselProps> = ({ photo, lines, punch, fontSiz
           const last = k === rows.length - 1;
           const first = k === 0;
           // kəsilmə: slayd 1-in son parçası sağa çıxır, slayd 2-nin ilk parçası soldan gəlir
-          const shift = isFirst && last ? fit * 0.55 : !isFirst && first ? -fit * 0.35 : 0;
+          const shift = isFirst && last ? F * 0.5 : !isFirst && first ? -F * 0.3 : 0;
           return (
             <div
               key={k}
               style={{
-                fontSize: fit, fontWeight: 900, color: colors.white, lineHeight: 0.95,
-                letterSpacing: -fit * 0.03, whiteSpace: "nowrap",
+                fontSize: F, fontWeight: 900, color: colors.white, lineHeight: ROW, height: F * ROW,
+                letterSpacing: -F * 0.03, whiteSpace: "nowrap",
                 textShadow: "0 8px 30px rgba(0,0,0,0.45)",
-                paddingLeft: isFirst ? 0 : 36, paddingRight: isFirst ? 36 : 0,
+                paddingLeft: isFirst ? 0 : 40, paddingRight: isFirst ? 40 : 0,
                 transform: `translateX(${shift}px)`,
               }}
             >

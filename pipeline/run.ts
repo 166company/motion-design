@@ -238,10 +238,8 @@ const main = async () => {
     path.join("content", "data", `${id}.meta.json`),
     JSON.stringify({
       id, template: "TipList", articleId: article.id, link: article.link,
-      // CC BY lisenziyası atribut tələb edir — caption-ın sonuna əlavə olunur
-      caption: attribution ? `${s.caption}
-
-${attribution}` : s.caption,
+      // Musiqi krediti caption-a YOX — yayımdan sonra ilk şərh kimi gedir (publish.ts); lisenziya şərti belə də ödənir
+      caption: s.caption,
       hashtags: s.hashtags,
       music: track, attribution, musicTrack, voice,
     }, null, 2),

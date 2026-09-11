@@ -149,7 +149,7 @@ const main = async () => {
     path.join("content", "data", `${id}.meta.json`),
     JSON.stringify({
       id, template: "Explainer", articleId: null, link: "https://yuk.az",
-      caption: music.attribution ? `${c.caption}\n\n${music.attribution}` : c.caption,
+      caption: c.caption,   // musiqi krediti caption-a yox — ilk şərh kimi gedir
       hashtags: c.hashtags, music: music.track || null, attribution: music.attribution, musicTrack: music.musicTrack,
       voice: silent ? null : voice, silent,
     }, null, 2),
