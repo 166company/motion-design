@@ -1,5 +1,30 @@
 {
   "repo": "166company/motion-design",
-  "updatedAt": "2026-09-11T06:37:47.714Z",
-  "entries": []
+  "updatedAt": "2026-09-11T06:45:00.823Z",
+  "entries": [
+    {
+      "id": "2026-09-11-10764",
+      "hook": "EVDƏN KÖÇÜRƏNDƏ QİYMƏT NƏYƏ GÖRƏ DƏYİŞİR?",
+      "caption": "Ev daşınmasının qiyməti hazır tariflə yox, bir neçə amillə hesablanır. Yükün həcmi, mərtəbə, lift, məsafə və əlavə işlər məbləği dəyişir. Dəqiq qiymət üçün məlumatı zəngdə ver, operator sənə əvvəlcədən deyəcək. Ətraflı: yuk.az/ev-dasinmasi-qiymeti/\n\n🎵 Fuaim | Lofi Instrumental Beat — Nightingale Lofi (CC BY-SA) https://audius.co/NightingaleLofi/fuaim-|-lofi-instrumental-beat-439079",
+      "hashtags": [
+        "#evdaşınması",
+        "#yukaz",
+        "#köçmək",
+        "#BakıdaDaşınma",
+        "#yükdaşıma"
+      ],
+      "source": "https://yuk.az/ev-dasinmasi-qiymeti/",
+      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-10764/2026-09-11-10764.mp4",
+      "duration": 25.7,
+      "scenes": 6,
+      "status": "təsdiq-gözləyir",
+      "createdAt": "2026-09-11",
+      "music": {
+        "label": "Fuaim | Lofi Instrumental Beat — Nightingale Lofi",
+        "license": "Attribution ShareAlike CC BY-SA",
+        "vocal": false,
+        "source": "audius"
+      }
+    }
+  ]
 }
