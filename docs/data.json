@@ -1,55 +1,5 @@
 {
   "repo": "166company/motion-design",
-  "updatedAt": "2026-09-11T06:14:53.179Z",
-  "entries": [
-    {
-      "id": "2026-09-11-10736",
-      "hook": "NAXÇIVANDA YÜKDAŞIMA NECƏ HESABLANIR?",
-      "caption": "Naxçıvanda yükdaşıma sifarişində əvvəlcə yükün həcmi, giriş şəraiti və tarix dəqiqləşir. Qiymət sabit deyil, telefonda yükə görə bildirilir. Daha rahat planlama üçün linkə bax: https://yuk.az/naxcivanda-yukdasima-xidmeti/\n\n🎵 Don't Stop — Pamela Yuen (CC BY) https://audius.co/pamelayuen/dont-stop",
-      "hashtags": [
-        "#yukaz",
-        "#yükdaşıma",
-        "#naxçıvan",
-        "#köçmə",
-        "#evdaşınması",
-        "#ofisköçürülməsi"
-      ],
-      "source": "https://yuk.az/naxcivanda-yukdasima-xidmeti/",
-      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-10736/2026-09-11-10736.mp4",
-      "duration": 25.7,
-      "scenes": 6,
-      "status": "təsdiq-gözləyir",
-      "createdAt": "2026-09-11",
-      "music": {
-        "label": "Don't Stop — Pamela Yuen",
-        "license": "CC BY",
-        "vocal": false,
-        "source": "audius"
-      }
-    },
-    {
-      "id": "2026-09-10-10764",
-      "hook": "DAŞINMA QİYMƏTİ NƏDƏN ASILIDIR?",
-      "caption": "Ev daşınması qiyməti hazır tariflə yox, yükün həcmi və şəraitlə hesablanır. Mərtəbə, lift, məsafə və əlavə işlər məbləği dəyişir. Dəqiq qiymət üçün linkə bax: https://yuk.az/ev-dasinmasi-qiymeti/",
-      "hashtags": [
-        "#evdasinmasi",
-        "#yukaz",
-        "#dasinma",
-        "#bakı",
-        "#yukdasima"
-      ],
-      "source": "https://yuk.az/ev-dasinmasi-qiymeti/",
-      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-10-10764/2026-09-10-10764.mp4",
-      "duration": 25.7,
-      "scenes": 6,
-      "status": "təsdiq-gözləyir",
-      "createdAt": "2026-09-10",
-      "music": {
-        "label": "Orijinal sintez",
-        "license": null,
-        "vocal": false,
-        "source": "synth"
-      }
-    }
-  ]
+  "updatedAt": "2026-09-11T06:37:47.714Z",
+  "entries": []
 }

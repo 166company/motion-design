@@ -92,6 +92,9 @@ const ItemScene: React.FC<{ scene: Scene; total: number }> = ({ scene, total }) 
 export const TipList: React.FC<Reel> = ({ hook, total, cta, scenes, music, musicVolume }) => {
   let cursor = 0;
   const totalFrames = scenes.reduce((a, b) => a + b.durationInFrames, 0);
+  const ctaFrom = scenes
+    .filter((s) => s.kind !== "cta")
+    .reduce((a, b) => a + b.durationInFrames, 0);
   // Loyo yalnız CTA-dan əvvəl görünür — CTA-da onsuz da böyük loyo var
   const bugUntil = scenes
     .filter((s) => s.kind !== "cta")
@@ -104,12 +107,16 @@ export const TipList: React.FC<Reel> = ({ hook, total, cta, scenes, music, music
           src={staticFile(music)}
           loop
           // son 1.5 saniyədə yumşaq sönmə — kəskin kəsilmə olmasın
-          volume={(f) =>
-            interpolate(f, [totalFrames - 45, totalFrames], [musicVolume, 0], {
+          // Ducking: səsləndirmə altında aşağı, CTA-da qalxır, sonda sönür
+          volume={(f) => {
+            const base = f >= ctaFrom
+              ? interpolate(f, [ctaFrom, ctaFrom + 12], [musicVolume, Math.min(1, musicVolume * 2)], { extrapolateRight: "clamp" })
+              : musicVolume;
+            return interpolate(f, [totalFrames - 40, totalFrames], [base, 0], {
               extrapolateLeft: "clamp",
               extrapolateRight: "clamp",
-            })
-          }
+            });
+          }}
         />
       )}
 

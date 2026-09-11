@@ -30,6 +30,21 @@ const runTts = (jobs: { id: string; text: string }[], outDir: string) =>
     py.stdin.end();
   });
 
+/** Səviyyə normallaşdırma — mix-dən əvvəl hər mənbə eyni hədəfə gətirilir */
+const VO_DB = -18;     // səsləndirmə hədəfi (RMS dBFS)
+const MUSIC_DB = -20;  // musiqi hədəfi; Remotion-da ducking bunun üstündən tətbiq olunur
+const normalizeAudio = (src: string, dest: string, targetDb: number, stereo = false, windowSec?: number) =>
+  new Promise<void>((res, rej) => {
+    const args = ["pipeline/loudness.py", src, dest, String(targetDb), stereo ? "stereo" : "mono"];
+    if (windowSec) args.push(windowSec.toFixed(1));
+    const py = spawn("python", args, {
+      env: { ...process.env, PYTHONUTF8: "1" },
+    });
+    let err = "";
+    py.stderr.on("data", (d) => (err += d));
+    py.on("close", (c) => (c === 0 ? res() : rej(new Error(`loudness.py ${c}: ${err.slice(-300)}`))));
+  });
+
 const download = async (url: string, dest: string) => {
   const r = await fetch(url);
   if (!r.ok) throw new Error(`yükləmə xətası ${r.status}`);
@@ -60,6 +75,11 @@ const main = async () => {
   const tts = await runTts(jobs, dir);
   const voTotal = Object.values(tts).reduce((a, b) => a + b.duration, 0);
   log(`${jobs.length} səhnə, ${voTotal.toFixed(1)} san səs`);
+  // edge-tts çıxışı sakitdir (~-25 dBFS) — sosial media üçün -18-ə qaldır
+  for (const j of jobs) {
+    await normalizeAudio(path.join(dir, `${j.id}.mp3`), path.join(dir, `${j.id}.wav`), VO_DB);
+    await fs.unlink(path.join(dir, `${j.id}.mp3`)).catch(() => {});
+  }
 
   console.log("4. Stok video axtarılır (Pexels)…");
   const queries = [s.hookQuery, ...s.items.map((i) => i.query)];
@@ -90,7 +110,7 @@ const main = async () => {
     {
       kind: "hook" as const,
       spoken: s.hookSpoken,
-      audio: `render/${id}/s0.mp3`,
+      audio: `render/${id}/s0.wav`,
       words: tts.s0.words,
       durationInFrames: frames(tts.s0.duration),
       media: medias[0],
@@ -101,7 +121,7 @@ const main = async () => {
       title: it.title,
       body: it.body,
       index: i + 1,
-      audio: `render/${id}/s${i + 1}.mp3`,
+      audio: `render/${id}/s${i + 1}.wav`,
       words: tts[`s${i + 1}`].words,
       durationInFrames: frames(tts[`s${i + 1}`].duration),
       media: medias[i + 1],
@@ -161,13 +181,22 @@ const main = async () => {
     log("musiqi: sintez (orijinal)");
   }
 
+  // Musiqi mənbəyindən asılı olmayaraq eyni səviyyəyə gətir
+  {
+    const srcAbs = track.startsWith("music/") ? path.join("public", track) : path.join("public", track);
+    const normPath = path.join(dir, "music.norm.wav");
+    // trekin ən dolğun hissəsini videonun uzunluğunda kəs (sakit giriş problemi)
+    await normalizeAudio(srcAbs, normPath, MUSIC_DB, true, secs + 2);
+    track = `render/${id}/music.norm.wav`;
+  }
+
   const reel = {
     id,
     hook: s.hook,
     total: s.items.length,
     cta: s.cta,
     music: track,
-    musicVolume: 0.1,
+    musicVolume: 0.45,  // səsləndirmə altında; CTA-da TipList özü qaldırır
     scenes,
   };
 
