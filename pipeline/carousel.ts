@@ -8,6 +8,7 @@
  *   npx tsx pipeline/carousel.ts
  */
 import "dotenv/config";
+import "./plan.ts";
 import fs from "node:fs/promises";
 import path from "node:path";
 
@@ -89,12 +90,29 @@ const writeConcept = async (feedback?: string): Promise<Concept> => {
 };
 
 const genPhoto = async (desc: string, dest: string) => {
-  const prompt = `Photorealistic, vertical 4:5 framing, editorial photography, warm natural light, soft depth of field, no people, no text, no logos. Slightly darker lower third to hold large white typography. ${desc}`;
-  const res = await fetch("https://api.openai.com/v1/images/generations", {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Authorization: `Bearer ${process.env.OPENAI_API_KEY}` },
-    body: JSON.stringify({ model: IMG_MODEL, prompt, size: "1024x1536", output_format: "jpeg", quality: "high", n: 1 }),
-  });
+  const visual = process.env.VISUAL_NOTES ? ` Style/composition guidance: ${process.env.VISUAL_NOTES}.` : "";
+  const prompt = `Photorealistic, vertical 4:5 framing, editorial photography, warm natural light, soft depth of field, no people, no text, no logos. Slightly darker lower third to hold large white typography. ${desc}${visual}`;
+  const refs = (process.env.IMAGE_REFS ?? "").split(",").filter(Boolean);
+
+  let res: Response;
+  if (refs.length) {
+    // İstinad şəkil var → edits API: üslub/kompozisiya istinaddan, məzmun promptdan
+    const img = await fetch(refs[0]);
+    const blob = await img.blob();
+    const form = new FormData();
+    form.append("model", IMG_MODEL);
+    form.append("image", blob, "ref.png");
+    form.append("prompt", `Create a NEW photo that matches the style, mood, lighting and composition of the reference image. ${prompt}`);
+    form.append("size", "1024x1536");
+    form.append("quality", "high");
+    res = await fetch("https://api.openai.com/v1/images/edits", { method: "POST", headers: { Authorization: `Bearer ${process.env.OPENAI_API_KEY}` }, body: form });
+  } else {
+    res = await fetch("https://api.openai.com/v1/images/generations", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${process.env.OPENAI_API_KEY}` },
+      body: JSON.stringify({ model: IMG_MODEL, prompt, size: "1024x1536", output_format: "jpeg", quality: "high", n: 1 }),
+    });
+  }
   if (!res.ok) throw new Error(`Image ${res.status}: ${(await res.text()).slice(0, 300)}`);
   const b64 = ((await res.json()) as any).data[0].b64_json as string;
   await fs.writeFile(dest, Buffer.from(b64, "base64"));

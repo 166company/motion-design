@@ -133,10 +133,19 @@ export const pickAndDownload = async (
     .then(JSON.parse)
     .catch(() => ({}));
 
+  // Ovqat filtri (Dəyişiklik qeydindən): energetic / calm
+  const mood = process.env.MUSIC_MOOD;
+  const ENERGETIC = /hip.?hop|rap|electronic|house|trap|dance|pop|funk|drum|techno|edm|phonk|drill/i;
+  const CALM = /ambient|lo.?fi|acoustic|jazz|classical|downtempo|chill|folk|soundtrack|piano/i;
+  const moodOk = (t: AudiusTrack) =>
+    mood === "energetic" ? ENERGETIC.test(`${t.genre} ${t.title}`) :
+    mood === "calm" ? CALM.test(`${t.genre} ${t.title}`) : true;
+
   const all = await catalog();
-  const fit = all.filter(
-    (t) => t.duration >= needSeconds + 5 && !excluded.includes(t.id) && screen[t.id]?.vocal !== true
+  let fit = all.filter(
+    (t) => t.duration >= needSeconds + 5 && !excluded.includes(t.id) && screen[t.id]?.vocal !== true && moodOk(t)
   );
+  if (!fit.length) fit = all.filter((t) => t.duration >= needSeconds + 5 && !excluded.includes(t.id) && screen[t.id]?.vocal !== true);
   if (!fit.length) return null;
 
   const track = fit[seed % fit.length];

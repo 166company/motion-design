@@ -1,5 +1,6 @@
 /** Məqalə → hazır video. Bütün zəncir bir əmrdə. */
 import "dotenv/config";
+import "./plan.ts";
 import { spawn } from "node:child_process";
 import fs from "node:fs/promises";
 import path from "node:path";
@@ -179,7 +180,9 @@ const main = async () => {
     .then((f) => f.filter((x) => /\.(mp3|m4a|wav)$/i.test(x)).sort())
     .catch(() => [] as string[]);
 
-  if (local.length) {
+  if (process.env.MUSIC_MOOD === "none") {
+    log("musiqi: yoxdur (qeydə görə)");
+  } else if (local.length) {
     track = `music/${local[article.id % local.length]}`;
     log(`musiqi: lokal — ${track}`);
   } else {
@@ -196,7 +199,7 @@ const main = async () => {
     }
   }
 
-  if (!track) {
+  if (!track && process.env.MUSIC_MOOD !== "none") {
     const wav = path.join(dir, "music.wav");
     await new Promise<void>((res, rej) => {
       const py = spawn("python", ["pipeline/music.py", wav, String(article.id), secs.toFixed(1)], {
@@ -211,7 +214,7 @@ const main = async () => {
   }
 
   // Musiqi mənbəyindən asılı olmayaraq eyni səviyyəyə gətir
-  {
+  if (track) {
     const srcAbs = track.startsWith("music/") ? path.join("public", track) : path.join("public", track);
     const normPath = path.join(dir, "music.norm.wav");
     // trekin ən dolğun hissəsini videonun uzunluğunda kəs (sakit giriş problemi)

@@ -39,7 +39,27 @@ BACKGROUNDS = {
 }
 
 
+VISUAL = os.environ.get("VISUAL_NOTES", "").strip()
+REFS = [u for u in os.environ.get("IMAGE_REFS", "").split(",") if u]
+
+
 def generate(prompt: str, size: str, transparent: bool) -> bytes:
+    if VISUAL:
+        prompt += f" Additional style guidance: {VISUAL}."
+    if REFS:
+        # istinad şəkil → edits API (multipart)
+        ref = urllib.request.urlopen(REFS[0], timeout=60).read()
+        b = "----ya" + os.urandom(6).hex()
+        def part(k, v):
+            return f"--{b}\r\nContent-Disposition: form-data; name=\"{k}\"\r\n\r\n{v}\r\n".encode()
+        body = part("model", MODEL) + part("prompt", "Create a NEW object in the style, lighting and rendering of the reference image. " + prompt) + part("size", size) + part("quality", "high")
+        if transparent:
+            body += part("background", "transparent")
+        body += (f"--{b}\r\nContent-Disposition: form-data; name=\"image\"; filename=\"ref.png\"\r\nContent-Type: image/png\r\n\r\n").encode() + ref + f"\r\n--{b}--\r\n".encode()
+        req = urllib.request.Request("https://api.openai.com/v1/images/edits", data=body,
+                                     headers={"Authorization": f"Bearer {KEY}", "Content-Type": f"multipart/form-data; boundary={b}"})
+        with urllib.request.urlopen(req, timeout=300) as r:
+            return base64.b64decode(json.load(r)["data"][0]["b64_json"])
     body = {"model": MODEL, "prompt": prompt, "size": size, "output_format": "png", "quality": "high", "n": 1}
     if transparent:
         body["background"] = "transparent"

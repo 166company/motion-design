@@ -169,27 +169,53 @@ jobs:
           echo "article=$(python -c "import json,io;print(json.load(io.open('content/data/$ID.meta.json',encoding='utf-8')).get('articleId') or '')")" >> $GITHUB_OUTPUT
           echo "template=$(python -c "import json,io;print(json.load(io.open('content/data/$ID.meta.json',encoding='utf-8')).get('template','TipList'))")" >> $GITHUB_OUTPUT
 
+      - name: Qeydi anla (interpretator)
+        id: plan
+        run: |
+          ID="${{ steps.pick.outputs.id }}"
+          npx tsx pipeline/interpret.ts "content/data/$ID.meta.json" "$FEEDBACK"
+          SUMMARY=$(python -c "import json,io;print(json.load(io.open('feedback-plan.json',encoding='utf-8'))['summary'])")
+          gh issue comment ${{ github.event.issue.number }} --body "🧠 Belə başa düşdüm: $SUMMARY
+          🔄 Yenidən istehsal olunur (~6 dəq)…"
+
+      - name: Assetləri yenilə (lazımdırsa)
+        if: steps.plan.outputs.asset_hints != ''
+        run: |
+          pip install --quiet pillow
+          export FEEDBACK_PLAN=feedback-plan.json
+          npx tsx -e "import './pipeline/plan.ts'" >/dev/null
+          python - <<PY
+          import json,io,os,subprocess
+          p=json.load(io.open("feedback-plan.json",encoding="utf-8"))
+          env=dict(os.environ, VISUAL_NOTES=p.get("visualNotes",""), IMAGE_REFS=",".join(p.get("imageRefs",[])))
+          subprocess.run(["python","pipeline/gen_assets.py",*p["assetHints"]], env=env, check=True)
+          PY
+
       - name: Qeydlə yenidən istehsal
         env:
           ARTICLE_ID: ${{ steps.pick.outputs.article }}
           REEL_ID: ${{ steps.pick.outputs.id }}
         run: |
-          gh issue comment ${{ github.event.issue.number }} --body "🔄 Qeydin alındı, video yenidən istehsal olunur (~6 dəq)…"
-          case "${{ steps.pick.outputs.template }}" in
+          # şablon qeydə görə dəyişə bilər (plan.template), yoxsa mövcud
+          T="${{ steps.plan.outputs.template }}"; [ -z "$T" ] && T="${{ steps.pick.outputs.template }}"
+          echo "şablon: $T"
+          case "$T" in
             Explainer) npx tsx pipeline/explainer.ts ;;
             Story) npx tsx pipeline/story.ts ;;
             Carousel) npx tsx pipeline/carousel.ts ;;
             *) npx tsx pipeline/run.ts ;;
           esac
+          echo "template=$T" >> "$GITHUB_OUTPUT"
 
       - name: Render + QA
         run: |
           ID="${{ steps.pick.outputs.id }}"
           mkdir -p out
-          if [ "${{ steps.pick.outputs.template }}" = "Carousel" ]; then
+          T="${{ steps.plan.outputs.template }}"; [ -z "$T" ] && T="${{ steps.pick.outputs.template }}"
+          if [ "$T" = "Carousel" ]; then
             for i in 0 1 2; do npx remotion still src/index.ts Carousel "out/$ID-$((i+1)).png" --frame=$i --props="public/render/$ID/props.json"; done
           else
-            npx remotion render src/index.ts "${{ steps.pick.outputs.template }}" "out/$ID.mp4" --props="public/render/$ID/props.json"
+            npx remotion render src/index.ts "$T" "out/$ID.mp4" --props="public/render/$ID/props.json"
             npx tsx pipeline/qa.ts "out/$ID.mp4" "public/render/$ID/props.json"
           fi
 
@@ -202,13 +228,14 @@ jobs:
           import json, io, os
           p = "content/data/status.json"
           d = json.load(io.open(p, encoding="utf-8")) if os.path.exists(p) else {}
-          d["$ID"] = {**d.get("$ID", {}), "status": "təsdiq-gözləyir", "note": os.environ.get("FEEDBACK", "")[:400]}
+          plan = json.load(io.open("feedback-plan.json", encoding="utf-8")) if os.path.exists("feedback-plan.json") else {}
+          d["$ID"] = {**d.get("$ID", {}), "status": "təsdiq-gözləyir", "note": (plan.get("summary") or os.environ.get("FEEDBACK", ""))[:400]}
           io.open(p, "w", encoding="utf-8").write(json.dumps(d, ensure_ascii=False, indent=2))
           PY
           npx tsx pipeline/panel.ts "$ID" "${{ github.repository }}"
           git config user.name "yukaz-agent"
           git config user.email "actions@github.com"
-          git add docs/data.json content/data public/render
+          git add docs/data.json content/data public/render public/assets src/assetBounds.json
           git commit -m "düzəliş: $ID" || true
           git pull --rebase --autostash origin main
           git push

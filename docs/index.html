@@ -96,6 +96,19 @@
   .run .bar i{display:block;height:100%;background:var(--orange);transition:width 1s linear}
   .run a{margin-left:auto;font-size:12px;font-weight:700;white-space:nowrap}
   .card.working{outline:2px solid rgba(255,102,0,.55)}
+  .modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:20;padding:16px}
+  .modal.on{display:flex}
+  .box{background:#1b1e21;border:1px solid var(--line);border-radius:18px;padding:20px;width:min(560px,100%);box-shadow:0 30px 80px rgba(0,0,0,.6)}
+  .box h3{margin:0 0 6px;font-size:16px;font-weight:900}
+  .box p{margin:0 0 12px;color:var(--muted);font-size:12.5px;line-height:1.5}
+  .box textarea{width:100%;min-height:120px;background:#111315;border:1px solid var(--line);color:var(--white);border-radius:12px;
+                padding:12px 14px;font:inherit;font-size:13.5px;resize:vertical}
+  .box .files{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+  .box .files img{width:64px;height:64px;object-fit:cover;border-radius:10px;border:1px solid var(--line)}
+  .box .row{display:flex;gap:8px;justify-content:flex-end;align-items:center;flex-wrap:wrap;margin-top:8px}
+  .box label.up{border:1px dashed rgba(255,102,0,.5);color:#FFB273;border-radius:12px;padding:10px 14px;font-size:12.5px;font-weight:700;cursor:pointer;margin-right:auto}
+  .box input[type=file]{display:none}
+  .hint{font-size:11.5px;color:var(--muted);margin-top:6px}
   .slot.carousel{position:relative;cursor:pointer}
   .dots{position:absolute;bottom:10px;left:0;right:0;display:flex;justify-content:center;gap:6px}
   .dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.45)}
@@ -135,13 +148,28 @@
   </header>
   <div class="toast" id="toast"></div>
 
+  <div class="modal" id="modal">
+    <div class="box">
+      <h3>✏️ Nə dəyişməlidir?</h3>
+      <p>Sərbəst yaz — sistem qeydini oxuyub başa düşür: səs/səssiz, musiqi ovqatı, mətn, vizual üslub, hətta şablon dəyişikliyi. Nümunə şəkil də əlavə edə bilərsən (üslub istinadı kimi istifadə olunur).</p>
+      <textarea id="mNote" placeholder="məs: səs olmasın, musiqi daha gümrah; illüstrasiyalar bu şəkil kimi real olsun; başlıqlar qısa"></textarea>
+      <div class="files" id="mFiles"></div>
+      <div class="row">
+        <label class="up">📎 Şəkil əlavə et<input type="file" id="mFile" accept="image/*" multiple></label>
+        <button class="btn" id="mCancel" style="flex:0 0 auto">Ləğv</button>
+        <button class="btn primary" id="mSend" style="flex:0 0 auto">Göndər</button>
+      </div>
+      <div class="hint" id="mHint"></div>
+    </div>
+  </div>
+
   <div class="setup" id="setup" hidden>
     <h2>🔐 Bir-klik rejimi — bir dəfəlik quraşdırma (2 dəqiqə)</h2>
     <p>Bundan sonra Yayımla / Dəyişiklik / Sil düymələri panelin içində işləyir, GitHub açılmır. Token yalnız bu brauzerdə saxlanır.</p>
     <ol>
       <li><a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Bu linki aç</a> → <b>Token name:</b> yuk-panel</li>
       <li><b>Repository access:</b> Only select repositories → <b>motion-design</b></li>
-      <li><b>Permissions → Repository permissions → Issues:</b> Read and write (başqa heç nə)</li>
+      <li><b>Permissions → Repository permissions:</b> <b>Issues</b> → Read and write, <b>Contents</b> → Read and write (şəkil yükləmək üçün)</li>
       <li><b>Generate token</b> → kopyala → aşağıya yapışdır</li>
     </ol>
     <div class="row">
@@ -331,9 +359,8 @@ document.getElementById("grid").addEventListener("click", async (ev) => {
     if (!confirm("Bu video İNDİ Instagram + Facebook-a yayımlansın?" + NL + NL + id)) return;
     title = "Yayımla: " + id; body = "Paneldən bir-klik ilə yayımlandı.";
   } else if (act === "change") {
-    const noteText = prompt("Nə dəyişməlidir? (qeyd ssenari modelinə gedir, video yenidən istehsal olunur)");
-    if (!noteText || !noteText.trim()) return;
-    title = "Dəyişiklik: " + id; body = noteText.trim();
+    openChange(id);
+    return;
   } else {
     if (!confirm("Bu video silinsin? (Release ləğv olunur, paneldən çıxır)")) return;
     title = "Sil: " + id; body = "Paneldən silindi.";
@@ -417,6 +444,68 @@ function probeSlots() {
   });
 }
 setInterval(probeSlots, 20000);
+
+/* ---------------- Dəyişiklik pəncərəsi: mətn + şəkillər (repoya yüklənir) ---------------- */
+let pendingFiles = [];
+let changeId = null;
+const modal = document.getElementById("modal");
+function openChange(id) {
+  changeId = id; pendingFiles = [];
+  document.getElementById("mNote").value = "";
+  document.getElementById("mFiles").innerHTML = "";
+  document.getElementById("mHint").textContent = "";
+  modal.classList.add("on");
+  document.getElementById("mNote").focus();
+}
+document.getElementById("mCancel").onclick = () => modal.classList.remove("on");
+modal.onclick = (e) => { if (e.target === modal) modal.classList.remove("on"); };
+document.getElementById("mFile").onchange = (e) => {
+  for (const f of e.target.files) {
+    if (f.size > 8 * 1024 * 1024) { toast("Şəkil 8 MB-dan böyükdür: " + f.name); continue; }
+    pendingFiles.push(f);
+    const img = document.createElement("img"); img.src = URL.createObjectURL(f);
+    document.getElementById("mFiles").appendChild(img);
+  }
+  e.target.value = "";
+};
+const toB64 = (file) => new Promise((res, rej) => {
+  const r = new FileReader(); r.onload = () => res(String(r.result).split(",")[1]); r.onerror = rej; r.readAsDataURL(file);
+});
+async function uploadImage(file, id) {
+  const safe = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
+  const pathInRepo = "content/feedback/" + id + "/" + Date.now() + "-" + safe;
+  const r = await fetch("https://api.github.com/repos/" + DATA.repo + "/contents/" + pathInRepo, {
+    method: "PUT",
+    headers: { Authorization: "Bearer " + getToken(), Accept: "application/vnd.github+json", "Content-Type": "application/json" },
+    body: JSON.stringify({ message: "feedback: " + id, content: await toB64(file) }),
+  });
+  if (!r.ok) throw new Error(r.status === 404 || r.status === 403
+    ? "Şəkil yüklənmədi — tokenə 'Contents: Read and write' icazəsi əlavə et"
+    : "GitHub " + r.status);
+  return (await r.json()).content.download_url;
+}
+document.getElementById("mSend").onclick = async () => {
+  const note = document.getElementById("mNote").value.trim();
+  if (!note && !pendingFiles.length) { document.getElementById("mHint").textContent = "Qeyd və ya şəkil lazımdır"; return; }
+  const hint = document.getElementById("mHint");
+  const btn = document.getElementById("mSend"); btn.disabled = true;
+  try {
+    const urls = [];
+    for (let i = 0; i < pendingFiles.length; i++) {
+      hint.textContent = "Şəkil yüklənir " + (i + 1) + "/" + pendingFiles.length + "…";
+      urls.push(await uploadImage(pendingFiles[i], changeId));
+    }
+    hint.textContent = "Göndərilir…";
+    const body = note + (urls.length ? NL + NL + urls.map((u) => "![ref](" + u + ")").join(NL) : "");
+    const issue = await createIssue("Dəyişiklik: " + changeId, body);
+    modal.classList.remove("on");
+    toast('🔄 Qeyd alındı — sistem əvvəlcə necə başa düşdüyünü Issue-da yazacaq, sonra yenidən istehsal (~7 dəq). <a href="' + issue.html_url + '" target="_blank" rel="noopener">İzlə</a>', 9000);
+    RUNS.unshift({ display_title: "Dəyişiklik: " + changeId, name: "Reels idarə", html_url: issue.html_url, run_started_at: new Date().toISOString(), status: "queued" });
+    renderRuns(); setTimeout(pollRuns, 8000);
+  } catch (err) {
+    hint.textContent = "Xəta: " + err.message;
+  } finally { btn.disabled = false; }
+};
 
 function stats() {
   const n = (s) => DATA.entries.filter((e) => e.status === s).length;

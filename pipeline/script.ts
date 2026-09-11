@@ -112,6 +112,8 @@ MƏTN (ilk 6000 simvol):
 ${article.text.slice(0, 6000)}
 
 Bu məqaləni 25-30 saniyəlik bir Reels ssenarisinə çevir.${
+          process.env.VISUAL_NOTES ? `\n\nVİZUAL QEYD (stok video "query"-lərinə İNGİLİSCƏ əks etdir): ${process.env.VISUAL_NOTES}` : ""
+        }${
           feedback?.trim()
             ? `
 

@@ -102,7 +102,7 @@ Paneldə hər videonun 4 düyməsi var:
 | Düymə | Nə edir |
 |---|---|
 | **🚀 Yayımla** | Dərhal Instagram + Facebook. Bir-klik üçün bir dəfə ⚙️ Token düyməsindən GitHub fine-grained token yapışdır (Repository: motion-design, Permissions: Issues: Read and write) — token yalnız sənin brauzerində saxlanır, səhifə kodunda yoxdur. Tokensiz: hazır doldurulmuş Issue səhifəsi açılır, bir "Submit" |
-| **✏️ Dəyişiklik** | Hazır Issue açır; nə dəyişməli olduğunu sərbəst yaz. Qeyd ssenari modelinə ötürülür, video **yenidən istehsal olunur**, Release əvəz olunur, panel yenilənir. Son qeyd kartda görünür. |
+| **✏️ Dəyişiklik** | Pəncərə açılır: sərbəst qeyd + **şəkil əlavə etmə** (üslub istinadı). [pipeline/interpret.ts](pipeline/interpret.ts) (gpt-5.5, görmə ilə) qeydi və şəkilləri oxuyub konkret parametrlərə çevirir: səs/səssiz, hansı səs, şablon, musiqi ovqatı (gümrah/sakit/yox), mətn qeydi, vizual qeyd, yenilənməli assetlər. Issue-da "🧠 Belə başa düşdüm: …" yazır, sonra yenidən istehsal edir. Şəkillər `content/feedback/<id>/`-ə yüklənir (token: Contents write). |
 | **🗑 Sil** | Release silinir, təsdiq Issue-su bağlanır, paneldən çıxır |
 | **Caption kopyala** | Emoji + abzas + CTA formatlı caption, hashtag-larla |
 

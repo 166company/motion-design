@@ -6,6 +6,7 @@
  *   EXPLAINER_SILENT=1                      → səsləndirməsiz (yalnız musiqi + SFX)
  */
 import "dotenv/config";
+import "./plan.ts";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { listArticles } from "./wp.ts";
@@ -142,14 +143,14 @@ const main = async () => {
   console.log("4. Musiqi…");
   const music = await pickMusic(day, secs, dir, id, log);
 
-  const props = { id, cta: { line1: c.cta.line1, line2: "Zəng et" }, music: music.track, musicVolume: silent ? 0.75 : 0.5, scenes };
+  const props = { id, cta: { line1: c.cta.line1, line2: "Zəng et" }, music: music.track || null, musicVolume: silent ? 0.75 : 0.5, scenes };
   await fs.writeFile(path.join(dir, "props.json"), JSON.stringify(props, null, 2), "utf-8");
   await fs.writeFile(
     path.join("content", "data", `${id}.meta.json`),
     JSON.stringify({
       id, template: "Explainer", articleId: null, link: "https://yuk.az",
       caption: music.attribution ? `${c.caption}\n\n${music.attribution}` : c.caption,
-      hashtags: c.hashtags, music: music.track, attribution: music.attribution, musicTrack: music.musicTrack,
+      hashtags: c.hashtags, music: music.track || null, attribution: music.attribution, musicTrack: music.musicTrack,
       voice: silent ? null : voice, silent,
     }, null, 2),
     "utf-8"

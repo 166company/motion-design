@@ -61,6 +61,10 @@ export type MusicPick = {
  * Seçilən trek videonun uzunluğuna kəsilir və -20 dBFS-ə gətirilir.
  */
 export const pickMusic = async (seed: number, seconds: number, dir: string, publicId: string, log: (m: string) => void): Promise<MusicPick> => {
+  if (process.env.MUSIC_MOOD === "none") {
+    log("musiqi: yoxdur (qeydə görə)");
+    return { track: "", attribution: null, musicTrack: null, source: "synth" };
+  }
   const local = await fs.readdir("public/music").then((f) => f.filter((x) => /\.(mp3|m4a|wav)$/i.test(x)).sort()).catch(() => [] as string[]);
   let src: string | null = null;
   let pick: MusicPick = { track: "", attribution: null, musicTrack: null, source: "synth" };
