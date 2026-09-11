@@ -1,6 +1,6 @@
 {
   "repo": "166company/motion-design",
-  "updatedAt": "2026-09-11T07:36:48.633Z",
+  "updatedAt": "2026-09-11T07:42:19.001Z",
   "entries": [
     {
       "id": "2026-09-11-explainer",
@@ -58,25 +58,27 @@
     },
     {
       "id": "2026-09-11-10736",
-      "hook": "Naxçıvanda yükdaşıma necə planlanır?",
-      "caption": "🚚 Naxçıvanda daşınma necə olur?\n\n📦 Marşrut, sənəd və vaxt əvvəlcədən dəqiqləşir.\n\n✅ Qiymət telefonda bildirilir, sonra dəyişmir.\n\n🏠 Qablaşdırma və quraşdırma da prosesə daxildir.\n\n📞 Zəng et: 050 209 62 99\n\n🎵 The Love of My Life (A composed Christmas instrumental) — Terror of Emma (TOES HERE) (CC BY-SA) https://audius.co/TheUnknownProj2/the-love-of-my-life-a-composed-christmas-instrumental-447218",
+      "hook": "Şirvanda yükdaşıma necə hesablanır?",
+      "caption": "🚛 Şirvanda yükdaşıma necə hesablanır?\n\n📦 Qiymət yükün həcminə, mərtəbəyə, məsafəyə və əlavə işə görə baxılır.\n\n📞 Sən sadəcə yükü, ünvanı və girişi de, operator uyğununu seçsin.\n\n✅ Qablaşdırma və sığortalı daşınma prosesin rahat getməsinə kömək edir.\n\n📞 Zəng et: 050 209 62 99\n\n🎵 Penthouse (Instrumental) — Akasan /|\\ EsJAYYg (CC BY-SA) https://audius.co/FeedYouSalt/penthouse-instrumental",
       "hashtags": [
-        "#naxçıvan",
-        "#yükdaşıma",
-        "#evdaşınması",
-        "#ofisköçürülməsi",
-        "#yukaz"
+        "#yukaz",
+        "#yukdasima",
+        "#sirvan",
+        "#kocme",
+        "#evdasinma",
+        "#ofiskocurulmesi"
       ],
-      "source": "https://yuk.az/naxcivanda-yukdasima-xidmeti/",
+      "source": "https://yuk.az/sirvanda-yukdasima-xidmeti/",
       "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-10736/2026-09-11-10736.mp4",
-      "duration": 31,
-      "scenes": 7,
+      "duration": 33.5,
+      "scenes": 6,
       "status": "təsdiq-gözləyir",
       "createdAt": "2026-09-11",
+      "note": "Musiqi Milad mahnısı olmasın — gümrah, müasir instrumental seçilsin.\nBaşlıqlar bir az daha qısa və zərbəli olsun.\n\n---\n\n",
       "template": "TipList",
-      "voice": "marin",
+      "voice": "coral",
       "music": {
-        "label": "The Love of My Life (A composed Christmas instrumental) — Terror of Emma (TOES HERE)",
+        "label": "Penthouse (Instrumental) — Akasan /|\\ EsJAYYg",
         "license": "Attribution ShareAlike CC BY-SA",
         "vocal": false,
         "source": "audius"

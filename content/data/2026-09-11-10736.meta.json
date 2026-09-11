@@ -1,22 +1,24 @@
 {
   "id": "2026-09-11-10736",
-  "articleId": 10736,
-  "link": "https://yuk.az/naxcivanda-yukdasima-xidmeti/",
-  "caption": "🚚 Naxçıvanda daşınma necə olur?\n\n📦 Marşrut, sənəd və vaxt əvvəlcədən dəqiqləşir.\n\n✅ Qiymət telefonda bildirilir, sonra dəyişmir.\n\n🏠 Qablaşdırma və quraşdırma da prosesə daxildir.\n\n📞 Zəng et: 050 209 62 99\n\n🎵 The Love of My Life (A composed Christmas instrumental) — Terror of Emma (TOES HERE) (CC BY-SA) https://audius.co/TheUnknownProj2/the-love-of-my-life-a-composed-christmas-instrumental-447218",
+  "template": "TipList",
+  "articleId": 10735,
+  "link": "https://yuk.az/sirvanda-yukdasima-xidmeti/",
+  "caption": "🚛 Şirvanda yükdaşıma necə hesablanır?\n\n📦 Qiymət yükün həcminə, mərtəbəyə, məsafəyə və əlavə işə görə baxılır.\n\n📞 Sən sadəcə yükü, ünvanı və girişi de, operator uyğununu seçsin.\n\n✅ Qablaşdırma və sığortalı daşınma prosesin rahat getməsinə kömək edir.\n\n📞 Zəng et: 050 209 62 99\n\n🎵 Penthouse (Instrumental) — Akasan /|\\ EsJAYYg (CC BY-SA) https://audius.co/FeedYouSalt/penthouse-instrumental",
   "hashtags": [
-    "#naxçıvan",
-    "#yükdaşıma",
-    "#evdaşınması",
-    "#ofisköçürülməsi",
-    "#yukaz"
+    "#yukaz",
+    "#yukdasima",
+    "#sirvan",
+    "#kocme",
+    "#evdasinma",
+    "#ofiskocurulmesi"
   ],
   "music": "render/2026-09-11-10736/music.norm.wav",
-  "attribution": "🎵 The Love of My Life (A composed Christmas instrumental) — Terror of Emma (TOES HERE) (CC BY-SA) https://audius.co/TheUnknownProj2/the-love-of-my-life-a-composed-christmas-instrumental-447218",
+  "attribution": "🎵 Penthouse (Instrumental) — Akasan /|\\ EsJAYYg (CC BY-SA) https://audius.co/FeedYouSalt/penthouse-instrumental",
   "musicTrack": {
-    "id": "G2QZE",
-    "title": "The Love of My Life (A composed Christmas instrumental)",
-    "artist": "Terror of Emma (TOES HERE)",
+    "id": "ZbwyE",
+    "title": "Penthouse (Instrumental)",
+    "artist": "Akasan /|\\ EsJAYYg",
     "license": "Attribution ShareAlike CC BY-SA"
   },
-  "voice": "marin"
+  "voice": "coral"
 }

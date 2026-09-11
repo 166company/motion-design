@@ -1,9 +1,9 @@
 {
   "id": "2026-09-11-10736",
-  "hook": "Naxçıvanda yükdaşıma necə planlanır?",
-  "total": 5,
+  "hook": "Şirvanda yükdaşıma necə hesablanır?",
+  "total": 4,
   "cta": {
-    "line1": "Sən də daşınmanı əvvəlcədən planla",
+    "line1": "Zəng et, yükünü dəqiqləşdirək",
     "line2": "Zəng et"
   },
   "music": "render/2026-09-11-10736/music.norm.wav",
@@ -11,198 +11,243 @@
   "scenes": [
     {
       "kind": "hook",
-      "spoken": "Naxçıvanda daşınma tək maşın işi deyil.",
+      "spoken": "Şirvanda köçürsən? Əvvəl həcmi, mərtəbəni və girişi yoxla.",
       "audio": "render/2026-09-11-10736/s0.wav",
       "words": [
         {
-          "w": "Naxçıvanda",
+          "w": "Şirvanda",
           "start": 0,
-          "dur": 0.78
+          "dur": 0.68
         },
         {
-          "w": "daşınma",
-          "start": 0.78,
-          "dur": 0.84
+          "w": "köçürsən?",
+          "start": 0.68,
+          "dur": 0.92
         },
         {
-          "w": "tək",
-          "start": 1.62,
-          "dur": 0.28
+          "w": "Əvvəl",
+          "start": 2.1,
+          "dur": 0.26
         },
         {
-          "w": "maşın",
-          "start": 1.9,
+          "w": "həcmi,",
+          "start": 2.36,
+          "dur": 0.44
+        },
+        {
+          "w": "mərtəbəni",
+          "start": 3.26,
+          "dur": 0.44
+        },
+        {
+          "w": "və",
+          "start": 3.7,
           "dur": 0.34
         },
         {
-          "w": "işi",
-          "start": 2.24,
-          "dur": 0.2
+          "w": "girişi",
+          "start": 4.04,
+          "dur": 0.4
         },
         {
-          "w": "deyil.",
-          "start": 2.44,
-          "dur": 0.26
+          "w": "yoxla.",
+          "start": 4.44,
+          "dur": 0.3
         }
       ],
-      "durationInFrames": 107,
+      "durationInFrames": 168,
       "media": {
         "kind": "video",
         "src": "render/2026-09-11-10736/m0.mp4",
-        "duration": 19
+        "duration": 15
       },
       "icon": null
     },
     {
       "kind": "item",
-      "spoken": "Marşrut əvvəlcədən danışılır, gecikmə riski azalır.",
-      "title": "MARŞRUT ƏVVƏLDƏN DƏQİQLƏŞİR",
-      "body": "Naxçıvan istiqamətində marşrut, şərt və vaxt ayrıca razılaşdırılır.",
+      "spoken": "Qiymət sabit deyil. Həcm, mərtəbə, məsafə və əlavə iş baxılır.",
+      "title": "QİYMƏT SABİT DEYİL",
+      "body": "Məbləğ yükün həcminə, mərtəbəyə, məsafəyə və işə görə dəyişir.",
       "index": 1,
       "icon": "render/2026-09-11-10736/icon0.svg",
       "audio": "render/2026-09-11-10736/s1.wav",
       "words": [
         {
-          "w": "Marşrut",
+          "w": "Qiymət",
           "start": 0,
-          "dur": 0.7
+          "dur": 0.94
         },
         {
-          "w": "əvvəlcədən",
-          "start": 0.7,
-          "dur": 1.12
+          "w": "sabit",
+          "start": 0.94,
+          "dur": 0.54
         },
         {
-          "w": "danışılır,",
-          "start": 1.82,
-          "dur": 0.68
+          "w": "deyil.",
+          "start": 1.48,
+          "dur": 0.46
         },
         {
-          "w": "gecikmə",
-          "start": 3.12,
+          "w": "Həcm,",
+          "start": 2.68,
+          "dur": 0.16
+        },
+        {
+          "w": "mərtəbə,",
+          "start": 3.38,
+          "dur": 0.42
+        },
+        {
+          "w": "məsafə",
+          "start": 4.24,
           "dur": 0.44
         },
         {
-          "w": "riski",
-          "start": 3.56,
-          "dur": 0.52
+          "w": "və",
+          "start": 4.68,
+          "dur": 0.5
         },
         {
-          "w": "azalır.",
-          "start": 4.08,
+          "w": "əlavə",
+          "start": 5.18,
           "dur": 0.58
+        },
+        {
+          "w": "iş",
+          "start": 5.76,
+          "dur": 0.26
+        },
+        {
+          "w": "baxılır.",
+          "start": 6.02,
+          "dur": 0.38
         }
       ],
-      "durationInFrames": 163,
+      "durationInFrames": 222,
       "media": {
         "kind": "video",
         "src": "render/2026-09-11-10736/m1.mp4",
-        "duration": 50
+        "duration": 11
       }
     },
     {
       "kind": "item",
-      "spoken": "Qiymət telefonda deyilir, sonradan əlavə xərc yoxdur.",
-      "title": "QİYMƏT ZƏNGDƏ BİLDİRİLİR",
-      "body": "Qiymət yükün həcmi, mərtəbə, məsafə və əlavə işlərə görə hesablanır.",
+      "spoken": "Sən sadəcə əşyanı de. Operator uyğun maşını və briqadanı seçir.",
+      "title": "SİFARİŞ BİR BAŞA GƏLİR",
+      "body": "Operator siyahını dinləyir, maşını və briqadanı uyğun seçir.",
       "index": 2,
       "icon": "render/2026-09-11-10736/icon1.svg",
       "audio": "render/2026-09-11-10736/s2.wav",
       "words": [
         {
-          "w": "Qiymət",
+          "w": "Sən",
           "start": 0,
-          "dur": 0.76
+          "dur": 0.42
         },
         {
-          "w": "telefonda",
-          "start": 0.76,
-          "dur": 0.8
+          "w": "sadəcə",
+          "start": 0.42,
+          "dur": 0.54
         },
         {
-          "w": "deyilir,",
-          "start": 1.56,
-          "dur": 0.64
+          "w": "əşyanı",
+          "start": 0.96,
+          "dur": 0.54
         },
         {
-          "w": "sonradan",
-          "start": 2.96,
-          "dur": 0.44
+          "w": "de.",
+          "start": 1.5,
+          "dur": 0.08
         },
         {
-          "w": "əlavə",
-          "start": 3.4,
-          "dur": 0.68
+          "w": "Operator",
+          "start": 2.3,
+          "dur": 0.54
         },
         {
-          "w": "xərc",
-          "start": 4.08,
-          "dur": 0.56
+          "w": "uyğun",
+          "start": 2.84,
+          "dur": 0.36
         },
         {
-          "w": "yoxdur.",
-          "start": 4.64,
-          "dur": 0.38
+          "w": "maşını",
+          "start": 3.2,
+          "dur": 0.36
+        },
+        {
+          "w": "və",
+          "start": 3.56,
+          "dur": 0.16
+        },
+        {
+          "w": "briqadanı",
+          "start": 3.72,
+          "dur": 0.62
+        },
+        {
+          "w": "seçir.",
+          "start": 4.34,
+          "dur": 0.2
         }
       ],
-      "durationInFrames": 175,
+      "durationInFrames": 166,
       "media": {
         "kind": "video",
         "src": "render/2026-09-11-10736/m2.mp4",
-        "duration": 12
+        "duration": 61
       }
     },
     {
       "kind": "item",
-      "spoken": "Həssas əşyalar əlavə qorunur, yük daha möhkəm gedir.",
-      "title": "QABLAŞDIRMA GÜCLƏNDİRİLİR",
-      "body": "Uzun yol üçün streç, karton və qoruyucu örtük istifadə olunur.",
+      "spoken": "Qablaşdırma vacibdir. Streç, karton və örtük zərəri azaldır.",
+      "title": "QABLAŞDIRMA VACİBDİR",
+      "body": "Streç, karton və qoruyucu örtük əşyaları daşınmaya hazır edir.",
       "index": 3,
       "icon": "render/2026-09-11-10736/icon2.svg",
       "audio": "render/2026-09-11-10736/s3.wav",
       "words": [
         {
-          "w": "Həssas",
+          "w": "Qablaşdırma",
           "start": 0,
-          "dur": 0.6
+          "dur": 0.88
         },
         {
-          "w": "əşyalar",
-          "start": 0.6,
-          "dur": 0.6
+          "w": "vacibdir.",
+          "start": 0.88,
+          "dur": 0.7
         },
         {
-          "w": "əlavə",
-          "start": 1.2,
-          "dur": 0.68
+          "w": "Streç,",
+          "start": 2.48,
+          "dur": 0.08
         },
         {
-          "w": "qorunur,",
-          "start": 1.88,
-          "dur": 0.6
+          "w": "karton",
+          "start": 2.96,
+          "dur": 0.24
         },
         {
-          "w": "yük",
-          "start": 3.06,
-          "dur": 0.16
+          "w": "və",
+          "start": 3.2,
+          "dur": 0.14
         },
         {
-          "w": "daha",
-          "start": 3.22,
-          "dur": 0.28
-        },
-        {
-          "w": "möhkəm",
-          "start": 3.5,
+          "w": "örtük",
+          "start": 3.34,
           "dur": 0.4
         },
         {
-          "w": "gedir.",
-          "start": 3.9,
-          "dur": 0.3
+          "w": "zərəri",
+          "start": 3.74,
+          "dur": 0.72
+        },
+        {
+          "w": "azaldır.",
+          "start": 4.46,
+          "dur": 0.48
         }
       ],
-      "durationInFrames": 152,
+      "durationInFrames": 174,
       "media": {
         "kind": "video",
         "src": "render/2026-09-11-10736/m3.mp4",
@@ -211,101 +256,74 @@
     },
     {
       "kind": "item",
-      "spoken": "Siyahı varsa, yük də düzgün seçilir.",
-      "title": "YÜK SİYAHI İLƏ DAŞINIR",
-      "body": "Mənzil, ofis, mağaza malları, avadanlıq və tikinti materialları daşınır.",
+      "spoken": "Mənzil də daşınır, ofis də. Mağaza malları və tikinti materialı da.",
+      "title": "MƏHLUL ÇOX TİP YÜK DƏŞİNİR",
+      "body": "Mənzil, ofis, mağaza malları, tikinti materialı və qeyri-standart yüklər.",
       "index": 4,
       "icon": "render/2026-09-11-10736/icon3.svg",
       "audio": "render/2026-09-11-10736/s4.wav",
       "words": [
         {
-          "w": "Siyahı",
+          "w": "Mənzil",
           "start": 0,
-          "dur": 0.56
-        },
-        {
-          "w": "varsa,",
-          "start": 0.56,
-          "dur": 0.26
-        },
-        {
-          "w": "yük",
-          "start": 1.38,
-          "dur": 0.08
+          "dur": 0.7
         },
         {
           "w": "də",
-          "start": 1.42,
-          "dur": 0.42
+          "start": 0.7,
+          "dur": 0.14
         },
         {
-          "w": "düzgün",
-          "start": 1.84,
-          "dur": 0.36
+          "w": "daşınır,",
+          "start": 0.84,
+          "dur": 0.62
         },
         {
-          "w": "seçilir.",
-          "start": 2.2,
-          "dur": 0.4
-        }
-      ],
-      "durationInFrames": 106,
-      "media": {
-        "kind": "video",
-        "src": "render/2026-09-11-10736/m4.mp4",
-        "duration": 9
-      }
-    },
-    {
-      "kind": "item",
-      "spoken": "Daşınma qapıda bitmir, içəridə də kömək edilir.",
-      "title": "YERLƏŞDİRMƏ DƏ VAR",
-      "body": "Yeni ünvanda boşaltma, otaqlara paylama və mebelin yığılması edilir.",
-      "index": 5,
-      "icon": "render/2026-09-11-10736/icon4.svg",
-      "audio": "render/2026-09-11-10736/s5.wav",
-      "words": [
-        {
-          "w": "Daşınma",
-          "start": 0,
-          "dur": 1.04
-        },
-        {
-          "w": "qapıda",
-          "start": 1.04,
-          "dur": 0.44
-        },
-        {
-          "w": "bitmir,",
-          "start": 1.48,
-          "dur": 0.38
-        },
-        {
-          "w": "içəridə",
-          "start": 2.26,
-          "dur": 0.36
-        },
-        {
-          "w": "də",
-          "start": 2.62,
+          "w": "ofis",
+          "start": 1.86,
           "dur": 0.16
         },
         {
-          "w": "kömək",
-          "start": 2.78,
-          "dur": 0.26
+          "w": "də.",
+          "start": 2.02,
+          "dur": 0.32
         },
         {
-          "w": "edilir.",
-          "start": 3.04,
-          "dur": 0.26
+          "w": "Mağaza",
+          "start": 2.9,
+          "dur": 0.22
+        },
+        {
+          "w": "malları",
+          "start": 3.12,
+          "dur": 0.48
+        },
+        {
+          "w": "və",
+          "start": 3.6,
+          "dur": 0.46
+        },
+        {
+          "w": "tikinti",
+          "start": 4.06,
+          "dur": 0.44
+        },
+        {
+          "w": "materialı",
+          "start": 4.5,
+          "dur": 0.5
+        },
+        {
+          "w": "da.",
+          "start": 5,
+          "dur": 0.1
         }
       ],
-      "durationInFrames": 130,
+      "durationInFrames": 178,
       "media": {
         "kind": "video",
-        "src": "render/2026-09-11-10736/m5.mp4",
-        "duration": 11
+        "src": "render/2026-09-11-10736/m4.mp4",
+        "duration": 21
       }
     },
     {
