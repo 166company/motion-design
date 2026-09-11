@@ -1,6 +1,6 @@
 {
   "repo": "166company/motion-design",
-  "updatedAt": "2026-09-11T12:15:13.820Z",
+  "updatedAt": "2026-09-11T12:38:23.394Z",
   "entries": [
     {
       "id": "2026-09-11-story",
@@ -31,6 +31,93 @@
         "license": "Attribution CC BY",
         "vocal": false,
         "source": "audius"
+      }
+    },
+    {
+      "id": "2026-09-11-poster-3",
+      "images": [
+        "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-poster-3/2026-09-11-poster-3-1.png"
+      ],
+      "hook": "Bakıdan Rayonlara",
+      "caption": "🛣️ Bakıdan rayona köç planlayırsan?\n\n🚚 Yük.az Şirvan və Naxçıvan kimi istiqamətlərdə yükün həcmi, ünvana giriş və tarixə görə plan qurur.\n\n📞 Məbləğ telefonda əvvəlcədən bildirilir, sığorta daxildir.\n\n📞 Zəng et: 050 209 62 99",
+      "hashtags": [
+        "#Yükaz",
+        "#BakıdanRayona",
+        "#Şirvan",
+        "#Naxçıvan",
+        "#YükDaşıma"
+      ],
+      "source": "https://yuk.az",
+      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-poster-3/2026-09-11-poster-3.mp4",
+      "duration": 0,
+      "scenes": 1,
+      "status": "təsdiq-gözləyir",
+      "createdAt": "2026-09-11",
+      "template": "Poster",
+      "voice": null,
+      "music": {
+        "label": "Orijinal sintez",
+        "license": null,
+        "vocal": false,
+        "source": "synth"
+      }
+    },
+    {
+      "id": "2026-09-11-poster-2",
+      "images": [
+        "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-poster-2/2026-09-11-poster-2-1.png"
+      ],
+      "hook": "Qablaşdırma Daxildir",
+      "caption": "📦 Əşyaların yolda narahatlıq yaratmasın.\n\n🧤 Yük.az qablaşdırma materialını daşınmaya daxil edir, işçilər əşyaları səliqə ilə hazırlayır.\n\n🛡️ Sığorta da daxildir — köç daha arxayın keçir.\n\n📞 Zəng et: 050 209 62 99",
+      "hashtags": [
+        "#Yükaz",
+        "#Qablaşdırma",
+        "#EvKöçü",
+        "#TəhlükəsizDaşıma",
+        "#YükXidməti"
+      ],
+      "source": "https://yuk.az",
+      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-poster-2/2026-09-11-poster-2.mp4",
+      "duration": 0,
+      "scenes": 1,
+      "status": "təsdiq-gözləyir",
+      "createdAt": "2026-09-11",
+      "template": "Poster",
+      "voice": null,
+      "music": {
+        "label": "Orijinal sintez",
+        "license": null,
+        "vocal": false,
+        "source": "synth"
+      }
+    },
+    {
+      "id": "2026-09-11-poster-1",
+      "images": [
+        "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-poster-1/2026-09-11-poster-1-1.png"
+      ],
+      "hook": "Zəng et Rahat köç",
+      "caption": "📞 Köç fikrin varsa, başlamaq asandır.\n\n🚚 Yük.az operatoru yükünü, ünvan şəraitini və iş növünü dinləyib məbləği telefonda əvvəlcədən deyir.\n\n✅ Sığorta və qablaşdırma materialı məbləğə daxildir — sən sadəcə vaxtını uyğunlaşdır.\n\n📞 Zəng et: 050 209 62 99",
+      "hashtags": [
+        "#Yükaz",
+        "#EvDaşınması",
+        "#YükDaşıma",
+        "#RahatKöç",
+        "#Bakı"
+      ],
+      "source": "https://yuk.az",
+      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-poster-1/2026-09-11-poster-1.mp4",
+      "duration": 0,
+      "scenes": 1,
+      "status": "təsdiq-gözləyir",
+      "createdAt": "2026-09-11",
+      "template": "Poster",
+      "voice": null,
+      "music": {
+        "label": "Orijinal sintez",
+        "license": null,
+        "vocal": false,
+        "source": "synth"
       }
     },
     {
