@@ -107,8 +107,9 @@ export const Carousel: React.FC<CarouselProps> = ({ photo, lines, punch, fontSiz
         {rows.map((ln, k) => {
           const last = k === rows.length - 1;
           const first = k === 0;
-          // kəsilmə: slayd 1-in son parçası sağa çıxır, slayd 2-nin ilk parçası soldan gəlir
-          const shift = isFirst && last ? F * 0.5 : !isFirst && first ? -F * 0.3 : 0;
+          // Hərf kəsilmir (aviasales "Si" kimi): kəsilən parça sağ kənara, davamı sol kənara SÖYKƏNİR
+          const flush = (isFirst && last) || (!isFirst && first);
+          const shift = 0;
           return (
             <div
               key={k}
@@ -116,7 +117,7 @@ export const Carousel: React.FC<CarouselProps> = ({ photo, lines, punch, fontSiz
                 fontSize: F, fontWeight: 900, color: colors.white, lineHeight: ROW, height: F * ROW,
                 letterSpacing: -F * 0.03, whiteSpace: "nowrap",
                 textShadow: "0 8px 30px rgba(0,0,0,0.45)",
-                paddingLeft: isFirst ? 0 : 40, paddingRight: isFirst ? 40 : 0,
+                paddingLeft: isFirst ? 0 : flush ? 6 : 40, paddingRight: isFirst ? (flush ? 6 : 40) : 0,
                 transform: `translateX(${shift}px)`,
               }}
             >
