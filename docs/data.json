@@ -1,6 +1,6 @@
 {
   "repo": "166company/motion-design",
-  "updatedAt": "2026-09-11T12:01:48.585Z",
+  "updatedAt": "2026-09-11T12:04:50.663Z",
   "entries": [
     {
       "id": "2026-09-11-story",
@@ -41,14 +41,14 @@
         "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-carousel/2026-09-11-carousel-3.png"
       ],
       "hook": "SƏNİN GÖ TÜRƏ BİLMƏDİYİN YÜKÜ BİZ GÖTÜRƏK. → Bir zənglə.",
-      "caption": "Ağırı bizə ver, sən çayını iç 😄\n\nYük.az — bir zənglə sürətli daşınma 🚚\n\n📞 Zəng et: 050 209 62 99",
+      "caption": "Belə yükə bel yox, Yük.az lazımdır 😄\n\nQablaşdırma, daşıma və rahat köç — bir zənglə.\n\n📞 Zəng et: 050 209 62 99",
       "hashtags": [
         "#Yukaz",
         "#YükDaşıma",
         "#EvDaşınması",
+        "#Köçmə",
         "#Daşınma",
-        "#Bakı",
-        "#Qablaşdırma"
+        "#Bakı"
       ],
       "source": "https://yuk.az",
       "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-carousel/2026-09-11-carousel.mp4",
@@ -56,7 +56,7 @@
       "scenes": 3,
       "status": "təsdiq-gözləyir",
       "createdAt": "2026-09-11",
-      "note": "İstifadəçi Carousel slayd mətnlərini dəqiq verib və mətnin olduğu kimi qalmasını istəyir. Şablon, səs və musiqi ilə bağlı dəyişiklik istəyi yoxdur.",
+      "note": "İstifadəçi Carousel üçün 3 slaydın mətnini dəqiq verib və mətnin olduğu kimi saxlanmasını istəyir. Səs, musiqi və vizual dəyişiklik barədə əlavə göstəriş yoxdur.",
       "template": "Carousel",
       "voice": null,
       "music": {
