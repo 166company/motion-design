@@ -1,6 +1,6 @@
 {
   "repo": "166company/motion-design",
-  "updatedAt": "2026-09-11T11:18:39.613Z",
+  "updatedAt": "2026-09-11T11:24:11.626Z",
   "entries": [
     {
       "id": "2026-09-11-story",
@@ -40,14 +40,14 @@
         "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-carousel/2026-09-11-carousel-2.png",
         "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-carousel/2026-09-11-carousel-3.png"
       ],
-      "hook": "YÜKÜNÜ BİZ ÇƏK ƏK. → SƏNİN GÖTÜRƏ BİLMƏDİYİN YÜKÜ BİZ GÖTÜRƏK.",
-      "caption": "📦",
+      "hook": "SƏNİN GÖ... / ...TÜRƏ BİLMƏ DİYİN YÜKÜ BİZ GÖTÜRƏK. → Bir zənglə.",
+      "caption": "📦🚚",
       "hashtags": [
-        "#Yukaz",
-        "#YukDasima",
-        "#EvDasinmasi",
-        "#Dasinma",
-        "#Baki"
+        "#Yükaz",
+        "#yükdaşıma",
+        "#evdaşınması",
+        "#daşınma",
+        "#Bakı"
       ],
       "source": "https://yuk.az",
       "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-carousel/2026-09-11-carousel.mp4",
@@ -55,7 +55,7 @@
       "scenes": 3,
       "status": "təsdiq-gözləyir",
       "createdAt": "2026-09-11",
-      "note": "Qeydi 2-ci slayddakı mətn düzəlişi kimi başa düşdüm. Səs, musiqi, şablon və vizual dəyişiklik barədə əlavə göstəriş yoxdur.",
+      "note": "Mətni 1-ci və 2-ci slayd arasında davam edən formada bölmək lazımdır. 3-cü slaydda CTA istənilir, amma dəqiq CTA mətni göstərilməyib.",
       "template": "Carousel",
       "voice": null,
       "music": {

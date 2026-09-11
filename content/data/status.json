@@ -19,6 +19,6 @@
   },
   "2026-09-11-carousel": {
     "status": "təsdiq-gözləyir",
-    "note": "Qeydi 2-ci slayddakı mətn düzəlişi kimi başa düşdüm. Səs, musiqi, şablon və vizual dəyişiklik barədə əlavə göstəriş yoxdur."
+    "note": "Mətni 1-ci və 2-ci slayd arasında davam edən formada bölmək lazımdır. 3-cü slaydda CTA istənilir, amma dəqiq CTA mətni göstərilməyib."
   }
 }
