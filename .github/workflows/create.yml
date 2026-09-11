@@ -41,6 +41,12 @@ jobs:
       - run: npm ci
       - run: pip install --quiet edge-tts mutagen numpy
 
+      - name: Musiqi kataloqu + vokal yoxlaması
+        # yeni trek yoxdursa dərhal bitir; varsa ~0.5 sent/trek (Whisper)
+        run: |
+          npx tsx pipeline/audius.ts > /dev/null
+          python pipeline/screen_music.py
+
       - name: Ssenari + səs + assetlər
         run: npx tsx pipeline/run.ts
 

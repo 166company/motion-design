@@ -76,8 +76,11 @@ Panel: `https://166company.github.io/motion-design/`
 3. **Sintez** — [pipeline/music.py](pipeline/music.py) orijinal fon yastığı,
    heç biri olmasa.
 
-Audius-dan gələn trek xoşuna gəlmirsə (məs. vokallıdır), ID-sini
-`content/data/music-exclude.json` siyahısına yaz — bir daha seçilməz.
+**Vokal yoxlaması avtomatikdir:** [pipeline/screen_music.py](pipeline/screen_music.py)
+hər yeni trekin ilk 60 saniyəsini Whisper-ə verir; söz çıxırsa trek vokallı sayılır
+və seçimdən çıxarılır (`content/data/music-screen.json`). Xərc ~0.5 sent/trek, bir dəfə.
+
+Buna baxmayaraq bəyənmədiyin trek olsa, ID-sini `content/data/music-exclude.json`-a yaz.
 Trek adı hər təsdiq Issue-sunda göstərilir.
 
 Kataloq `content/data/audius-catalog.json`-da 7 gün keşlənir.
@@ -136,6 +139,7 @@ pipeline/
   run.ts                bütün zənciri birləşdirir
   qa.ts                 render sonrası yoxlamalar
   audius.ts             Audius — CC lisenziyalı musiqi + atribut
+  screen_music.py       Whisper ilə vokal yoxlaması
   music.py              orijinal fon musiqisi sintezatoru
   publish.ts            Meta Graph API
   panel.ts              docs/data.json

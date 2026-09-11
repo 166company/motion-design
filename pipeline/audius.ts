@@ -113,27 +113,42 @@ export const pickAndDownload = async (
   needSeconds: number,
   dest: string
 ): Promise<{ track: AudiusTrack; attribution: string } | null> => {
-  // Bəyənmədiyin trekləri (məs. vokallı) content/data/music-exclude.json-a ID ilə yaz
+  // İki istisna mənbəyi:
+  //  - music-exclude.json — sənin əl ilə yazdığın ID-lər
+  //  - music-screen.json  — screen_music.py-nin Whisper ilə tapdığı vokallı treklər
   const excluded: string[] = await fs
     .readFile(path.join("content", "data", "music-exclude.json"), "utf-8")
     .then(JSON.parse)
     .catch(() => []);
+  const screen: Record<string, { vocal: boolean | null }> = await fs
+    .readFile(path.join("content", "data", "music-screen.json"), "utf-8")
+    .then(JSON.parse)
+    .catch(() => ({}));
 
   const all = await catalog();
-  const fit = all.filter((t) => t.duration >= needSeconds + 5 && !excluded.includes(t.id));
+  const fit = all.filter(
+    (t) => t.duration >= needSeconds + 5 && !excluded.includes(t.id) && screen[t.id]?.vocal !== true
+  );
   if (!fit.length) return null;
 
   const track = fit[seed % fit.length];
 
-  // imzalı URL köhnəlmiş ola bilər — treki təzədən çək
-  const fresh = await fetch(`${API}/tracks/${track.id}?app_name=${APP}`, { headers: headers() })
-    .then((r) => (r.ok ? r.json() : null))
-    .catch(() => null);
-  const url = fresh?.data?.stream?.url ?? track.streamUrl;
-
-  const res = await fetch(url, { headers: { "User-Agent": APP } });
-  if (!res.ok) return null;
-  await fs.writeFile(dest, Buffer.from(await res.arrayBuffer()));
+  // İmzalı URL-lər tez köhnəlir və mirror-lar bəzən 403 verir — 3 cəhd, hər dəfə təzə URL
+  let saved = false;
+  for (let attempt = 0; attempt < 3 && !saved; attempt++) {
+    const fresh = await fetch(`${API}/tracks/${track.id}?app_name=${APP}`, { headers: headers() })
+      .then((r) => (r.ok ? r.json() : null))
+      .catch(() => null);
+    const url = fresh?.data?.stream?.url ?? track.streamUrl;
+    const res = await fetch(url, { headers: { "User-Agent": APP } }).catch(() => null);
+    if (res?.ok) {
+      await fs.writeFile(dest, Buffer.from(await res.arrayBuffer()));
+      saved = true;
+    } else {
+      await new Promise((r) => setTimeout(r, 1500 * (attempt + 1)));
+    }
+  }
+  if (!saved) return null;
 
   const short = track.license.replace("Attribution ShareAlike ", "").replace("Attribution ", "");
   const attribution = `🎵 ${track.title} — ${track.artist} (${short}) ${track.permalink}`;
