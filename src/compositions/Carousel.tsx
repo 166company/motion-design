@@ -48,16 +48,20 @@ export const Carousel: React.FC<CarouselProps> = ({ photo, lines, punch, fontSiz
     );
   }
 
-  const text = lines[i];
-  const alignRight = i % 2 === 0; // 1-ci slayd sağa (mətn kəsilib sonrakı slayda "axır"), 2-ci sola
-  // Uzun sətir → şrift kiçilir ki, çərçivəyə sığsın (1 hərf ≈ 0.62 × fontSize eni)
-  // Sətir bölgüsü verilməyibsə (tək sətir), hər söz öz sətrində — üslubun tələbi
-  const rows = text.includes("\n") ? text.split("\n") : text.split(/\s+/).filter(Boolean);
+  // aviasales üslubu:
+  //  slayd 1 — BÖYÜK hərf, sağa hizalı, son parça sağ kənarda KƏSİLİR (nöqtə yox, çərçivə kəsir)
+  //  slayd 2 — kiçik hərf, sola hizalı, ilk parça sol kənardan "içəri girir"
+  const raw = lines[i].replace(/^\.\.\.|\.\.\.$/g, "").trim();
+  const isFirst = i === 0;
+  const rowsRaw = raw.includes("\n") ? raw.split("\n") : raw.split(/\s+/).filter(Boolean);
+  const rows = rowsRaw.map((r) => (isFirst ? r.toLocaleUpperCase("az") : r.toLocaleLowerCase("az")));
   const longest = Math.max(...rows.map((r) => r.length), 1);
-  const fit = Math.min(fontSize, Math.floor((W - 120) / (longest * 0.62)), Math.floor((H - 520) / (rows.length * 0.95)));
+  // 1-ci slayd 2-3 qısa sözdür — nəhəng olsun (aviasales "DUR BURDAN"); 2-ci slayd daha uzun, bir az kiçik
+  const cap = isFirst ? Math.max(fontSize, 270) : fontSize;
+  const fit = Math.min(cap, Math.floor((W - 60) / (longest * 0.6)), Math.floor((H - 560) / (rows.length * 0.95)));
   return (
     <AbsoluteFill style={{ width: W, height: H, overflow: "hidden", fontFamily: font, background: colors.graphite }}>
-      {/* foto — slaydlar arasında davamlılıq üçün 2 slayd boyu eyni şəkil, hər slayd öz hissəsini göstərir */}
+      {/* foto — slaydlar arasında davamlılıq: eyni şəkil, hər slayd öz hissəsini göstərir */}
       <Img
         src={staticFile(photo)}
         style={{ position: "absolute", top: 0, left: -i * W * 0.35, width: W * 1.7, height: H, objectFit: "cover" }}
@@ -66,27 +70,31 @@ export const Carousel: React.FC<CarouselProps> = ({ photo, lines, punch, fontSiz
       <Logo />
       <div
         style={{
-          position: "absolute", left: 0, right: 0, bottom: 150,
+          position: "absolute", left: 0, right: 0, bottom: 170,
           display: "flex", flexDirection: "column",
-          alignItems: alignRight ? "flex-end" : "flex-start",
-          paddingLeft: alignRight ? 0 : 40, paddingRight: alignRight ? 0 : 0,
+          alignItems: isFirst ? "flex-end" : "flex-start",
         }}
       >
-        {rows.map((ln, k) => (
-          <div
-            key={k}
-            style={{
-              fontSize: fit, fontWeight: 900, color: colors.white, lineHeight: 0.95, letterSpacing: -fit * 0.03,
-              textTransform: "uppercase", whiteSpace: "nowrap",
-              textShadow: "0 8px 30px rgba(0,0,0,0.45)",
-              // sağa hizalanan sətir kənardan kəsilsin — davamı növbəti slayddadır
-              marginRight: alignRight ? -Math.max(0, (k === text.split("\n").length - 1 ? 1 : 0) * 0) : 0,
-              transform: alignRight ? "translateX(20px)" : "translateX(0)",
-            }}
-          >
-            {ln}
-          </div>
-        ))}
+        {rows.map((ln, k) => {
+          const last = k === rows.length - 1;
+          const first = k === 0;
+          // kəsilmə: slayd 1-in son parçası sağa çıxır, slayd 2-nin ilk parçası soldan gəlir
+          const shift = isFirst && last ? fit * 0.55 : !isFirst && first ? -fit * 0.35 : 0;
+          return (
+            <div
+              key={k}
+              style={{
+                fontSize: fit, fontWeight: 900, color: colors.white, lineHeight: 0.95,
+                letterSpacing: -fit * 0.03, whiteSpace: "nowrap",
+                textShadow: "0 8px 30px rgba(0,0,0,0.45)",
+                paddingLeft: isFirst ? 0 : 36, paddingRight: isFirst ? 36 : 0,
+                transform: `translateX(${shift}px)`,
+              }}
+            >
+              {ln}
+            </div>
+          );
+        })}
       </div>
     </AbsoluteFill>
   );
