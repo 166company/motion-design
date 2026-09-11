@@ -1,6 +1,6 @@
 {
   "repo": "166company/motion-design",
-  "updatedAt": "2026-09-11T10:05:12.777Z",
+  "updatedAt": "2026-09-11T10:30:05.310Z",
   "entries": [
     {
       "id": "2026-09-11-story",
@@ -31,6 +31,37 @@
         "license": "Attribution CC BY",
         "vocal": false,
         "source": "audius"
+      }
+    },
+    {
+      "id": "2026-09-11-carousel",
+      "images": [
+        "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-carousel/2026-09-11-carousel-1.png",
+        "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-carousel/2026-09-11-carousel-2.png",
+        "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-carousel/2026-09-11-carousel-3.png"
+      ],
+      "hook": "EVİN QUTUYA YIĞI LSIN. → Qablaşdırma bizdən.",
+      "caption": "📦🚚",
+      "hashtags": [
+        "#Yükaz",
+        "#evdasinma",
+        "#yukdasima",
+        "#dasinma",
+        "#qablasdirma"
+      ],
+      "source": "https://yuk.az",
+      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-carousel/2026-09-11-carousel.mp4",
+      "duration": 0,
+      "scenes": 3,
+      "status": "təsdiq-gözləyir",
+      "createdAt": "2026-09-11",
+      "template": "Carousel",
+      "voice": null,
+      "music": {
+        "label": "Orijinal sintez",
+        "license": null,
+        "vocal": false,
+        "source": "synth"
       }
     },
     {
