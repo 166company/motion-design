@@ -1,7 +1,26 @@
 {
   "repo": "166company/motion-design",
-  "updatedAt": "2026-09-10T13:41:42.178Z",
+  "updatedAt": "2026-09-11T05:49:14.452Z",
   "entries": [
+    {
+      "id": "2026-09-11-10736",
+      "hook": "NAXÇIVANDA YÜKDAŞIMA NECƏ HESABLANIR?",
+      "caption": "Naxçıvanda yükdaşıma sifarişində əvvəlcə yükün həcmi, giriş şəraiti və tarix dəqiqləşir. Qiymət sabit deyil, telefonda yükə görə bildirilir. Daha rahat planlama üçün linkə bax: https://yuk.az/naxcivanda-yukdasima-xidmeti/\n\n🎵 Don't Stop — Pamela Yuen (CC BY) https://audius.co/pamelayuen/dont-stop",
+      "hashtags": [
+        "#yukaz",
+        "#yükdaşıma",
+        "#naxçıvan",
+        "#köçmə",
+        "#evdaşınması",
+        "#ofisköçürülməsi"
+      ],
+      "source": "https://yuk.az/naxcivanda-yukdasima-xidmeti/",
+      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-10736/2026-09-11-10736.mp4",
+      "duration": 25.7,
+      "scenes": 6,
+      "status": "təsdiq-gözləyir",
+      "createdAt": "2026-09-11"
+    },
     {
       "id": "2026-09-10-10764",
       "hook": "DAŞINMA QİYMƏTİ NƏDƏN ASILIDIR?",

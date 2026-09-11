@@ -1,0 +1,283 @@
+{
+  "id": "2026-09-11-10736",
+  "hook": "NAXÇIVANDA YÜKDAŞIMA NECƏ HESABLANIR?",
+  "total": 4,
+  "cta": {
+    "line1": "Sifariş üçün əvvəlcə zəng et",
+    "line2": "Yuk.az"
+  },
+  "music": "render/2026-09-11-10736/music.mp3",
+  "musicVolume": 0.1,
+  "scenes": [
+    {
+      "kind": "hook",
+      "spoken": "Naxçıvanda yükdaşıma planı fərqlidir, əvvəlcə yükə baxılır.",
+      "audio": "render/2026-09-11-10736/s0.mp3",
+      "words": [
+        {
+          "w": "Naxçıvanda",
+          "start": 0.201,
+          "dur": 0.428
+        },
+        {
+          "w": "yükdaşıma",
+          "start": 0.757,
+          "dur": 0.521
+        },
+        {
+          "w": "planı",
+          "start": 1.312,
+          "dur": 0.266
+        },
+        {
+          "w": "fərqlidir",
+          "start": 1.602,
+          "dur": 0.556
+        },
+        {
+          "w": "əvvəlcə",
+          "start": 2.273,
+          "dur": 0.394
+        },
+        {
+          "w": "yükə",
+          "start": 2.69,
+          "dur": 0.232
+        },
+        {
+          "w": "baxılır",
+          "start": 2.944,
+          "dur": 0.417
+        }
+      ],
+      "durationInFrames": 136,
+      "media": {
+        "kind": "video",
+        "src": "render/2026-09-11-10736/m0.mp4",
+        "duration": 18
+      }
+    },
+    {
+      "kind": "item",
+      "spoken": "Qiymət sabit deyil. Yükün həcmi, mərtəbə və məsafə əsasdır.",
+      "title": "QİYMƏT NƏYƏ GÖRƏ DƏYİŞİR?",
+      "body": "Yükün həcmi, mərtəbə, məsafə və əlavə işlərə görə.",
+      "index": 1,
+      "audio": "render/2026-09-11-10736/s1.mp3",
+      "words": [
+        {
+          "w": "Qiymət",
+          "start": 0.212,
+          "dur": 0.185
+        },
+        {
+          "w": "sabit",
+          "start": 0.536,
+          "dur": 0.405
+        },
+        {
+          "w": "deyil",
+          "start": 0.976,
+          "dur": 0.324
+        },
+        {
+          "w": "Yükün",
+          "start": 2.188,
+          "dur": 0.127
+        },
+        {
+          "w": "həcmi",
+          "start": 2.431,
+          "dur": 0.359
+        },
+        {
+          "w": "mərtəbə",
+          "start": 2.882,
+          "dur": 0.428
+        },
+        {
+          "w": "və",
+          "start": 3.333,
+          "dur": 0.081
+        },
+        {
+          "w": "məsafə",
+          "start": 3.438,
+          "dur": 0.417
+        },
+        {
+          "w": "əsasdır",
+          "start": 3.877,
+          "dur": 0.532
+        }
+      ],
+      "durationInFrames": 167,
+      "media": {
+        "kind": "video",
+        "src": "render/2026-09-11-10736/m1.mp4",
+        "duration": 19
+      }
+    },
+    {
+      "kind": "item",
+      "spoken": "Marşrut əvvəlcədən dəqiqləşir ki, gecikmə olmasın.",
+      "title": "ƏVVƏLCƏ MARŞRUT DƏQİQLƏŞİR",
+      "body": "Naxçıvan istiqamətində marşrut və müddət ayrıca razılaşdırılır.",
+      "index": 2,
+      "audio": "render/2026-09-11-10736/s2.mp3",
+      "words": [
+        {
+          "w": "Marşrut",
+          "start": 0.201,
+          "dur": 0.301
+        },
+        {
+          "w": "əvvəlcədən",
+          "start": 0.63,
+          "dur": 0.556
+        },
+        {
+          "w": "dəqiqləşir",
+          "start": 1.208,
+          "dur": 0.579
+        },
+        {
+          "w": "ki",
+          "start": 1.81,
+          "dur": 0.116
+        },
+        {
+          "w": "gecikmə",
+          "start": 2.018,
+          "dur": 0.382
+        },
+        {
+          "w": "olmasın",
+          "start": 2.424,
+          "dur": 0.498
+        }
+      ],
+      "durationInFrames": 122,
+      "media": {
+        "kind": "video",
+        "src": "render/2026-09-11-10736/m2.mp4",
+        "duration": 15
+      }
+    },
+    {
+      "kind": "item",
+      "spoken": "Uzun yolda qablaşdırma güclü olmalıdır, xüsusən həssas əşyalarda.",
+      "title": "QABLAŞDIRMA ÇOX VACİBDİR",
+      "body": "Uzun yol üçün əlavə qoruyucu material və möhkəm bərkitmə lazımdır.",
+      "index": 3,
+      "audio": "render/2026-09-11-10736/s3.mp3",
+      "words": [
+        {
+          "w": "Uzun",
+          "start": 0.2,
+          "dur": 0.104
+        },
+        {
+          "w": "yolda",
+          "start": 0.432,
+          "dur": 0.312
+        },
+        {
+          "w": "qablaşdırma",
+          "start": 0.779,
+          "dur": 0.648
+        },
+        {
+          "w": "güclü",
+          "start": 1.462,
+          "dur": 0.255
+        },
+        {
+          "w": "olmalıdır",
+          "start": 1.74,
+          "dur": 0.556
+        },
+        {
+          "w": "xüsusən",
+          "start": 2.411,
+          "dur": 0.37
+        },
+        {
+          "w": "həssas",
+          "start": 2.805,
+          "dur": 0.359
+        },
+        {
+          "w": "əşyalarda",
+          "start": 3.187,
+          "dur": 0.637
+        }
+      ],
+      "durationInFrames": 149,
+      "media": {
+        "kind": "video",
+        "src": "render/2026-09-11-10736/m3.mp4",
+        "duration": 10
+      }
+    },
+    {
+      "kind": "item",
+      "spoken": "Maşın əşya siyahısına görə seçilir, gözəyarı yox.",
+      "title": "MAŞIN YÜKƏ GÖRƏ SEÇİLİR",
+      "body": "Kiçik, orta, böyük furqon və ya xüsusi nəqliyyat seçilir.",
+      "index": 4,
+      "audio": "render/2026-09-11-10736/s4.mp3",
+      "words": [
+        {
+          "w": "Maşın",
+          "start": 0.2,
+          "dur": 0.185
+        },
+        {
+          "w": "əşya",
+          "start": 0.513,
+          "dur": 0.266
+        },
+        {
+          "w": "siyahısına",
+          "start": 0.802,
+          "dur": 0.475
+        },
+        {
+          "w": "görə",
+          "start": 1.3,
+          "dur": 0.197
+        },
+        {
+          "w": "seçilir",
+          "start": 1.52,
+          "dur": 0.44
+        },
+        {
+          "w": "gözəyarı",
+          "start": 2.064,
+          "dur": 0.44
+        },
+        {
+          "w": "yox",
+          "start": 2.527,
+          "dur": 0.232
+        }
+      ],
+      "durationInFrames": 118,
+      "media": {
+        "kind": "video",
+        "src": "render/2026-09-11-10736/m4.mp4",
+        "duration": 10
+      }
+    },
+    {
+      "kind": "cta",
+      "spoken": "",
+      "audio": null,
+      "words": [],
+      "durationInFrames": 78,
+      "media": null
+    }
+  ]
+}
