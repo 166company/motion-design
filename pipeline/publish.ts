@@ -88,6 +88,42 @@ export const publishFacebook = async (videoUrl: string, description: string) => 
   return { id: videoId, permalink: `https://www.facebook.com/reel/${videoId}` };
 };
 
+/** Instagram karuseli: hər şəkil ayrıca container → CAROUSEL container → publish */
+export const publishInstagramCarousel = async (imageUrls: string[], caption: string) => {
+  const children: string[] = [];
+  for (const url of imageUrls) {
+    const c = await api(`${IG}/media?image_url=${encodeURIComponent(url)}&is_carousel_item=true&access_token=${TOKEN}`, { method: "POST" });
+    children.push(c.id);
+  }
+  const car = await api(
+    `${IG}/media?media_type=CAROUSEL&children=${children.join(",")}&caption=${encodeURIComponent(caption)}&access_token=${TOKEN}`,
+    { method: "POST" }
+  );
+  for (let i = 0; i < 20; i++) {
+    const st = await api(`${car.id}?fields=status_code,status&access_token=${TOKEN}`);
+    if (st.status_code === "FINISHED") break;
+    if (st.status_code === "ERROR") throw new Error(`IG karusel xətası: ${st.status}`);
+    await sleep(4000);
+  }
+  const pub = await api(`${IG}/media_publish?creation_id=${car.id}&access_token=${TOKEN}`, { method: "POST" });
+  const link = await api(`${pub.id}?fields=permalink&access_token=${TOKEN}`);
+  return { id: pub.id as string, permalink: link.permalink as string };
+};
+
+/** Facebook: şəkilləri published=false yüklə, sonra bir postda birləşdir */
+export const publishFacebookPhotos = async (imageUrls: string[], message: string) => {
+  const pt = await pageToken();
+  const ids: string[] = [];
+  for (const url of imageUrls) {
+    const ph = await api(`${PAGE}/photos?url=${encodeURIComponent(url)}&published=false&access_token=${pt}`, { method: "POST" });
+    ids.push(ph.id);
+  }
+  const attached = ids.map((id, i) => `attached_media[${i}]=${encodeURIComponent(JSON.stringify({ media_fbid: id }))}`).join("&");
+  const post = await api(`${PAGE}/feed?message=${encodeURIComponent(message)}&${attached}&access_token=${pt}`, { method: "POST" });
+  const [pg, pid] = String(post.id).split("_");
+  return { id: post.id as string, permalink: pid ? `https://www.facebook.com/${pg}/posts/${pid}` : `https://www.facebook.com/${post.id}` };
+};
+
 if (process.argv[1]?.endsWith("publish.ts")) {
   const [, , videoUrl, metaPath] = process.argv;
   const meta = JSON.parse(await (await import("node:fs/promises")).readFile(metaPath, "utf-8"));

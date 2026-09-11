@@ -4,6 +4,8 @@ import { Explainer, explainerSchema, explainerTotal, type ExplainerProps } from 
 import explainerDefault from "./explainerDefault.json";
 import { Story, storySchema, storyTotal, type StoryProps } from "./compositions/Story";
 import storyDefault from "./storyDefault.json";
+import { Carousel, carouselSchema, type CarouselProps } from "./compositions/Carousel";
+import carouselDefault from "./carouselDefault.json";
 import { reelSchema, type Reel } from "./types";
 import { canvas } from "./brand/theme";
 import defaultProps from "./defaultProps.json";
@@ -11,6 +13,17 @@ import defaultProps from "./defaultProps.json";
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+    <Composition
+      id="Carousel"
+      component={Carousel}
+      schema={carouselSchema}
+      defaultProps={carouselDefault as unknown as CarouselProps}
+      width={1080}
+      height={1350}
+      fps={1}
+      durationInFrames={3}
+      calculateMetadata={({ props }) => ({ durationInFrames: props.lines.length + 1 })}
+    />
     <Composition
       id="Story"
       component={Story}

@@ -178,6 +178,7 @@ jobs:
           case "${{ steps.pick.outputs.template }}" in
             Explainer) npx tsx pipeline/explainer.ts ;;
             Story) npx tsx pipeline/story.ts ;;
+            Carousel) npx tsx pipeline/carousel.ts ;;
             *) npx tsx pipeline/run.ts ;;
           esac
 
@@ -185,14 +186,18 @@ jobs:
         run: |
           ID="${{ steps.pick.outputs.id }}"
           mkdir -p out
-          npx remotion render src/index.ts "${{ steps.pick.outputs.template }}" "out/$ID.mp4" --props="public/render/$ID/props.json"
-          npx tsx pipeline/qa.ts "out/$ID.mp4" "public/render/$ID/props.json"
+          if [ "${{ steps.pick.outputs.template }}" = "Carousel" ]; then
+            for i in 0 1 2; do npx remotion still src/index.ts Carousel "out/$ID-$((i+1)).png" --frame=$i --props="public/render/$ID/props.json"; done
+          else
+            npx remotion render src/index.ts "${{ steps.pick.outputs.template }}" "out/$ID.mp4" --props="public/render/$ID/props.json"
+            npx tsx pipeline/qa.ts "out/$ID.mp4" "public/render/$ID/props.json"
+          fi
 
       - name: Release-i əvəz et, panel, Issue
         run: |
           ID="${{ steps.pick.outputs.id }}"
           gh release delete "reel-$ID" --yes --cleanup-tag 2>/dev/null || true
-          gh release create "reel-$ID" "out/$ID.mp4" --title "Reel $ID (düzəliş)" --notes "Qeydlə yenidən istehsal olunub."
+          gh release create "reel-$ID" out/$ID* --title "Reel $ID (düzəliş)" --notes "Qeydlə yenidən istehsal olunub."
           python - <<PY
           import json, io, os
           p = "content/data/status.json"

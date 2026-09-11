@@ -96,6 +96,10 @@
   .run .bar i{display:block;height:100%;background:var(--orange);transition:width 1s linear}
   .run a{margin-left:auto;font-size:12px;font-weight:700;white-space:nowrap}
   .card.working{outline:2px solid rgba(255,102,0,.55)}
+  .slot.carousel{position:relative;cursor:pointer}
+  .dots{position:absolute;bottom:10px;left:0;right:0;display:flex;justify-content:center;gap:6px}
+  .dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.45)}
+  .dots i.on{background:var(--orange)}
   .setup{background:linear-gradient(135deg,rgba(255,102,0,.16),rgba(255,255,255,.03));border:1px solid rgba(255,102,0,.45);
          border-radius:18px;padding:18px 20px;margin:20px 0 6px}
   .setup h2{margin:0 0 6px;font-size:16px;font-weight:900}
@@ -271,20 +275,19 @@ function render() {
         newIssue("Sil: " + e.id, "Bu video paneldən və Release-dən silinsin.") + '">🗑</a>';
     const note = e.note ? '<div class="note"><b>Son qeyd</b>' + esc(e.note) + '</div>' : "";
 
-    return '<article class="card" data-id="' + esc(e.id) + '">' +
-      '<div class="slot" data-src="' + esc(e.video) + '">' +
-        '<div class="ph"><div class="dot"></div>' +
-        '<b>Video hazırlanır</b>' +
-        '<span>GitHub Release-ə yüklənəndən sonra burada oynayacaq.</span></div>' +
-      '</div>' +
+    const media = e.images
+      ? '<div class="slot carousel"><img src="' + esc(e.images[0]) + '" alt="" style="width:100%;aspect-ratio:4/5;object-fit:cover;display:block">' +
+        '<div class="dots">' + e.images.map((_, k) => '<i' + (k === 0 ? ' class="on"' : '') + '></i>').join("") + '</div></div>'
+      : '<div class="slot" data-src="' + esc(e.video) + '">' +
+        '<div class="ph"><div class="dot"></div><b>Video hazırlanır</b><span>GitHub Release-ə yüklənəndən sonra burada oynayacaq.</span></div></div>';
+    return '<article class="card" data-id="' + esc(e.id) + '">' + media +
       '<div class="body">' +
         '<p class="hook">' + esc(e.hook) + '</p>' +
         '<div class="meta">' +
           '<span class="pill status ' + badgeClass(e.status) + '">' + esc(e.status) + '</span>' +
-          '<span class="pill">' + esc(e.duration) + ' san</span>' +
-          '<span class="pill">' + esc(e.scenes) + ' səhnə</span>' +
+          (e.images ? '<span class="pill">' + e.images.length + ' slayd</span>' : '<span class="pill">' + esc(e.duration) + ' san</span><span class="pill">' + esc(e.scenes) + ' səhnə</span>') +
           '<span class="pill">' + esc(e.createdAt) + '</span>' +
-          '<span class="pill">' + (e.template === "Explainer" ? "🎬 Animasiya" : e.template === "Story" ? "🎨 İllüstrasiya" : "📰 Məqalə") + '</span>' +
+          '<span class="pill">' + (e.template === "Explainer" ? "🎬 Animasiya" : e.template === "Story" ? "🎨 İllüstrasiya" : e.template === "Carousel" ? "🃏 Karusel" : "📰 Məqalə") + '</span>' +
           (e.voice ? '<span class="pill">🎙 ' + esc(e.voice) + '</span>' : "") +
         '</div>' +
         musicRow(e.music) +
@@ -303,6 +306,11 @@ function render() {
   // (Release "Dəyişiklik" zamanı bir neçə saniyəlik silinib-yenidən yaranır — o anda açılan səhifə 404 görür)
   probeSlots();
 
+  grid.querySelectorAll(".slot.carousel").forEach((slot) => {
+    const card = slot.closest(".card"); const e = DATA.entries.find((x) => x.id === card.dataset.id); let k = 0;
+    slot.onclick = () => { k = (k + 1) % e.images.length; slot.querySelector("img").src = e.images[k];
+      slot.querySelectorAll(".dots i").forEach((d, j) => d.classList.toggle("on", j === k)); };
+  });
   if (RUNS.length) renderRuns();
   grid.querySelectorAll("[data-copy]").forEach((b) => {
     b.onclick = async () => {

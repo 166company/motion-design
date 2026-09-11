@@ -209,7 +209,9 @@ GitHub-da `Variables` bölməsindən, lokal `.env`-dən dəyişilir.
 | **Explainer** | "4 addımda daşınma" — **tam kodla çəkilmiş** animasiya: kub loqo düşür, telefon çalır, çat baloncuqları, yük maşınına qutular hoppanır, xəritədə marşrut cızılır | yuk.az faktları | növbədə hər 4-cü |
 | **Story** | "Köç günü" — **AI ilə yaradılmış illüstrasiyalar** (`public/assets/`: yük maşını, qutular, daşıyıcı, telefon, bina, divan) + kod animasiyası: yeriş, parallaks, əşyaların maşına uçması, toz, kamera panı | yuk.az faktları | növbədə hər 4-cü |
 
-Növbə: tiplist → story → tiplist → explainer → … Əl ilə: `Actions → Reels yarat → template:` `tiplist` / `explainer` / `story` (`-silent` şəkilçisi ilə səssiz — yalnız musiqi + SFX).
+| **Carousel** | aviasales.az üslubunda hazırcavab **statik 3 slayd**: fotorealist AI foto + nəhəng mətn, cümlə sözün ortasından kəsilir (sürüşdürmə hiyləsi), 3-cü slayd narıncı punchline. Söz oyununu `gpt-5.5` yazır (tanış ifadənin köç mövzusuna çevrilməsi), bölünmə kodda. Instagram karusel + Facebook foto post kimi yayımlanır | — | növbədə hər 5-ci |
+
+Növbə: tiplist → story → carousel → tiplist → explainer → … Əl ilə: `Actions → Reels yarat → template:` `tiplist` / `explainer` / `story` (`-silent` şəkilçisi ilə səssiz — yalnız musiqi + SFX).
 
 Assetlər [pipeline/gen_assets.py](pipeline/gen_assets.py) ilə yaranır: OpenAI `gpt-image-2.5`, "high",
 3D-yə yaxın Pixar üslubu, brend paleti. 6 şəffaf obyekt (yük maşını, qutular, daşıyıcı, telefon, divan, bitki)

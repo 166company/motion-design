@@ -14,6 +14,8 @@ type Entry = {
   status: "təsdiq-gözləyir" | "yayımlanıb" | "imtina" | "silinib";
   note?: string;
   template: string;
+  /** karusel üçün slayd şəkilləri */
+  images?: string[];
   voice?: string | null;
   createdAt: string;
   instagram?: string;
@@ -59,15 +61,17 @@ export const buildPanel = async (repo: string) => {
 
     const st = status[meta.id] ?? {};
     if (st.status === "silinib") continue;   // paneldən silinib
+    const relBase = `https://github.com/${repo}/releases/download/reel-${meta.id}`;
     entries.push({
       id: meta.id,
-      hook: props.hook ?? (props.scenes?.[0]?.heading ?? meta.id),
+      images: meta.template === "Carousel" ? Array.from({ length: meta.slides ?? 3 }, (_, i) => `${relBase}/${meta.id}-${i + 1}.png`) : undefined,
+      hook: props.hook ?? props.scenes?.[0]?.heading ?? (props.lines ? `${props.lines.join(" ").replace(/\n/g, " ")} → ${props.punch}` : meta.id),
       caption: meta.caption,
       hashtags: meta.hashtags,
       source: meta.link,
       video: `https://github.com/${repo}/releases/download/reel-${meta.id}/${meta.id}.mp4`,
-      duration: +(props.scenes.reduce((a: number, b: any) => a + b.durationInFrames, 0) / FPS).toFixed(1),
-      scenes: props.scenes.length,
+      duration: props.scenes ? +(props.scenes.reduce((a: number, b: any) => a + b.durationInFrames, 0) / FPS).toFixed(1) : 0,
+      scenes: props.scenes ? props.scenes.length : (meta.slides ?? 3),
       status: st.status ?? "təsdiq-gözləyir",
       createdAt: meta.id.slice(0, 10),
       instagram: st.instagram,
