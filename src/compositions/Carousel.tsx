@@ -72,7 +72,7 @@ export const Carousel: React.FC<CarouselProps> = ({ photo, lines, punch, fontSiz
     return rows;
   };
   const ANCHOR = 800;                // slayd 1-in son sətrinin ALT xətti (y) — 2-ci slaydın davamına yer qalsın
-  const ROW = 0.95;                  // sətir hündürlüyü / şrift
+  const ROW = 0.9;                   // sətir hündürlüyü / şrift — sıx, bərabər
   // ortaq şrift: slayd 1 eninə, slayd 2 eninə + slayd 2-nin ANCHOR-dan aşağı sığmasına görə
   let F = Math.min(fontSize, 270);
   for (let k = 0; k < 6; k++) {
@@ -105,19 +105,16 @@ export const Carousel: React.FC<CarouselProps> = ({ photo, lines, punch, fontSiz
         }}
       >
         {rows.map((ln, k) => {
-          const last = k === rows.length - 1;
-          const first = k === 0;
-          // Hərf kəsilmir (aviasales "Si" kimi): kəsilən parça sağ kənara, davamı sol kənara SÖYKƏNİR
-          const flush = (isFirst && last) || (!isFirst && first);
+          // Bütün sətirlər eyni kənar xəttində: slayd 1 sağdan 44px, slayd 2 soldan 44px
           const shift = 0;
           return (
             <div
               key={k}
               style={{
                 fontSize: F, fontWeight: 900, color: colors.white, lineHeight: ROW, height: F * ROW,
-                letterSpacing: -F * 0.03, whiteSpace: "nowrap",
+                letterSpacing: -F * 0.035, whiteSpace: "nowrap",
                 textShadow: "0 8px 30px rgba(0,0,0,0.45)",
-                paddingLeft: isFirst ? 0 : flush ? 6 : 40, paddingRight: isFirst ? (flush ? 6 : 40) : 0,
+                paddingLeft: isFirst ? 0 : 44, paddingRight: isFirst ? 44 : 0,
                 transform: `translateX(${shift}px)`,
               }}
             >
