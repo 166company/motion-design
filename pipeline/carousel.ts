@@ -121,8 +121,24 @@ const genPhoto = async (desc: string, dest: string) => {
 const main = async () => {
   const feedback = process.env.FEEDBACK?.trim() || undefined;
   console.log(`${NL}1. Konsept (${MODEL})…`);
-  const c = await writeConcept(feedback);
-  const [slide1, slide2] = splitSentence(c.sentence);
+  // İstifadəçi dəqiq mətn veribsə (Dəyişiklik qeydindən) — model uydurmasın, olduğu kimi
+  const exactSlides: string[] | null = process.env.EXACT_SLIDES ? JSON.parse(process.env.EXACT_SLIDES) : null;
+  const joinSlides = (sl: string[]) =>
+    sl.reduce((acc, x) => {
+      const a = acc.replace(/\.\.\.$/, ""), b = x.replace(/^\.\.\./, "");
+      return acc === "" ? b : /\.\.\.$/.test(acc) && /^\.\.\./.test(x) ? a + b : a + " " + b;
+    }, "").replace(/\s+/g, " ").trim();
+  const exactSentence = process.env.EXACT_SENTENCE || (exactSlides ? joinSlides(exactSlides.map((x) => x.replace(/\n/g, " "))) : null);
+  const c = await writeConcept(
+    exactSentence
+      ? `${feedback ?? ""}${NL}${NL}DİQQƏT: cümlə ARTIQ VERİLİB, onu dəyişmə, "sentence" sahəsinə olduğu kimi yaz: "${exactSentence}". Yalnız foto, caption, hashtag${process.env.EXACT_PUNCH ? "" : ", punch"} üçün işlə.`
+      : feedback
+  );
+  if (exactSentence) c.sentence = exactSentence;
+  if (process.env.EXACT_PUNCH) c.punch = process.env.EXACT_PUNCH;
+  const [slide1, slide2] = exactSlides && exactSlides.length >= 2
+    ? [exactSlides[0], exactSlides[1]]
+    : splitSentence(c.sentence);
   log(`"${c.sentence}"  ←  ${c.idiom}  →  ${c.punch}`);
   log(`slaydlar: [${slide1.replace(/\n/g, " ")}] [${slide2.replace(/\n/g, " ")}]`);
 

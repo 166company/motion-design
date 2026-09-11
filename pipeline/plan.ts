@@ -20,6 +20,9 @@ if (fs.existsSync(path)) {
   set("MUSIC_MOOD", p.musicMood);
   set("OPENAI_TTS_VOICE", p.voice);
   set("ASSET_HINTS", (p.assetHints ?? []).join(","));
+  if (p.exactSlides?.length) process.env.EXACT_SLIDES = JSON.stringify(p.exactSlides);
+  set("EXACT_PUNCH", p.exactPunch);
+  set("EXACT_SENTENCE", p.exactSentence);
   if (p.silent === true) { process.env.EXPLAINER_SILENT = "1"; process.env.STORY_VOICE = "0"; }
   if (p.silent === false) { process.env.EXPLAINER_SILENT = ""; process.env.STORY_VOICE = "1"; }
   console.log(`  plan: ${p.summary ?? ""}`);

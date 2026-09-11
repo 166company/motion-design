@@ -50,6 +50,10 @@ export const Carousel: React.FC<CarouselProps> = ({ photo, lines, punch, fontSiz
 
   const text = lines[i];
   const alignRight = i % 2 === 0; // 1-ci slayd sağa (mətn kəsilib sonrakı slayda "axır"), 2-ci sola
+  // Uzun sətir → şrift kiçilir ki, çərçivəyə sığsın (1 hərf ≈ 0.62 × fontSize eni)
+  const rows = text.split("\n");
+  const longest = Math.max(...rows.map((r) => r.length), 1);
+  const fit = Math.min(fontSize, Math.floor((W - 120) / (longest * 0.62)), Math.floor((H - 520) / (rows.length * 0.95)));
   return (
     <AbsoluteFill style={{ width: W, height: H, overflow: "hidden", fontFamily: font, background: colors.graphite }}>
       {/* foto — slaydlar arasında davamlılıq üçün 2 slayd boyu eyni şəkil, hər slayd öz hissəsini göstərir */}

@@ -20,13 +20,16 @@ export type Plan = {
   contentNotes: string;                   // ssenari/mətn modelinə gedən qeyd
   visualNotes: string;                    // foto/illüstrasiya/asset promptlarına gedən qeyd (İNGİLİSCƏ)
   assetHints: string[];                   // yenidən yaradılmalı assetlər: truck, mover, boxes, sofa, phone, plant, bg_street, bg_home, bg_interior
+  exactSlides: string[] | null;           // istifadəçi slayd mətnlərini DƏQİQ veribsə — olduğu kimi
+  exactPunch: string | null;              // dəqiq punchline
+  exactSentence: string | null;           // dəqiq tam cümlə (slaydlar verilməyibsə bölünmə kodda)
   imageRefs: string[];                    // istinad şəkil URL-ləri
   summary: string;                        // istifadəçiyə qısa təsdiq (azərbaycanca)
 };
 
 const schema = {
   type: "object", additionalProperties: false,
-  required: ["silent", "voice", "template", "musicMood", "contentNotes", "visualNotes", "assetHints", "summary"],
+  required: ["silent", "voice", "template", "musicMood", "contentNotes", "visualNotes", "assetHints", "exactSlides", "exactPunch", "exactSentence", "summary"],
   properties: {
     silent: { type: ["boolean", "null"], description: "səsləndirmə olmasın → true; səs olsun → false; qeyd yoxdursa null" },
     voice: { type: ["string", "null"], enum: ["marin", "coral", "cedar", "ash", null], description: "qadın: marin/coral, kişi: cedar/ash; qeyd yoxdursa null" },
@@ -35,6 +38,9 @@ const schema = {
     contentNotes: { type: "string", description: "mətn/ssenari üçün konkret göstərişlər, azərbaycanca; yoxdursa boş" },
     visualNotes: { type: "string", description: "vizual üçün konkret göstərişlər İNGİLİSCƏ (foto/illüstrasiya promptuna əlavə olunur): üslub, rəng, səhnə, istiqamət; yoxdursa boş" },
     assetHints: { type: "array", items: { type: "string" }, description: "yenidən yaradılmalı asset adları (truck, mover, boxes, sofa, phone, plant, bg_street, bg_home, bg_interior); yoxdursa boş" },
+    exactSlides: { type: ["array", "null"], items: { type: "string" }, description: "İstifadəçi slayd mətnlərini AÇIQ veribsə ('1-ci slayd: … 2-ci slayd: …'), hər slaydın mətni OLDUĞU KİMİ (böyük hərf, üç nöqtə, durğu daxil); sətir ayırmaq üçün \n; yoxdursa null" },
+    exactPunch: { type: ["string", "null"], description: "istifadəçi 3-cü slayd/punchline mətnini açıq veribsə, olduğu kimi; yoxsa null" },
+    exactSentence: { type: ["string", "null"], description: "istifadəçi tam cümləni veribsə (slaydsız), olduğu kimi; yoxsa null" },
     summary: { type: "string", description: "1-2 cümlə azərbaycanca: nəyi necə başa düşdün" },
   },
 } as const;
@@ -46,6 +52,7 @@ Sənin işin: qeydi (və şəkilləri) sistemin parametrlərinə çevirmək. Sis
 - Musiqi: energetic (gümrah), calm (sakit), none.
 - Story assetləri: truck, mover, boxes, sofa, phone, plant, bg_street, bg_home, bg_interior — "maşın pisdir" → assetHints:["truck"].
 - Şəkil əlavə olunubsa: onu istinad kimi qəbul et — üslub, rəng, kompozisiya, ovqat; visualNotes-a İNGİLİSCƏ dəqiq təsvir yaz ("reference image: warm golden-hour photo, low camera angle…").
+- İstifadəçi KONKRET mətn veribsə (slayd mətnləri, cümlə, punchline, başlıq) — bunu exactSlides/exactPunch/exactSentence sahəsinə OLDUĞU KİMİ yaz, dəyişdirmə, "yaxşılaşdırma". Sistem onu hərfbəhərf istifadə edəcək.
 - Anlaşılmayan şeyi uydurma; əmin olmadığın parametri null/boş saxla, summary-də de.
 - Hər şeyi contentNotes-a atma: yalnız mətn/ssenari ilə bağlı olanlar ora, vizual olanlar visualNotes-a (ingiliscə), struktur olanlar müvafiq sahəyə.`;
 
