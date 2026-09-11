@@ -95,7 +95,8 @@ jobs:
         run: |
           ID=$(printf '%s' "$TITLE" | sed 's/^Dəyişiklik:[[:space:]]*//' | tr -d ' ')
           echo "id=$ID" >> $GITHUB_OUTPUT
-          echo "article=$(python -c "import json,io;print(json.load(io.open('content/data/$ID.meta.json',encoding='utf-8'))['articleId'])")" >> $GITHUB_OUTPUT
+          echo "article=$(python -c "import json,io;print(json.load(io.open('content/data/$ID.meta.json',encoding='utf-8')).get('articleId') or '')")" >> $GITHUB_OUTPUT
+          echo "template=$(python -c "import json,io;print(json.load(io.open('content/data/$ID.meta.json',encoding='utf-8')).get('template','TipList'))")" >> $GITHUB_OUTPUT
 
       - name: Qeydlə yenidən istehsal
         env:
@@ -103,13 +104,13 @@ jobs:
           REEL_ID: ${{ steps.pick.outputs.id }}
         run: |
           gh issue comment ${{ github.event.issue.number }} --body "🔄 Qeydin alındı, video yenidən istehsal olunur (~6 dəq)…"
-          npx tsx pipeline/run.ts
+          if [ "${{ steps.pick.outputs.template }}" = "Explainer" ]; then npx tsx pipeline/explainer.ts; else npx tsx pipeline/run.ts; fi
 
       - name: Render + QA
         run: |
           ID="${{ steps.pick.outputs.id }}"
           mkdir -p out
-          npx remotion render src/index.ts TipList "out/$ID.mp4" --props="public/render/$ID/props.json"
+          npx remotion render src/index.ts "${{ steps.pick.outputs.template }}" "out/$ID.mp4" --props="public/render/$ID/props.json"
           npx tsx pipeline/qa.ts "out/$ID.mp4" "public/render/$ID/props.json"
 
       - name: Release-i əvəz et, panel, Issue

@@ -53,8 +53,12 @@ const headers = () => {
   };
 };
 
+/** Başlığında bunlar keçən treklər brend fonuna yaramır (mövsümi, kədərli, sərt) */
+const BAD_TITLE = /christmas|xmas|halloween|noel|sad|cry|funeral|horror|scary|nightmare|dark|death|lofi sad|breakup/i;
+
 const toTrack = (t: any): AudiusTrack | null => {
   if (!ALLOWED_LICENSES.has(t.license ?? "")) return null;
+  if (BAD_TITLE.test(t.title ?? "")) return null;
   if (!t.is_streamable || t.is_stream_gated || t.is_unlisted || t.is_delete) return null;
   if (EXCLUDED_GENRES.has(t.genre ?? "")) return null;
   if (!t.stream?.url) return null;

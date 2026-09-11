@@ -25,8 +25,12 @@ export const qa = async (videoPath: string, propsPath: string): Promise<QaResult
   add("hook ≤ 6 san", reel.scenes[0].durationInFrames / FPS <= 6,
       `${(reel.scenes[0].durationInFrames / FPS).toFixed(1)} san`);
 
-  const noMedia = reel.scenes.filter((s: any) => s.kind !== "cta" && !s.media).length;
-  add("bütün səhnələrdə fon var", noMedia === 0, noMedia ? `${noMedia} səhnə boş` : "OK");
+  // Explainer şablonunda stok media yoxdur (hər şey kodla çəkilir) — yalnız TipList üçün yoxla
+  const isTipList = reel.scenes.some((s: any) => "media" in s);
+  if (isTipList) {
+    const noMedia = reel.scenes.filter((s: any) => s.kind !== "cta" && !s.media).length;
+    add("bütün səhnələrdə fon var", noMedia === 0, noMedia ? `${noMedia} səhnə boş` : "OK");
+  }
 
   const noWords = reel.scenes.filter((s: any) => s.audio && s.words.length === 0).length;
   add("altyazı vaxtları var", noWords === 0, noWords ? `${noWords} səhnədə söz yoxdur` : "OK");

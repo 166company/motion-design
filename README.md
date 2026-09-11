@@ -136,7 +136,8 @@ src/
   brand/theme.ts        rəng, şrift, ölçü, təhlükəsiz zonalar — brend burada
   brand/fonts.ts        Inter + latin-ext (ə ğ ı ş üçün MƏCBURİ)
   components/           Caption, BackgroundMedia, IconBadge, AnimatedTitle, Overlay, CtaScene, LogoBug
-  compositions/         TipList — nömrələnmiş siyahı şablonu
+  compositions/         TipList (məqalə), Explainer (tam animasiya)
+  components/explainer/ kodla çəkilmiş assetlər: Truck, Box, Road, Skyline, RingingPhone, Bubble, RouteMap
 pipeline/
   wp.ts                 yuk.az WordPress REST API
   script.ts             OpenAI → strukturlu ssenari
@@ -144,7 +145,9 @@ pipeline/
   tts.py                edge-tts (pulsuz alternativ)
   sfx.py                səs effektləri sintezatoru
   assets.ts             Pexels portret video
-  run.ts                bütün zənciri birləşdirir
+  run.ts                TipList zənciri
+  explainer.ts          Explainer zənciri
+  audio.ts              ortaq: TTS, normallaşdırma, musiqi seçimi
   qa.ts                 render sonrası yoxlamalar
   audius.ts             Audius — CC lisenziyalı musiqi + atribut
   screen_music.py       Whisper ilə vokal yoxlaması
@@ -191,6 +194,15 @@ Xərc ≈ 1 sent/video.
 | `TTS_VOICE` | `az-AZ-BanuNeural` | yalnız edge rejimi üçün |
 
 GitHub-da `Variables` bölməsindən, lokal `.env`-dən dəyişilir.
+
+## İki şablon
+
+| Şablon | Nə | Mənbə | Nə vaxt |
+|---|---|---|---|
+| **TipList** | Məqalə əsaslı nömrələnmiş məsləhətlər, stok video fonlu | yuk.az məqaləsi | default |
+| **Explainer** | "4 addımda daşınma" — **tam kodla çəkilmiş** animasiya: kub loqo düşür, telefon çalır, çat baloncuqları, yük maşınına qutular hoppanır, xəritədə marşrut cızılır | yuk.az faktları | cron-da hər 3-cü video; əl ilə: `Actions → Reels yarat → template: explainer` (və ya `explainer-silent` — səssiz, yalnız musiqi + SFX) |
+
+Explainer-in bütün assetləri [src/components/explainer/assets.tsx](src/components/explainer/assets.tsx)-də SVG/CSS ilə çəkilib — stok yoxdur, telif yoxdur, brendin kub loqosu birbaşa "qutu"dur.
 
 ## Vizual sistem
 

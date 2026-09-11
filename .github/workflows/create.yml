@@ -5,6 +5,10 @@ on:
     # Bazar ertəsi / Çərşənbə / Cümə — 14:30 UTC = 18:30 Bakı
     - cron: "30 14 * * 1,3,5"
   workflow_dispatch:
+    inputs:
+      template:
+        description: "Şablon: auto (növbə), tiplist, explainer, explainer-silent"
+        default: "auto"
 
 permissions:
   contents: write
@@ -50,8 +54,27 @@ jobs:
           npx tsx pipeline/audius.ts > /dev/null
           python pipeline/screen_music.py
 
+      - name: Şablon seçimi
+        id: tpl
+        env:
+          REQ: ${{ inputs.template || 'auto' }}
+        run: |
+          # auto: hər 3-cü video Explainer (tam animasiya), qalanı TipList (məqalə əsaslı)
+          N=$(ls content/data/*.meta.json 2>/dev/null | wc -l)
+          if [ "$REQ" = "auto" ]; then
+            if [ $((N % 3)) -eq 2 ]; then T=explainer; else T=tiplist; fi
+          else T="$REQ"; fi
+          echo "template=$T" >> "$GITHUB_OUTPUT"
+          echo "şablon: $T (mövcud: $N)"
+
       - name: Ssenari + səs + assetlər
-        run: npx tsx pipeline/run.ts
+        env:
+          EXPLAINER_SILENT: ${{ steps.tpl.outputs.template == 'explainer-silent' && '1' || '' }}
+        run: |
+          case "${{ steps.tpl.outputs.template }}" in
+            explainer|explainer-silent) npx tsx pipeline/explainer.ts ;;
+            *) npx tsx pipeline/run.ts ;;
+          esac
 
       - name: ID-ni oxu
         id: reel

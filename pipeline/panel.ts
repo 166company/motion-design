@@ -13,6 +13,8 @@ type Entry = {
   scenes: number;
   status: "təsdiq-gözləyir" | "yayımlanıb" | "imtina" | "silinib";
   note?: string;
+  template: string;
+  voice?: string | null;
   createdAt: string;
   instagram?: string;
   facebook?: string;
@@ -59,7 +61,7 @@ export const buildPanel = async (repo: string) => {
     if (st.status === "silinib") continue;   // paneldən silinib
     entries.push({
       id: meta.id,
-      hook: props.hook,
+      hook: props.hook ?? (props.scenes?.[0]?.heading ?? meta.id),
       caption: meta.caption,
       hashtags: meta.hashtags,
       source: meta.link,
@@ -71,6 +73,8 @@ export const buildPanel = async (repo: string) => {
       instagram: st.instagram,
       facebook: st.facebook,
       note: st.note,
+      template: meta.template ?? "TipList",
+      voice: meta.voice ?? null,
       music: musicOf(meta),
     });
   }

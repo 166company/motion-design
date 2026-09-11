@@ -1,0 +1,78 @@
+{
+ "id": "explainer-demo",
+ "cta": {
+  "line1": "Qiyməti dəqiq öyrənmək üçün",
+  "line2": "Zəng et"
+ },
+ "music": null,
+ "musicVolume": 0.5,
+ "scenes": [
+  {
+   "kind": "intro",
+   "heading": "Yük daşımaq bu qədər asandır",
+   "sub": "",
+   "lines": [],
+   "spoken": "",
+   "audio": null,
+   "words": [],
+   "durationInFrames": 120
+  },
+  {
+   "kind": "call",
+   "heading": "Bir zəng kifayətdir",
+   "sub": "050 209 62 99",
+   "lines": [],
+   "spoken": "",
+   "audio": null,
+   "words": [],
+   "durationInFrames": 110
+  },
+  {
+   "kind": "chat",
+   "heading": "Operator hər detalı soruşur",
+   "sub": "",
+   "lines": [
+    "Neçə otaq, hansı mərtəbə?",
+    "3 otaq, 4-cü mərtəbə, lift var",
+    "Məbləğ dərhal deyilir"
+   ],
+   "spoken": "",
+   "audio": null,
+   "words": [],
+   "durationInFrames": 130
+  },
+  {
+   "kind": "load",
+   "heading": "Briqada gəlir, qablaşdırır, yükləyir",
+   "sub": "",
+   "lines": [],
+   "spoken": "",
+   "audio": null,
+   "words": [],
+   "durationInFrames": 130
+  },
+  {
+   "kind": "route",
+   "heading": "Sığortalı daşınma, vaxtında çatdırılma",
+   "sub": "",
+   "lines": [
+    "Bakı",
+    "Gəncə"
+   ],
+   "spoken": "",
+   "audio": null,
+   "words": [],
+   "durationInFrames": 130
+  },
+  {
+   "kind": "cta",
+   "heading": "",
+   "sub": "",
+   "lines": [],
+   "spoken": "",
+   "audio": null,
+   "words": [],
+   "durationInFrames": 96
+  }
+ ]
+}

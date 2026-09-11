@@ -234,7 +234,7 @@ const main = async () => {
   await fs.writeFile(
     path.join("content", "data", `${id}.meta.json`),
     JSON.stringify({
-      id, articleId: article.id, link: article.link,
+      id, template: "TipList", articleId: article.id, link: article.link,
       // CC BY lisenziyası atribut tələb edir — caption-ın sonuna əlavə olunur
       caption: attribution ? `${s.caption}
 
