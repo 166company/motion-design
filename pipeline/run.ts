@@ -3,21 +3,25 @@ import "dotenv/config";
 import { spawn } from "node:child_process";
 import fs from "node:fs/promises";
 import path from "node:path";
-import { pickArticle } from "./wp.ts";
+import { pickArticle, getArticle } from "./wp.ts";
 import { writeScript } from "./script.ts";
 import { findMedia, normalizeVideo } from "./assets.ts";
 import { pickAndDownload } from "./audius.ts";
 
 const FPS = 30;
-const TAIL = 10;        // səhnə sonuna nəfəs payı (kadr)
-const CTA_FRAMES = 78;  // 2.6 saniyə
+const TAIL = 16;        // səhnə sonuna nəfəs payı (kadr) — keçid (12) bunun içində qalır
+const CTA_FRAMES = 96;  // 3.2 saniyə — loqo animasiyası + pill üçün
 
 const log = (m: string) => console.log(`  ${m}`);
 
-/** edge-tts Python skriptini çağırır */
+/**
+ * Səsləndirmə mühərriki: TTS_ENGINE=openai (təbii, ~1 sent/video) və ya edge (pulsuz, robotvari).
+ * İkisi də eyni formatda cavab verir: söz vaxtları + müddət.
+ */
+const TTS_SCRIPT = process.env.TTS_ENGINE === "edge" ? "pipeline/tts.py" : "pipeline/tts_openai.py";
 const runTts = (jobs: { id: string; text: string }[], outDir: string) =>
   new Promise<Record<string, { words: any[]; duration: number; file: string }>>((res, rej) => {
-    const py = spawn("python", ["pipeline/tts.py", outDir], {
+    const py = spawn("python", [TTS_SCRIPT, outDir], {
       env: { ...process.env, PYTHONUTF8: "1", PYTHONIOENCODING: "utf-8" },
     });
     let out = "", err = "";
@@ -63,11 +67,11 @@ const main = async () => {
   const s = await writeScript(article);
   log(`hook: ${s.hook} | ${s.items.length} bənd`);
 
-  const id = `${new Date().toISOString().slice(0, 10)}-${article.id}`;
+  const id = process.env.REEL_ID || `${new Date().toISOString().slice(0, 10)}-${article.id}`;
   const dir = path.join("public", "render", id);
   await fs.mkdir(dir, { recursive: true });
 
-  console.log("3. Səsləndirilir (edge-tts)…");
+  console.log(`3. Səsləndirilir (${process.env.TTS_ENGINE === "edge" ? "edge-tts" : "OpenAI " + (process.env.OPENAI_TTS_VOICE ?? "marin")})…`);
   const jobs = [
     { id: "s0", text: s.hookSpoken },
     ...s.items.map((it, i) => ({ id: `s${i + 1}`, text: it.spoken })),
@@ -104,7 +108,26 @@ const main = async () => {
   );
   log(`${medias.filter(Boolean).length}/${queries.length} asset yükləndi`);
 
-  console.log("5. Səhnələr qurulur…");
+  console.log("5. İkonlar (Iconify)…");
+  const icons = await Promise.all(
+    s.items.map(async (it, i) => {
+      const name = (it.icon || "package").toLowerCase().replace(/[^a-z0-9-]/g, "");
+      for (const candidate of [name, "package"]) {
+        const r = await fetch(`https://api.iconify.design/lucide/${candidate}.svg?color=%23FFFFFF&width=64&height=64`).catch(() => null);
+        if (r?.ok) {
+          const svg = await r.text();
+          if (svg.includes("<svg")) {
+            await fs.writeFile(path.join(dir, `icon${i}.svg`), svg, "utf-8");
+            return `render/${id}/icon${i}.svg`;
+          }
+        }
+      }
+      return null;
+    })
+  );
+  log(`${icons.filter(Boolean).length}/${icons.length} ikon`);
+
+  console.log("6. Səhnələr qurulur…");
   const frames = (sec: number) => Math.ceil(sec * FPS) + TAIL;
   const scenes = [
     {
@@ -114,6 +137,7 @@ const main = async () => {
       words: tts.s0.words,
       durationInFrames: frames(tts.s0.duration),
       media: medias[0],
+      icon: null,
     },
     ...s.items.map((it, i) => ({
       kind: "item" as const,
@@ -121,6 +145,7 @@ const main = async () => {
       title: it.title,
       body: it.body,
       index: i + 1,
+      icon: icons[i],
       audio: `render/${id}/s${i + 1}.wav`,
       words: tts[`s${i + 1}`].words,
       durationInFrames: frames(tts[`s${i + 1}`].duration),
@@ -129,6 +154,7 @@ const main = async () => {
     {
       kind: "cta" as const,
       spoken: "",
+      icon: null,
       audio: null,
       words: [],
       durationInFrames: CTA_FRAMES,
@@ -215,7 +241,7 @@ ${attribution}` : s.caption,
     }, null, 2),
     "utf-8"
   );
-  await fs.writeFile(usedPath, JSON.stringify([...used, article.id]), "utf-8");
+  if (!used.includes(article.id)) await fs.writeFile(usedPath, JSON.stringify([...used, article.id]), "utf-8");
 
   const total = scenes.reduce((a, b) => a + b.durationInFrames, 0);
   console.log(`\n✓ Hazırdır: ${id}`);

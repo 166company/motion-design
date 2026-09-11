@@ -1,51 +1,77 @@
-import {
-  AbsoluteFill, Audio, Sequence, staticFile, interpolate, spring,
-  useCurrentFrame, useVideoConfig,
-} from "remotion";
-import { colors, safeArea, spacing, type, radius, motion } from "../brand/theme";
+import { AbsoluteFill, Audio, Sequence, staticFile, interpolate, useCurrentFrame, useVideoConfig, spring } from "remotion";
+import { TransitionSeries, linearTiming, type TransitionPresentation } from "@remotion/transitions";
+import { slide } from "@remotion/transitions/slide";
+import { fade } from "@remotion/transitions/fade";
+import { wipe } from "@remotion/transitions/wipe";
+import { colors, safeArea, spacing, type, radius } from "../brand/theme";
 import { font } from "../brand/fonts";
-import { BackgroundMedia } from "../components/BackgroundMedia";
+import { BackgroundMedia, type CameraMove } from "../components/BackgroundMedia";
 import { Caption } from "../components/Caption";
-import { NumberBadge } from "../components/NumberBadge";
+import { IconBadge } from "../components/IconBadge";
 import { CtaScene } from "../components/CtaScene";
 import { LogoBug } from "../components/LogoBug";
+import { AnimatedTitle, AccentLine } from "../components/AnimatedTitle";
+import { Vignette, ProgressBar, Sweep } from "../components/Overlay";
 import type { Reel, Scene } from "../types";
 
-/** Açılış — sual formatında hook, ilk 2 saniyə hər şeyi həll edir */
+/** Səhnələrarası keçidin uzunluğu (kadr). Root-dakı calculateMetadata bunu nəzərə alır. */
+export const TRANSITION = 12;
+
+const MOVES: CameraMove[] = ["zoom-in", "pan-right", "zoom-out", "pan-left", "drift"];
+
+/** Səhnə başlanğıc kadrları — keçidlər üst-üstə düşdüyü üçün sadə cəm deyil */
+export const sceneStarts = (scenes: Scene[]) => {
+  const starts: number[] = [];
+  let acc = 0;
+  scenes.forEach((s, i) => {
+    starts.push(acc - i * TRANSITION);
+    acc += s.durationInFrames;
+  });
+  return starts;
+};
+export const totalDuration = (scenes: Scene[]) =>
+  scenes.reduce((a, b) => a + b.durationInFrames, 0) - (scenes.length - 1) * TRANSITION;
+
+/* ---------------------------------------------------------------- Açılış */
 const HookScene: React.FC<{ scene: Scene; text: string }> = ({ scene, text }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const s = spring({ frame, fps, config: motion.springConfig });
+  const tag = spring({ frame, fps, config: { damping: 14, stiffness: 150 } });
 
   return (
     <AbsoluteFill>
-      <BackgroundMedia media={scene.media} durationInFrames={scene.durationInFrames} dim={0.66} />
+      <BackgroundMedia media={scene.media} durationInFrames={scene.durationInFrames} dim={0.7} move="zoom-in" />
+      <Sweep delay={2} />
       <AbsoluteFill
         style={{
           justifyContent: "center",
           paddingLeft: safeArea.side,
           paddingRight: safeArea.side,
-          paddingBottom: safeArea.bottom,
+          paddingBottom: safeArea.bottom + 40,
           paddingTop: safeArea.top,
           fontFamily: font,
         }}
       >
         <div
           style={{
-            width: 120, height: 8, borderRadius: 4,
-            backgroundColor: colors.orange,
+            alignSelf: "flex-start",
+            fontSize: 30,
+            fontWeight: 800,
+            letterSpacing: 3,
+            color: colors.graphite,
+            background: colors.orange,
+            padding: "10px 22px",
+            borderRadius: radius.pill,
             marginBottom: spacing.md,
-            transform: `scaleX(${s})`, transformOrigin: "left",
-          }}
-        />
-        <div
-          style={{
-            fontSize: type.hook, fontWeight: 900, lineHeight: 1.08, color: colors.white,
-            opacity: interpolate(frame, [3, 16], [0, 1], { extrapolateRight: "clamp" }),
-            transform: `translateY(${interpolate(s, [0, 1], [26, 0])}px)`,
+            transform: `translateX(${interpolate(tag, [0, 1], [-60, 0])}px)`,
+            opacity: tag,
           }}
         >
-          {text}
+          YUK.AZ MƏSLƏHƏT
+        </div>
+        <AnimatedTitle text={text} size={type.hook} delay={6} stagger={4} accent={-1} />
+        <div style={{ marginTop: spacing.md }}>
+          <AccentLine width={180} delay={14} />
         </div>
       </AbsoluteFill>
       <Caption words={scene.words} />
@@ -53,87 +79,114 @@ const HookScene: React.FC<{ scene: Scene; text: string }> = ({ scene, text }) =>
   );
 };
 
-/** Nömrələnmiş bənd — videonun əsas gövdəsi */
-const ItemScene: React.FC<{ scene: Scene; total: number }> = ({ scene, total }) => {
+/* ---------------------------------------------------------------- Bənd */
+const ItemScene: React.FC<{ scene: Scene; total: number; index: number }> = ({ scene, total, index }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const s = spring({ frame, fps, config: motion.springConfig });
+  const panel = spring({ frame: Math.max(0, frame - 2), fps, config: { damping: 16, stiffness: 120 } });
 
   return (
     <AbsoluteFill>
-      <BackgroundMedia media={scene.media} durationInFrames={scene.durationInFrames} />
+      <BackgroundMedia media={scene.media} durationInFrames={scene.durationInFrames} move={MOVES[index % MOVES.length]} />
       <AbsoluteFill
         style={{
           justifyContent: "center",
           paddingLeft: safeArea.side,
           paddingRight: safeArea.side,
-          paddingBottom: safeArea.bottom + 60,
+          paddingBottom: safeArea.bottom + 70,
           paddingTop: safeArea.top,
           fontFamily: font,
         }}
       >
-        <NumberBadge n={scene.index ?? 1} total={total} />
+        <IconBadge n={scene.index ?? 1} total={total} icon={scene.icon ?? null} delay={3} />
+
+        {/* başlıq paneli — soldan sürüşür, sol tərəfdə narıncı bracket */}
         <div
           style={{
-            marginTop: spacing.sm,
-            fontSize: type.title, fontWeight: 900, lineHeight: 1.1, color: colors.white,
-            transform: `translateY(${interpolate(s, [0, 1], [30, 0])}px)`,
-            opacity: interpolate(frame, [motion.enterStagger, 18], [0, 1], { extrapolateRight: "clamp" }),
+            marginTop: spacing.md,
+            paddingLeft: spacing.sm + 6,
+            borderLeft: `8px solid ${colors.orange}`,
+            transform: `translateX(${interpolate(panel, [0, 1], [-40, 0])}px)`,
+            opacity: panel,
           }}
         >
-          {scene.title}
+          <AnimatedTitle text={scene.title ?? ""} size={type.title} delay={8} stagger={3} lineHeight={1.08} />
         </div>
       </AbsoluteFill>
       <Caption words={scene.words} />
+      {/* ikon "pop" səsi */}
+      <Sequence from={4} durationInFrames={12}>
+        <Audio src={staticFile("sfx/pop.wav")} volume={0.55} />
+      </Sequence>
     </AbsoluteFill>
   );
 };
 
+/* ---------------------------------------------------------------- Kompozisiya */
 export const TipList: React.FC<Reel> = ({ hook, total, cta, scenes, music, musicVolume }) => {
-  let cursor = 0;
-  const totalFrames = scenes.reduce((a, b) => a + b.durationInFrames, 0);
-  const ctaFrom = scenes
-    .filter((s) => s.kind !== "cta")
-    .reduce((a, b) => a + b.durationInFrames, 0);
-  // Loyo yalnız CTA-dan əvvəl görünür — CTA-da onsuz da böyük loyo var
-  const bugUntil = scenes
-    .filter((s) => s.kind !== "cta")
-    .reduce((a, b) => a + b.durationInFrames, 0);
+  const starts = sceneStarts(scenes);
+  const totalFrames = totalDuration(scenes);
+  const ctaIdx = scenes.findIndex((s) => s.kind === "cta");
+  const ctaFrom = ctaIdx >= 0 ? starts[ctaIdx] : totalFrames;
 
   return (
     <AbsoluteFill style={{ backgroundColor: colors.graphite }}>
+      {/* musiqi: səsləndirmə altında aşağı, CTA-da qalxır, sonda sönür */}
       {music && (
         <Audio
           src={staticFile(music)}
           loop
-          // son 1.5 saniyədə yumşaq sönmə — kəskin kəsilmə olmasın
-          // Ducking: səsləndirmə altında aşağı, CTA-da qalxır, sonda sönür
           volume={(f) => {
             const base = f >= ctaFrom
               ? interpolate(f, [ctaFrom, ctaFrom + 12], [musicVolume, Math.min(1, musicVolume * 2)], { extrapolateRight: "clamp" })
               : musicVolume;
-            return interpolate(f, [totalFrames - 40, totalFrames], [base, 0], {
-              extrapolateLeft: "clamp",
-              extrapolateRight: "clamp",
-            });
+            return interpolate(f, [totalFrames - 40, totalFrames], [base, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
           }}
         />
       )}
 
-      {scenes.map((scene, i) => {
-        const from = cursor;
-        cursor += scene.durationInFrames;
+      <TransitionSeries>
+        {scenes.flatMap((scene, i) => {
+          const el = (
+            <TransitionSeries.Sequence key={`s${i}`} durationInFrames={scene.durationInFrames}>
+              {scene.audio && <Audio src={staticFile(scene.audio)} />}
+              {scene.kind === "hook" && <HookScene scene={scene} text={hook} />}
+              {scene.kind === "item" && <ItemScene scene={scene} total={total} index={i} />}
+              {scene.kind === "cta" && <CtaScene line1={cta.line1} line2={cta.line2} />}
+            </TransitionSeries.Sequence>
+          );
+          if (i === 0) return [el];
+          const isCta = scene.kind === "cta";
+          // TS: fərqli presentation tipləri birləşəndə generic daralır — açıq şəkildə genişləndiririk
+          const presentation: TransitionPresentation<any> = isCta
+            ? fade()
+            : i % 2 === 0
+              ? slide({ direction: "from-right" })
+              : wipe({ direction: "from-bottom" });
+          return [
+            <TransitionSeries.Transition
+              key={`t${i}`}
+              presentation={presentation}
+              timing={linearTiming({ durationInFrames: TRANSITION })}
+            />,
+            el,
+          ];
+        })}
+      </TransitionSeries>
+
+      {/* keçid səsləri */}
+      {starts.slice(1).map((from, i) => {
+        const isCta = scenes[i + 1].kind === "cta";
         return (
-          <Sequence key={i} from={from} durationInFrames={scene.durationInFrames}>
-            {scene.audio && <Audio src={staticFile(scene.audio)} />}
-            {scene.kind === "hook" && <HookScene scene={scene} text={hook} />}
-            {scene.kind === "item" && <ItemScene scene={scene} total={total} />}
-            {scene.kind === "cta" && <CtaScene line1={cta.line1} line2={cta.line2} />}
+          <Sequence key={`sfx${i}`} from={Math.max(0, from - (isCta ? 30 : 2))} durationInFrames={isCta ? 45 : 20}>
+            <Audio src={staticFile(isCta ? "sfx/riser.wav" : "sfx/whoosh.wav")} volume={isCta ? 0.5 : 0.45} />
           </Sequence>
         );
       })}
 
-      <Sequence durationInFrames={bugUntil}>
+      <Vignette />
+      <Sequence durationInFrames={ctaFrom}>
+        <ProgressBar segments={scenes.filter((s) => s.kind !== "cta").map((s) => s.durationInFrames - TRANSITION)} total={ctaFrom} />
         <LogoBug />
       </Sequence>
     </AbsoluteFill>

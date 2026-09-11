@@ -1,6 +1,26 @@
 {
-  "fetchedAt": 1789104744344,
+  "fetchedAt": 1789109374859,
   "tracks": [
+    {
+      "id": "3J4NE",
+      "title": "Dan Coly - My Hard Night",
+      "artist": "Dan Coly",
+      "duration": 112,
+      "license": "Attribution CC BY",
+      "genre": "Blues",
+      "permalink": "https://audius.co/dancoly/dan-coly-my-hard-night-328467",
+      "streamUrl": "https://audius-discovery-2.altego.net/tracks/cidstream/QmdHdZ7PNRkRzXnLmicp8821xHPNPE2iVBNkLFPc966XJi?signature=%7B%22data%22%3A%22%7B%5C%22cid%5C%22%3A%5C%22QmdHdZ7PNRkRzXnLmicp8821xHPNPE2iVBNkLFPc966XJi%5C%22%2C%5C%22timestamp%5C%22%3A1789109358000%2C%5C%22trackId%5C%22%3A328467%2C%5C%22userId%5C%22%3A0%7D%22%2C%22signature%22%3A%220xeb669b40f1e784a310fcdd750af42c2a491a98c0c2093e4db9449bf95d7937f421fc76eb82dc914b9b0270a5a600a3379e547f160bb89ea4b4adc80a6d30ead001%22%7D"
+    },
+    {
+      "id": "4gRxr",
+      "title": "LUNDY's B@$$M3NT (feat. Trenton Lundy)",
+      "artist": "Jason Langvee",
+      "duration": 235,
+      "license": "Attribution ShareAlike CC BY-SA",
+      "genre": "Drum & Bass",
+      "permalink": "https://audius.co/langvmusic/lundys-bm3nt-feat-trenton-lundy",
+      "streamUrl": "https://audius-creator-4.theblueprint.xyz/tracks/cidstream/QmYFD5cegNDdCavXPbq6PZNEUjBtJ9AbCGKumEFsyuU4i8?signature=%7B%22data%22%3A%22%7B%5C%22cid%5C%22%3A%5C%22QmYFD5cegNDdCavXPbq6PZNEUjBtJ9AbCGKumEFsyuU4i8%5C%22%2C%5C%22timestamp%5C%22%3A1789109350000%2C%5C%22trackId%5C%22%3A741821%2C%5C%22userId%5C%22%3A0%7D%22%2C%22signature%22%3A%220xb589785fc9b37b02324f6fd01b4ac43ce1d50e27d14125f7ecd62c8ea6afdcd920ad8a4909d8eab44a92fce43e1c4ad4906bf5f34428b1d41912546847e4044100%22%7D"
+    },
     {
       "id": "7OAPv",
       "title": "Upbeat Corporate",
@@ -9,27 +29,97 @@
       "license": "Attribution CC BY",
       "genre": "Soundtrack",
       "permalink": "https://audius.co/jpbianchini/upbeat-corporate-273225",
-      "streamUrl": "https://audius-03.staked.cloud/tracks/cidstream/QmZ2K3CxzxVwKe8Qd3nyjFSqq2UpvxaLGPsU7KPGDzEKrk?signature=%7B%22data%22%3A%22%7B%5C%22cid%5C%22%3A%5C%22QmZ2K3CxzxVwKe8Qd3nyjFSqq2UpvxaLGPsU7KPGDzEKrk%5C%22%2C%5C%22timestamp%5C%22%3A1789104731000%2C%5C%22trackId%5C%22%3A273225%2C%5C%22userId%5C%22%3A0%7D%22%2C%22signature%22%3A%220xf2b665820c6c2c803c3e329c5cb670458bfa43c0190dcd77cc37eeaaaac20d6a3b69944a01d478b4c6d0675ecd194e1b29f799b03d7375f8f46d36cca58bf34601%22%7D"
+      "streamUrl": "https://v.monophonic.digital/tracks/cidstream/QmZ2K3CxzxVwKe8Qd3nyjFSqq2UpvxaLGPsU7KPGDzEKrk?signature=%7B%22data%22%3A%22%7B%5C%22cid%5C%22%3A%5C%22QmZ2K3CxzxVwKe8Qd3nyjFSqq2UpvxaLGPsU7KPGDzEKrk%5C%22%2C%5C%22timestamp%5C%22%3A1789109368000%2C%5C%22trackId%5C%22%3A273225%2C%5C%22userId%5C%22%3A0%7D%22%2C%22signature%22%3A%220x2c79b06572dc75837b02ca6fcc674a4a6fe340deb66ad8c3b11729fcaac19afa20367ea2977354677a5cee9cf504e9521e0169411afecbe39bf7160f7f7488e200%22%7D"
     },
     {
-      "id": "LMGYZ",
-      "title": "Saturno",
-      "artist": "Cheap Monk",
-      "duration": 87,
+      "id": "D9dvw",
+      "title": "Uplifting Hip Hop Instrumental - DRIVE - 2020 Beat",
+      "artist": "Fizzy Hardcore",
+      "duration": 224,
       "license": "Attribution CC BY",
       "genre": "Hip-Hop/Rap",
-      "permalink": "https://audius.co/CheapMonk/saturno-11982",
-      "streamUrl": "https://v.monophonic.digital/tracks/cidstream/QmSSacayFkDFZR5Gijqj4Lu3wnAWZ9BkaRtshv7HHQRYFs?signature=%7B%22data%22%3A%22%7B%5C%22cid%5C%22%3A%5C%22QmSSacayFkDFZR5Gijqj4Lu3wnAWZ9BkaRtshv7HHQRYFs%5C%22%2C%5C%22timestamp%5C%22%3A1789104739000%2C%5C%22trackId%5C%22%3A11982%2C%5C%22userId%5C%22%3A0%7D%22%2C%22signature%22%3A%220xe2d874cf7322e3a0e61eacd7bef7dc32375d28a6df858fbc3bb7dd6afebeca3e17b9bd2ac8488a4a77fa473b71072b27a8d470ce99537407854ea1acc36ac5c600%22%7D"
+      "permalink": "https://audius.co/Fizzyhardcore/uplifting-hip-hop-instrumental-drive-2020-beat-16911",
+      "streamUrl": "https://v.monophonic.digital/tracks/cidstream/QmYR98ZFhMfZF34Mmkbj7BaAPjULgoy322fMvYijqJXsZo?signature=%7B%22data%22%3A%22%7B%5C%22cid%5C%22%3A%5C%22QmYR98ZFhMfZF34Mmkbj7BaAPjULgoy322fMvYijqJXsZo%5C%22%2C%5C%22timestamp%5C%22%3A1789109348000%2C%5C%22trackId%5C%22%3A16911%2C%5C%22userId%5C%22%3A0%7D%22%2C%22signature%22%3A%220xefb2caf8dffce7bcc3f6583de63363e97752177148698775687df75ece21caef28fc7dfdf4507a727e70bb4087c3b7014d5abb99fd1f7a9c9c11fb3979e9d0fa01%22%7D"
     },
     {
-      "id": "LW0lo",
-      "title": "Hero",
-      "artist": "Fernando josei",
-      "duration": 173,
+      "id": "e42y0",
+      "title": "Lucifer <end>",
+      "artist": "Enter Void ",
+      "duration": 383,
       "license": "Attribution CC BY",
-      "genre": "Soundtrack",
-      "permalink": "https://audius.co/loopsamplesclub/hero",
-      "streamUrl": "https://audius-02.staked.cloud/tracks/cidstream/QmZTBgLheAW6UuqAk29d53GHstUQziZ35fCS5R5JNpncar?signature=%7B%22data%22%3A%22%7B%5C%22cid%5C%22%3A%5C%22QmZTBgLheAW6UuqAk29d53GHstUQziZ35fCS5R5JNpncar%5C%22%2C%5C%22timestamp%5C%22%3A1789104737000%2C%5C%22trackId%5C%22%3A9352%2C%5C%22userId%5C%22%3A0%7D%22%2C%22signature%22%3A%220x98faa265d7cbd353ff51b6d49727914f5e87686a12d9f655761dfc43b9f1fd251aa3029fe7e07afdf04fda767daf3f817302d225d0cec2b81ca1020389543ed700%22%7D"
+      "genre": "Electronic",
+      "permalink": "https://audius.co/entervoid/lucifer-<end>-20321",
+      "streamUrl": "https://val008.open-audio-validator.com/tracks/cidstream/QmPvLAADXqavY6t8WDCcdD98SPrDk9kX6WaaQv2Q2uuEBi?signature=%7B%22data%22%3A%22%7B%5C%22cid%5C%22%3A%5C%22QmPvLAADXqavY6t8WDCcdD98SPrDk9kX6WaaQv2Q2uuEBi%5C%22%2C%5C%22timestamp%5C%22%3A1789109370000%2C%5C%22trackId%5C%22%3A20321%2C%5C%22userId%5C%22%3A0%7D%22%2C%22signature%22%3A%220x8d227e65ffe923464bd5c3efa5a8cde4693f98a531bc787e2eee62042b396f0059e460a1a8efdf6c4ab5af301a16c992102fe3bea4da4ae191dedcead7ccc1d801%22%7D"
+    },
+    {
+      "id": "eJEO6",
+      "title": "sheki. - waiting for you",
+      "artist": "Good Society",
+      "duration": 184,
+      "license": "Attribution CC BY",
+      "genre": "House",
+      "permalink": "https://audius.co/goodsociety/sheki.-waiting-for-you-4607",
+      "streamUrl": "https://val004.open-audio-validator.com/tracks/cidstream/QmPJjHJ3nxczqdPzwaAycjL5GyKHW89mLWCJSpFso98585?signature=%7B%22data%22%3A%22%7B%5C%22cid%5C%22%3A%5C%22QmPJjHJ3nxczqdPzwaAycjL5GyKHW89mLWCJSpFso98585%5C%22%2C%5C%22timestamp%5C%22%3A1789109371000%2C%5C%22trackId%5C%22%3A4607%2C%5C%22userId%5C%22%3A0%7D%22%2C%22signature%22%3A%220x606248b530bfbc2af9beb0a3c34911a21479ba794ca119f9753c5e73b13aebcf34f863627604cea8a24e5ac6aa2dddcdb4708a7d0d29d0e1e5d20ac4a586886101%22%7D"
+    },
+    {
+      "id": "emz0A",
+      "title": "Winter",
+      "artist": "Enter Void ",
+      "duration": 105,
+      "license": "Attribution CC BY",
+      "genre": "Classical",
+      "permalink": "https://audius.co/entervoid/winter-20320",
+      "streamUrl": "https://v.monophonic.digital/tracks/cidstream/QmZNbdui6F9xngFmAXoXJvKMfgdvnHV17womeievYTsXYV?signature=%7B%22data%22%3A%22%7B%5C%22cid%5C%22%3A%5C%22QmZNbdui6F9xngFmAXoXJvKMfgdvnHV17womeievYTsXYV%5C%22%2C%5C%22timestamp%5C%22%3A1789109370000%2C%5C%22trackId%5C%22%3A20320%2C%5C%22userId%5C%22%3A0%7D%22%2C%22signature%22%3A%220x5cd07330b6bd16763115673ac11203ee98d4d6418fe3e8a1d7ce41f32cc0368516093cf9ef359572dec6d14e6a722bf314efa8fa8f81a465800a1cf060bd07e301%22%7D"
+    },
+    {
+      "id": "eYqme",
+      "title": "Freak With You",
+      "artist": "thoomn",
+      "duration": 183,
+      "license": "Attribution CC BY",
+      "genre": "Funk",
+      "permalink": "https://audius.co/jonecks/freak-with-you-1244",
+      "streamUrl": "https://v.monophonic.digital/tracks/cidstream/QmYVCfLttFUUPZUZDhZwpJfC8xqJXF1b1aqwYFB1tTWdzw?signature=%7B%22data%22%3A%22%7B%5C%22cid%5C%22%3A%5C%22QmYVCfLttFUUPZUZDhZwpJfC8xqJXF1b1aqwYFB1tTWdzw%5C%22%2C%5C%22timestamp%5C%22%3A1789109351000%2C%5C%22trackId%5C%22%3A1244%2C%5C%22userId%5C%22%3A0%7D%22%2C%22signature%22%3A%220x55d4adf354518c81054ecb2a6da628c867c46f3a84d9653706fe5e5a2774454c71d1b9e23b5123e80f54cd568b9efd70f9ca5b4b9b14b1b16ed0d617c8b5fee601%22%7D"
+    },
+    {
+      "id": "ez60p",
+      "title": "Snowpack ",
+      "artist": "Enter Void ",
+      "duration": 135,
+      "license": "Attribution CC BY",
+      "genre": "Electronic",
+      "permalink": "https://audius.co/entervoid/snowpack--20319",
+      "streamUrl": "https://v.monophonic.digital/tracks/cidstream/QmYEUNLgDdpaRAtwbW1Py7XC77QFjXLPG3NyTSihN97zVp?signature=%7B%22data%22%3A%22%7B%5C%22cid%5C%22%3A%5C%22QmYEUNLgDdpaRAtwbW1Py7XC77QFjXLPG3NyTSihN97zVp%5C%22%2C%5C%22timestamp%5C%22%3A1789109370000%2C%5C%22trackId%5C%22%3A20319%2C%5C%22userId%5C%22%3A0%7D%22%2C%22signature%22%3A%220xc9a3e8c6f28160e4c8c109d9af36b5f88a9d2e57ef966ef54d361e7177e6fd644ef7282f5377ce8f28e214f4aa5d7bcca6d485368bc3d66f740df41ce74a716f01%22%7D"
+    },
+    {
+      "id": "G2QZE",
+      "title": "The Love of My Life (A composed Christmas instrumental)",
+      "artist": "Terror of Emma (TOES HERE)",
+      "duration": 67,
+      "license": "Attribution ShareAlike CC BY-SA",
+      "genre": "Classical",
+      "permalink": "https://audius.co/TheUnknownProj2/the-love-of-my-life-a-composed-christmas-instrumental-447218",
+      "streamUrl": "https://audius-content-5.figment.io/tracks/cidstream/QmeeaJewQdS3q9sSw8AkHWfpfGAqmq1V5yxGHcbiAYAWgJ?signature=%7B%22data%22%3A%22%7B%5C%22cid%5C%22%3A%5C%22QmeeaJewQdS3q9sSw8AkHWfpfGAqmq1V5yxGHcbiAYAWgJ%5C%22%2C%5C%22timestamp%5C%22%3A1789109349000%2C%5C%22trackId%5C%22%3A447218%2C%5C%22userId%5C%22%3A0%7D%22%2C%22signature%22%3A%220xe957af5a7b3cc2ce957b718b2b129146379bfa08b7fe0dab1bec7cc367585b6932c5ee55a73524bba8609785c5944c8b4a6d48a553e4df66df21d77bc78f172600%22%7D"
+    },
+    {
+      "id": "qzbXm",
+      "title": "Bliss",
+      "artist": "middle child",
+      "duration": 149,
+      "license": "Attribution ShareAlike CC BY-SA",
+      "genre": "Electronic",
+      "permalink": "https://audius.co/middlechilddan/bliss-444373",
+      "streamUrl": "https://val020.open-audio-validator.com/tracks/cidstream/QmYbSc4Qj3BwevmVrJ8WCi62Ej4tnMw4tLZwqH9w8RQsHt?signature=%7B%22data%22%3A%22%7B%5C%22cid%5C%22%3A%5C%22QmYbSc4Qj3BwevmVrJ8WCi62Ej4tnMw4tLZwqH9w8RQsHt%5C%22%2C%5C%22timestamp%5C%22%3A1789109371000%2C%5C%22trackId%5C%22%3A444373%2C%5C%22userId%5C%22%3A0%7D%22%2C%22signature%22%3A%220x460daea8799ed50eeec7112ffca013d4660706042b8c2b15af5439ebd541e24244f3f3486255cfc8b2c6b407d38eaec2f8733c522939a155322da78cf71aea5401%22%7D"
+    },
+    {
+      "id": "LWMA0",
+      "title": "Feel so Good Allure (Instrumental with Hook)",
+      "artist": "Dj Da West",
+      "duration": 236,
+      "license": "Attribution ShareAlike CC BY-SA",
+      "genre": "Hip-Hop/Rap",
+      "permalink": "https://audius.co/DjDaWest/feel-so-good-allure-instrumental-with-hook-61208",
+      "streamUrl": "https://audius-creator-12.theblueprint.xyz/tracks/cidstream/QmUPw2S8DwsucPYbUqWPur5mv2tZ3s673MtFwJZYW8BZv7?signature=%7B%22data%22%3A%22%7B%5C%22cid%5C%22%3A%5C%22QmUPw2S8DwsucPYbUqWPur5mv2tZ3s673MtFwJZYW8BZv7%5C%22%2C%5C%22timestamp%5C%22%3A1789109346000%2C%5C%22trackId%5C%22%3A61208%2C%5C%22userId%5C%22%3A0%7D%22%2C%22signature%22%3A%220x6de0f52b739173c44f8200f1998739245383b9af6646571625b1af635e74a1d57ed5e3808492a8b1863548923fb70fdd109fc21852823f3a539aa661470b155301%22%7D"
     },
     {
       "id": "MlRoGjj",
@@ -39,17 +129,27 @@
       "license": "Attribution CC BY",
       "genre": "Rock",
       "permalink": "https://audius.co/pamelayuen/determined",
-      "streamUrl": "https://cn0.mainnet.audiusindex.org/tracks/cidstream/baeaaaiqsearxz3kaqu74llm5it5ubymt5mojtrfxkp5uiwcuzuduzcosayiko?signature=%7B%22data%22%3A%22%7B%5C%22cid%5C%22%3A%5C%22baeaaaiqsearxz3kaqu74llm5it5ubymt5mojtrfxkp5uiwcuzuduzcosayiko%5C%22%2C%5C%22timestamp%5C%22%3A1789104743000%2C%5C%22trackId%5C%22%3A904155582%2C%5C%22userId%5C%22%3A0%7D%22%2C%22signature%22%3A%220x319256ea95fc3fb1074f7e37ef29d0f32f25704c418317d414a31b36d4f407d041be0fca3f0f7e8b5cfc744e13389d283e89bfc7b9d9a24d78843962cc655bb200%22%7D"
+      "streamUrl": "https://cn0.mainnet.audiusindex.org/tracks/cidstream/baeaaaiqsearxz3kaqu74llm5it5ubymt5mojtrfxkp5uiwcuzuduzcosayiko?signature=%7B%22data%22%3A%22%7B%5C%22cid%5C%22%3A%5C%22baeaaaiqsearxz3kaqu74llm5it5ubymt5mojtrfxkp5uiwcuzuduzcosayiko%5C%22%2C%5C%22timestamp%5C%22%3A1789109369000%2C%5C%22trackId%5C%22%3A904155582%2C%5C%22userId%5C%22%3A0%7D%22%2C%22signature%22%3A%220x5eb47bfd1831ec3627527e44c6dc541875f8ddc0753f4c08965c68e1d99494367a1204cd8507774e75ffef487cde514d9da4308a31cef22f7f1e2e4104e6318200%22%7D"
     },
     {
-      "id": "nq4ym",
-      "title": "Let me go",
-      "artist": "apostro",
-      "duration": 250,
+      "id": "ndKwP",
+      "title": "Renderself",
+      "artist": "Enter Void ",
+      "duration": 238,
       "license": "Attribution CC BY",
       "genre": "Electronic",
-      "permalink": "https://audius.co/apostro/let-me-go-19729",
-      "streamUrl": "https://audius-creator-11.theblueprint.xyz/tracks/cidstream/QmX14tNqSbmtdhtTUTksrzbd91MDno8LjJTrVwjQcBAXJG?signature=%7B%22data%22%3A%22%7B%5C%22cid%5C%22%3A%5C%22QmX14tNqSbmtdhtTUTksrzbd91MDno8LjJTrVwjQcBAXJG%5C%22%2C%5C%22timestamp%5C%22%3A1789104733000%2C%5C%22trackId%5C%22%3A19729%2C%5C%22userId%5C%22%3A0%7D%22%2C%22signature%22%3A%220x17e1e0f5c5fe0f7d369e58168a641f0ac70d1e672193bd669e541b29cd87340f5cffff5aaf94e8e9b2e9480022e2f3c9b65796f49ba576fd79c3c0f5d905c07d01%22%7D"
+      "permalink": "https://audius.co/entervoid/renderself-20326",
+      "streamUrl": "https://v.monophonic.digital/tracks/cidstream/QmWiUdVFmiLCzTdXxrgELL3H8X4xV2omQ3FT7vMUe2LtV4?signature=%7B%22data%22%3A%22%7B%5C%22cid%5C%22%3A%5C%22QmWiUdVFmiLCzTdXxrgELL3H8X4xV2omQ3FT7vMUe2LtV4%5C%22%2C%5C%22timestamp%5C%22%3A1789109370000%2C%5C%22trackId%5C%22%3A20326%2C%5C%22userId%5C%22%3A0%7D%22%2C%22signature%22%3A%220x79450000381662789f4d8e39714b1f1603852714883bd83529bde4f8e2e42b15547337ed91444074632a0e6500879f26163ba7a841088984308d177512634aa601%22%7D"
+    },
+    {
+      "id": "NVrpN",
+      "title": "without U - Afro Vibes EP",
+      "artist": "yan old rari",
+      "duration": 230,
+      "license": "Attribution ShareAlike CC BY-SA",
+      "genre": "Reggae",
+      "permalink": "https://audius.co/yanoldrari/without-u-afro-vibes-ep",
+      "streamUrl": "https://audius-03.staked.cloud/tracks/cidstream/QmaUj7gBaVeFpuqJ6U7deiCXsrNBXDA5cUuRgpbbXawXpd?signature=%7B%22data%22%3A%22%7B%5C%22cid%5C%22%3A%5C%22QmaUj7gBaVeFpuqJ6U7deiCXsrNBXDA5cUuRgpbbXawXpd%5C%22%2C%5C%22timestamp%5C%22%3A1789109374000%2C%5C%22trackId%5C%22%3A635654%2C%5C%22userId%5C%22%3A0%7D%22%2C%22signature%22%3A%220x22059c281450f616f9165de7e3b1779845d3477275e62723220da08640c598b5745d84e0c2c62be9ba2d9619e3f03e0f68534311ad5cd7b921caffac132c53b100%22%7D"
     },
     {
       "id": "pkwOGyB",
@@ -59,27 +159,27 @@
       "license": "Attribution CC BY",
       "genre": "Electronic",
       "permalink": "https://audius.co/pamelayuen/liberation",
-      "streamUrl": "https://audius-creator-8.theblueprint.xyz/tracks/cidstream/baeaaaiqsecoovvb4bpowzaehyfbqemjgqooas6nwm4t4mahj56lzexvhnxcrc?signature=%7B%22data%22%3A%22%7B%5C%22cid%5C%22%3A%5C%22baeaaaiqsecoovvb4bpowzaehyfbqemjgqooas6nwm4t4mahj56lzexvhnxcrc%5C%22%2C%5C%22timestamp%5C%22%3A1789104743000%2C%5C%22trackId%5C%22%3A1140964557%2C%5C%22userId%5C%22%3A0%7D%22%2C%22signature%22%3A%220xa7f14d2cf5a2ff4782ae326b962fad924db7c3e539add6c28e379ed0e1a7b0872664e99d707cd25c22ca6a8b5a29e535fdce8f05afc3c8cf014f44577f19544101%22%7D"
+      "streamUrl": "https://audius-creator-13.theblueprint.xyz/tracks/cidstream/baeaaaiqsecoovvb4bpowzaehyfbqemjgqooas6nwm4t4mahj56lzexvhnxcrc?signature=%7B%22data%22%3A%22%7B%5C%22cid%5C%22%3A%5C%22baeaaaiqsecoovvb4bpowzaehyfbqemjgqooas6nwm4t4mahj56lzexvhnxcrc%5C%22%2C%5C%22timestamp%5C%22%3A1789109369000%2C%5C%22trackId%5C%22%3A1140964557%2C%5C%22userId%5C%22%3A0%7D%22%2C%22signature%22%3A%220xf4164658a35548bdc6ac6f3d20106f811de75b3f6db9cb16da4cade7e2c978a5416e3e0d99ae1f0e7e05ac79293353db7951633023f71cd148fa5bbe094c543601%22%7D"
     },
     {
-      "id": "v7g1O",
-      "title": "DELUSIONAL",
-      "artist": "PHL3M",
-      "duration": 228,
+      "id": "Y5gV5mW",
+      "title": "Privilege",
+      "artist": "Pamela Yuen",
+      "duration": 211,
       "license": "Attribution CC BY",
-      "genre": "Downtempo",
-      "permalink": "https://audius.co/Phl3m/delusional-109314",
-      "streamUrl": "https://audius-content-12.figment.io/tracks/cidstream/Qmb5Sfve6tNw8LQtJJ1vKpa6gb32SXvF1xuLRR7cbSA58L?signature=%7B%22data%22%3A%22%7B%5C%22cid%5C%22%3A%5C%22Qmb5Sfve6tNw8LQtJJ1vKpa6gb32SXvF1xuLRR7cbSA58L%5C%22%2C%5C%22timestamp%5C%22%3A1789104740000%2C%5C%22trackId%5C%22%3A109314%2C%5C%22userId%5C%22%3A0%7D%22%2C%22signature%22%3A%220x74e5c91d291715781b901b215eec97bd568dd1c0c6bbce1e587693a2677154327e3b8c77e630edca6bd91a411d39047c8a966d1f92a8e7f7763c2c3aa51db0d200%22%7D"
+      "genre": "Pop",
+      "permalink": "https://audius.co/pamelayuen/privilege",
+      "streamUrl": "https://audius-creator-10.theblueprint.xyz/tracks/cidstream/baeaaaiqseby73kw3cmzigduzitlzwegte6opkh754s6y6pzwgv4xqszavlbki?signature=%7B%22data%22%3A%22%7B%5C%22cid%5C%22%3A%5C%22baeaaaiqseby73kw3cmzigduzitlzwegte6opkh754s6y6pzwgv4xqszavlbki%5C%22%2C%5C%22timestamp%5C%22%3A1789109358000%2C%5C%22trackId%5C%22%3A1286377700%2C%5C%22userId%5C%22%3A0%7D%22%2C%22signature%22%3A%220x7dacf233cd0c798249c61fa09758265f1e03c59d7cfbd28ae0d45e661f09b86a7f000585c50fc507f441df8ab9d6df4a0164df745813cecd5a6644eba792af1d00%22%7D"
     },
     {
-      "id": "yyNZ7",
-      "title": "Fuaim | Lofi Instrumental Beat",
-      "artist": "Nightingale Lofi",
-      "duration": 245,
+      "id": "YYEr7",
+      "title": "M∑££ØW ¥∑££øW (Oriental Chill sad type beat) Remix/pastethisURL",
+      "artist": "jimi jeneris ",
+      "duration": 328,
       "license": "Attribution ShareAlike CC BY-SA",
-      "genre": "Downtempo",
-      "permalink": "https://audius.co/NightingaleLofi/fuaim-|-lofi-instrumental-beat-439079",
-      "streamUrl": "https://val019.open-audio-validator.com/tracks/cidstream/Qmd8XeSMSiRWCdBMTGZPGy2Nb5RtfMqQUVZToKpvtDmaQN?signature=%7B%22data%22%3A%22%7B%5C%22cid%5C%22%3A%5C%22Qmd8XeSMSiRWCdBMTGZPGy2Nb5RtfMqQUVZToKpvtDmaQN%5C%22%2C%5C%22timestamp%5C%22%3A1789104739000%2C%5C%22trackId%5C%22%3A439079%2C%5C%22userId%5C%22%3A0%7D%22%2C%22signature%22%3A%220x5cd1f1ec9695543b6efbb1a4f2071016f2b95a837c3feed8d8db1de0f8db37f06a9d4d57fc59ad310c54f2d265f178936e2b8d4c280ad1ff6114f81f67355af901%22%7D"
+      "genre": "Hip-Hop/Rap",
+      "permalink": "https://audius.co/Sui/m∑££øw-¥∑££øw-oriental-chill-sad-type-beat-remixpastethisurl",
+      "streamUrl": "https://v.monophonic.digital/tracks/cidstream/QmaeGzUkVcghT2GtMbJodD2VtPeBjnq7gi9Wxtd1dBJh31?signature=%7B%22data%22%3A%22%7B%5C%22cid%5C%22%3A%5C%22QmaeGzUkVcghT2GtMbJodD2VtPeBjnq7gi9Wxtd1dBJh31%5C%22%2C%5C%22timestamp%5C%22%3A1789109366000%2C%5C%22trackId%5C%22%3A453044%2C%5C%22userId%5C%22%3A0%7D%22%2C%22signature%22%3A%220x0c6c02f52ee08f522b1898267cef91dad621527215405f98ead77c0fadb1a6b4211aa9ebaf7a79940660d8366c39d2a2065ca87c1fb51969738217f5b7b0b29200%22%7D"
     },
     {
       "id": "z6WmYmp",
@@ -89,7 +189,17 @@
       "license": "Attribution CC BY",
       "genre": "Pop",
       "permalink": "https://audius.co/pamelayuen/dont-stop",
-      "streamUrl": "https://v.monophonic.digital/tracks/cidstream/baeaaaiqsebwawpbyusstohxuj3px237gwlkx2tmcb6r2j6gba6ms6ggbynkgc?signature=%7B%22data%22%3A%22%7B%5C%22cid%5C%22%3A%5C%22baeaaaiqsebwawpbyusstohxuj3px237gwlkx2tmcb6r2j6gba6ms6ggbynkgc%5C%22%2C%5C%22timestamp%5C%22%3A1789104743000%2C%5C%22trackId%5C%22%3A1778519019%2C%5C%22userId%5C%22%3A0%7D%22%2C%22signature%22%3A%220xc2db9b579259b11f58e590920ed26d68fb4f39d7340a503f96ad5c5e0c2b244830123dd19795a2682664e8496d632cf1427eb80b11ed66b076d710fe89797b5d01%22%7D"
+      "streamUrl": "https://v.monophonic.digital/tracks/cidstream/baeaaaiqsebwawpbyusstohxuj3px237gwlkx2tmcb6r2j6gba6ms6ggbynkgc?signature=%7B%22data%22%3A%22%7B%5C%22cid%5C%22%3A%5C%22baeaaaiqsebwawpbyusstohxuj3px237gwlkx2tmcb6r2j6gba6ms6ggbynkgc%5C%22%2C%5C%22timestamp%5C%22%3A1789109369000%2C%5C%22trackId%5C%22%3A1778519019%2C%5C%22userId%5C%22%3A0%7D%22%2C%22signature%22%3A%220xbdede0c3de7ead8cadc53a2e0827bf041b82fc09f9156fc05841da5236b4d4c44cc532c7b58b45d039018082349bc9831f233319803907ed35adb36de195f86301%22%7D"
+    },
+    {
+      "id": "ZbwyE",
+      "title": "Penthouse (Instrumental)",
+      "artist": "Akasan /|\\ EsJAYYg",
+      "duration": 119,
+      "license": "Attribution ShareAlike CC BY-SA",
+      "genre": "Hip-Hop/Rap",
+      "permalink": "https://audius.co/FeedYouSalt/penthouse-instrumental",
+      "streamUrl": "https://audius-creator-7.theblueprint.xyz/tracks/cidstream/QmeXVB7T4bf77JhWaGzyGwog8Cua8DKuKMWz25AaNTatz5?signature=%7B%22data%22%3A%22%7B%5C%22cid%5C%22%3A%5C%22QmeXVB7T4bf77JhWaGzyGwog8Cua8DKuKMWz25AaNTatz5%5C%22%2C%5C%22timestamp%5C%22%3A1789109350000%2C%5C%22trackId%5C%22%3A638012%2C%5C%22userId%5C%22%3A0%7D%22%2C%22signature%22%3A%220x8e4520bad0d7d5fd18c71f73a5afbdfa5e45bd661a540c4c36d048c334963ac82291b098997d1060ec0cc8a52b4ef4f0e659b5107c8b4655c025553ed2c6db4f00%22%7D"
     }
   ]
 }

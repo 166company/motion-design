@@ -16,6 +16,7 @@
     "@remotion/google-fonts": "^4.0.523",
     "@remotion/media-utils": "^4.0.523",
     "@remotion/renderer": "^4.0.523",
+    "@remotion/transitions": "^4.0.523",
     "libsodium-wrappers": "^0.8.4",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",

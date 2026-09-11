@@ -1,55 +1,5 @@
 {
   "repo": "166company/motion-design",
-  "updatedAt": "2026-09-11T06:49:04.983Z",
-  "entries": [
-    {
-      "id": "2026-09-11-10764",
-      "hook": "EVDƏN KÖÇÜRƏNDƏ QİYMƏT NƏYƏ GÖRƏ DƏYİŞİR?",
-      "caption": "Ev daşınmasının qiyməti hazır tariflə yox, bir neçə amillə hesablanır. Yükün həcmi, mərtəbə, lift, məsafə və əlavə işlər məbləği dəyişir. Dəqiq qiymət üçün məlumatı zəngdə ver, operator sənə əvvəlcədən deyəcək. Ətraflı: yuk.az/ev-dasinmasi-qiymeti/\n\n🎵 Fuaim | Lofi Instrumental Beat — Nightingale Lofi (CC BY-SA) https://audius.co/NightingaleLofi/fuaim-|-lofi-instrumental-beat-439079",
-      "hashtags": [
-        "#evdaşınması",
-        "#yukaz",
-        "#köçmək",
-        "#BakıdaDaşınma",
-        "#yükdaşıma"
-      ],
-      "source": "https://yuk.az/ev-dasinmasi-qiymeti/",
-      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-10764/2026-09-11-10764.mp4",
-      "duration": 25.7,
-      "scenes": 6,
-      "status": "təsdiq-gözləyir",
-      "createdAt": "2026-09-11",
-      "music": {
-        "label": "Fuaim | Lofi Instrumental Beat — Nightingale Lofi",
-        "license": "Attribution ShareAlike CC BY-SA",
-        "vocal": false,
-        "source": "audius"
-      }
-    },
-    {
-      "id": "2026-09-11-10736",
-      "hook": "NAXÇIVANDA DAŞINMA NƏYƏ GÖRƏ FƏRQLİDİR?",
-      "caption": "Naxçıvanda yükdaşıma planı digər bölgələrdən bir az fərqlidir. Burada əvvəlcə yük, giriş şəraiti və marşrut dəqiqləşdirilir, sonra maşın və briqada seçilir. Ətraflı məlumat üçün linkə bax.\n\n🎵 Fuaim | Lofi Instrumental Beat — Nightingale Lofi (CC BY-SA) https://audius.co/NightingaleLofi/fuaim-|-lofi-instrumental-beat-439079",
-      "hashtags": [
-        "#yükdaşima",
-        "#köçmə",
-        "#Naxçıvan",
-        "#Yukaz",
-        "#evdaşınması",
-        "#ofisköçürmə"
-      ],
-      "source": "https://yuk.az/naxcivanda-yukdasima-xidmeti/",
-      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-10736/2026-09-11-10736.mp4",
-      "duration": 26.3,
-      "scenes": 6,
-      "status": "təsdiq-gözləyir",
-      "createdAt": "2026-09-11",
-      "music": {
-        "label": "Fuaim | Lofi Instrumental Beat — Nightingale Lofi",
-        "license": "Attribution ShareAlike CC BY-SA",
-        "vocal": false,
-        "source": "audius"
-      }
-    }
-  ]
+  "updatedAt": "2026-09-11T07:10:42.276Z",
+  "entries": []
 }

@@ -9,6 +9,8 @@ export type ScriptItem = {
   spoken: string;
   /** Pexels üçün İNGİLİS dilində axtarış sorğusu */
   query: string;
+  /** Lucide ikon adı (Iconify-dən çəkilir) */
+  icon: string;
 };
 
 export type ScriptOut = {
@@ -38,7 +40,10 @@ QAYDALAR:
   Simvol limitinə sığdırmaq üçün sözləri kəsmə və söz sırasını pozma.
   Sığmırsa, daha qısa BAŞQA ifadə seç. Pis nümunə: "NƏ SƏNƏDİR FƏRQİ".
   Yaxşı nümunə: "SƏNƏDLƏRİN FƏRQİ", "NƏ DAXİLDİR?", "LİFT VARMI?"
-- "query" mütləq İNGİLİS dilində, stok video axtarışı üçün (məs: "movers carrying boxes stairs").`;
+- "query" mütləq İNGİLİS dilində, stok video axtarışı üçün (məs: "movers carrying boxes stairs").
+- "icon" hər bənd üçün Lucide ikon adı (İNGİLİS, kiçik hərf, defislə): məs "truck", "package", "building-2",
+  "phone-call", "shield-check", "clock", "stairs", "home", "boxes", "calculator", "map-pin", "wallet".
+- Caption formatı: emoji ilə hook → boş sətir → emojili qısa abzaslar → boş sətir → CTA. Divar kimi mətn YOX.`;
 
 const schema = {
   type: "object",
@@ -55,12 +60,13 @@ const schema = {
       items: {
         type: "object",
         additionalProperties: false,
-        required: ["title", "body", "spoken", "query"],
+        required: ["title", "body", "spoken", "query", "icon"],
         properties: {
           title: { type: "string", description: "maksimum 34 simvol" },
           body: { type: "string", description: "maksimum 85 simvol" },
           spoken: { type: "string", description: "səsləndirilən mətn, 10-16 söz — qısa və zərbəli" },
           query: { type: "string", description: "ingiliscə stok video sorğusu" },
+          icon: { type: "string", description: "Lucide ikon adı, məs: truck, package, phone-call" },
         },
       },
     },
@@ -73,12 +79,19 @@ const schema = {
         line2: { type: "string", description: "qısa: yuk.az və ya telefon" },
       },
     },
-    caption: { type: "string", description: "Instagram təsviri, 2-4 cümlə, sonda linkə işarə" },
+    caption: {
+      type: "string",
+      description:
+        "Instagram təsviri. FORMAT MƏCBURİDİR: (1) emoji ilə başlayan zərbəli 1 sətirlik hook; " +
+        "(2) boş sətir; (3) 2-4 qısa abzas, hər abzas boş sətirlə ayrılır, hər birinin əvvəlində uyğun emoji (📦 🚚 🏠 💡 ✅ ⏱ 📞 kimi); " +
+        "(4) boş sətir; (5) SONDA aydın CTA — məs: '📞 Qiyməti öyrənmək üçün zəng et' və ya '👉 Yuk.az-a keç'. " +
+        "Hashtag YAZMA (ayrıca sahədə gəlir). Rəqəm/qiymət yazma.",
+    },
     hashtags: { type: "array", minItems: 5, maxItems: 10, items: { type: "string" } },
   },
 } as const;
 
-export const writeScript = async (article: Article): Promise<ScriptOut> => {
+export const writeScript = async (article: Article, feedback?: string): Promise<ScriptOut> => {
   const key = process.env.OPENAI_API_KEY;
   if (!key) throw new Error("OPENAI_API_KEY yoxdur");
 
@@ -97,7 +110,14 @@ ${article.headings.map((h) => "- " + h).join("\n")}
 MƏTN (ilk 6000 simvol):
 ${article.text.slice(0, 6000)}
 
-Bu məqaləni 25-30 saniyəlik bir Reels ssenarisinə çevir.`,
+Bu məqaləni 25-30 saniyəlik bir Reels ssenarisinə çevir.${
+          feedback?.trim()
+            ? `
+
+İSTİFADƏÇİ QEYDİ — əvvəlki versiyaya baxıb bunu istəyib, MÜTLƏQ nəzərə al:
+${feedback.trim()}`
+            : ""
+        }`,
       },
     ],
     response_format: {

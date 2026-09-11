@@ -59,3 +59,11 @@ export const pickArticle = async (usedIds: number[] = []): Promise<Article> => {
   if (!candidates.length) throw new Error("Uyğun məqalə tapılmadı");
   return candidates[0];
 };
+
+/** Konkret məqalə (yenidən istehsal üçün) */
+export const getArticle = async (id: number): Promise<Article> => {
+  const all = await listArticles();
+  const a = all.find((x) => x.id === id);
+  if (!a) throw new Error(`Məqalə tapılmadı: ${id}`);
+  return a;
+};

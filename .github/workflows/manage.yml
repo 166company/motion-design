@@ -1,0 +1,135 @@
+name: Reels idarə
+
+# Paneldəki "Sil" və "Dəyişiklik" düymələri hazır doldurulmuş Issue açır.
+# Bu workflow Issue başlığına görə işi görür:
+#   "Sil: <id>"         → Release silinir, təsdiq Issue-su bağlanır, panel yenilənir
+#   "Dəyişiklik: <id>"  → Issue mətnindəki qeyd ssenari modelinə ötürülür,
+#                          video eyni məqalədən YENİDƏN istehsal olunur, Release əvəz olunur
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  # ------------------------------------------------------------------ SİL
+  delete:
+    if: startsWith(github.event.issue.title, 'Sil:')
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      PYTHONUTF8: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "24", cache: "npm" }
+      - run: npm ci
+
+      - name: ID
+        id: pick
+        env:
+          TITLE: ${{ github.event.issue.title }}
+        run: |
+          echo "id=$(printf '%s' "$TITLE" | sed 's/^Sil:[[:space:]]*//' | tr -d ' ')" >> "$GITHUB_OUTPUT"
+
+      - name: Release-i sil, statusu yaz, təsdiq Issue-sunu bağla
+        run: |
+          ID="${{ steps.pick.outputs.id }}"
+          gh release delete "reel-$ID" --yes --cleanup-tag 2>/dev/null || true
+          python - <<PY
+          import json, io, os
+          p = "content/data/status.json"
+          d = json.load(io.open(p, encoding="utf-8")) if os.path.exists(p) else {}
+          d["$ID"] = {**d.get("$ID", {}), "status": "silinib"}
+          io.open(p, "w", encoding="utf-8").write(json.dumps(d, ensure_ascii=False, indent=2))
+          PY
+          for n in $(gh issue list --state open --search "Təsdiq: $ID in:title" --json number -q '.[].number'); do
+            gh issue close "$n" --reason "not planned" --comment "Paneldən silindi."
+          done
+          npx tsx pipeline/panel.ts "$ID" "${{ github.repository }}"
+          git config user.name "yukaz-agent"
+          git config user.email "actions@github.com"
+          git add content/data/status.json docs/data.json
+          git commit -m "silindi: $ID" || true
+          git pull --rebase --autostash origin main
+          git push
+          gh issue close ${{ github.event.issue.number }} --comment "✅ Silindi: Release ləğv edildi, paneldən çıxarıldı."
+
+  # ------------------------------------------------------------------ DƏYİŞİKLİK
+  revise:
+    if: startsWith(github.event.issue.title, 'Dəyişiklik:')
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      PYTHONUTF8: "1"
+      PYTHONIOENCODING: utf-8
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      OPENAI_MODEL: ${{ vars.OPENAI_MODEL || 'gpt-5.4-mini' }}
+      PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+      AUDIUS_API_TOKEN: ${{ secrets.AUDIUS_API_TOKEN }}
+      TTS_ENGINE: ${{ vars.TTS_ENGINE || 'openai' }}
+      OPENAI_TTS_VOICE: ${{ vars.OPENAI_TTS_VOICE || 'marin' }}
+      # Issue mətni = sənin qeydin → ssenari promptuna gedir
+      FEEDBACK: ${{ github.event.issue.body }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "24", cache: "npm" }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq libnss3 libatk-bridge2.0-0 libgtk-3-0 libasound2t64 libgbm1 fonts-liberation || true
+      - run: npm ci
+      - run: pip install --quiet edge-tts mutagen numpy
+
+      - name: ID və məqalə
+        id: pick
+        env:
+          TITLE: ${{ github.event.issue.title }}
+        run: |
+          ID=$(printf '%s' "$TITLE" | sed 's/^Dəyişiklik:[[:space:]]*//' | tr -d ' ')
+          echo "id=$ID" >> $GITHUB_OUTPUT
+          echo "article=$(python -c "import json,io;print(json.load(io.open('content/data/$ID.meta.json',encoding='utf-8'))['articleId'])")" >> $GITHUB_OUTPUT
+
+      - name: Qeydlə yenidən istehsal
+        env:
+          ARTICLE_ID: ${{ steps.pick.outputs.article }}
+          REEL_ID: ${{ steps.pick.outputs.id }}
+        run: |
+          gh issue comment ${{ github.event.issue.number }} --body "🔄 Qeydin alındı, video yenidən istehsal olunur (~6 dəq)…"
+          npx tsx pipeline/run.ts
+
+      - name: Render + QA
+        run: |
+          ID="${{ steps.pick.outputs.id }}"
+          mkdir -p out
+          npx remotion render src/index.ts TipList "out/$ID.mp4" --props="public/render/$ID/props.json"
+          npx tsx pipeline/qa.ts "out/$ID.mp4" "public/render/$ID/props.json"
+
+      - name: Release-i əvəz et, panel, Issue
+        run: |
+          ID="${{ steps.pick.outputs.id }}"
+          gh release delete "reel-$ID" --yes --cleanup-tag 2>/dev/null || true
+          gh release create "reel-$ID" "out/$ID.mp4" --title "Reel $ID (düzəliş)" --notes "Qeydlə yenidən istehsal olunub."
+          python - <<PY
+          import json, io, os
+          p = "content/data/status.json"
+          d = json.load(io.open(p, encoding="utf-8")) if os.path.exists(p) else {}
+          d["$ID"] = {**d.get("$ID", {}), "status": "təsdiq-gözləyir", "note": os.environ.get("FEEDBACK", "")[:400]}
+          io.open(p, "w", encoding="utf-8").write(json.dumps(d, ensure_ascii=False, indent=2))
+          PY
+          npx tsx pipeline/panel.ts "$ID" "${{ github.repository }}"
+          git config user.name "yukaz-agent"
+          git config user.email "actions@github.com"
+          git add docs/data.json content/data public/render
+          git commit -m "düzəliş: $ID" || true
+          git pull --rebase --autostash origin main
+          git push
+          gh issue comment ${{ github.event.issue.number }} --body "✅ Yeni versiya hazırdır: https://github.com/${{ github.repository }}/releases/download/reel-$ID/$ID.mp4
+          Təsdiq üçün əvvəlki 'Təsdiq: $ID' Issue-suna \`/publish\` yaz."
+          gh issue close ${{ github.event.issue.number }}

@@ -5,7 +5,7 @@ import { font } from "../brand/fonts";
 export type Word = { w: string; start: number; dur: number };
 
 /** Sözləri qısa sətirlərə yığır — telefonda 2 sətirdən çox oxunmur */
-const buildLines = (words: Word[], maxChars = 26, maxWords = 4) => {
+const buildLines = (words: Word[], maxChars = 30, maxWords = 4) => {
   const lines: Word[][] = [];
   let cur: Word[] = [];
   let len = 0;
@@ -66,10 +66,11 @@ export const Caption: React.FC<{ words: Word[]; offset?: number }> = ({ words, o
               fontWeight: 800,
               lineHeight: 1.18,
               color: isOn ? colors.graphite : colors.white,
-              backgroundColor: isOn ? colors.orange : "rgba(30,33,36,0.55)",
-              padding: `6px ${spacing.xs + 4}px`,
+              backgroundColor: isOn ? colors.orange : "rgba(30,33,36,0.62)",
+              padding: `6px ${spacing.xs + 6}px`,
               borderRadius: radius.md,
-              transform: isOn ? "translateY(-3px)" : "none",
+              transform: isOn ? "translateY(-4px) scale(1.06)" : "none",
+              boxShadow: isOn ? "0 10px 26px rgba(255,102,0,0.35)" : "0 4px 14px rgba(0,0,0,0.35)",
               transition: "none",
             }}
           >

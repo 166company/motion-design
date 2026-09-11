@@ -4,9 +4,10 @@ Həftədə 3 dəfə Instagram Reels + Facebook Reels istehsal edən avtomatik si
 Kontent **yuk.az saytının öz məqalələrindən** gəlir — heç nə uydurulmur.
 
 ```
-yuk.az məqaləsi  →  ssenari (OpenAI)  →  səsləndirmə (edge-tts, az-AZ)
-      →  stok video (Pexels)  →  render (Remotion)  →  QA
-      →  GitHub Release  →  təsdiq  →  Instagram + Facebook
+yuk.az məqaləsi  →  ssenari (OpenAI)  →  səsləndirmə (OpenAI TTS + Whisper hizalama)
+      →  stok video (Pexels, ffmpeg normallaşdırma)  →  ikonlar (Iconify)
+      →  musiqi (Audius CC, Whisper vokal yoxlaması)  →  render (Remotion)  →  QA
+      →  GitHub Release  →  panel  →  təsdiq / dəyişiklik / sil  →  Instagram + Facebook
 ```
 
 Server yoxdur. Hər şey GitHub Actions-da işləyir.
@@ -17,9 +18,9 @@ Server yoxdur. Hər şey GitHub Actions-da işləyir.
 
 | Xidmət | Aylıq |
 |---|---|
-| OpenAI (ssenari) | ~1–2 $ |
-| edge-tts, Pexels, GitHub, Meta | 0 $ |
-| **Cəmi** | **~1–2 $** |
+| OpenAI — ssenari + səs + Whisper | ~2–3 $ |
+| Pexels, Audius, Iconify, GitHub, Meta | 0 $ |
+| **Cəmi** | **~2–3 $** |
 
 Heç bir xidmət bank kartı tələb etmir (OpenAI istisna — o, artıq mövcuddur).
 
@@ -96,12 +97,17 @@ Sistem Bazar ertəsi / Çərşənbə / Cümə saat **18:30**-da (Bakı vaxtı) �
 3. Videonu GitHub Release-ə yükləyir
 4. **Təsdiq Issue-su açır** — sənə bildiriş gedir
 
-Təsdiq üçün Issue-ya şərh yaz:
+Paneldə hər videonun 4 düyməsi var:
 
-- `/publish` → Instagram + Facebook-a gedir
-- `/skip` → yayımlanmır
+| Düymə | Nə edir |
+|---|---|
+| **Təsdiqlə** | Təsdiq Issue-suna aparır; ora `/publish` yaz → Instagram + Facebook |
+| **✏️ Dəyişiklik** | Hazır Issue açır; nə dəyişməli olduğunu sərbəst yaz. Qeyd ssenari modelinə ötürülür, video **yenidən istehsal olunur**, Release əvəz olunur, panel yenilənir. Son qeyd kartda görünür. |
+| **🗑 Sil** | Release silinir, təsdiq Issue-su bağlanır, paneldən çıxır |
+| **Caption kopyala** | Emoji + abzas + CTA formatlı caption, hashtag-larla |
 
-Telefondan GitHub tətbiqi ilə də edə bilərsən.
+Hamısı GitHub Issue üzərindən işləyir — server yoxdur, telefondan GitHub tətbiqi ilə də olur.
+İcra edən: [.github/workflows/manage.yml](.github/workflows/manage.yml).
 
 Etibar yaranandan sonra `create.yml`-dəki Issue addımını silib
 `publish.yml`-i birbaşa çağırmaqla tam avtomatik rejimə keçmək olar.
@@ -129,12 +135,14 @@ npx tsx pipeline/qa.ts out/video.mp4 public/render/<ID>/props.json
 src/
   brand/theme.ts        rəng, şrift, ölçü, təhlükəsiz zonalar — brend burada
   brand/fonts.ts        Inter + latin-ext (ə ğ ı ş üçün MƏCBURİ)
-  components/           Caption, BackgroundMedia, NumberBadge, CtaScene, LogoBug
+  components/           Caption, BackgroundMedia, IconBadge, AnimatedTitle, Overlay, CtaScene, LogoBug
   compositions/         TipList — nömrələnmiş siyahı şablonu
 pipeline/
   wp.ts                 yuk.az WordPress REST API
   script.ts             OpenAI → strukturlu ssenari
-  tts.py                edge-tts → mp3 + söz vaxtları
+  tts_openai.py         OpenAI TTS + Whisper hizalama (default)
+  tts.py                edge-tts (pulsuz alternativ)
+  sfx.py                səs effektləri sintezatoru
   assets.ts             Pexels portret video
   run.ts                bütün zənciri birləşdirir
   qa.ts                 render sonrası yoxlamalar
@@ -170,9 +178,29 @@ Bütün fayl əməliyyatlarında `encoding="utf-8"`, mühitdə `PYTHONUTF8=1`.
 
 ## Səs
 
-`az-AZ-BanuNeural` (qadın) və `az-AZ-BabekNeural` (kişi).
-Dəyişmək üçün: GitHub `Variables → TTS_VOICE`, lokal üçün `.env`.
-Sürət `TTS_RATE` ilə (default `+8%` — reels ritmi üçün).
+**Default: OpenAI `gpt-4o-mini-tts`** ([pipeline/tts_openai.py](pipeline/tts_openai.py)) —
+`instructions` ilə təbii, canlı intonasiya. Söz vaxtı vermir, ona görə Whisper
+bizim mətni `prompt` kimi alıb audio ilə hizalayır; sözlər difflib ilə uyğunlaşdırılır.
+Xərc ≈ 1 sent/video.
+
+| Dəyişən | Default | Qeyd |
+|---|---|---|
+| `TTS_ENGINE` | `openai` | `edge` → pulsuz edge-tts (robotvari, amma 0 $) |
+| `OPENAI_TTS_VOICE` | `marin` | `coral`, `cedar`, `ash` da yoxlanıb |
+| `OPENAI_TTS_SPEED` | `1.1` | 1.0-da video 33 saniyə çıxırdı |
+| `TTS_VOICE` | `az-AZ-BanuNeural` | yalnız edge rejimi üçün |
+
+GitHub-da `Variables` bölməsindən, lokal `.env`-dən dəyişilir.
+
+## Vizual sistem
+
+- Səhnələrarası keçidlər: slide / wipe / fade (`@remotion/transitions`), hər keçiddə whoosh
+- Başlıqlar söz-söz spring ilə canlanır, son söz narıncı
+- Hər bənd: Lucide ikonu (Iconify, açarsız) narıncı kvadratda "pop" edir + nömrə halqası
+- Fon kamerası səhnədən-səhnəyə fərqli hərəkət edir (zoom-in/out, pan, drift)
+- Yuxarıda seqmentli irəliləmə çubuğu, vinyet, açılışda diaqonal narıncı süpürmə
+- CTA: kub loqo fırlanaraq gəlir, "yuk.az" hərf-hərf, pill, radial parıltı, hissəciklər, riser + pop
+- Səs effektləri sintez olunur ([pipeline/sfx.py](pipeline/sfx.py)) — `public/sfx/`, telif riski yoxdur
 
 ### Səviyyələr (dəyişmə, ölçülüb)
 

@@ -11,7 +11,8 @@ type Entry = {
   video: string;
   duration: number;
   scenes: number;
-  status: "təsdiq-gözləyir" | "yayımlanıb" | "imtina";
+  status: "təsdiq-gözləyir" | "yayımlanıb" | "imtina" | "silinib";
+  note?: string;
   createdAt: string;
   instagram?: string;
   facebook?: string;
@@ -55,6 +56,7 @@ export const buildPanel = async (repo: string) => {
     if (!props) continue;
 
     const st = status[meta.id] ?? {};
+    if (st.status === "silinib") continue;   // paneldən silinib
     entries.push({
       id: meta.id,
       hook: props.hook,
@@ -68,6 +70,7 @@ export const buildPanel = async (repo: string) => {
       createdAt: meta.id.slice(0, 10),
       instagram: st.instagram,
       facebook: st.facebook,
+      note: st.note,
       music: musicOf(meta),
     });
   }

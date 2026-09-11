@@ -24,10 +24,14 @@ const ALLOWED_LICENSES = new Set([
 const EXCLUDED_GENRES = new Set(["Spoken Word", "Podcasts", "Comedy", "Audiobooks", "Kids"]);
 
 /** Brendin ovqatına uyğun axtarış sorğuları */
+// 2026 Reels trendi (brend kontenti üçün): gümrah feel-good, lo-fi hip-hop,
+// energetic instrumental, house/funk, atmosferik build-up. Vokalsız.
 const QUERIES = [
-  "upbeat corporate", "corporate ambient", "acoustic uplifting", "chill instrumental",
-  "cinematic inspiring", "piano background", "lofi instrumental", "electronic chill",
-  "positive background", "motivational instrumental",
+  "upbeat instrumental", "feel good instrumental", "energetic beat", "uplifting hip hop instrumental",
+  "funk instrumental", "house instrumental", "phonk instrumental", "trap beat instrumental",
+  "pop instrumental upbeat", "summer vibes instrumental", "groove instrumental", "drill beat",
+  "lofi hip hop", "chill beat", "upbeat corporate", "motivational instrumental",
+  "cinematic build", "electronic upbeat", "positive energy", "afrobeat instrumental",
 ];
 
 export type AudiusTrack = {

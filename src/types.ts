@@ -20,6 +20,8 @@ export const sceneSchema = z.object({
   title: z.string().optional(),
   body: z.string().optional(),
   index: z.number().optional(),
+  /** public/ içində ikon SVG yolu (Iconify-dən yüklənir) */
+  icon: z.string().nullable().default(null),
   audio: z.string().nullable(),
   words: z.array(wordSchema),
   durationInFrames: z.number(),

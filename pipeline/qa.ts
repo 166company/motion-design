@@ -18,7 +18,9 @@ export const qa = async (videoPath: string, propsPath: string): Promise<QaResult
   add("həcm > 1 MB", mb > 1, `${mb.toFixed(1)} MB`);
 
   const reel = JSON.parse(await fs.readFile(propsPath, "utf-8"));
-  const sec = reel.scenes.reduce((a: number, b: any) => a + b.durationInFrames, 0) / FPS;
+  // Keçidlər üst-üstə düşür: hər keçid 12 kadr qısaldır (TipList.TRANSITION)
+  const TRANSITION = 12;
+  const sec = (reel.scenes.reduce((a: number, b: any) => a + b.durationInFrames, 0) - (reel.scenes.length - 1) * TRANSITION) / FPS;
   add("müddət 15–60 san", sec >= 15 && sec <= 60, `${sec.toFixed(1)} san`);
   add("hook ≤ 6 san", reel.scenes[0].durationInFrames / FPS <= 6,
       `${(reel.scenes[0].durationInFrames / FPS).toFixed(1)} san`);
