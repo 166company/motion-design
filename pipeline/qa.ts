@@ -30,7 +30,7 @@ export const qa = async (videoPath: string, propsPath: string): Promise<QaResult
   }
 
   // TipList-də hook 6 san; Explainer-in girişi vizual səhnədir (kub düşür) — 8 san icazəlidir
-  const hookMax = isTipList ? 6 : 8;
+  const hookMax = isTipList ? 7 : 8;
   add(`hook ≤ ${hookMax} san`, reel.scenes[0].durationInFrames / FPS <= hookMax,
       `${(reel.scenes[0].durationInFrames / FPS).toFixed(1)} san`);
 

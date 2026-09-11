@@ -52,7 +52,7 @@ const schema = {
   required: ["hook", "hookSpoken", "hookQuery", "items", "cta", "caption", "hashtags"],
   properties: {
     hook: { type: "string", description: "Ekrandakı açılış sualı, maksimum 55 simvol" },
-    hookSpoken: { type: "string", description: "TƏK qısa cümlə, maksimum 13 söz — ilk 3 saniyə həlledicidir" },
+    hookSpoken: { type: "string", description: "TƏK qısa cümlə, maksimum 10 söz — ilk 3 saniyə həlledicidir" },
     hookQuery: { type: "string", description: "açılış səhnəsi üçün ingiliscə stok video sorğusu" },
     items: {
       type: "array",
@@ -65,7 +65,7 @@ const schema = {
         properties: {
           title: { type: "string", description: "maksimum 34 simvol" },
           body: { type: "string", description: "maksimum 85 simvol" },
-          spoken: { type: "string", description: "səsləndirilən mətn, 10-16 söz — qısa və zərbəli" },
+          spoken: { type: "string", description: "səsləndirilən mətn, 9-13 söz — qısa və zərbəli" },
           query: { type: "string", description: "ingiliscə stok video sorğusu" },
           icon: { type: "string", description: "Lucide ikon adı, məs: truck, package, phone-call" },
         },
