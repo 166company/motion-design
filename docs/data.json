@@ -1,6 +1,6 @@
 {
   "repo": "166company/motion-design",
-  "updatedAt": "2026-09-11T09:54:06.738Z",
+  "updatedAt": "2026-09-11T09:57:57.981Z",
   "entries": [
     {
       "id": "2026-09-11-story",
@@ -19,8 +19,10 @@
       "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-story/2026-09-11-story.mp4",
       "duration": 21.3,
       "scenes": 5,
-      "status": "təsdiq-gözləyir",
+      "status": "yayımlanıb",
       "createdAt": "2026-09-11",
+      "instagram": "",
+      "facebook": "",
       "note": "Səssiz versiya: yalnız musiqi + effektlər; maşın sağa gedir; yeni loqolar; yeni illüstrasiyalar.",
       "template": "Story",
       "voice": null,
