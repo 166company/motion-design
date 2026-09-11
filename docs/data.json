@@ -1,6 +1,6 @@
 {
   "repo": "166company/motion-design",
-  "updatedAt": "2026-09-11T10:30:05.310Z",
+  "updatedAt": "2026-09-11T10:37:04.473Z",
   "entries": [
     {
       "id": "2026-09-11-story",
@@ -41,13 +41,14 @@
         "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-carousel/2026-09-11-carousel-3.png"
       ],
       "hook": "EVİN QUTUYA YIĞI LSIN. → Qablaşdırma bizdən.",
-      "caption": "📦🚚",
+      "caption": "📦😉",
       "hashtags": [
-        "#Yükaz",
-        "#evdasinma",
-        "#yukdasima",
-        "#dasinma",
-        "#qablasdirma"
+        "#yükaz",
+        "#evdaşınması",
+        "#yükdaşıma",
+        "#daşınma",
+        "#qablaşdırma",
+        "#baku"
       ],
       "source": "https://yuk.az",
       "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-carousel/2026-09-11-carousel.mp4",
@@ -55,6 +56,7 @@
       "scenes": 3,
       "status": "təsdiq-gözləyir",
       "createdAt": "2026-09-11",
+      "note": "sən postu anlamadın post birinci slayda elə bir yazı olmadıki sanki ikinci slayda keçəndə nalayiq ifadə söyüşə çevirələcək bütün yazın amma bir növ fake atır kimi olacaq",
       "template": "Carousel",
       "voice": null,
       "music": {
