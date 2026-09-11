@@ -301,7 +301,8 @@ function render() {
         newIssue("Dəyişiklik: " + e.id, changeBody) + '">✏️ Dəyişiklik</a>' +
       '<a class="btn danger ghost" data-act="delete" data-id="' + esc(e.id) + '" target="_blank" rel="noopener" href="' +
         newIssue("Sil: " + e.id, "Bu video paneldən və Release-dən silinsin.") + '">🗑</a>';
-    const note = e.note ? '<div class="note"><b>Son qeyd</b>' + esc(e.note) + '</div>' : "";
+    const note = (e.note ? '<div class="note"><b>Son qeyd</b>' + esc(e.note) + '</div>' : "") +
+      (e.inspiration ? '<div class="note"><b>💡 Real nümunə</b>“' + esc(e.inspiration.quote) + '” — <a href="' + esc(e.inspiration.url) + '" target="_blank" rel="noopener">mənbə</a></div>' : "");
 
     const media = e.images
       ? '<div class="slot carousel"><img src="' + esc(e.images[0]) + '" alt="" style="width:100%;aspect-ratio:4/5;object-fit:cover;display:block">' +

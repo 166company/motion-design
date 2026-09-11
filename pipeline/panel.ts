@@ -15,6 +15,7 @@ type Entry = {
   note?: string;
   template: string;
   kind?: string;         // Poster: fun | sales
+  inspiration?: { url: string; quote: string };  // fun post: uyğunlaşdırılan real nümunə
   /** karusel üçün slayd şəkilləri */
   images?: string[];
   voice?: string | null;
@@ -75,6 +76,7 @@ export const buildPanel = async (repo: string) => {
       scenes: props.scenes ? props.scenes.length : (meta.slides ?? 3),
       status: st.status ?? "təsdiq-gözləyir",
       kind: meta.kind ?? undefined,
+      inspiration: meta.inspiration ?? undefined,
       createdAt: meta.id.slice(0, 10),
       instagram: st.instagram,
       facebook: st.facebook,

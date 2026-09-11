@@ -1,6 +1,6 @@
 /**
  * "Poster" şablonu — gündəlik statik postlar (1080×1350), default 3 ədəd: 2 FUN + 1 satış.
- *   fun   → webdən tapılan trend meme formatı / relatable köç yumoru, yük.az-a uyğunlaşdırılır (trends.ts)
+ *   fun   → webdən tapılan REAL viral nümunə (dəqiq sitat + URL) və ya real meme şablonu yük.az-a uyğunlaşdırılır (trends.ts); uydurma yumor yox
  *   sales → yuk.az faktlarına əsaslanan satış mesajı
  * Səhnə: AI foto, brend loqosu istinad şəkil kimi verilir. Yazı minimal: qısa "kicker" + 2-4 sözlük punchline + Zəng et.
  *
@@ -13,7 +13,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { contact } from "../src/brand/contact.ts";
 import { listArticles } from "./wp.ts";
-import { getTrends } from "./trends.ts";
+import { getTrends, type Trends } from "./trends.ts";
 
 const MODEL = process.env.OPENAI_CREATIVE_MODEL ?? "gpt-5.5";
 const IMG_MODEL = process.env.OPENAI_IMAGE_MODEL ?? "gpt-image-2.5-sunburst-2026-09-08";
@@ -34,7 +34,7 @@ const SCENES: Record<string, string> = {
 const VARIANTS = ["hero", "split", "card"] as const;
 
 type Concept = {
-  kind: "fun" | "sales"; format: string; scene: keyof typeof SCENES; sceneDetail: string;
+  kind: "fun" | "sales"; format: string; sourceUrl: string; sourceQuote: string; scene: keyof typeof SCENES; sceneDetail: string;
   kicker: string; headline: string; caption: string; hashtags: string[];
 };
 
@@ -45,13 +45,15 @@ const schema = {
       type: "array", minItems: COUNT, maxItems: COUNT,
       items: {
         type: "object", additionalProperties: false,
-        required: ["kind", "format", "scene", "sceneDetail", "kicker", "headline", "caption", "hashtags"],
+        required: ["kind", "format", "sourceUrl", "sourceQuote", "scene", "sceneDetail", "kicker", "headline", "caption", "hashtags"],
         properties: {
           kind: { type: "string", enum: ["fun", "sales"] },
-          format: { type: "string", description: "fun: istifadə olunan meme/yumor formatının adı (ingiliscə); sales: boş" },
+          format: { type: "string", description: "fun: mənbənin qısa adı, məs. 'The Poke tweet: clean house' və ya 'Onedio tweet'; sales: boş" },
+          sourceUrl: { type: "string", description: "fun: siyahıdakı real nümunənin URL-i VERBATIM (şablon üçün şablonun şəkil URL-i); sales: boş" },
+          sourceQuote: { type: "string", description: "fun: real nümunənin orijinal mətni VERBATIM (şablon üçün şablonun adı); sales: boş" },
           scene: { type: "string", enum: Object.keys(SCENES), description: "sales: hazır səhnələrdən biri; fun: custom" },
           sceneDetail: { type: "string", description: "İNGİLİSCƏ. fun: meme formatını yük.az elementləri ilə (narıncı formalı işçilər, loqolu qrafit maşın, kartonlar, telefon) yenidən canlandıran TAM foto təsviri, 2-3 cümlə, komik situasiya aydın görünsün, real insanlar/ifadələr; sales: səhnəyə 1 cümlə detal. Şəkildə heç bir yazı olmasın." },
-          kicker: { type: "string", description: "Kiçik giriş sətri (setup), maks 7 söz, azərbaycanca; sales üçün boş ola bilər" },
+          kicker: { type: "string", description: "Setup — real zarafatın uyğunlaşdırılmış hissəsi, maks 12 söz, azərbaycanca, təbii danışıq dili; sales üçün boş ola bilər" },
           headline: { type: "string", description: "Böyük punchline: 2-4 söz, 1-2 sətir \\n ilə, hər sətir maks 12 hərf; sonuncu söz vurğulanacaq" },
           caption: { type: "string", description: "Instagram caption: fun — zarafatı davam etdirən 1-2 emojili abzas, dostcasına; sales — emoji hook + 1-2 qısa abzas. Nömrə YAZMA (sistem əlavə edir). Rəqəm/qiymət YOX" },
           hashtags: { type: "array", minItems: 4, maxItems: 7, items: { type: "string" } },
@@ -63,12 +65,20 @@ const schema = {
 
 const SYSTEM = `Sən Yük.az (Azərbaycanda ev/ofis köçü və yükdaşıma) Instagram səhifəsinin kreativ redaktorusan. Səhifə ÇOX FUN olmalıdır.
 Hədəf: yük sahibləri — köç edən ailələr, ofislər, ağır əşya daşıtdıranlar. Onların gündəlik dərdləri: köç stresi, sığmayan divan, "dostları çağırım?" dilemması, qonşular, lift, Bakı tıxacı, "bir zənglə həll".
-FUN post: webdən verilən BU HƏFTƏNİN trend formatlarından/yumorundan birini götür və yük.az situasiyasına uyğunlaşdır. Yumor yerli, isti, özünə gülə bilən; kinayə var, təhqir yox. Hər fun post FƏRQLİ format.
+FUN post: YALNIZ verilən REAL viral nümunələrdən (bu həftənin real tweet/meme mətnləri, dəqiq sitat + URL) birini götür — öz yumorunu UYDURMA. Meme şablonları yalnız real sitat siyahısı boş olanda.
+Uyğunlaşdırma qaydası: orijinalın cümlə quruluşunu və komik mexanizmini (gözlənilməz dönüş, özünə gülmə, "hamımız belə edirik") OLDUĞU KİMİ saxla; yalnız mövzunu köç/yük situasiyasına çevir; kicker = uyğunlaşdırılmış setup (azərbaycanca, təbii, maks 12 söz), headline = 2-4 sözlük punchline (Yük.az həlli və ya köç gerçəyi).
+Nümunə: "I regret to inform you that the secret to a clean house is to clean the house" → kicker "Təəssüflə bildirirəm: köçün sirri" / headline "Köçməkdir.\nYa da zəng." Yerli detal əlavə et (Bakı, lift, qonşu, "az qutu var"). Ən gülməli, ən relatable sitatları seç; hər fun post FƏRQLİ sitat; sourceUrl/sourceQuote-u dəyişmədən köçür.
 SALES post: yalnız verilən yuk.az faktlarından; zərbəli, sadə.
 YAZI MİNİMAL: kicker (maks 7 söz) + punchline (2-4 söz). İzahat cümləsi yox. Konkret qiymət/rəqəm yox. "Yük.az" yaz. Digər brend adları yox.`;
 
-const writeConcepts = async (facts: string, trends: string, feedback?: string): Promise<Concept[]> => {
+const writeConcepts = async (facts: string, trends: Trends, feedback?: string): Promise<Concept[]> => {
   const mix = MIX.slice(0, COUNT); while (mix.length < COUNT) mix.push("fun");
+  const exText = trends.examples.length
+    ? trends.examples.map((e, i) => `${i + 1}. [${e.platform}] "${e.quote}" — ${e.context} (${e.whyFunny})\n   URL: ${e.url}`).join("\n")
+    : "(bu gün web nümunəsi tapılmadı — yalnız aşağıdakı real meme şablonlarından istifadə et)";
+  // real meme şablonları — model şəkilləri görür (vision), strukturu sadiq saxlayır
+  const tpl = trends.examples.length >= 4 ? [] : trends.templates.slice(0, 10);
+  const tplText = tpl.map((t, i) => `T${i + 1}. ${t.name} — ${t.url}`).join("\n");
   const res = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
     headers: { "Content-Type": "application/json", Authorization: `Bearer ${process.env.OPENAI_API_KEY}` },
@@ -76,11 +86,15 @@ const writeConcepts = async (facts: string, trends: string, feedback?: string): 
       model: MODEL,
       messages: [
         { role: "system", content: SYSTEM },
-        { role: "user", content:
-          `BU HƏFTƏNİN TREND YUMORU (webdən):\n${trends || "(tapılmadı — öz biliyinlə ən son məşhur meme formatlarını istifadə et)"}\n\n` +
-          `YUK.AZ FAKTLARI (sales üçün):\n${facts}\n\n` +
-          `Bu gün üçün ${COUNT} post yaz, ardıcıllıq dəqiq belə: ${mix.map((k, i) => `${i + 1}=${k}`).join(", ")}.` +
-          (feedback ? `\n\nİSTİFADƏÇİ QEYDİ, MÜTLƏQ nəzərə al:\n${feedback}` : "") },
+        { role: "user", content: [
+          { type: "text", text:
+            `REAL VİRAL NÜMUNƏLƏR (webdən, dəqiq sitat + URL):\n${exText}\n\n` +
+            (tpl.length ? `REAL MEME ŞABLONLARI (şəkilləri aşağıda görürsən):\n${tplText}\n\n` : "") +
+            `YUK.AZ FAKTLARI (sales üçün):\n${facts}\n\n` +
+            `Bu gün üçün ${COUNT} post yaz, ardıcıllıq dəqiq belə: ${mix.map((k, i) => `${i + 1}=${k}`).join(", ")}.` +
+            (feedback ? `\n\nİSTİFADƏÇİ QEYDİ, MÜTLƏQ nəzərə al:\n${feedback}` : "") },
+          ...tpl.map((t) => ({ type: "image_url", image_url: { url: t.url, detail: "low" } })),
+        ] },
       ],
       response_format: { type: "json_schema", json_schema: { name: "posters", strict: true, schema } },
     }),
@@ -125,10 +139,9 @@ const main = async () => {
   const az = (await listArticles()).filter((a) => a.lang === "az");
   const facts = az.slice(0, 3).map((a) => `• ${a.title}: ${a.text.slice(0, 700)}`).join("\n");
   const trends = await getTrends();
-  const trendText = [trends.web, trends.formats.length ? `Popular meme templates: ${trends.formats.slice(0, 25).join(", ")}` : ""].filter(Boolean).join("\n\n");
 
   console.log(`2. ${COUNT} konsept (${MODEL}, mix: ${MIX.join("/")})…`);
-  const posts = await writeConcepts(facts, trendText, feedback);
+  const posts = await writeConcepts(facts, trends, feedback);
   const date = new Date().toISOString().slice(0, 10);
   // eyni gün ikinci istehsalda nömrələmə davam edir (poster-4, -5…) — yayımlanmış post üstünə yazılmasın
   const existing = (await fs.readdir("content/data").catch(() => [] as string[]))
@@ -142,7 +155,7 @@ const main = async () => {
     const fun = c.kind === "fun";
     const variant = fun ? "meme" : VARIANTS[i % VARIANTS.length];
     const headline = tidyHeadline(c.headline);
-    const kicker = c.kicker.split(/\s+/).filter(Boolean).slice(0, 8).join(" ");
+    const kicker = c.kicker.split(/\s+/).filter(Boolean).slice(0, 14).join(" ");
     const dir = path.join("public", "render", id);
     await fs.mkdir(dir, { recursive: true });
     log(`${id}: [${c.kind}${fun ? ` · ${c.format}` : ` · ${c.scene}`}/${variant}] ${kicker ? kicker + " — " : ""}${headline.replace(/\n/g, " ")}`);
@@ -157,7 +170,7 @@ const main = async () => {
     await fs.writeFile(
       path.join("content", "data", `${id}.meta.json`),
       JSON.stringify({ id, template: "Poster", articleId: null, link: "https://yuk.az", caption, hashtags: c.hashtags, slides: 1,
-        kind: c.kind, format: c.format || null, scene: c.scene, variant, music: null, attribution: null, musicTrack: null, voice: null, silent: true }, null, 2),
+        kind: c.kind, format: c.format || null, inspiration: fun ? { url: c.sourceUrl, quote: c.sourceQuote } : null, scene: c.scene, variant, music: null, attribution: null, musicTrack: null, voice: null, silent: true }, null, 2),
       "utf-8"
     );
     ids.push(id);

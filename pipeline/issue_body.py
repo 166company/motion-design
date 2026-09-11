@@ -30,6 +30,7 @@ lines = [
     " ".join(meta["hashtags"]),
     "",
     f"**Mənbə məqalə:** {meta['link']}",
+    *([f"**İlham (real nümunə):** \"{meta['inspiration']['quote']}\" — {meta['inspiration']['url']}"] if meta.get("inspiration") else []),
     "",
     f"**Musiqi:** {meta.get('attribution') or meta.get('music') or 'sintez'}",
     "",

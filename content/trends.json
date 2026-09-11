@@ -1,46 +1,244 @@
 {
   "date": "2026-09-11",
-  "web": "1. **“Nothing happened today” anti-vlog** — Ordinary chaos framed like a cinematic event. **Why:** makes boring errands feel epic. **Static remake:** mover holding one tiny box beside full truck. Punchline: **“Big Day.”**\n\n2. **Hyper-specific relatable caption** — “POV: you said ‘just a few boxes’.” **Why:** everyone recognizes the lie of underestimating stuff. **Static remake:** orange-shirt movers buried under boxes. Punchline: **“Few Boxes.”**\n\n3. **Flop-core / anti-perfect life** — Show the mess, not the polished result. **Why:** people trust and share imperfection. **Static remake:** branded truck, one box labeled “kitchen” leaking spoons. Punchline: **“Still Fine.”**\n\n4. **Mildly infuriating neighbor logic** — Someone blocks the entrance, then acts surprised. **Why:** low-stakes rage is instantly commentable. **Static remake:** moving truck perfectly parked, angry neighbor pointing at 2cm of driveway. Punchline: **“Big Problem.”**\n\n5. **Baku traffic as the villain** — The joke is not “late”; the joke is “Baku decided.” **Why:** local pain + shared helplessness. **Static remake:** orange movers calmly drinking tea beside truck in traffic. Punchline: **“Baku Said No.”**\n\n6. **Cargo tracking anxiety** — “Out for delivery” becomes a whole emotional journey. **Why:** everyone has refreshed tracking like a detective. **Static remake:** customer on phone, mover already standing behind with box. Punchline: **“Check Behind.”**\n\n7. **“We have it at home” downgrade joke** — Expectation vs reality, but with moving promises. **Why:** familiar format, fast visual read. **Static remake:** left: neat branded boxes; right: random plastic bags, plant, kettle. Punchline: **“Premium Packing.”**\n\n8. **Turkish/Azeri phone-call comedy** — Overly calm worker vs panicking customer: “Alo, maşın hardadı?” **Why:** voice-note culture and delivery stress feel local. **Static remake:** mover smiling on phone while truck is visibly outside. Punchline: **“We’re Here.”**",
-  "formats": [
-    "Drake Hotline Bling",
-    "Two Buttons",
-    "Distracted Boyfriend",
-    "Bernie I Am Once Again Asking For Your Support",
-    "UNO Draw 25 Cards",
-    "Left Exit 12 Off Ramp",
-    "Always Has Been",
-    "Anakin Padme 4 Panel",
-    "Epic Handshake",
-    "Running Away Balloon",
-    "Gru's Plan",
-    "Waiting Skeleton",
-    "Sad Pablo Escobar",
-    "Disaster Girl",
-    "Change My Mind",
-    "Trade Offer",
-    "Batman Slapping Robin",
-    "Bernie Sanders Once Again Asking",
-    "Ancient Aliens",
-    "Marked Safe From",
-    "X, X Everywhere",
-    "Y'all Got Any More Of That",
-    "Mocking Spongebob",
-    "Bike Fall",
-    "One Does Not Simply",
-    "Woman Yelling At Cat",
-    "Is This A Pigeon",
-    "You Guys are Getting Paid",
-    "0 days without (Lenny, Simpsons)",
-    "Absolute Cinema",
-    "They're The Same Picture",
-    "Mother Ignoring Kid Drowning In A Pool",
-    "Expanding Brain",
-    "This Is Where I'd Put My Trophy If I Had One",
-    "Tuxedo Winnie The Pooh",
-    "Buff Doge vs. Cheems",
-    "Oprah You Get A",
-    "Squidward window",
-    "Megamind peeking",
-    "This Is Fine"
+  "examples": [
+    {
+      "url": "https://www.thepoke.com/2026/09/11/our-25-favourite-funny-tweets-of-the-week-133/",
+      "quote": "Sorry buddy you're an adult now your options for friendship are the most annoying people in existence or people that will only get lunch with you if scheduled a month in advance or people 2000 miles away",
+      "context": "The Poke, “Our 25 Favourite Funny Tweets of the Week,” updated September 11, 2026. ([thepoke.com](https://www.thepoke.com/2026/09/11/our-25-favourite-funny-tweets-of-the-week-133/))",
+      "platform": "X/Twitter",
+      "whyFunny": "Adulting / friendship logistics"
+    },
+    {
+      "url": "https://www.thepoke.com/2026/09/11/our-25-favourite-funny-tweets-of-the-week-133/",
+      "quote": "I regret to inform you that the secret to a clean house is to clean the house",
+      "context": "The Poke, “Our 25 Favourite Funny Tweets of the Week,” updated September 11, 2026. ([thepoke.com](https://www.thepoke.com/2026/09/11/our-25-favourite-funny-tweets-of-the-week-133/))",
+      "platform": "X/Twitter",
+      "whyFunny": "Household / cleaning"
+    },
+    {
+      "url": "https://www.thepoke.com/2026/09/11/our-25-favourite-funny-tweets-of-the-week-133/",
+      "quote": "Went to get a snack, and my watch congratulated me on standing up, so yes, I do take fitness very seriously",
+      "context": "The Poke, “Our 25 Favourite Funny Tweets of the Week,” updated September 11, 2026. ([thepoke.com](https://www.thepoke.com/2026/09/11/our-25-favourite-funny-tweets-of-the-week-133/))",
+      "platform": "X/Twitter",
+      "whyFunny": "Domestic laziness / adulting"
+    },
+    {
+      "url": "https://www.thepoke.com/2026/09/11/our-25-favourite-funny-tweets-of-the-week-133/",
+      "quote": "cats will be like \"hello!!! we have a VERY IMPORTANT message for you!!! but you have to leave your office and come into the living room to hear it!!\" and then the message is just \"Hello I am a cat\"",
+      "context": "The Poke, “Our 25 Favourite Funny Tweets of the Week,” updated September 11, 2026. ([thepoke.com](https://www.thepoke.com/2026/09/11/our-25-favourite-funny-tweets-of-the-week-133/))",
+      "platform": "X/Twitter",
+      "whyFunny": "Home / pets / working from home"
+    },
+    {
+      "url": "https://www.thepoke.com/2026/09/11/our-25-favourite-funny-tweets-of-the-week-133/",
+      "quote": "\"Listen to your body\"\nMy body at 8:00 AM on a workday:\n– Quit immediately\n– Disappear off the grid\n– Befriend the crows\n– Return to nature",
+      "context": "The Poke, “Our 25 Favourite Funny Tweets of the Week,” updated September 11, 2026. ([thepoke.com](https://www.thepoke.com/2026/09/11/our-25-favourite-funny-tweets-of-the-week-133/))",
+      "platform": "X/Twitter",
+      "whyFunny": "Work / burnout / adulting"
+    },
+    {
+      "url": "https://www.thepoke.com/2026/09/11/our-25-favourite-funny-tweets-of-the-week-133/2/",
+      "quote": "Apparently people are folding their grocery bags into tiny perfect triangles now. I thought we all agreed the proper storage method was to nominate the strongest grocery bag and stuff 63 other bags inside it, like our mothers and grandmothers before us.",
+      "context": "The Poke, page 2 of the same weekly roundup. ([thepoke.com](https://www.thepoke.com/2026/09/11/our-25-favourite-funny-tweets-of-the-week-133/2/))",
+      "platform": "X/Twitter",
+      "whyFunny": "Household / groceries / inherited habits"
+    },
+    {
+      "url": "https://www.thepoke.com/2026/09/11/our-25-favourite-funny-tweets-of-the-week-133/2/",
+      "quote": "Something I learned from my daughter this summer is that baking can actually be really fun if you have no intention of cleaning up after you’re done.",
+      "context": "The Poke, page 2 of the same weekly roundup. ([thepoke.com](https://www.thepoke.com/2026/09/11/our-25-favourite-funny-tweets-of-the-week-133/2/))",
+      "platform": "X/Twitter",
+      "whyFunny": "Kitchen / parenting / cleanup"
+    },
+    {
+      "url": "https://onedio.com/haber/yatili-misafirin-zorlugundan-ic-sesiyle-irtibati-kesmek-isteyene-son-24-saatin-viral-tweetleri-1379227",
+      "quote": "Eve yatılı misafir geleceğini öğrenince ...",
+      "context": "Onedio, “Son 24 Saatin Viral Tweetleri,” published September 5, 2026. ([onedio.com](https://onedio.com/haber/yatili-misafirin-zorlugundan-ic-sesiyle-irtibati-kesmek-isteyene-son-24-saatin-viral-tweetleri-1379227))",
+      "platform": "X/Twitter",
+      "whyFunny": "Home / overnight guests"
+    },
+    {
+      "url": "https://onedio.com/haber/son-24-saatin-viral-tweetleri-1379292",
+      "quote": "araba yolculugunda babamın açtığı yapay zeka türküler yüzünden ben",
+      "context": "Onedio, “Son 24 Saatin Viral Tweetleri,” published September 6, 2026. ([onedio.com](https://onedio.com/haber/son-24-saatin-viral-tweetleri-1379292))",
+      "platform": "X/Twitter",
+      "whyFunny": "Car travel / family / AI music"
+    },
+    {
+      "url": "https://napoleoncat.com/blog/trending-memes/",
+      "quote": "Kinda chic to reply to every comment within the hour\nKinda chic to still answer the phone\nKinda chic to have a favourite spreadsheet",
+      "context": "NapoleonCat’s September 2026 trending-memes explainer lists “Kinda chic” as a popular meme format and gives these caption examples. ([napoleoncat.com](https://napoleoncat.com/blog/trending-memes/))",
+      "platform": "Meme format",
+      "whyFunny": "Work / adulting / spreadsheet pride"
+    },
+    {
+      "url": "https://napoleoncat.com/blog/trending-memes/",
+      "quote": "The subscription you forgot you could cancel.\nTrapped in a meeting with a leave button.",
+      "context": "NapoleonCat’s September 2026 trending-memes explainer gives these caption examples for the SpongeBob handcuffs meme. ([napoleoncat.com](https://napoleoncat.com/blog/trending-memes/))",
+      "platform": "Meme format",
+      "whyFunny": "Work / subscriptions / escapable problems"
+    }
+  ],
+  "templates": [
+    {
+      "name": "Drake Hotline Bling",
+      "url": "https://i.imgflip.com/30b1gx.jpg"
+    },
+    {
+      "name": "Two Buttons",
+      "url": "https://i.imgflip.com/1g8my4.jpg"
+    },
+    {
+      "name": "Distracted Boyfriend",
+      "url": "https://i.imgflip.com/1ur9b0.jpg"
+    },
+    {
+      "name": "Bernie I Am Once Again Asking For Your Support",
+      "url": "https://i.imgflip.com/3oevdk.jpg"
+    },
+    {
+      "name": "UNO Draw 25 Cards",
+      "url": "https://i.imgflip.com/3lmzyx.jpg"
+    },
+    {
+      "name": "Left Exit 12 Off Ramp",
+      "url": "https://i.imgflip.com/22bdq6.jpg"
+    },
+    {
+      "name": "Always Has Been",
+      "url": "https://i.imgflip.com/46e43q.png"
+    },
+    {
+      "name": "Anakin Padme 4 Panel",
+      "url": "https://i.imgflip.com/5c7lwq.png"
+    },
+    {
+      "name": "Epic Handshake",
+      "url": "https://i.imgflip.com/28j0te.jpg"
+    },
+    {
+      "name": "Running Away Balloon",
+      "url": "https://i.imgflip.com/261o3j.jpg"
+    },
+    {
+      "name": "Gru's Plan",
+      "url": "https://i.imgflip.com/26jxvz.jpg"
+    },
+    {
+      "name": "Waiting Skeleton",
+      "url": "https://i.imgflip.com/2fm6x.jpg"
+    },
+    {
+      "name": "Sad Pablo Escobar",
+      "url": "https://i.imgflip.com/1c1uej.jpg"
+    },
+    {
+      "name": "Disaster Girl",
+      "url": "https://i.imgflip.com/23ls.jpg"
+    },
+    {
+      "name": "Change My Mind",
+      "url": "https://i.imgflip.com/24y43o.jpg"
+    },
+    {
+      "name": "Trade Offer",
+      "url": "https://i.imgflip.com/54hjww.jpg"
+    },
+    {
+      "name": "Batman Slapping Robin",
+      "url": "https://i.imgflip.com/9ehk.jpg"
+    },
+    {
+      "name": "Bernie Sanders Once Again Asking",
+      "url": "https://i.imgflip.com/3pdf2w.png"
+    },
+    {
+      "name": "Ancient Aliens",
+      "url": "https://i.imgflip.com/26am.jpg"
+    },
+    {
+      "name": "Marked Safe From",
+      "url": "https://i.imgflip.com/2odckz.jpg"
+    },
+    {
+      "name": "X, X Everywhere",
+      "url": "https://i.imgflip.com/1ihzfe.jpg"
+    },
+    {
+      "name": "Y'all Got Any More Of That",
+      "url": "https://i.imgflip.com/21uy0f.jpg"
+    },
+    {
+      "name": "Mocking Spongebob",
+      "url": "https://i.imgflip.com/1otk96.jpg"
+    },
+    {
+      "name": "Bike Fall",
+      "url": "https://i.imgflip.com/1b42wl.jpg"
+    },
+    {
+      "name": "One Does Not Simply",
+      "url": "https://i.imgflip.com/1bij.jpg"
+    },
+    {
+      "name": "Woman Yelling At Cat",
+      "url": "https://i.imgflip.com/345v97.jpg"
+    },
+    {
+      "name": "Is This A Pigeon",
+      "url": "https://i.imgflip.com/1o00in.jpg"
+    },
+    {
+      "name": "You Guys are Getting Paid",
+      "url": "https://i.imgflip.com/2xscjb.png"
+    },
+    {
+      "name": "0 days without (Lenny, Simpsons)",
+      "url": "https://i.imgflip.com/72epa9.png"
+    },
+    {
+      "name": "Absolute Cinema",
+      "url": "https://i.imgflip.com/8d317n.png"
+    },
+    {
+      "name": "They're The Same Picture",
+      "url": "https://i.imgflip.com/2za3u1.jpg"
+    },
+    {
+      "name": "Mother Ignoring Kid Drowning In A Pool",
+      "url": "https://i.imgflip.com/46hhvr.jpg"
+    },
+    {
+      "name": "Expanding Brain",
+      "url": "https://i.imgflip.com/1jwhww.jpg"
+    },
+    {
+      "name": "This Is Where I'd Put My Trophy If I Had One",
+      "url": "https://i.imgflip.com/1wz1x.jpg"
+    },
+    {
+      "name": "Tuxedo Winnie The Pooh",
+      "url": "https://i.imgflip.com/2ybua0.png"
+    },
+    {
+      "name": "Buff Doge vs. Cheems",
+      "url": "https://i.imgflip.com/43a45p.png"
+    },
+    {
+      "name": "Oprah You Get A",
+      "url": "https://i.imgflip.com/gtj5t.jpg"
+    },
+    {
+      "name": "Squidward window",
+      "url": "https://i.imgflip.com/145qvv.jpg"
+    },
+    {
+      "name": "Megamind peeking",
+      "url": "https://i.imgflip.com/64sz4u.png"
+    },
+    {
+      "name": "This Is Fine",
+      "url": "https://i.imgflip.com/wxica.jpg"
+    }
   ]
 }

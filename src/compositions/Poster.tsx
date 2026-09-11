@@ -58,7 +58,7 @@ const Headline: React.FC<{ text: string; size: number; color?: string; accent?: 
 
 /** Kicik setup setri — basliqdan evvel */
 const Kicker: React.FC<{ text: string; dark?: boolean }> = ({ text, dark = false }) => (
-  <div style={{ fontFamily: font, fontSize: 44, fontWeight: 700, lineHeight: 1.15, marginBottom: 18, color: dark ? "rgba(30,33,36,0.85)" : "rgba(255,255,255,0.9)", letterSpacing: -0.5 }}>{text}</div>
+  <div style={{ fontFamily: font, fontSize: text.length > 40 ? 38 : 44, fontWeight: 700, lineHeight: 1.15, marginBottom: 18, color: dark ? "rgba(30,33,36,0.85)" : "rgba(255,255,255,0.9)", letterSpacing: -0.5 }}>{text}</div>
 );
 
 const CtaPill: React.FC<{ label: string; dark?: boolean; size?: number }> = ({ label, dark = false, size = 44 }) => (
@@ -87,7 +87,7 @@ export const Poster: React.FC<PosterProps> = ({ photo, headline, kicker, cta, va
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(20,22,24,0.72) 0%, rgba(20,22,24,0.15) 28%, rgba(20,22,24,0) 45%, rgba(20,22,24,0.25) 62%, rgba(20,22,24,0.9) 100%)" }} />
         <Logo />
         {kicker && (
-          <div style={{ position: "absolute", left: 60, right: 60, top: 150, fontSize: 54, fontWeight: 800, lineHeight: 1.15, color: colors.white, letterSpacing: -1, textShadow: "0 4px 24px rgba(0,0,0,0.6)" }}>
+          <div style={{ position: "absolute", left: 60, right: 60, top: 150, fontSize: kicker.length > 60 ? 44 : kicker.length > 36 ? 50 : 56, fontWeight: 800, lineHeight: 1.15, color: colors.white, letterSpacing: -1, textShadow: "0 4px 24px rgba(0,0,0,0.6)" }}>
             {kicker}
           </div>
         )}
