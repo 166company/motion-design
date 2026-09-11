@@ -19,6 +19,6 @@
   },
   "2026-09-11-carousel": {
     "status": "təsdiq-gözləyir",
-    "note": "İstifadəçi Carousel slayd mətnlərini konkret verib və onların olduğu kimi saxlanmasını istəyir. Səs, musiqi və vizual dəyişiklik barədə əlavə tələb yoxdur."
+    "note": "İstifadəçi Carousel üçün 1-ci və 2-ci slayd mətnlərini konkret verib; mətnlər olduğu kimi istifadə olunmalıdır. Səs, musiqi, vizual və şablon dəyişikliyi ilə bağlı əlavə göstəriş yoxdur."
   }
 }
