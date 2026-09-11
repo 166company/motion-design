@@ -44,11 +44,20 @@ jobs:
       - name: Instagram + Facebook
         id: pub
         run: |
+          set -o pipefail
           ID="${{ steps.pick.outputs.id }}"
           gh issue comment ${{ github.event.issue.number }} --body "🚀 Yayımlanır… (Instagram videonu emal edir, ~2 dəq)"
           URL="https://github.com/${{ github.repository }}/releases/download/reel-$ID/$ID.mp4"
-          npx tsx pipeline/publish.ts "$URL" "content/data/$ID.meta.json" | tee pub.log
-          echo "ig=$(grep -oE 'https://www.instagram.com[^ ]*' pub.log | head -1)" >> "$GITHUB_OUTPUT"
+          if ! npx tsx pipeline/publish.ts "$URL" "content/data/$ID.meta.json" 2>&1 | tee pub.log; then
+            ERR=$(tail -n 5 pub.log | paste -sd ' ' | cut -c1-400)
+            gh issue comment ${{ github.event.issue.number }} --body "❌ Yayım alınmadı: $ERR
+          Video paneldə 'təsdiq gözləyir' olaraq qalır — bir də Yayımla basa bilərsən."
+            gh issue close ${{ github.event.issue.number }} --reason "not planned"
+            exit 1
+          fi
+          IG=$(grep -oE 'https://www.instagram.com[^ ]*' pub.log | head -1)
+          if [ -z "$IG" ]; then echo "Instagram linki tapılmadı — yayım şübhəlidir"; exit 1; fi
+          echo "ig=$IG" >> "$GITHUB_OUTPUT"
           echo "fb=$(grep -oE 'https://www.facebook.com/reel/[0-9]+' pub.log | head -1)" >> "$GITHUB_OUTPUT"
 
       - name: Status, panel, Issue-lar

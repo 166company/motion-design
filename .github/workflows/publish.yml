@@ -52,8 +52,11 @@ jobs:
         run: |
           ID="${{ steps.pick.outputs.id }}"
           URL="https://github.com/${{ github.repository }}/releases/download/reel-$ID/$ID.mp4"
-          npx tsx pipeline/publish.ts "$URL" "content/data/$ID.meta.json" | tee pub.log
-          echo "ig=$(grep -oE 'https://www.instagram.com[^ ]*' pub.log | head -1)" >> $GITHUB_OUTPUT
+          set -o pipefail
+          npx tsx pipeline/publish.ts "$URL" "content/data/$ID.meta.json" 2>&1 | tee pub.log
+          IG=$(grep -oE 'https://www.instagram.com[^ ]*' pub.log | head -1)
+          if [ -z "$IG" ]; then echo "Instagram linki tapılmadı"; exit 1; fi
+          echo "ig=$IG" >> $GITHUB_OUTPUT
           echo "fb=$(grep -oE 'https://www.facebook.com/reel/[0-9]+' pub.log | head -1)" >> $GITHUB_OUTPUT
 
       - name: Statusu yenilə

@@ -9,8 +9,26 @@ const TOKEN = process.env.META_ACCESS_TOKEN!;
 const IG = process.env.META_IG_USER_ID!;
 const PAGE = process.env.META_PAGE_ID!;
 
+/** Şəbəkə xətalarında (ETIMEDOUT, ENETUNREACH, 5xx) 4 cəhd, artan gözləmə */
+const fetchRetry = async (url: string, init?: RequestInit, tries = 4): Promise<Response> => {
+  let last: any;
+  for (let i = 0; i < tries; i++) {
+    try {
+      const r = await fetch(url, init);
+      if (r.status < 500) return r;
+      last = new Error(`HTTP ${r.status}`);
+    } catch (e) {
+      last = e;
+    }
+    const wait = 3000 * (i + 1);
+    console.log(`  şəbəkə xətası (${(last?.cause?.code ?? last?.message ?? "?").toString().slice(0, 40)}), ${wait / 1000}s sonra təkrar…`);
+    await new Promise((r) => setTimeout(r, wait));
+  }
+  throw last;
+};
+
 const api = async (path: string, init?: RequestInit) => {
-  const res = await fetch(`https://graph.facebook.com/${V}/${path}`, init);
+  const res = await fetchRetry(`https://graph.facebook.com/${V}/${path}`, init);
   const data = await res.json();
   if (!res.ok) throw new Error(`Graph ${res.status}: ${JSON.stringify(data).slice(0, 300)}`);
   return data as any;
@@ -56,7 +74,7 @@ export const publishFacebook = async (videoUrl: string, description: string) => 
   });
   const videoId = start.video_id as string;
 
-  const up = await fetch(`https://rupload.facebook.com/video-upload/${V}/${videoId}`, {
+  const up = await fetchRetry(`https://rupload.facebook.com/video-upload/${V}/${videoId}`, {
     method: "POST",
     headers: { Authorization: `OAuth ${pt}`, file_url: videoUrl },
   });
@@ -83,3 +101,7 @@ if (process.argv[1]?.endsWith("publish.ts")) {
   const fb = await publishFacebook(videoUrl, caption);
   console.log("  ✓", fb.permalink);
 }
+process.on("unhandledRejection", (e: any) => {
+  console.error("YAYIM XƏTASI:", e?.message ?? e);
+  process.exit(1);
+});
