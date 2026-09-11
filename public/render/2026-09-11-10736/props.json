@@ -1,0 +1,288 @@
+{
+  "id": "2026-09-11-10736",
+  "hook": "NAXÇIVANDA DAŞINMA NƏYƏ GÖRƏ FƏRQLİDİR?",
+  "total": 4,
+  "cta": {
+    "line1": "Sifarişi erkən ver, rahat köç",
+    "line2": "Yuk.az"
+  },
+  "music": "render/2026-09-11-10736/music.norm.wav",
+  "musicVolume": 0.45,
+  "scenes": [
+    {
+      "kind": "hook",
+      "spoken": "Naxçıvanda daşınma başqa cür planlanır.",
+      "audio": "render/2026-09-11-10736/s0.wav",
+      "words": [
+        {
+          "w": "Naxçıvanda",
+          "start": 0.201,
+          "dur": 0.486
+        },
+        {
+          "w": "daşınma",
+          "start": 0.826,
+          "dur": 0.417
+        },
+        {
+          "w": "başqa",
+          "start": 1.278,
+          "dur": 0.301
+        },
+        {
+          "w": "cür",
+          "start": 1.602,
+          "dur": 0.162
+        },
+        {
+          "w": "planlanır",
+          "start": 1.799,
+          "dur": 0.59
+        }
+      ],
+      "durationInFrames": 106,
+      "media": {
+        "kind": "video",
+        "src": "render/2026-09-11-10736/m0.mp4",
+        "duration": 16
+      }
+    },
+    {
+      "kind": "item",
+      "spoken": "Əvvəl yükün həcmini, giriş şəraitini və tarixi dəqiqləşdirirlər.",
+      "title": "ƏVVƏL 3 ŞEYİ DƏQİQLƏŞDİR",
+      "body": "Yükün həcmi, giriş şəraiti, daşınma tarixi.",
+      "index": 1,
+      "audio": "render/2026-09-11-10736/s1.wav",
+      "words": [
+        {
+          "w": "Əvvəl",
+          "start": 0.191,
+          "dur": 0.208
+        },
+        {
+          "w": "yükün",
+          "start": 0.515,
+          "dur": 0.243
+        },
+        {
+          "w": "həcmini",
+          "start": 0.781,
+          "dur": 0.44
+        },
+        {
+          "w": "giriş",
+          "start": 1.325,
+          "dur": 0.255
+        },
+        {
+          "w": "şəraitini",
+          "start": 1.603,
+          "dur": 0.544
+        },
+        {
+          "w": "və",
+          "start": 2.182,
+          "dur": 0.093
+        },
+        {
+          "w": "tarixi",
+          "start": 2.309,
+          "dur": 0.382
+        },
+        {
+          "w": "dəqiqləşdirirlər",
+          "start": 2.714,
+          "dur": 0.961
+        }
+      ],
+      "durationInFrames": 145,
+      "media": {
+        "kind": "video",
+        "src": "render/2026-09-11-10736/m1.mp4",
+        "duration": 10
+      }
+    },
+    {
+      "kind": "item",
+      "spoken": "Qiymət sabit olmur. Həcmə, mərtəbəyə, məsafəyə görə deyilir.",
+      "title": "QİYMƏT SABİT DEYİL",
+      "body": "Məbləğ həcminə, mərtəbəyə, məsafəyə və işə görə bildirilir.",
+      "index": 2,
+      "audio": "render/2026-09-11-10736/s2.wav",
+      "words": [
+        {
+          "w": "Qiymət",
+          "start": 0.212,
+          "dur": 0.185
+        },
+        {
+          "w": "sabit",
+          "start": 0.536,
+          "dur": 0.382
+        },
+        {
+          "w": "olmur",
+          "start": 0.953,
+          "dur": 0.382
+        },
+        {
+          "w": "Həcmə",
+          "start": 2.19,
+          "dur": 0.301
+        },
+        {
+          "w": "mərtəbəyə",
+          "start": 2.642,
+          "dur": 0.556
+        },
+        {
+          "w": "məsafəyə",
+          "start": 3.29,
+          "dur": 0.498
+        },
+        {
+          "w": "görə",
+          "start": 3.811,
+          "dur": 0.22
+        },
+        {
+          "w": "deyilir",
+          "start": 4.065,
+          "dur": 0.428
+        }
+      ],
+      "durationInFrames": 170,
+      "media": {
+        "kind": "video",
+        "src": "render/2026-09-11-10736/m2.mp4",
+        "duration": 8
+      }
+    },
+    {
+      "kind": "item",
+      "spoken": "Uzun yol üçün qablaşdırma gücləndirilir, əşyalar daha sıx bərkidilir.",
+      "title": "QABLAŞDIRMA ƏN VACİB HİSSƏDİR",
+      "body": "Uzun yol üçün əlavə qoruyucu material və bərkitmə lazımdır.",
+      "index": 3,
+      "audio": "render/2026-09-11-10736/s3.wav",
+      "words": [
+        {
+          "w": "Uzun",
+          "start": 0.19,
+          "dur": 0.127
+        },
+        {
+          "w": "yol",
+          "start": 0.433,
+          "dur": 0.174
+        },
+        {
+          "w": "üçün",
+          "start": 0.63,
+          "dur": 0.185
+        },
+        {
+          "w": "qablaşdırma",
+          "start": 0.85,
+          "dur": 0.66
+        },
+        {
+          "w": "gücləndirilir",
+          "start": 1.544,
+          "dur": 0.718
+        },
+        {
+          "w": "əşyalar",
+          "start": 2.377,
+          "dur": 0.44
+        },
+        {
+          "w": "daha",
+          "start": 2.852,
+          "dur": 0.174
+        },
+        {
+          "w": "sıx",
+          "start": 3.049,
+          "dur": 0.174
+        },
+        {
+          "w": "bərkidilir",
+          "start": 3.245,
+          "dur": 0.59
+        }
+      ],
+      "durationInFrames": 149,
+      "media": {
+        "kind": "video",
+        "src": "render/2026-09-11-10736/m3.mp4",
+        "duration": 9
+      }
+    },
+    {
+      "kind": "item",
+      "spoken": "Maşın gözübağlı seçilmir, siyahıya görə uyğun nəqliyyat verilir.",
+      "title": "MAŞIN YÜKƏ GÖRƏ SEÇİLİR",
+      "body": "Kiçikdən böyük furqona, hətta xüsusi nəqliyyata qədər uyğunlaşdırılır.",
+      "index": 4,
+      "audio": "render/2026-09-11-10736/s4.wav",
+      "words": [
+        {
+          "w": "Maşın",
+          "start": 0.201,
+          "dur": 0.185
+        },
+        {
+          "w": "gözübağlı",
+          "start": 0.514,
+          "dur": 0.521
+        },
+        {
+          "w": "seçilmir",
+          "start": 1.058,
+          "dur": 0.532
+        },
+        {
+          "w": "siyahıya",
+          "start": 1.694,
+          "dur": 0.417
+        },
+        {
+          "w": "görə",
+          "start": 2.134,
+          "dur": 0.208
+        },
+        {
+          "w": "uyğun",
+          "start": 2.377,
+          "dur": 0.278
+        },
+        {
+          "w": "nəqliyyat",
+          "start": 2.678,
+          "dur": 0.463
+        },
+        {
+          "w": "verilir",
+          "start": 3.164,
+          "dur": 0.382
+        }
+      ],
+      "durationInFrames": 141,
+      "media": {
+        "kind": "video",
+        "src": "render/2026-09-11-10736/m4.mp4",
+        "duration": 16
+      }
+    },
+    {
+      "kind": "cta",
+      "spoken": "",
+      "audio": null,
+      "words": [],
+      "durationInFrames": 78,
+      "media": null
+    }
+  ]
+}
