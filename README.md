@@ -173,3 +173,17 @@ Bütün fayl əməliyyatlarında `encoding="utf-8"`, mühitdə `PYTHONUTF8=1`.
 `az-AZ-BanuNeural` (qadın) və `az-AZ-BabekNeural` (kişi).
 Dəyişmək üçün: GitHub `Variables → TTS_VOICE`, lokal üçün `.env`.
 Sürət `TTS_RATE` ilə (default `+8%` — reels ritmi üçün).
+
+### Səviyyələr (dəyişmə, ölçülüb)
+
+Hər mənbə mix-dən əvvəl [pipeline/loudness.py](pipeline/loudness.py) ilə normallaşdırılır:
+
+| Mənbə | Hədəf | Qeyd |
+|---|---|---|
+| Səsləndirmə | −18 dBFS RMS | edge-tts xam çıxışı ~−25-dir, sosial media üçün sakitdir |
+| Musiqi | −20 dBFS RMS | trekin **ən dolğun** hissəsi videonun uzunluğunda kəsilir — sakit girişlər ötürülür |
+| Musiqi, səsləndirmə altında | ×0.45 (≈−27) | `musicVolume` — TipList-də ducking |
+| Musiqi, CTA-da | ×0.9 (≈−21) | səsləndirmə bitəndə qalxır, son 1.3 san sönür |
+
+Nəticə: səsləndirmə pauzalarında musiqi −27…−31 dBFS, CTA-da ≈−23.
+İlk versiyada `musicVolume: 0.1` və normallaşdırmasız mənbələr −47 dBFS verirdi — praktiki səssizlik.
