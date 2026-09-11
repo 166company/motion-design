@@ -1,6 +1,6 @@
 {
   "repo": "166company/motion-design",
-  "updatedAt": "2026-09-11T13:32:45.422Z",
+  "updatedAt": "2026-09-11T13:35:43.412Z",
   "entries": [
     {
       "id": "2026-09-11-story",
@@ -118,97 +118,6 @@
         "url": "https://www.thepoke.com/2026/09/11/our-25-favourite-funny-tweets-of-the-week-133/",
         "quote": "I regret to inform you that the secret to a clean house is to clean the house"
       },
-      "createdAt": "2026-09-11",
-      "template": "Poster",
-      "voice": null,
-      "music": {
-        "label": "Orijinal sintez",
-        "license": null,
-        "vocal": false,
-        "source": "synth"
-      }
-    },
-    {
-      "id": "2026-09-11-poster-6",
-      "images": [
-        "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-poster-6/2026-09-11-poster-6-1.png"
-      ],
-      "hook": "Köç qiyməti? — Əvvəlcədən bil",
-      "caption": "📦 Yük.az-da məbləğ hazır tariflə yox, yükün həcmi, ünvan şəraiti və işin növünə görə hesablanır.\n\nOperator telefonda əvvəlcədən bildirir; qablaşdırma materialı və sığorta daxildir.\n\n📞 Zəng et: 050 209 62 99",
-      "hashtags": [
-        "#Yükaz",
-        "#Yukaz",
-        "#EvDaşınması",
-        "#Yükdaşıma",
-        "#BakıKöçü",
-        "#SığortalıDaşıma"
-      ],
-      "source": "https://yuk.az",
-      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-poster-6/2026-09-11-poster-6.mp4",
-      "duration": 0,
-      "scenes": 1,
-      "status": "təsdiq-gözləyir",
-      "kind": "sales",
-      "createdAt": "2026-09-11",
-      "template": "Poster",
-      "voice": null,
-      "music": {
-        "label": "Orijinal sintez",
-        "license": null,
-        "vocal": false,
-        "source": "synth"
-      }
-    },
-    {
-      "id": "2026-09-11-poster-4",
-      "images": [
-        "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-poster-4/2026-09-11-poster-4-1.png"
-      ],
-      "hook": "Dedilər, az şeydir — Bir neçə qutu",
-      "caption": "📦 “Az şeydir” cümləsi köç günü böyüyüb divan olur.\nYük.az gəlir, qutular sakitləşir 😄\n\n📞 Zəng et: 050 209 62 99",
-      "hashtags": [
-        "#Yükaz",
-        "#Yukaz",
-        "#EvKöçü",
-        "#Yükdaşıma",
-        "#BakıKöçü",
-        "#KöçGünü"
-      ],
-      "source": "https://yuk.az",
-      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-poster-4/2026-09-11-poster-4.mp4",
-      "duration": 0,
-      "scenes": 1,
-      "status": "təsdiq-gözləyir",
-      "kind": "fun",
-      "createdAt": "2026-09-11",
-      "template": "Poster",
-      "voice": null,
-      "music": {
-        "label": "Orijinal sintez",
-        "license": null,
-        "vocal": false,
-        "source": "synth"
-      }
-    },
-    {
-      "id": "2026-09-11-poster-2",
-      "images": [
-        "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-poster-2/2026-09-11-poster-2-1.png"
-      ],
-      "hook": "Qablaşdırma Daxildir",
-      "caption": "📦 Əşyaların yolda narahatlıq yaratmasın.\n\n🧤 Yük.az qablaşdırma materialını daşınmaya daxil edir, işçilər əşyaları səliqə ilə hazırlayır.\n\n🛡️ Sığorta da daxildir — köç daha arxayın keçir.\n\n📞 Zəng et: 050 209 62 99",
-      "hashtags": [
-        "#Yükaz",
-        "#Qablaşdırma",
-        "#EvKöçü",
-        "#TəhlükəsizDaşıma",
-        "#YükXidməti"
-      ],
-      "source": "https://yuk.az",
-      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-poster-2/2026-09-11-poster-2.mp4",
-      "duration": 0,
-      "scenes": 1,
-      "status": "təsdiq-gözləyir",
       "createdAt": "2026-09-11",
       "template": "Poster",
       "voice": null,

@@ -72,12 +72,7 @@ jobs:
           io.open(p, "w", encoding="utf-8").write(json.dumps(d, ensure_ascii=False, indent=2))
           PY
           npx tsx pipeline/panel.ts "$ID" "${{ github.repository }}"
-          git config user.name "yukaz-agent"
-          git config user.email "actions@github.com"
-          git add content/data/status.json docs/data.json
-          git commit -m "yayımlandı: $ID" || true
-          git pull --rebase --autostash -X theirs origin main
-          git push
+          bash pipeline/sync_push.sh "yayımlandı: $ID" "${{ github.repository }}" content/data/status.json docs/data.json
           for n in $(gh issue list --state open --search "Təsdiq: $ID in:title" --json number -q '.[].number'); do
             gh issue close "$n" --comment "✅ Paneldən yayımlandı."
           done
@@ -120,12 +115,7 @@ jobs:
             gh issue close "$n" --reason "not planned" --comment "Paneldən silindi."
           done
           npx tsx pipeline/panel.ts "$ID" "${{ github.repository }}"
-          git config user.name "yukaz-agent"
-          git config user.email "actions@github.com"
-          git add content/data/status.json docs/data.json
-          git commit -m "silindi: $ID" || true
-          git pull --rebase --autostash -X theirs origin main
-          git push
+          bash pipeline/sync_push.sh "silindi: $ID" "${{ github.repository }}" content/data/status.json docs/data.json
           gh issue close ${{ github.event.issue.number }} --comment "✅ Silindi: Release ləğv edildi, paneldən çıxarıldı."
 
   # ------------------------------------------------------------------ DƏYİŞİKLİK
@@ -236,12 +226,7 @@ jobs:
           io.open(p, "w", encoding="utf-8").write(json.dumps(d, ensure_ascii=False, indent=2))
           PY
           npx tsx pipeline/panel.ts "$ID" "${{ github.repository }}"
-          git config user.name "yukaz-agent"
-          git config user.email "actions@github.com"
-          git add docs/data.json content/data content/articles-cache.json content/trends.json public/render public/assets src/assetBounds.json
-          git commit -m "düzəliş: $ID" || true
-          git pull --rebase --autostash -X theirs origin main
-          git push
+          bash pipeline/sync_push.sh "düzəliş: $ID" "${{ github.repository }}" docs/data.json content/data content/articles-cache.json content/trends.json public/render public/assets src/assetBounds.json
           gh issue comment ${{ github.event.issue.number }} --body "✅ Yeni versiya hazırdır: https://github.com/${{ github.repository }}/releases/download/reel-$ID/$ID.mp4
           Təsdiq üçün əvvəlki 'Təsdiq: $ID' Issue-suna \`/publish\` yaz."
           gh issue close ${{ github.event.issue.number }}

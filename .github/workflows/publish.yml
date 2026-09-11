@@ -74,12 +74,7 @@ jobs:
           io.open(p, "w", encoding="utf-8").write(json.dumps(d, ensure_ascii=False, indent=2))
           PY
           npx tsx pipeline/panel.ts "$ID" "${{ github.repository }}"
-          git config user.name "yukaz-agent"
-          git config user.email "actions@github.com"
-          git add content/data/status.json docs/data.json
-          git commit -m "yayımlandı: $ID" || echo "dəyişiklik yoxdur"
-          git pull --rebase --autostash -X theirs origin main
-          git push
+          bash pipeline/sync_push.sh "yayımlandı: $ID" "${{ github.repository }}" content/data/status.json docs/data.json
 
       - name: Issue-nu bağla
         if: github.event_name == 'issue_comment'
