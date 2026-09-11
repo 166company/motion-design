@@ -123,6 +123,7 @@ const main = async () => {
   const secs = scenes.reduce((a, b) => a + b.durationInFrames, 0) / FPS;
   let track: string | null = null;
   let attribution: string | null = null;
+  let musicTrack: { id: string; title: string; artist: string; license: string } | null = null;
 
   const local = await fs
     .readdir("public/music")
@@ -141,6 +142,7 @@ const main = async () => {
     if (picked) {
       track = `render/${id}/music.mp3`;
       attribution = picked.attribution;
+      musicTrack = { id: picked.track.id, title: picked.track.title, artist: picked.track.artist, license: picked.track.license };
       log(`musiqi: Audius — ${picked.track.title} (${picked.track.artist}, ${picked.track.license})`);
     }
   }
@@ -180,7 +182,7 @@ const main = async () => {
 
 ${attribution}` : s.caption,
       hashtags: s.hashtags,
-      music: track, attribution,
+      music: track, attribution, musicTrack,
     }, null, 2),
     "utf-8"
   );

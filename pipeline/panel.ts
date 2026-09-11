@@ -15,6 +15,7 @@ type Entry = {
   createdAt: string;
   instagram?: string;
   facebook?: string;
+  music: { label: string; license: string | null; vocal: boolean | null; source: "audius" | "local" | "synth" };
 };
 
 const FPS = 30;
@@ -25,6 +26,26 @@ export const buildPanel = async (repo: string) => {
   const status: Record<string, any> = JSON.parse(
     await fs.readFile(path.join(dataDir, "status.json"), "utf-8").catch(() => "{}")
   );
+
+  // Whisper vokal yoxlamasının nəticələri (screen_music.py)
+  const screen: Record<string, { vocal: boolean | null; title?: string }> = JSON.parse(
+    await fs.readFile(path.join(dataDir, "music-screen.json"), "utf-8").catch(() => "{}")
+  );
+
+  const musicOf = (meta: any): Entry["music"] => {
+    if (meta.musicTrack || meta.attribution) {
+      const t = meta.musicTrack;
+      const label = t ? `${t.title} — ${t.artist}` : String(meta.attribution).replace(/^🎵\s*/, "").replace(/\s*\(.*$/, "");
+      const license = t?.license ?? (String(meta.attribution).match(/\(([^)]+)\)/)?.[1] ?? null);
+      // ID ilə, olmasa adla tap
+      const hit = t ? screen[t.id] : Object.values(screen).find((v) => v.title && label.startsWith(v.title));
+      return { label, license, vocal: hit?.vocal ?? null, source: "audius" };
+    }
+    if (meta.music && String(meta.music).startsWith("music/")) {
+      return { label: String(meta.music).replace(/^music\//, ""), license: null, vocal: null, source: "local" };
+    }
+    return { label: "Orijinal sintez", license: null, vocal: false, source: "synth" };
+  };
 
   const entries: Entry[] = [];
   for (const f of files) {
@@ -47,6 +68,7 @@ export const buildPanel = async (repo: string) => {
       createdAt: meta.id.slice(0, 10),
       instagram: st.instagram,
       facebook: st.facebook,
+      music: musicOf(meta),
     });
   }
 

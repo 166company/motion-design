@@ -1,6 +1,6 @@
 {
   "repo": "166company/motion-design",
-  "updatedAt": "2026-09-11T05:49:14.452Z",
+  "updatedAt": "2026-09-11T06:14:53.179Z",
   "entries": [
     {
       "id": "2026-09-11-10736",
@@ -19,7 +19,13 @@
       "duration": 25.7,
       "scenes": 6,
       "status": "təsdiq-gözləyir",
-      "createdAt": "2026-09-11"
+      "createdAt": "2026-09-11",
+      "music": {
+        "label": "Don't Stop — Pamela Yuen",
+        "license": "CC BY",
+        "vocal": false,
+        "source": "audius"
+      }
     },
     {
       "id": "2026-09-10-10764",
@@ -37,7 +43,13 @@
       "duration": 25.7,
       "scenes": 6,
       "status": "təsdiq-gözləyir",
-      "createdAt": "2026-09-10"
+      "createdAt": "2026-09-10",
+      "music": {
+        "label": "Orijinal sintez",
+        "license": null,
+        "vocal": false,
+        "source": "synth"
+      }
     }
   ]
 }
