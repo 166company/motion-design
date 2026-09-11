@@ -7,7 +7,7 @@ import { pickArticle, getArticle } from "./wp.ts";
 import { writeScript } from "./script.ts";
 import { findMedia, normalizeVideo } from "./assets.ts";
 import { pickAndDownload } from "./audius.ts";
-import { voices, contact } from "../src/brand/contact.ts";
+import { pickVoice, contact } from "../src/brand/contact.ts";
 
 const FPS = 30;
 const TAIL = 16;        // səhnə sonuna nəfəs payı (kadr) — keçid (12) bunun içində qalır
@@ -73,7 +73,7 @@ const main = async () => {
   await fs.mkdir(dir, { recursive: true });
 
   // Hər video fərqli səslə — məqalə ID-sinə görə növbə. OPENAI_TTS_VOICE verilibsə, o üstündür.
-  const voice = process.env.OPENAI_TTS_VOICE || voices[article.id % voices.length];
+  const voice = process.env.OPENAI_TTS_VOICE || pickVoice(`${article.id}-${article.title}`);
   console.log(`3. Səsləndirilir (${process.env.TTS_ENGINE === "edge" ? "edge-tts" : "OpenAI " + voice})…`);
   const jobs = [
     { id: "s0", text: s.hookSpoken },

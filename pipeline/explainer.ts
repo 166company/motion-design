@@ -10,7 +10,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { listArticles } from "./wp.ts";
 import { runTts, normalizeVo, pickMusic } from "./audio.ts";
-import { voices, contact } from "../src/brand/contact.ts";
+import { pickVoice, contact } from "../src/brand/contact.ts";
 
 const FPS = 30;
 const TAIL = 16;
@@ -113,7 +113,7 @@ const main = async () => {
   };
 
   let tts: Record<string, { words: any[]; duration: number }> = {};
-  const voice = process.env.OPENAI_TTS_VOICE || voices[day % voices.length];
+  const voice = process.env.OPENAI_TTS_VOICE || pickVoice(id + c.intro.heading);
   if (!silent) {
     console.log(`3. Səsləndirilir (OpenAI ${voice})…`);
     tts = await runTts(order.map((k) => ({ id: k, text: spoken[k] })), dir, voice);
