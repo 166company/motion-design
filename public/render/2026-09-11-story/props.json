@@ -1,7 +1,7 @@
 {
   "id": "2026-09-11-story",
   "cta": {
-    "line1": "Yük.az-a indi zəng et",
+    "line1": "Yuk.az ilə köç, rahat keçsin",
     "line2": "Zəng et"
   },
   "music": "render/2026-09-11-story/music.norm.wav",
@@ -10,188 +10,183 @@
     {
       "kind": "call",
       "heading": "Bir zəng bəsdir",
-      "spoken": "Bir zəng elə, qalanını Yük nöqtə az düzəldir.",
+      "spoken": "Binanın qabağında bir zəng edirsən, işi açırıq.",
       "audio": "render/2026-09-11-story/call.wav",
       "words": [
         {
-          "w": "Bir",
+          "w": "Binanın",
           "start": 0,
-          "dur": 0.48
+          "dur": 0.64
+        },
+        {
+          "w": "qabağında",
+          "start": 0.64,
+          "dur": 0.7
+        },
+        {
+          "w": "bir",
+          "start": 1.34,
+          "dur": 0.6
         },
         {
           "w": "zəng",
-          "start": 0.48,
-          "dur": 0.38
+          "start": 1.94,
+          "dur": 0.28
         },
         {
-          "w": "elə,",
-          "start": 0.86,
-          "dur": 0.42
+          "w": "edirsən,",
+          "start": 2.22,
+          "dur": 0.82
         },
         {
-          "w": "qalanını",
-          "start": 1.64,
-          "dur": 0.5
+          "w": "işi",
+          "start": 3.3,
+          "dur": 0.12
         },
         {
-          "w": "Yük",
-          "start": 2.14,
-          "dur": 0.86
-        },
-        {
-          "w": "nöqtə",
-          "start": 3,
-          "dur": 0.62
-        },
-        {
-          "w": "az",
-          "start": 3.62,
-          "dur": 0.44
-        },
-        {
-          "w": "düzəldir.",
-          "start": 4.06,
-          "dur": 0.64
+          "w": "açırıq.",
+          "start": 3.42,
+          "dur": 0.52
         }
       ],
-      "durationInFrames": 170
+      "durationInFrames": 149
     },
     {
       "kind": "pack",
       "heading": "Qablaşdırma bizdən",
-      "spoken": "Qutular, divan, qablaşdırma materialı — hamısı hazır gedir.",
+      "spoken": "Daşıyıcı gəlir, qutular düzülür, divan da hazır olur.",
       "audio": "render/2026-09-11-story/pack.wav",
       "words": [
         {
-          "w": "Qutular,",
+          "w": "Daşıyıcı",
           "start": 0,
-          "dur": 0.68
+          "dur": 0.86
         },
         {
-          "w": "divan,",
-          "start": 1.32,
+          "w": "gəlir,",
+          "start": 0.86,
+          "dur": 0.48
+        },
+        {
+          "w": "qutular",
+          "start": 2.1,
+          "dur": 0.32
+        },
+        {
+          "w": "düzülür,",
+          "start": 2.42,
+          "dur": 0.62
+        },
+        {
+          "w": "divan",
+          "start": 3.66,
+          "dur": 0.32
+        },
+        {
+          "w": "da",
+          "start": 3.98,
           "dur": 0.24
-        },
-        {
-          "w": "qablaşdırma",
-          "start": 2.06,
-          "dur": 0.54
-        },
-        {
-          "w": "materialı",
-          "start": 2.6,
-          "dur": 0.58
-        },
-        {
-          "w": "—",
-          "start": 3.18,
-          "dur": 0.76
-        },
-        {
-          "w": "hamısı",
-          "start": 3.94,
-          "dur": 0.28
         },
         {
           "w": "hazır",
           "start": 4.22,
-          "dur": 0.46
+          "dur": 0.34
         },
         {
-          "w": "gedir.",
-          "start": 4.68,
-          "dur": 0.3
+          "w": "olur.",
+          "start": 4.56,
+          "dur": 0.24
         }
       ],
-      "durationInFrames": 179
+      "durationInFrames": 178
     },
     {
       "kind": "load",
-      "heading": "Yüklədik, gedir",
-      "spoken": "Mebel, qutular maşına yığılır, yol başlayır dərhal.",
+      "heading": "Yüklədik, getdik",
+      "spoken": "Əşyalar maşına səliqə ilə dolur, yol başlayır.",
       "audio": "render/2026-09-11-story/load.wav",
       "words": [
         {
-          "w": "Mebel,",
+          "w": "Əşyalar",
           "start": 0,
-          "dur": 0.62
-        },
-        {
-          "w": "qutular",
-          "start": 1.16,
-          "dur": 0.36
+          "dur": 0.88
         },
         {
           "w": "maşına",
-          "start": 1.52,
-          "dur": 0.7
+          "start": 0.88,
+          "dur": 0.84
         },
         {
-          "w": "yığılır,",
-          "start": 2.22,
-          "dur": 0.54
+          "w": "səliqə",
+          "start": 1.72,
+          "dur": 0.76
+        },
+        {
+          "w": "ilə",
+          "start": 2.48,
+          "dur": 0.16
+        },
+        {
+          "w": "dolur,",
+          "start": 2.64,
+          "dur": 0.4
         },
         {
           "w": "yol",
-          "start": 3.5,
+          "start": 3.76,
           "dur": 0.08
         },
         {
-          "w": "başlayır",
-          "start": 3.54,
-          "dur": 0.8
-        },
-        {
-          "w": "dərhal.",
-          "start": 4.34,
-          "dur": 0.5
+          "w": "başlayır.",
+          "start": 3.84,
+          "dur": 0.56
         }
       ],
-      "durationInFrames": 173
+      "durationInFrames": 162
     },
     {
       "kind": "arrive",
-      "heading": "Yeni evə xoş gəlmisən",
-      "spoken": "Yeni binaya çatdın, əşyalar yerinə rahat daşınır.",
+      "heading": "Yeni evə xoş gəldin",
+      "spoken": "Yeni binada qutunu daşıyırıq, sən rahat yerləşirsən.",
       "audio": "render/2026-09-11-story/arrive.wav",
       "words": [
         {
           "w": "Yeni",
           "start": 0,
-          "dur": 0.48
+          "dur": 0.54
         },
         {
-          "w": "binaya",
-          "start": 0.48,
-          "dur": 0.56
+          "w": "binada",
+          "start": 0.54,
+          "dur": 0.66
         },
         {
-          "w": "çatdın,",
-          "start": 1.04,
-          "dur": 0.88
+          "w": "qutunu",
+          "start": 1.2,
+          "dur": 0.7
         },
         {
-          "w": "əşyalar",
-          "start": 2.48,
-          "dur": 0.38
+          "w": "daşıyırıq,",
+          "start": 1.9,
+          "dur": 1.1
         },
         {
-          "w": "yerinə",
-          "start": 2.86,
-          "dur": 0.78
+          "w": "sən",
+          "start": 3.66,
+          "dur": 0.08
         },
         {
           "w": "rahat",
-          "start": 3.64,
-          "dur": 0.3
+          "start": 3.72,
+          "dur": 0.48
         },
         {
-          "w": "daşınır.",
-          "start": 3.94,
-          "dur": 0.44
+          "w": "yerləşirsən.",
+          "start": 4.2,
+          "dur": 0.8
         }
       ],
-      "durationInFrames": 162
+      "durationInFrames": 179
     },
     {
       "kind": "cta",
