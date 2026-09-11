@@ -1,187 +1,43 @@
 {
   "id": "2026-09-11-story",
   "cta": {
-    "line1": "İndi zəng et, Yük.az seç.",
+    "line1": "İndi zəng et, köçünü yüngülləşdir",
     "line2": "Zəng et"
   },
   "music": "render/2026-09-11-story/music.norm.wav",
-  "musicVolume": 0.5,
+  "musicVolume": 0.75,
   "scenes": [
     {
       "kind": "call",
       "heading": "Bir zəng bəsdir",
-      "spoken": "Bina qarşısında bir zəng, qalanını biz edək.",
-      "audio": "render/2026-09-11-story/call.wav",
-      "words": [
-        {
-          "w": "Bina",
-          "start": 0,
-          "dur": 0.38
-        },
-        {
-          "w": "qarşısında",
-          "start": 0.38,
-          "dur": 0.72
-        },
-        {
-          "w": "bir",
-          "start": 1.1,
-          "dur": 0.5
-        },
-        {
-          "w": "zəng,",
-          "start": 1.6,
-          "dur": 0.32
-        },
-        {
-          "w": "qalanını",
-          "start": 2.34,
-          "dur": 0.5
-        },
-        {
-          "w": "biz",
-          "start": 2.84,
-          "dur": 0.54
-        },
-        {
-          "w": "edək.",
-          "start": 3.38,
-          "dur": 0.3
-        }
-      ],
-      "durationInFrames": 140
+      "spoken": "Yalnız bir zəng et, köçünü biz planlayaq.",
+      "audio": null,
+      "words": [],
+      "durationInFrames": 110
     },
     {
       "kind": "pack",
-      "heading": "Qablaşdırırıq",
-      "spoken": "Qutular, divan, diqqətli daşıma — hamısı bizdən.",
-      "audio": "render/2026-09-11-story/pack.wav",
-      "words": [
-        {
-          "w": "Qutular,",
-          "start": 0,
-          "dur": 0.74
-        },
-        {
-          "w": "divan,",
-          "start": 1.38,
-          "dur": 0.32
-        },
-        {
-          "w": "diqqətli",
-          "start": 2.3,
-          "dur": 0.38
-        },
-        {
-          "w": "daşıma",
-          "start": 2.68,
-          "dur": 0.52
-        },
-        {
-          "w": "—",
-          "start": 3.2,
-          "dur": 0.62
-        },
-        {
-          "w": "hamısı",
-          "start": 3.82,
-          "dur": 0.24
-        },
-        {
-          "w": "bizdən.",
-          "start": 4.06,
-          "dur": 0.56
-        }
-      ],
-      "durationInFrames": 174
+      "heading": "Qutular hazır",
+      "spoken": "Qablaşdırma materialı, sığorta və işə hazırlıq bizdən.",
+      "audio": null,
+      "words": [],
+      "durationInFrames": 130
     },
     {
       "kind": "load",
-      "heading": "Yükləyirik",
-      "spoken": "Əşyalar maşına səliqə ilə yüklənir, yol başlayır.",
-      "audio": "render/2026-09-11-story/load.wav",
-      "words": [
-        {
-          "w": "Əşyalar",
-          "start": 0,
-          "dur": 0.84
-        },
-        {
-          "w": "maşına",
-          "start": 0.84,
-          "dur": 0.84
-        },
-        {
-          "w": "səliqə",
-          "start": 1.68,
-          "dur": 0.72
-        },
-        {
-          "w": "ilə",
-          "start": 2.4,
-          "dur": 0.28
-        },
-        {
-          "w": "yüklənir,",
-          "start": 2.68,
-          "dur": 0.58
-        },
-        {
-          "w": "yol",
-          "start": 3.96,
-          "dur": 0.08
-        },
-        {
-          "w": "başlayır.",
-          "start": 4.04,
-          "dur": 0.56
-        }
-      ],
-      "durationInFrames": 168
+      "heading": "Hamısı maşında",
+      "spoken": "Əşyaların yüklənməsi rahat gedir, yol artıq başlanır.",
+      "audio": null,
+      "words": [],
+      "durationInFrames": 150
     },
     {
       "kind": "arrive",
-      "heading": "Çatdıq artıq",
-      "spoken": "Yeni binada qutular enir, sən rahat yerləşirsən.",
-      "audio": "render/2026-09-11-story/arrive.wav",
-      "words": [
-        {
-          "w": "Yeni",
-          "start": 0,
-          "dur": 0.54
-        },
-        {
-          "w": "binada",
-          "start": 0.54,
-          "dur": 0.82
-        },
-        {
-          "w": "qutular",
-          "start": 1.36,
-          "dur": 0.7
-        },
-        {
-          "w": "enir,",
-          "start": 2.06,
-          "dur": 0.6
-        },
-        {
-          "w": "sən",
-          "start": 3.28,
-          "dur": 0.08
-        },
-        {
-          "w": "rahat",
-          "start": 3.36,
-          "dur": 0.38
-        },
-        {
-          "w": "yerləşirsən.",
-          "start": 3.74,
-          "dur": 0.72
-        }
-      ],
-      "durationInFrames": 163
+      "heading": "Yeni evə çatdın",
+      "spoken": "Yeni ünvanda hər şey düzülür, sən rahat nəfəs alırsan.",
+      "audio": null,
+      "words": [],
+      "durationInFrames": 140
     },
     {
       "kind": "cta",

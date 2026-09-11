@@ -1,27 +1,29 @@
 {
   "repo": "166company/motion-design",
-  "updatedAt": "2026-09-11T09:38:23.652Z",
+  "updatedAt": "2026-09-11T09:54:06.738Z",
   "entries": [
     {
       "id": "2026-09-11-story",
       "hook": "Bir zəng bəsdir",
-      "caption": "🏠 Köç günü stresssiz olsun! 💥📦\n\n📞 Yük.az-da zəng et, qalan işi peşəkar komandaya burax. 🚚✨ Qablaşdırma, yükləmə, çatdırılma — hamısı səliqəli getsin.\n\n📞 Zəng et: 050 209 62 99\n\n🎵 Uplifting Hip Hop Instrumental - DRIVE - 2020 Beat — Fizzy Hardcore (CC BY) https://audius.co/Fizzyhardcore/uplifting-hip-hop-instrumental-drive-2020-beat-16911",
+      "caption": "📦 Köç günü belə asan ola bilər! \n\n🚚 Zəng et, qablaşdırmanı da, yükləməni də biz edək. ✨ Sən rahat köç, qalanını Yük.az həll etsin. 🏠\n\n📞 Zəng et: 050 209 62 99\n\n🎵 Uplifting Hip Hop Instrumental - DRIVE - 2020 Beat — Fizzy Hardcore (CC BY) https://audius.co/Fizzyhardcore/uplifting-hip-hop-instrumental-drive-2020-beat-16911",
       "hashtags": [
         "#Yükaz",
+        "#yukaz",
+        "#köç",
         "#evdaşınması",
         "#yükdaşıma",
-        "#BakıdaDaşınma",
-        "#köçgünü"
+        "#BakıdaKöç",
+        "#ReelsAzərbaycan"
       ],
       "source": "https://yuk.az",
       "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-story/2026-09-11-story.mp4",
-      "duration": 25.2,
+      "duration": 21.3,
       "scenes": 5,
       "status": "təsdiq-gözləyir",
       "createdAt": "2026-09-11",
-      "note": "videoda assetler zəifdir və real görünmür və səsləndirmə olmasın bu illustruasiyada yalnız musiqi effektler çox olsun və göz alıcı olsun yük maşını arxaya gedir bu doğru deyil və görüntülər daha da real olmalıdı. Videoda yeni loqolardan istifadə olunmalıdı",
+      "note": "Səssiz versiya: yalnız musiqi + effektlər; maşın sağa gedir; yeni loqolar; yeni illüstrasiyalar.",
       "template": "Story",
-      "voice": "ash",
+      "voice": null,
       "music": {
         "label": "Uplifting Hip Hop Instrumental - DRIVE - 2020 Beat — Fizzy Hardcore",
         "license": "Attribution CC BY",
