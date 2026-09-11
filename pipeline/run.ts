@@ -5,7 +5,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { pickArticle } from "./wp.ts";
 import { writeScript } from "./script.ts";
-import { findMedia } from "./assets.ts";
+import { findMedia, normalizeVideo } from "./assets.ts";
 import { pickAndDownload } from "./audius.ts";
 
 const FPS = 30;
@@ -70,7 +70,15 @@ const main = async () => {
       if (!m) { log(`⚠ tapılmadı: ${q}`); return null; }
       const ext = m.kind === "video" ? "mp4" : "jpg";
       const file = `m${i}.${ext}`;
-      await download(m.src, path.join(dir, file));
+      const target = path.join(dir, file);
+      if (m.kind === "video") {
+        // xam faylı yüklə → normallaşdır → xamı sil
+        const raw = path.join(dir, `raw${i}.mp4`);
+        await download(m.src, raw);
+        await normalizeVideo(raw, target, needs[i] + TAIL / FPS);
+      } else {
+        await download(m.src, target);
+      }
       return { kind: m.kind, src: `render/${id}/${file}`, duration: m.duration };
     })
   );
