@@ -1,5 +1,30 @@
 {
   "repo": "166company/motion-design",
-  "updatedAt": "2026-09-11T07:10:42.276Z",
-  "entries": []
+  "updatedAt": "2026-09-11T07:14:53.611Z",
+  "entries": [
+    {
+      "id": "2026-09-11-10764",
+      "hook": "Ev daşınması qiyməti necə hesablanır?",
+      "caption": "🏠 Ev daşınması qiyməti necə hesablanır?\n\n📦 Məbləğ hazır tariflə yox, yükün həcmi ilə formalaşır.\n\n🚚 Mərtəbə, lift, məsafə və işin növü qiymətə təsir edir.\n\n✅ Qablaşdırma materialı və sığorta da daxildir.\n\n📞 Dəqiq məbləğ üçün Yuk.az-a zəng et\n\n🎵 Dan Coly - My Hard Night — Dan Coly (CC BY) https://audius.co/dancoly/dan-coly-my-hard-night-328467",
+      "hashtags": [
+        "#evdasinmasi",
+        "#yükdaşınma",
+        "#Yukaz",
+        "#bakı",
+        "#daşınma"
+      ],
+      "source": "https://yuk.az/ev-dasinmasi-qiymeti/",
+      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-10764/2026-09-11-10764.mp4",
+      "duration": 30.2,
+      "scenes": 6,
+      "status": "təsdiq-gözləyir",
+      "createdAt": "2026-09-11",
+      "music": {
+        "label": "Dan Coly - My Hard Night — Dan Coly",
+        "license": "Attribution CC BY",
+        "vocal": false,
+        "source": "audius"
+      }
+    }
+  ]
 }

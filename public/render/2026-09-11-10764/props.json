@@ -1,0 +1,309 @@
+{
+  "id": "2026-09-11-10764",
+  "hook": "Ev daşınması qiyməti necə hesablanır?",
+  "total": 4,
+  "cta": {
+    "line1": "Qiyməti indi öyrən",
+    "line2": "Yuk.az-a zəng et"
+  },
+  "music": "render/2026-09-11-10764/music.norm.wav",
+  "musicVolume": 0.45,
+  "scenes": [
+    {
+      "kind": "hook",
+      "spoken": "Qiymət hazır tariflə yox, yükün həcmi ilə hesablanır.",
+      "audio": "render/2026-09-11-10764/s0.wav",
+      "words": [
+        {
+          "w": "Qiymət",
+          "start": 0,
+          "dur": 0.66
+        },
+        {
+          "w": "hazır",
+          "start": 0.66,
+          "dur": 0.58
+        },
+        {
+          "w": "tariflə",
+          "start": 1.24,
+          "dur": 0.56
+        },
+        {
+          "w": "yox,",
+          "start": 1.8,
+          "dur": 0.24
+        },
+        {
+          "w": "yükün",
+          "start": 2.44,
+          "dur": 0.26
+        },
+        {
+          "w": "həcmi",
+          "start": 2.7,
+          "dur": 0.38
+        },
+        {
+          "w": "ilə",
+          "start": 3.08,
+          "dur": 0.18
+        },
+        {
+          "w": "hesablanır.",
+          "start": 3.26,
+          "dur": 0.56
+        }
+      ],
+      "durationInFrames": 142,
+      "media": {
+        "kind": "video",
+        "src": "render/2026-09-11-10764/m0.mp4",
+        "duration": 10
+      },
+      "icon": null
+    },
+    {
+      "kind": "item",
+      "spoken": "Qiyməti yükün həcmi, lift, məsafə və əlavə işlər müəyyən edir.",
+      "title": "QİYMƏT NƏYƏ GÖRƏ DƏYİŞİR?",
+      "body": "Məbləğ yük, mərtəbə, lift, məsafə və iş növünə görə formalaşır.",
+      "index": 1,
+      "icon": "render/2026-09-11-10764/icon0.svg",
+      "audio": "render/2026-09-11-10764/s1.wav",
+      "words": [
+        {
+          "w": "Qiyməti",
+          "start": 0,
+          "dur": 0.62
+        },
+        {
+          "w": "yükün",
+          "start": 0.62,
+          "dur": 0.52
+        },
+        {
+          "w": "həcmi,",
+          "start": 1.14,
+          "dur": 0.48
+        },
+        {
+          "w": "lift,",
+          "start": 2.1,
+          "dur": 0.2
+        },
+        {
+          "w": "məsafə",
+          "start": 2.82,
+          "dur": 0.42
+        },
+        {
+          "w": "və",
+          "start": 3.24,
+          "dur": 0.58
+        },
+        {
+          "w": "əlavə",
+          "start": 3.82,
+          "dur": 0.5
+        },
+        {
+          "w": "işlər",
+          "start": 4.32,
+          "dur": 0.6
+        },
+        {
+          "w": "müəyyən",
+          "start": 4.92,
+          "dur": 0.48
+        },
+        {
+          "w": "edir.",
+          "start": 5.4,
+          "dur": 0.2
+        }
+      ],
+      "durationInFrames": 194,
+      "media": {
+        "kind": "video",
+        "src": "render/2026-09-11-10764/m1.mp4",
+        "duration": 13
+      }
+    },
+    {
+      "kind": "item",
+      "spoken": "Lift, dar giriş və mebelin sökülməsi məbləği dəyişir.",
+      "title": "NİYƏ FƏRQLİ ÇIXIR?",
+      "body": "Eyni mənzildə şərait fərqlidirsə, məbləğ də fərqli olur.",
+      "index": 2,
+      "icon": "render/2026-09-11-10764/icon1.svg",
+      "audio": "render/2026-09-11-10764/s2.wav",
+      "words": [
+        {
+          "w": "Lift,",
+          "start": 0,
+          "dur": 0.42
+        },
+        {
+          "w": "dar",
+          "start": 0.74,
+          "dur": 0.26
+        },
+        {
+          "w": "giriş",
+          "start": 1,
+          "dur": 0.36
+        },
+        {
+          "w": "və",
+          "start": 1.36,
+          "dur": 0.22
+        },
+        {
+          "w": "mebelin",
+          "start": 1.58,
+          "dur": 0.72
+        },
+        {
+          "w": "sökülməsi",
+          "start": 2.3,
+          "dur": 0.64
+        },
+        {
+          "w": "məbləği",
+          "start": 2.94,
+          "dur": 0.5
+        },
+        {
+          "w": "dəyişir.",
+          "start": 3.44,
+          "dur": 0.72
+        }
+      ],
+      "durationInFrames": 156,
+      "media": {
+        "kind": "video",
+        "src": "render/2026-09-11-10764/m2.mp4",
+        "duration": 8
+      }
+    },
+    {
+      "kind": "item",
+      "spoken": "Yukaz-da bunlar hamısı əvvəlcədən qiymətə daxil olur.",
+      "title": "NƏ DAXİLDİR?",
+      "body": "Maşın, briqada, qablaşdırma, sökülmə-yığma və sığorta daxildir.",
+      "index": 3,
+      "icon": "render/2026-09-11-10764/icon2.svg",
+      "audio": "render/2026-09-11-10764/s3.wav",
+      "words": [
+        {
+          "w": "Yukaz-da",
+          "start": 0,
+          "dur": 0.78
+        },
+        {
+          "w": "bunlar",
+          "start": 0.78,
+          "dur": 0.48
+        },
+        {
+          "w": "hamısı",
+          "start": 1.26,
+          "dur": 0.56
+        },
+        {
+          "w": "əvvəlcədən",
+          "start": 1.82,
+          "dur": 0.74
+        },
+        {
+          "w": "qiymətə",
+          "start": 2.56,
+          "dur": 0.6
+        },
+        {
+          "w": "daxil",
+          "start": 3.16,
+          "dur": 0.36
+        },
+        {
+          "w": "olur.",
+          "start": 3.52,
+          "dur": 0.2
+        }
+      ],
+      "durationInFrames": 147,
+      "media": {
+        "kind": "video",
+        "src": "render/2026-09-11-10764/m3.mp4",
+        "duration": 9
+      }
+    },
+    {
+      "kind": "item",
+      "spoken": "Operatora otaq sayını, mərtəbəni, lifti və ünvanı de.",
+      "title": "NECƏ SIFARİŞ ETMƏLİSƏN?",
+      "body": "Zəngdə otaq sayı, mərtəbə, lift və ünvanı de, məbləği əvvəl bil.",
+      "index": 4,
+      "icon": "render/2026-09-11-10764/icon3.svg",
+      "audio": "render/2026-09-11-10764/s4.wav",
+      "words": [
+        {
+          "w": "Operatora",
+          "start": 0,
+          "dur": 1.16
+        },
+        {
+          "w": "otaq",
+          "start": 1.16,
+          "dur": 0.42
+        },
+        {
+          "w": "sayını,",
+          "start": 1.58,
+          "dur": 0.4
+        },
+        {
+          "w": "mərtəbəni,",
+          "start": 2.48,
+          "dur": 0.5
+        },
+        {
+          "w": "lifti",
+          "start": 3.5,
+          "dur": 0.32
+        },
+        {
+          "w": "və",
+          "start": 3.82,
+          "dur": 0.5
+        },
+        {
+          "w": "ünvanı",
+          "start": 4.32,
+          "dur": 0.5
+        },
+        {
+          "w": "de.",
+          "start": 4.82,
+          "dur": 0.12
+        }
+      ],
+      "durationInFrames": 170,
+      "media": {
+        "kind": "video",
+        "src": "render/2026-09-11-10764/m4.mp4",
+        "duration": 12
+      }
+    },
+    {
+      "kind": "cta",
+      "spoken": "",
+      "icon": null,
+      "audio": null,
+      "words": [],
+      "durationInFrames": 96,
+      "media": null
+    }
+  ]
+}
