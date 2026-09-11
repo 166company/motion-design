@@ -38,23 +38,23 @@ const schema = {
   required: ["intro", "call", "chat", "load", "route", "cta", "caption", "hashtags"],
   properties: {
     intro: { type: "object", additionalProperties: false, required: ["heading", "spoken"],
-      properties: { heading: { type: "string", description: "3-5 söz, zərbəli, sonu vurğulu" }, spoken: { type: "string", description: "8-14 söz" } } },
+      properties: { heading: { type: "string", description: "3-5 söz, zərbəli, sonu vurğulu" }, spoken: { type: "string", description: "6-9 söz" } } },
     call: { type: "object", additionalProperties: false, required: ["heading", "spoken"],
-      properties: { heading: { type: "string", description: "maks 4 söz" }, spoken: { type: "string", description: "8-14 söz, nömrəni oxuma" } } },
+      properties: { heading: { type: "string", description: "maks 4 söz" }, spoken: { type: "string", description: "7-11 söz, nömrəni oxuma" } } },
     chat: { type: "object", additionalProperties: false, required: ["heading", "lines", "spoken"],
       properties: {
         heading: { type: "string", description: "maks 5 söz; operatorun telefonda detalları soruşması haqqında (məs 'Operator detalları dəqiqləşdirir'). 'Mesaj yaz' kimi YOX — bu zəng söhbətidir" },
         lines: { type: "array", minItems: 3, maxItems: 3, items: { type: "string" },
           description: "3 çat baloncuğu: [operator sualı, müştəri cavabı, operatorun təsdiqi]. Hər biri maks 6 söz. Rəqəm/qiymət YOX." },
-        spoken: { type: "string", description: "8-14 söz" } } },
+        spoken: { type: "string", description: "7-11 söz" } } },
     load: { type: "object", additionalProperties: false, required: ["heading", "spoken"],
-      properties: { heading: { type: "string", description: "maks 5 söz" }, spoken: { type: "string", description: "8-14 söz" } } },
+      properties: { heading: { type: "string", description: "maks 5 söz" }, spoken: { type: "string", description: "7-11 söz" } } },
     route: { type: "object", additionalProperties: false, required: ["heading", "from", "to", "spoken"],
       properties: {
         heading: { type: "string", description: "maks 5 söz" },
         from: { type: "string", description: "başlanğıc şəhər, məs Bakı" },
         to: { type: "string", description: "təyinat şəhər, məs Gəncə / Sumqayıt / Naxçıvan" },
-        spoken: { type: "string", description: "8-14 söz" } } },
+        spoken: { type: "string", description: "7-11 söz" } } },
     cta: { type: "object", additionalProperties: false, required: ["line1"], properties: { line1: { type: "string", description: "maks 28 simvol" } } },
     caption: { type: "string" },
     hashtags: { type: "array", minItems: 5, maxItems: 8, items: { type: "string" } },
@@ -64,7 +64,7 @@ const schema = {
 const SYSTEM = `Sən Yuk.az üçün Instagram Reels ssenaristisən. Yuk.az — Azərbaycanda yükdaşıma və ev daşınması xidmətidir.
 Hədəf: yük sahibləri. Bu video "Yuk.az ilə daşınma 4 addımda" izahatıdır — tam animasiyalı, stok video yoxdur.
 Səhnələr sabitdir: intro (kub loqo düşür) → zəng (telefon çalır) → çat (operatorla yazışma) → yükləmə (maşına qutular) → marşrut (xəritədə yol) → CTA.
-QAYDALAR: yalnız verilən məqalə faktlarına söykən; KONKRET QİYMƏT YAZMA; sadə danışıq azərbaycan dili, "sən"; hər "spoken" 8-14 söz, canlı, ritmik.
+QAYDALAR: yalnız verilən məqalə faktlarına söykən; KONKRET QİYMƏT YAZMA; sadə danışıq azərbaycan dili, "sən"; hər "spoken" 7-11 söz (intro 6-9), canlı, ritmik. Ümumi video 28-32 saniyə olmalıdır.
 "spoken"-də "Yuk.az" əvəzinə "Yukaz" yaz. Ekran mətnlərində "Yuk.az".
 Caption formatı MƏCBURİ: emoji hook → boş sətir → 2-3 emojili qısa abzas → boş sətir → "📞 Zəng et: ${contact.phone}".`;
 

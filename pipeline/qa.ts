@@ -22,15 +22,18 @@ export const qa = async (videoPath: string, propsPath: string): Promise<QaResult
   const TRANSITION = 12;
   const sec = (reel.scenes.reduce((a: number, b: any) => a + b.durationInFrames, 0) - (reel.scenes.length - 1) * TRANSITION) / FPS;
   add("müddət 15–60 san", sec >= 15 && sec <= 60, `${sec.toFixed(1)} san`);
-  add("hook ≤ 6 san", reel.scenes[0].durationInFrames / FPS <= 6,
-      `${(reel.scenes[0].durationInFrames / FPS).toFixed(1)} san`);
-
   // Explainer şablonunda stok media yoxdur (hər şey kodla çəkilir) — yalnız TipList üçün yoxla
   const isTipList = reel.scenes.some((s: any) => "media" in s);
   if (isTipList) {
     const noMedia = reel.scenes.filter((s: any) => s.kind !== "cta" && !s.media).length;
     add("bütün səhnələrdə fon var", noMedia === 0, noMedia ? `${noMedia} səhnə boş` : "OK");
   }
+
+  // TipList-də hook 6 san; Explainer-in girişi vizual səhnədir (kub düşür) — 8 san icazəlidir
+  const hookMax = isTipList ? 6 : 8;
+  add(`hook ≤ ${hookMax} san`, reel.scenes[0].durationInFrames / FPS <= hookMax,
+      `${(reel.scenes[0].durationInFrames / FPS).toFixed(1)} san`);
+
 
   const noWords = reel.scenes.filter((s: any) => s.audio && s.words.length === 0).length;
   add("altyazı vaxtları var", noWords === 0, noWords ? `${noWords} səhnədə söz yoxdur` : "OK");
