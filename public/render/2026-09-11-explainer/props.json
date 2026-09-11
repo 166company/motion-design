@@ -1,0 +1,288 @@
+{
+  "id": "2026-09-11-explainer",
+  "cta": {
+    "line1": "İndi zəng et, köçməni başla",
+    "line2": "Zəng et"
+  },
+  "music": "render/2026-09-11-explainer/music.norm.wav",
+  "musicVolume": 0.5,
+  "scenes": [
+    {
+      "kind": "intro",
+      "heading": "Dörd addımda köç",
+      "sub": "",
+      "lines": [],
+      "spoken": "Yukaz ilə daşınma, indi daha rahat başlayır.",
+      "audio": "render/2026-09-11-explainer/intro.wav",
+      "words": [
+        {
+          "w": "Yukaz",
+          "start": 0,
+          "dur": 0.6
+        },
+        {
+          "w": "ilə",
+          "start": 0.6,
+          "dur": 0.3
+        },
+        {
+          "w": "daşınma,",
+          "start": 0.9,
+          "dur": 0.64
+        },
+        {
+          "w": "indi",
+          "start": 2.14,
+          "dur": 0.24
+        },
+        {
+          "w": "daha",
+          "start": 2.38,
+          "dur": 0.26
+        },
+        {
+          "w": "rahat",
+          "start": 2.64,
+          "dur": 0.32
+        },
+        {
+          "w": "başlayır.",
+          "start": 2.96,
+          "dur": 0.52
+        }
+      ],
+      "durationInFrames": 136
+    },
+    {
+      "kind": "call",
+      "heading": "Telefonu götür",
+      "sub": "050 209 62 99",
+      "lines": [],
+      "spoken": "050 209 62 99 nömrəsinə zəng et, detalları bildir.",
+      "audio": "render/2026-09-11-explainer/call.wav",
+      "words": [
+        {
+          "w": "050",
+          "start": 0,
+          "dur": 1.1
+        },
+        {
+          "w": "209",
+          "start": 1.1,
+          "dur": 1.68
+        },
+        {
+          "w": "62",
+          "start": 2.78,
+          "dur": 0.56
+        },
+        {
+          "w": "99",
+          "start": 3.34,
+          "dur": 0.52
+        },
+        {
+          "w": "nömrəsinə",
+          "start": 3.86,
+          "dur": 0.86
+        },
+        {
+          "w": "zəng",
+          "start": 4.72,
+          "dur": 0.26
+        },
+        {
+          "w": "et,",
+          "start": 4.98,
+          "dur": 0.54
+        },
+        {
+          "w": "detalları",
+          "start": 5.74,
+          "dur": 0.38
+        },
+        {
+          "w": "bildir.",
+          "start": 6.12,
+          "dur": 0.36
+        }
+      ],
+      "durationInFrames": 225
+    },
+    {
+      "kind": "chat",
+      "heading": "Operator detallaşdırır",
+      "sub": "",
+      "lines": [
+        "Neçə otaqlıqdır, soruşuram.",
+        "Mənzil ikiotaqlıqdır, hazır vəziyyətdə.",
+        "Məlumatı aldım, qiyməti bildirirəm."
+      ],
+      "spoken": "Operator detallarını dəqiqləşdirir, sən də rahat sifariş verirsən.",
+      "audio": "render/2026-09-11-explainer/chat.wav",
+      "words": [
+        {
+          "w": "Operator",
+          "start": 0,
+          "dur": 0.8
+        },
+        {
+          "w": "detallarını",
+          "start": 0.8,
+          "dur": 0.82
+        },
+        {
+          "w": "dəqiqləşdirir,",
+          "start": 1.62,
+          "dur": 1.04
+        },
+        {
+          "w": "sən",
+          "start": 3.52,
+          "dur": 0.08
+        },
+        {
+          "w": "də",
+          "start": 3.52,
+          "dur": 0.2
+        },
+        {
+          "w": "rahat",
+          "start": 3.72,
+          "dur": 0.44
+        },
+        {
+          "w": "sifariş",
+          "start": 4.16,
+          "dur": 0.78
+        },
+        {
+          "w": "verirsən.",
+          "start": 4.94,
+          "dur": 0.8
+        }
+      ],
+      "durationInFrames": 211
+    },
+    {
+      "kind": "load",
+      "heading": "Qutular maşına",
+      "sub": "",
+      "lines": [],
+      "spoken": "Brigada qutuları yükləyir, iş planla və səliqə ilə gedir.",
+      "audio": "render/2026-09-11-explainer/load.wav",
+      "words": [
+        {
+          "w": "Brigada",
+          "start": 0,
+          "dur": 0.8
+        },
+        {
+          "w": "qutuları",
+          "start": 0.8,
+          "dur": 0.82
+        },
+        {
+          "w": "yükləyir,",
+          "start": 1.62,
+          "dur": 0.8
+        },
+        {
+          "w": "iş",
+          "start": 2.96,
+          "dur": 0.12
+        },
+        {
+          "w": "planla",
+          "start": 3.08,
+          "dur": 0.5
+        },
+        {
+          "w": "və",
+          "start": 3.58,
+          "dur": 0.46
+        },
+        {
+          "w": "səliqə",
+          "start": 4.04,
+          "dur": 0.6
+        },
+        {
+          "w": "ilə",
+          "start": 4.64,
+          "dur": 0.42
+        },
+        {
+          "w": "gedir.",
+          "start": 5.06,
+          "dur": 0.38
+        }
+      ],
+      "durationInFrames": 188
+    },
+    {
+      "kind": "route",
+      "heading": "Marşrut xəritədə",
+      "sub": "",
+      "lines": [
+        "Bakı",
+        "Şirvan"
+      ],
+      "spoken": "Marşrut əvvəlcədən planlanır, çatdırılma təhlükəsiz və aydın olur.",
+      "audio": "render/2026-09-11-explainer/route.wav",
+      "words": [
+        {
+          "w": "Marşrut",
+          "start": 0,
+          "dur": 0.98
+        },
+        {
+          "w": "əvvəlcədən",
+          "start": 0.98,
+          "dur": 0.92
+        },
+        {
+          "w": "planlanır,",
+          "start": 1.9,
+          "dur": 0.74
+        },
+        {
+          "w": "çatdırılma",
+          "start": 3.24,
+          "dur": 0.92
+        },
+        {
+          "w": "təhlükəsiz",
+          "start": 4.16,
+          "dur": 0.88
+        },
+        {
+          "w": "və",
+          "start": 5.04,
+          "dur": 0.66
+        },
+        {
+          "w": "aydın",
+          "start": 5.7,
+          "dur": 0.46
+        },
+        {
+          "w": "olur.",
+          "start": 6.16,
+          "dur": 0.18
+        }
+      ],
+      "durationInFrames": 214
+    },
+    {
+      "kind": "cta",
+      "heading": "",
+      "sub": "",
+      "lines": [],
+      "spoken": "",
+      "audio": null,
+      "words": [],
+      "durationInFrames": 96
+    }
+  ]
+}

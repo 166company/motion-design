@@ -1,7 +1,35 @@
 {
   "repo": "166company/motion-design",
-  "updatedAt": "2026-09-11T07:25:44.308Z",
+  "updatedAt": "2026-09-11T07:36:48.633Z",
   "entries": [
+    {
+      "id": "2026-09-11-explainer",
+      "hook": "Dörd addımda köç",
+      "caption": "🚚 Dörd addımda köç!\n\nYuk.az ilə daşınma sadədir: zəng et, detallarını de, yüklə və yola sal 📦🗺️\nSənə uyğun proses əvvəlcədən izah olunur, hər şey aydın olur ✅\n\n📞 Zəng et: 050 209 62 99\n\n🎵 Uplifting Hip Hop Instrumental - DRIVE - 2020 Beat — Fizzy Hardcore (CC BY) https://audius.co/Fizzyhardcore/uplifting-hip-hop-instrumental-drive-2020-beat-16911",
+      "hashtags": [
+        "#Yukaz",
+        "#YukazAz",
+        "#daşınma",
+        "#yükdaşıma",
+        "#evdaşınması",
+        "#Bakı",
+        "#Şirvan"
+      ],
+      "source": "https://yuk.az",
+      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-explainer/2026-09-11-explainer.mp4",
+      "duration": 35.7,
+      "scenes": 6,
+      "status": "təsdiq-gözləyir",
+      "createdAt": "2026-09-11",
+      "template": "Explainer",
+      "voice": "ash",
+      "music": {
+        "label": "Uplifting Hip Hop Instrumental - DRIVE - 2020 Beat — Fizzy Hardcore",
+        "license": "Attribution CC BY",
+        "vocal": false,
+        "source": "audius"
+      }
+    },
     {
       "id": "2026-09-11-10764",
       "hook": "EV DAŞINMASI QİYMƏTİ NƏYƏ GÖRƏ DƏYİŞİR?",
@@ -19,6 +47,8 @@
       "scenes": 6,
       "status": "təsdiq-gözləyir",
       "createdAt": "2026-09-11",
+      "template": "TipList",
+      "voice": "marin",
       "music": {
         "label": "Dan Coly - My Hard Night — Dan Coly",
         "license": "Attribution CC BY",
@@ -43,6 +73,8 @@
       "scenes": 7,
       "status": "təsdiq-gözləyir",
       "createdAt": "2026-09-11",
+      "template": "TipList",
+      "voice": "marin",
       "music": {
         "label": "The Love of My Life (A composed Christmas instrumental) — Terror of Emma (TOES HERE)",
         "license": "Attribution ShareAlike CC BY-SA",

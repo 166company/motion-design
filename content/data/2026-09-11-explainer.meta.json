@@ -1,0 +1,26 @@
+{
+  "id": "2026-09-11-explainer",
+  "template": "Explainer",
+  "articleId": null,
+  "link": "https://yuk.az",
+  "caption": "🚚 Dörd addımda köç!\n\nYuk.az ilə daşınma sadədir: zəng et, detallarını de, yüklə və yola sal 📦🗺️\nSənə uyğun proses əvvəlcədən izah olunur, hər şey aydın olur ✅\n\n📞 Zəng et: 050 209 62 99\n\n🎵 Uplifting Hip Hop Instrumental - DRIVE - 2020 Beat — Fizzy Hardcore (CC BY) https://audius.co/Fizzyhardcore/uplifting-hip-hop-instrumental-drive-2020-beat-16911",
+  "hashtags": [
+    "#Yukaz",
+    "#YukazAz",
+    "#daşınma",
+    "#yükdaşıma",
+    "#evdaşınması",
+    "#Bakı",
+    "#Şirvan"
+  ],
+  "music": "render/2026-09-11-explainer/music.norm.wav",
+  "attribution": "🎵 Uplifting Hip Hop Instrumental - DRIVE - 2020 Beat — Fizzy Hardcore (CC BY) https://audius.co/Fizzyhardcore/uplifting-hip-hop-instrumental-drive-2020-beat-16911",
+  "musicTrack": {
+    "id": "D9dvw",
+    "title": "Uplifting Hip Hop Instrumental - DRIVE - 2020 Beat",
+    "artist": "Fizzy Hardcore",
+    "license": "Attribution CC BY"
+  },
+  "voice": "ash",
+  "silent": false
+}
