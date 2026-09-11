@@ -1,6 +1,6 @@
 {
   "repo": "166company/motion-design",
-  "updatedAt": "2026-09-11T07:21:12.768Z",
+  "updatedAt": "2026-09-11T07:25:44.308Z",
   "entries": [
     {
       "id": "2026-09-11-10764",
@@ -22,6 +22,30 @@
       "music": {
         "label": "Dan Coly - My Hard Night — Dan Coly",
         "license": "Attribution CC BY",
+        "vocal": false,
+        "source": "audius"
+      }
+    },
+    {
+      "id": "2026-09-11-10736",
+      "hook": "Naxçıvanda yükdaşıma necə planlanır?",
+      "caption": "🚚 Naxçıvanda daşınma necə olur?\n\n📦 Marşrut, sənəd və vaxt əvvəlcədən dəqiqləşir.\n\n✅ Qiymət telefonda bildirilir, sonra dəyişmir.\n\n🏠 Qablaşdırma və quraşdırma da prosesə daxildir.\n\n📞 Zəng et: 050 209 62 99\n\n🎵 The Love of My Life (A composed Christmas instrumental) — Terror of Emma (TOES HERE) (CC BY-SA) https://audius.co/TheUnknownProj2/the-love-of-my-life-a-composed-christmas-instrumental-447218",
+      "hashtags": [
+        "#naxçıvan",
+        "#yükdaşıma",
+        "#evdaşınması",
+        "#ofisköçürülməsi",
+        "#yukaz"
+      ],
+      "source": "https://yuk.az/naxcivanda-yukdasima-xidmeti/",
+      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-10736/2026-09-11-10736.mp4",
+      "duration": 31,
+      "scenes": 7,
+      "status": "təsdiq-gözləyir",
+      "createdAt": "2026-09-11",
+      "music": {
+        "label": "The Love of My Life (A composed Christmas instrumental) — Terror of Emma (TOES HERE)",
+        "license": "Attribution ShareAlike CC BY-SA",
         "vocal": false,
         "source": "audius"
       }

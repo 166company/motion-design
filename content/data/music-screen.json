@@ -152,8 +152,11 @@
     "title": "Bliss"
   },
   "LWMA0": {
-    "error": "HTTP Error 403: Forbidden",
-    "vocal": null,
+    "words": 0,
+    "wpm": 0.0,
+    "real_words": 61,
+    "vocal": true,
+    "sample": "You make me feel so good You make me feel real good When you wrap your arms arou",
     "title": "Feel so Good Allure (Instrumental with Hook)"
   },
   "ndKwP": {
