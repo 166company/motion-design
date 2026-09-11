@@ -1,6 +1,6 @@
 {
   "repo": "166company/motion-design",
-  "updatedAt": "2026-09-11T12:40:48.971Z",
+  "updatedAt": "2026-09-11T12:54:48.669Z",
   "entries": [
     {
       "id": "2026-09-11-story",
@@ -181,34 +181,6 @@
       "music": {
         "label": "Dan Coly - My Hard Night — Dan Coly",
         "license": "Attribution CC BY",
-        "vocal": false,
-        "source": "audius"
-      }
-    },
-    {
-      "id": "2026-09-11-10736",
-      "hook": "Şirvanda yükdaşıma necə hesablanır?",
-      "caption": "🚛 Şirvanda yükdaşıma necə hesablanır?\n\n📦 Qiymət yükün həcminə, mərtəbəyə, məsafəyə və əlavə işə görə baxılır.\n\n📞 Sən sadəcə yükü, ünvanı və girişi de, operator uyğununu seçsin.\n\n✅ Qablaşdırma və sığortalı daşınma prosesin rahat getməsinə kömək edir.\n\n📞 Zəng et: 050 209 62 99",
-      "hashtags": [
-        "#yukaz",
-        "#yukdasima",
-        "#sirvan",
-        "#kocme",
-        "#evdasinma",
-        "#ofiskocurulmesi"
-      ],
-      "source": "https://yuk.az/sirvanda-yukdasima-xidmeti/",
-      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-10736/2026-09-11-10736.mp4",
-      "duration": 33.5,
-      "scenes": 6,
-      "status": "təsdiq-gözləyir",
-      "createdAt": "2026-09-11",
-      "note": "Musiqi Milad mahnısı olmasın — gümrah, müasir instrumental seçilsin.\nBaşlıqlar bir az daha qısa və zərbəli olsun.\n\n---\n\n",
-      "template": "TipList",
-      "voice": "coral",
-      "music": {
-        "label": "Penthouse (Instrumental) — Akasan /|\\ EsJAYYg",
-        "license": "Attribution ShareAlike CC BY-SA",
         "vocal": false,
         "source": "audius"
       }
