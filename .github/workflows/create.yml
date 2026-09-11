@@ -85,8 +85,11 @@ jobs:
       - name: Render
         run: |
           mkdir -p out
-          npx remotion render src/index.ts TipList "out/${{ steps.reel.outputs.id }}.mp4" \
-            --props="public/render/${{ steps.reel.outputs.id }}/props.json"
+          ID="${{ steps.reel.outputs.id }}"
+          # Kompozisiya meta-dakı şablondan gəlir: TipList / Explainer / Story
+          COMP=$(python -c "import json,io;print(json.load(io.open('content/data/$ID.meta.json',encoding='utf-8')).get('template','TipList'))")
+          echo "kompozisiya: $COMP"
+          npx remotion render src/index.ts "$COMP" "out/$ID.mp4" --props="public/render/$ID/props.json"
 
       - name: QA
         run: npx tsx pipeline/qa.ts "out/${{ steps.reel.outputs.id }}.mp4" "public/render/${{ steps.reel.outputs.id }}/props.json"
