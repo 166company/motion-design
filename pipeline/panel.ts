@@ -14,6 +14,7 @@ type Entry = {
   status: "təsdiq-gözləyir" | "yayımlanıb" | "imtina" | "silinib";
   note?: string;
   template: string;
+  kind?: string;         // Poster: fun | sales
   /** karusel üçün slayd şəkilləri */
   images?: string[];
   voice?: string | null;
@@ -65,7 +66,7 @@ export const buildPanel = async (repo: string) => {
     entries.push({
       id: meta.id,
       images: (meta.template === "Carousel" || meta.template === "Poster") ? Array.from({ length: meta.slides ?? 3 }, (_, i) => `${relBase}/${meta.id}-${i + 1}.png`) : undefined,
-      hook: props.hook ?? props.scenes?.[0]?.heading ?? (props.lines ? `${props.lines.join(" ").replace(/\n/g, " ")} → ${props.punch}` : props.headline ? props.headline.replace(/\n/g, " ") : meta.id),
+      hook: props.hook ?? props.scenes?.[0]?.heading ?? (props.lines ? `${props.lines.join(" ").replace(/\n/g, " ")} → ${props.punch}` : props.headline ? `${props.kicker ? props.kicker + " — " : ""}${props.headline.replace(/\n/g, " ")}` : meta.id),
       caption: meta.caption,
       hashtags: meta.hashtags,
       source: meta.link,
@@ -73,6 +74,7 @@ export const buildPanel = async (repo: string) => {
       duration: props.scenes ? +(props.scenes.reduce((a: number, b: any) => a + b.durationInFrames, 0) / FPS).toFixed(1) : 0,
       scenes: props.scenes ? props.scenes.length : (meta.slides ?? 3),
       status: st.status ?? "təsdiq-gözləyir",
+      kind: meta.kind ?? undefined,
       createdAt: meta.id.slice(0, 10),
       instagram: st.instagram,
       facebook: st.facebook,

@@ -203,7 +203,7 @@ jobs:
             Explainer) npx tsx pipeline/explainer.ts ;;
             Story) npx tsx pipeline/story.ts ;;
             Carousel) npx tsx pipeline/carousel.ts ;;
-            Poster) POSTER_COUNT=1 npx tsx pipeline/poster.ts ;;
+            Poster) POSTER_COUNT=1 POSTER_MIX=$(python -c "import json,io;print(json.load(io.open('content/data/$ID.meta.json',encoding='utf-8')).get('kind','sales'))" 2>/dev/null || echo sales) npx tsx pipeline/poster.ts ;;
             *) npx tsx pipeline/run.ts ;;
           esac
           echo "template=$T" >> "$GITHUB_OUTPUT"
@@ -238,7 +238,7 @@ jobs:
           npx tsx pipeline/panel.ts "$ID" "${{ github.repository }}"
           git config user.name "yukaz-agent"
           git config user.email "actions@github.com"
-          git add docs/data.json content/data public/render public/assets src/assetBounds.json
+          git add docs/data.json content/data content/articles-cache.json content/trends.json public/render public/assets src/assetBounds.json
           git commit -m "düzəliş: $ID" || true
           git pull --rebase --autostash -X theirs origin main
           git push

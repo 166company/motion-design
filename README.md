@@ -211,7 +211,7 @@ GitHub-da `Variables` bölməsindən, lokal `.env`-dən dəyişilir.
 
 | **Carousel** | aviasales.az üslubunda hazırcavab **statik 3 slayd**: fotorealist AI foto + nəhəng mətn, cümlə sözün ortasından kəsilir (sürüşdürmə hiyləsi), 3-cü slayd narıncı punchline. Söz oyununu `gpt-5.5` yazır (tanış ifadənin köç mövzusuna çevrilməsi), bölünmə kodda. Instagram karusel + Facebook foto post kimi yayımlanır | — | növbədə hər 5-ci |
 
-| **Poster** | **Statik satış postu** (1080×1350): AI səhnə — loqolu işçilər / loqolu maşın / telefon ekranında loqo (loqo istinad şəkil kimi verilir, dəqiq çıxır) + minimal yazı: yalnız 2-4 sözlük başlıq və "Zəng et · nömrə" düyməsi. 3 layout: hero / narıncı panel / qrafit kart. Hər gün **09:00-da 3 post** (fərqli səhnə və satış bucağı), Instagram foto + Facebook foto | yuk.az faktları | hər gün 05:00 UTC |
+| **Poster** | **Statik post** (1080×1350), hər gün **09:00-da 3 ədəd: 2 FUN + 1 satış**. FUN: `pipeline/trends.ts` webdən bu həftənin trend meme formatlarını / relatable köç yumorunu tapır (OpenAI web_search + Imgflip format siyahısı, gündəlik keş `content/trends.json`), gpt-5.5 onu yük.az situasiyasına uyğunlaşdırır, səhnə AI ilə yenidən canlandırılır (narıncı formalı işçilər, loqolu maşın). Satış: yuk.az faktları. Yazı minimal: qısa kicker + 2-4 sözlük punchline + "Zəng et · nömrə". Layout: meme / hero / narıncı panel / qrafit kart. Instagram foto + Facebook foto | web trendləri + yuk.az | hər gün 05:00 UTC |
 
 Növbə (video günləri): tiplist → story → carousel → tiplist → explainer → … Əl ilə: `Actions → Reels yarat → template:` `tiplist` / `explainer` / `story` (`-silent` şəkilçisi ilə səssiz — yalnız musiqi + SFX).
 

@@ -1,7 +1,8 @@
 /**
  * "Poster" — statik satış postu (1080×1350). AI səhnə (loqolu işçilər / maşın / telefon) + kod tipoqrafiyası.
  * Loqo və nömrə həmişə kodla qoyulur — AI-nin ixtiyarına buraxılmır.
- * Az yazı: yalnız başlıq (maks 4 söz) + "Zəng et" düyməsi. 3 layout: hero (tam foto), split (foto + narıncı panel), card (foto + qrafit kart)
+ * Az yazı: qısa kicker (setup) + başlıq (maks 4 söz) + "Zəng et" düyməsi.
+ * 4 layout: hero (tam foto), split (foto + narıncı panel), card (foto + qrafit kart), meme (fun: setup yuxarıda, punchline aşağıda)
  */
 import { AbsoluteFill, Img, staticFile, useCurrentFrame } from "remotion";
 import { z } from "zod";
@@ -15,8 +16,9 @@ export const posterSchema = z.object({
   headline: z.string(),          // 2-4 söz; \n ilə sətir; sonuncu söz vurğulu
   sub: z.string().default(""),   // köhnə props üçün saxlanılır — daha çəkilmir
   bullets: z.array(z.string()).default([]),  // köhnə props üçün saxlanılır — daha çəkilmir
+  kicker: z.string().default(""),  // qisa setup setri (fun postlar), maks 7 soz
   cta: z.string().default("Zəng et"),
-  variant: z.enum(["hero", "split", "card"]).default("hero"),
+  variant: z.enum(["hero", "split", "card", "meme"]).default("hero"),
 });
 export type PosterProps = z.infer<typeof posterSchema>;
 
@@ -54,6 +56,11 @@ const Headline: React.FC<{ text: string; size: number; color?: string; accent?: 
   );
 };
 
+/** Kicik setup setri — basliqdan evvel */
+const Kicker: React.FC<{ text: string; dark?: boolean }> = ({ text, dark = false }) => (
+  <div style={{ fontFamily: font, fontSize: 44, fontWeight: 700, lineHeight: 1.15, marginBottom: 18, color: dark ? "rgba(30,33,36,0.85)" : "rgba(255,255,255,0.9)", letterSpacing: -0.5 }}>{text}</div>
+);
+
 const CtaPill: React.FC<{ label: string; dark?: boolean; size?: number }> = ({ label, dark = false, size = 44 }) => (
   <div style={{
     display: "inline-flex", alignItems: "center", gap: 18, fontFamily: font,
@@ -68,9 +75,29 @@ const CtaPill: React.FC<{ label: string; dark?: boolean; size?: number }> = ({ l
   </div>
 );
 
-export const Poster: React.FC<PosterProps> = ({ photo, headline, cta, variant }) => {
+export const Poster: React.FC<PosterProps> = ({ photo, headline, kicker, cta, variant }) => {
   useCurrentFrame();
   const src = /^https?:/.test(photo) ? photo : staticFile(photo);
+
+  if (variant === "meme") {
+    // fun post: setup yuxarida (loqonun altinda), punchline + Zeng et asagida
+    return (
+      <AbsoluteFill style={{ width: W, height: H, background: colors.graphite, fontFamily: font }}>
+        <Img src={src} style={{ position: "absolute", inset: 0, width: W, height: H, objectFit: "cover" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(20,22,24,0.72) 0%, rgba(20,22,24,0.15) 28%, rgba(20,22,24,0) 45%, rgba(20,22,24,0.25) 62%, rgba(20,22,24,0.9) 100%)" }} />
+        <Logo />
+        {kicker && (
+          <div style={{ position: "absolute", left: 60, right: 60, top: 150, fontSize: 54, fontWeight: 800, lineHeight: 1.15, color: colors.white, letterSpacing: -1, textShadow: "0 4px 24px rgba(0,0,0,0.6)" }}>
+            {kicker}
+          </div>
+        )}
+        <div style={{ position: "absolute", left: 60, right: 60, bottom: 70 }}>
+          <Headline text={headline} size={118} />
+          <div style={{ marginTop: 40 }}><CtaPill label={cta} size={40} /></div>
+        </div>
+      </AbsoluteFill>
+    );
+  }
 
   if (variant === "split") {
     return (
@@ -81,7 +108,10 @@ export const Poster: React.FC<PosterProps> = ({ photo, headline, cta, variant })
           <Logo />
         </div>
         <div style={{ position: "absolute", left: 60, right: 60, top: 800, bottom: 0, display: "flex", flexDirection: "column", justifyContent: "center", gap: 44 }}>
-          <Headline text={headline} size={108} color={colors.graphite} accent={colors.white} />
+          <div>
+            {kicker && <Kicker text={kicker} dark />}
+            <Headline text={headline} size={108} color={colors.graphite} accent={colors.white} />
+          </div>
           <div><CtaPill label={cta} dark /></div>
         </div>
       </AbsoluteFill>
@@ -95,6 +125,7 @@ export const Poster: React.FC<PosterProps> = ({ photo, headline, cta, variant })
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(20,22,24,0.25) 0%, rgba(20,22,24,0.05) 40%, rgba(20,22,24,0.7) 100%)" }} />
         <Logo />
         <div style={{ position: "absolute", left: 56, right: 56, bottom: 56, background: "rgba(24,26,29,0.86)", backdropFilter: "blur(10px)", borderRadius: 36, padding: "48px 52px", border: "1px solid rgba(255,255,255,0.08)" }}>
+          {kicker && <Kicker text={kicker} />}
           <Headline text={headline} size={96} />
           <div style={{ marginTop: 36 }}><CtaPill label={cta} size={40} /></div>
         </div>
@@ -110,6 +141,7 @@ export const Poster: React.FC<PosterProps> = ({ photo, headline, cta, variant })
       <Logo />
       <div style={{ position: "absolute", left: 60, right: 60, bottom: 70 }}>
         <div style={{ width: 120, height: 10, borderRadius: 5, background: colors.orange, marginBottom: 26 }} />
+        {kicker && <Kicker text={kicker} />}
         <Headline text={headline} size={118} />
         <div style={{ marginTop: 44 }}><CtaPill label={cta} /></div>
       </div>
