@@ -16,7 +16,6 @@ import { CtaScene } from "../components/CtaScene";
 import { LogoBug } from "../components/LogoBug";
 import { AnimatedTitle } from "../components/AnimatedTitle";
 import { Vignette } from "../components/Overlay";
-import { Skyline, Clouds } from "../components/explainer/assets";
 import bounds from "../assetBounds.json";
 
 /** PNG-lər kvadratdır, içində boşluq var — kontentin altı yerə otursun deyə bbox-a görə hesablanır */
@@ -51,25 +50,24 @@ const starts = (scenes: { durationInFrames: number }[]) => {
   return scenes.map((s, i) => { const v = acc - i * TRANSITION; acc += s.durationInFrames; return v; });
 };
 
-/* ---------------------------------------------------------------- Səhnə fonu: səma + şəhər + yol */
-const GROUND_Y = 1420;
-const World: React.FC<{ pan?: number; children?: React.ReactNode }> = ({ pan = 0, children }) => {
+/* ---------------------------------------------------------------- Səhnə fonu: AI illüstrasiya + parallaks */
+const GROUND_Y = 1500;   // küçə/ev fonlarında yol səthi (~78%)
+const FLOOR_Y = 1460;    // interyerdə döşəmə
+const World: React.FC<{ bg: "bg_street" | "bg_home" | "bg_interior"; pan?: number; duration: number; children?: React.ReactNode }> = ({ bg, pan = 0, duration, children }) => {
   const frame = useCurrentFrame();
+  const p = interpolate(frame, [0, duration], [0, 1], { extrapolateRight: "clamp" });
+  const zoom = 1.08 + p * 0.06;
   return (
-    <AbsoluteFill style={{ background: "linear-gradient(180deg, #1B1F23 0%, #252A2F 55%, #1E2124 100%)" }}>
-      <Clouds />
-      {/* uzaq şəhər — yavaş */}
-      <div style={{ position: "absolute", left: -pan * 0.25, top: 0, width: 2400 }}>
-        <Skyline y={GROUND_Y - 300} speed={0} />
-      </div>
-      {/* yer */}
-      <div style={{ position: "absolute", left: 0, right: 0, top: GROUND_Y, bottom: 0, background: "#15181B" }} />
-      <div style={{ position: "absolute", left: 0, right: 0, top: GROUND_Y, height: 8, background: "#3A4045" }} />
-      {/* yol zolaqları — kamera ilə sürüşür */}
-      {Array.from({ length: 14 }).map((_, i) => (
-        <div key={i} style={{ position: "absolute", top: GROUND_Y + 90, left: ((i * 160 - pan) % 2240 + 2240) % 2240 - 160, width: 80, height: 12, borderRadius: 6, background: colors.orange, opacity: 0.7 }} />
-      ))}
-      {/* yaxın qat — səhnə elementləri */}
+    <AbsoluteFill style={{ backgroundColor: colors.graphite, overflow: "hidden" }}>
+      {/* fon — yavaş zoom + panın 20%-i (parallaks) */}
+      <Img
+        src={staticFile(`assets/${bg}.jpg`)}
+        style={{ position: "absolute", left: 0, top: 0, width: 1080, height: 1920, objectFit: "cover",
+                 transform: `translateX(${-pan * 0.2}px) scale(${zoom})`, transformOrigin: "50% 70%" }}
+      />
+      {/* oxunaqlıq: yuxarı və aşağı yumşaq qaralma */}
+      <AbsoluteFill style={{ background: "linear-gradient(180deg, rgba(20,22,24,0.72) 0%, rgba(20,22,24,0.15) 30%, rgba(20,22,24,0) 55%, rgba(20,22,24,0.55) 100%)" }} />
+      {/* yaxın qat — səhnə elementləri tam pan ilə */}
       <div style={{ position: "absolute", left: -pan, top: 0, width: 3000, height: 1920 }}>{children}</div>
     </AbsoluteFill>
   );
@@ -111,13 +109,12 @@ const Call: React.FC<{ s: S }> = ({ s }) => {
   const phone = spring({ frame: Math.max(0, frame - 6), fps, config: { damping: 10, stiffness: 150 } });
   const shake = frame > 20 && frame % 36 < 16 ? Math.sin(frame * 1.5) * 6 : 0;
   return (
-    <World>
-      <Sprite name="building" x={560} y={footTop("building", GROUND_Y, 700)} w={700} />
-      <Shadow x={330} y={GROUND_Y - 40} w={400} s={phone} />
-      <Sprite name="phone" x={220} y={footTop("phone", GROUND_Y - 20, 440)} w={440} style={{ transform: `scale(${phone}) rotate(${shake}deg)` }} />
+    <World bg="bg_street" duration={s.durationInFrames}>
+      <Shadow x={380} y={GROUND_Y - 40} w={400} s={phone} />
+      <Sprite name="phone" x={300} y={footTop("phone", GROUND_Y - 20, 480)} w={480} style={{ transform: `scale(${phone}) rotate(${shake}deg)` }} />
       {[0, 1, 2].map((i) => {
         const p = ((frame - 20 + i * 12) % 36) / 36;
-        return frame > 20 ? <div key={i} style={{ position: "absolute", left: 380, top: GROUND_Y - 500, width: 300, height: 300, borderRadius: "50%", border: `6px solid ${colors.orange}`, transform: `scale(${1 + p * 1.2})`, opacity: (1 - p) * 0.6 }} /> : null;
+        return frame > 20 ? <div key={i} style={{ position: "absolute", left: 390, top: GROUND_Y - 520, width: 300, height: 300, borderRadius: "50%", border: `6px solid ${colors.orange}`, transform: `scale(${1 + p * 1.2})`, opacity: (1 - p) * 0.6 }} /> : null;
       })}
       <Head text={s.heading} />
       <Caption words={s.words} />
@@ -134,15 +131,16 @@ const Pack: React.FC<{ s: S }> = ({ s }) => {
   const tilt = frame < 50 ? Math.sin(frame / 3) * 3 : 0;
   const boxes = spring({ frame: Math.max(0, frame - 46), fps, config: { damping: 9, stiffness: 130 } });
   const sofa = spring({ frame: Math.max(0, frame - 70), fps, config: { damping: 14, stiffness: 90 } });
+  const plant = spring({ frame: Math.max(0, frame - 84), fps, config: { damping: 10, stiffness: 160 } });
   return (
-    <World>
-      <Sprite name="building" x={1500} y={footTop("building", GROUND_Y, 700)} w={700} style={{ opacity: 0.6 }} />
-      <Shadow x={walk + 40} y={GROUND_Y - 30} w={340} />
-      <Sprite name="mover" x={walk} y={footTop("mover", GROUND_Y, 460) - bob} w={460} style={{ transform: `rotate(${tilt}deg)` }} />
-      <Shadow x={620} y={GROUND_Y - 30} w={420} s={boxes} />
-      <Sprite name="boxes" x={600} y={footTop("boxes", GROUND_Y, 460) + (1 - boxes) * -300} w={460} style={{ transform: `scale(${0.8 + boxes * 0.2})`, opacity: boxes }} />
-      <Shadow x={1080} y={GROUND_Y - 30} w={520} s={sofa} />
-      <Sprite name="sofa" x={1060 + (1 - sofa) * 700} y={footTop("sofa", GROUND_Y, 540)} w={540} style={{ opacity: sofa }} />
+    <World bg="bg_interior" duration={s.durationInFrames}>
+      <Shadow x={walk + 60} y={FLOOR_Y - 30} w={340} />
+      <Sprite name="mover" x={walk} y={footTop("mover", FLOOR_Y, 520) - bob} w={520} style={{ transform: `rotate(${tilt}deg)` }} />
+      <Shadow x={640} y={FLOOR_Y - 30} w={420} s={boxes} />
+      <Sprite name="boxes" x={620} y={footTop("boxes", FLOOR_Y, 440) + (1 - boxes) * -300} w={440} style={{ transform: `scale(${0.8 + boxes * 0.2})`, opacity: boxes }} />
+      <Shadow x={1060} y={FLOOR_Y - 30} w={560} s={sofa} />
+      <Sprite name="sofa" x={1040 + (1 - sofa) * 700} y={footTop("sofa", FLOOR_Y, 600)} w={600} style={{ opacity: sofa }} />
+      <Sprite name="plant" x={80} y={footTop("plant", FLOOR_Y - 10, 260)} w={260} style={{ transform: `scale(${plant})`, opacity: plant }} />
       <Head text={s.heading} />
       <Caption words={s.words} />
       <Sequence from={48} durationInFrames={10}><Audio src={staticFile("sfx/pop.wav")} volume={0.5} /></Sequence>
@@ -166,8 +164,7 @@ const Load: React.FC<{ s: S }> = ({ s }) => {
   const fb = fly(46), fs = fly(64);
   const inTruck = { x: truckX + 170, y: GROUND_Y - 330 };
   return (
-    <World>
-      <Sprite name="building" x={-100} y={footTop("building", GROUND_Y, 700)} w={700} style={{ opacity: 0.55 }} />
+    <World bg="bg_street" duration={s.durationInFrames}>
       <Shadow x={truckX + 20} y={GROUND_Y - 40} w={900} />
       <Sprite name="truck" x={truckX} y={footTop("truck", GROUND_Y, 900) + bounce} w={900} />
       {/* qutular */}
@@ -187,13 +184,12 @@ const Load: React.FC<{ s: S }> = ({ s }) => {
 /* ---------------------------------------------------------------- 4. Çatdı: kamera panı, yeni bina, daşıyıcı qutu ilə */
 const Arrive: React.FC<{ s: S }> = ({ s }) => {
   const frame = useCurrentFrame();
-  const pan = interpolate(frame, [0, s.durationInFrames], [0, 700], { extrapolateRight: "clamp", easing: Easing.inOut(Easing.quad) });
+  const pan = interpolate(frame, [0, s.durationInFrames], [0, 420], { extrapolateRight: "clamp", easing: Easing.inOut(Easing.quad) });
   const truckX = interpolate(frame, [0, 45], [-1000, 900], { extrapolateRight: "clamp", easing: Easing.out(Easing.cubic) });
-  const moverX = interpolate(frame, [50, 100], [1150, 1500], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const moverX = interpolate(frame, [50, 100], [1150, 1420], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const bob = frame > 50 && frame < 100 ? Math.abs(Math.sin(frame / 3)) * 12 : 0;
   return (
-    <World pan={pan}>
-      <Sprite name="building" x={1700} y={footTop("building", GROUND_Y, 700)} w={700} />
+    <World bg="bg_home" pan={pan} duration={s.durationInFrames}>
       <Shadow x={truckX + 20} y={GROUND_Y - 40} w={900} />
       <Sprite name="truck" x={truckX} y={footTop("truck", GROUND_Y, 900) + (frame < 45 ? Math.sin(frame / 2) * 3 : 0)} w={900} />
       {frame > 50 && <Sprite name="mover" x={moverX} y={footTop("mover", GROUND_Y, 440) - bob} w={440} />}

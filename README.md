@@ -211,7 +211,10 @@ GitHub-da `Variables` bölməsindən, lokal `.env`-dən dəyişilir.
 
 Növbə: tiplist → story → tiplist → explainer → … Əl ilə: `Actions → Reels yarat → template:` `tiplist` / `explainer` / `story` (`-silent` şəkilçisi ilə səssiz — yalnız musiqi + SFX).
 
-Assetləri yenidən yaratmaq (brend dəyişsə): OpenAI `gpt-image-1`, şəffaf fon, brend paleti; sərhədlər `src/assetBounds.json`-da ölçülür ki, personaj yerə otursun.
+Assetlər [pipeline/gen_assets.py](pipeline/gen_assets.py) ilə yaranır: OpenAI `gpt-image-2.5`, "high",
+3D-yə yaxın Pixar üslubu, brend paleti. 6 şəffaf obyekt (yük maşını, qutular, daşıyıcı, telefon, divan, bitki)
++ 3 fon (küçə, yeni ev, interyer, 9:16). Sərhədlər `src/assetBounds.json`-da ölçülür ki, personaj yerə otursun.
+Yeni obyekt lazımdırsa: `OBJECTS`-ə bir sətir əlavə et, `python pipeline/gen_assets.py <ad>` (~0.2 $/şəkil).
 
 Explainer-in bütün assetləri [src/components/explainer/assets.tsx](src/components/explainer/assets.tsx)-də SVG/CSS ilə çəkilib — stok yoxdur, telif yoxdur, brendin kub loqosu birbaşa "qutu"dur.
 
