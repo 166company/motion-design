@@ -1,6 +1,6 @@
 {
   "repo": "166company/motion-design",
-  "updatedAt": "2026-09-11T13:27:54.939Z",
+  "updatedAt": "2026-09-11T13:32:45.422Z",
   "entries": [
     {
       "id": "2026-09-11-story",
@@ -31,6 +31,101 @@
         "license": "Attribution CC BY",
         "vocal": false,
         "source": "audius"
+      }
+    },
+    {
+      "id": "2026-09-11-poster-9",
+      "images": [
+        "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-poster-9/2026-09-11-poster-9-1.png"
+      ],
+      "hook": "Köçün məbləği? — Yük.az öncədən",
+      "caption": "📦 Yükün həcmi, mərtəbə, lift və iş növü nəzərə alınır.\n\nYük.az məbləği əvvəlcədən bildirir; qablaşdırma və sığorta daxildir.\n\n📞 Zəng et: 050 209 62 99",
+      "hashtags": [
+        "#Yükaz",
+        "#evdaşınması",
+        "#yükdaşıma",
+        "#Bakı"
+      ],
+      "source": "https://yuk.az",
+      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-poster-9/2026-09-11-poster-9.mp4",
+      "duration": 0,
+      "scenes": 1,
+      "status": "təsdiq-gözləyir",
+      "kind": "sales",
+      "createdAt": "2026-09-11",
+      "template": "Poster",
+      "voice": null,
+      "music": {
+        "label": "Orijinal sintez",
+        "license": null,
+        "vocal": false,
+        "source": "synth"
+      }
+    },
+    {
+      "id": "2026-09-11-poster-8",
+      "images": [
+        "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-poster-8/2026-09-11-poster-8-1.png"
+      ],
+      "hook": "Qutu götürməyə qalxdım, saat təbrik etdi — Köç fitnessdir",
+      "caption": "Saat elə bildi marafondayam 😅 Mən isə sadəcə liftin yanında “az qutu var” deyirdim 📦\n\n📞 Zəng et: 050 209 62 99",
+      "hashtags": [
+        "#Yükaz",
+        "#köç",
+        "#fitness",
+        "#Bakı"
+      ],
+      "source": "https://yuk.az",
+      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-poster-8/2026-09-11-poster-8.mp4",
+      "duration": 0,
+      "scenes": 1,
+      "status": "təsdiq-gözləyir",
+      "kind": "fun",
+      "inspiration": {
+        "url": "https://www.thepoke.com/2026/09/11/our-25-favourite-funny-tweets-of-the-week-133/",
+        "quote": "Went to get a snack, and my watch congratulated me on standing up, so yes, I do take fitness very seriously"
+      },
+      "createdAt": "2026-09-11",
+      "template": "Poster",
+      "voice": null,
+      "music": {
+        "label": "Orijinal sintez",
+        "license": null,
+        "vocal": false,
+        "source": "synth"
+      }
+    },
+    {
+      "id": "2026-09-11-poster-7",
+      "images": [
+        "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-poster-7/2026-09-11-poster-7-1.png"
+      ],
+      "hook": "Təəssüflə bildirirəm: köçün sirri — Köçməkdir. Yük.az-la",
+      "caption": "Divan qapıdan keçmirsə, sirr artıq sirr deyil 😄 Yük.az gəlir, qonşu da tamaşanı yarımçıq qoyur 📦\n\n📞 Zəng et: 050 209 62 99",
+      "hashtags": [
+        "#Yükaz",
+        "#köç",
+        "#yükdaşıma",
+        "#Bakı"
+      ],
+      "source": "https://yuk.az",
+      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-poster-7/2026-09-11-poster-7.mp4",
+      "duration": 0,
+      "scenes": 1,
+      "status": "təsdiq-gözləyir",
+      "kind": "fun",
+      "inspiration": {
+        "url": "https://www.thepoke.com/2026/09/11/our-25-favourite-funny-tweets-of-the-week-133/",
+        "quote": "I regret to inform you that the secret to a clean house is to clean the house"
+      },
+      "createdAt": "2026-09-11",
+      "template": "Poster",
+      "voice": null,
+      "music": {
+        "label": "Orijinal sintez",
+        "license": null,
+        "vocal": false,
+        "source": "synth"
       }
     },
     {
