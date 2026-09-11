@@ -29,7 +29,7 @@ const SCENES: Record<string, string> = {
 };
 const VARIANTS = ["hero", "split", "card"] as const;
 
-type Concept = { scene: keyof typeof SCENES; sceneDetail: string; headline: string; sub: string; bullets: string[]; caption: string; hashtags: string[] };
+type Concept = { scene: keyof typeof SCENES; sceneDetail: string; headline: string; caption: string; hashtags: string[] };
 
 const schema = {
   type: "object", additionalProperties: false, required: ["posts"],
@@ -38,13 +38,11 @@ const schema = {
       type: "array", minItems: COUNT, maxItems: COUNT,
       items: {
         type: "object", additionalProperties: false,
-        required: ["scene", "sceneDetail", "headline", "sub", "bullets", "caption", "hashtags"],
+        required: ["scene", "sceneDetail", "headline", "caption", "hashtags"],
         properties: {
           scene: { type: "string", enum: Object.keys(SCENES) },
           sceneDetail: { type: "string", description: "İNGİLİSCƏ: səhnəyə əlavə 1 cümlə detal (vaxt, işıq, əhval), loqonu təkrar etmə" },
-          headline: { type: "string", description: "2-5 söz, 2 sətir \\n ilə, hər sətir maks 14 hərf; satış mesajı; sonuncu söz vurğu (rəngli) olacaq" },
-          sub: { type: "string", description: "1 qısa fayda cümləsi, maks 60 simvol; card layout üçün boş buraxıla bilər" },
-          bullets: { type: "array", minItems: 3, maxItems: 3, items: { type: "string" }, description: "3 fayda, hər biri maks 22 simvol" },
+          headline: { type: "string", description: "Postdakı YEGANƏ yazı: 2-4 söz, 1-2 sətir \\n ilə, hər sətir maks 12 hərf; zərbəli satış mesajı; sonuncu söz vurğu (rəngli) olacaq" },
           caption: { type: "string", description: "Instagram caption: emoji hook + boş sətir + 2 qısa emojili abzas. Nömrə YAZMA (sistem əlavə edir). Rəqəm/qiymət YOX" },
           hashtags: { type: "array", minItems: 4, maxItems: 7, items: { type: "string" } },
         },
@@ -56,7 +54,7 @@ const schema = {
 const SYSTEM = `Sən Yük.az (Azərbaycanda yükdaşıma və ev daşınması) üçün statik Instagram satış postlarının kopirayterisən.
 Hər gün ${COUNT} fərqli post: hər biri FƏRQLİ səhnə (workers/truck/phone/loading/interior/family — təkrar etmə) və fərqli satış bucağı:
 sürət ("bu gün"), sığorta/təhlükəsizlik, qablaşdırma daxil, bir zəng/rahatlıq, Bakı + rayonlar, ofis köçü, ağır əşya (piano, seyf).
-QAYDALAR: sadə, inandırıcı azərbaycan dili, "sən"; başlıqlar qısa və zərbəli; KONKRET QİYMƏT/RƏQƏM YOX; "Yük.az" yaz.
+QAYDALAR: postda AZ YAZI — yalnız 2-4 sözlük başlıq, izahat cümləsi yox (nömrə və düymə sistem tərəfindən qoyulur); sadə, inandırıcı azərbaycan dili, "sən"; KONKRET QİYMƏT/RƏQƏM YOX; "Yük.az" yaz.
 Faktlar yalnız verilən məqalələrdən (sığorta daxildir, qiyməti operator telefonda deyir, qablaşdırma materialı daxildir).`;
 
 const writeConcepts = async (facts: string, feedback?: string): Promise<Concept[]> => {
@@ -118,7 +116,12 @@ const main = async () => {
     console.log(`3. Səhnə ${i + 1}/${posts.length} (AI, loqo istinadla)…`);
     await genScene(`${SCENES[c.scene]} ${c.sceneDetail}`, path.join(dir, "photo.jpg"));
 
-    const props = { id, photo: `render/${id}/photo.jpg`, headline: c.headline, sub: variant === "card" ? "" : c.sub, bullets: c.bullets, cta: "Zəng et", variant };
+    // başlıq maks 4 söz — model çox yazsa qısaldırıq
+    const words = c.headline.split(/\s+/).filter(Boolean);
+    const headline = words.length <= 4 && c.headline.includes("\n")
+      ? c.headline.trim()
+      : words.length <= 2 ? words.join(" ") : `${words.slice(0, 2).join(" ")}\n${words.slice(2, 4).join(" ")}`;
+    const props = { id, photo: `render/${id}/photo.jpg`, headline, cta: "Zəng et", variant };
     await fs.writeFile(path.join(dir, "props.json"), JSON.stringify(props, null, 2), "utf-8");
     const caption = c.caption.includes(contact.phone) ? c.caption : `${c.caption.trim()}\n\n📞 Zəng et: ${contact.phone}`;
     await fs.writeFile(
