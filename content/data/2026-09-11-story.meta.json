@@ -1,0 +1,25 @@
+{
+  "id": "2026-09-11-story",
+  "template": "Story",
+  "articleId": null,
+  "link": "https://yuk.az",
+  "caption": "📦 Köç günü belə rahat olur\n\n🚚 Zəng et, qablaşdırmanı da yükləməni də bizə burax. 🏠 Yeni ünvana səliqə ilə çat, vaxtını da qoruyursan.\n\n📞 Zəng et: 050 209 62 99\n\n🎵 Uplifting Hip Hop Instrumental - DRIVE - 2020 Beat — Fizzy Hardcore (CC BY) https://audius.co/Fizzyhardcore/uplifting-hip-hop-instrumental-drive-2020-beat-16911",
+  "hashtags": [
+    "#Yukaz",
+    "#yükdaşima",
+    "#evdaşınması",
+    "#BakıdaKöç",
+    "#reelsaz",
+    "#köçgünü"
+  ],
+  "music": "render/2026-09-11-story/music.norm.wav",
+  "attribution": "🎵 Uplifting Hip Hop Instrumental - DRIVE - 2020 Beat — Fizzy Hardcore (CC BY) https://audius.co/Fizzyhardcore/uplifting-hip-hop-instrumental-drive-2020-beat-16911",
+  "musicTrack": {
+    "id": "D9dvw",
+    "title": "Uplifting Hip Hop Instrumental - DRIVE - 2020 Beat",
+    "artist": "Fizzy Hardcore",
+    "license": "Attribution CC BY"
+  },
+  "voice": "ash",
+  "silent": false
+}

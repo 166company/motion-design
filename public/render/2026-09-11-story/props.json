@@ -1,0 +1,210 @@
+{
+  "id": "2026-09-11-story",
+  "cta": {
+    "line1": "Yük.az ilə indi sifariş et",
+    "line2": "Zəng et"
+  },
+  "music": "render/2026-09-11-story/music.norm.wav",
+  "musicVolume": 0.5,
+  "scenes": [
+    {
+      "kind": "call",
+      "heading": "Bir zəng bəsdir",
+      "spoken": "Bir zəng edirsən, qalanı Yük nöqtə az həll edir.",
+      "audio": "render/2026-09-11-story/call.wav",
+      "words": [
+        {
+          "w": "Bir",
+          "start": 0,
+          "dur": 0.48
+        },
+        {
+          "w": "zəng",
+          "start": 0.48,
+          "dur": 0.34
+        },
+        {
+          "w": "edirsən,",
+          "start": 0.82,
+          "dur": 0.58
+        },
+        {
+          "w": "qalanı",
+          "start": 2.04,
+          "dur": 0.4
+        },
+        {
+          "w": "Yük",
+          "start": 2.44,
+          "dur": 0.22
+        },
+        {
+          "w": "nöqtə",
+          "start": 2.66,
+          "dur": 0.4
+        },
+        {
+          "w": "az",
+          "start": 3.06,
+          "dur": 0.28
+        },
+        {
+          "w": "həll",
+          "start": 3.34,
+          "dur": 0.52
+        },
+        {
+          "w": "edir.",
+          "start": 3.86,
+          "dur": 0.28
+        }
+      ],
+      "durationInFrames": 159
+    },
+    {
+      "kind": "pack",
+      "heading": "Qablaşdırma bizdə",
+      "spoken": "Daşıyıcı gəlir, qutular düzülür, divan da hazır olur.",
+      "audio": "render/2026-09-11-story/pack.wav",
+      "words": [
+        {
+          "w": "Daşıyıcı",
+          "start": 0,
+          "dur": 0.86
+        },
+        {
+          "w": "gəlir,",
+          "start": 0.86,
+          "dur": 0.7
+        },
+        {
+          "w": "qutular",
+          "start": 2.34,
+          "dur": 0.34
+        },
+        {
+          "w": "düzülür,",
+          "start": 2.68,
+          "dur": 0.56
+        },
+        {
+          "w": "divan",
+          "start": 3.9,
+          "dur": 0.28
+        },
+        {
+          "w": "da",
+          "start": 4.18,
+          "dur": 0.18
+        },
+        {
+          "w": "hazır",
+          "start": 4.36,
+          "dur": 0.3
+        },
+        {
+          "w": "olur.",
+          "start": 4.66,
+          "dur": 0.26
+        }
+      ],
+      "durationInFrames": 173
+    },
+    {
+      "kind": "load",
+      "heading": "Yüklədik, getdi",
+      "spoken": "Əşyalar maşına səliqə ilə yüklənir, yol başlayır.",
+      "audio": "render/2026-09-11-story/load.wav",
+      "words": [
+        {
+          "w": "Əşyalar",
+          "start": 0,
+          "dur": 0.98
+        },
+        {
+          "w": "maşına",
+          "start": 0.98,
+          "dur": 0.8
+        },
+        {
+          "w": "səliqə",
+          "start": 1.78,
+          "dur": 0.78
+        },
+        {
+          "w": "ilə",
+          "start": 2.56,
+          "dur": 0.16
+        },
+        {
+          "w": "yüklənir,",
+          "start": 2.72,
+          "dur": 0.6
+        },
+        {
+          "w": "yol",
+          "start": 4.12,
+          "dur": 0.08
+        },
+        {
+          "w": "başlayır.",
+          "start": 4.2,
+          "dur": 0.62
+        }
+      ],
+      "durationInFrames": 174
+    },
+    {
+      "kind": "arrive",
+      "heading": "Yeni evə çatdın",
+      "spoken": "Yeni binaya çatdıq, qutular da yerinə gedir.",
+      "audio": "render/2026-09-11-story/arrive.wav",
+      "words": [
+        {
+          "w": "Yeni",
+          "start": 0,
+          "dur": 0.52
+        },
+        {
+          "w": "binaya",
+          "start": 0.52,
+          "dur": 0.82
+        },
+        {
+          "w": "çatdıq,",
+          "start": 1.34,
+          "dur": 1.28
+        },
+        {
+          "w": "qutular",
+          "start": 2.94,
+          "dur": 0.24
+        },
+        {
+          "w": "da",
+          "start": 3.18,
+          "dur": 0.22
+        },
+        {
+          "w": "yerinə",
+          "start": 3.4,
+          "dur": 0.42
+        },
+        {
+          "w": "gedir.",
+          "start": 3.82,
+          "dur": 0.26
+        }
+      ],
+      "durationInFrames": 149
+    },
+    {
+      "kind": "cta",
+      "heading": "",
+      "spoken": "",
+      "audio": null,
+      "words": [],
+      "durationInFrames": 110
+    }
+  ]
+}
