@@ -1,6 +1,6 @@
 {
   "repo": "166company/motion-design",
-  "updatedAt": "2026-09-11T11:24:11.626Z",
+  "updatedAt": "2026-09-11T11:32:01.881Z",
   "entries": [
     {
       "id": "2026-09-11-story",
@@ -40,14 +40,15 @@
         "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-carousel/2026-09-11-carousel-2.png",
         "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-carousel/2026-09-11-carousel-3.png"
       ],
-      "hook": "SƏNİN GÖ... / ...TÜRƏ BİLMƏ DİYİN YÜKÜ BİZ GÖTÜRƏK. → Bir zənglə.",
-      "caption": "📦🚚",
+      "hook": "SƏNİN GÖ... ...TÜRƏ BİLMƏDİYİN YÜKÜ BİZ GÖTÜRƏK. → Bir zənglə.",
+      "caption": "📦💪",
       "hashtags": [
         "#Yükaz",
         "#yükdaşıma",
         "#evdaşınması",
         "#daşınma",
-        "#Bakı"
+        "#Bakı",
+        "#qablaşdırma"
       ],
       "source": "https://yuk.az",
       "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-carousel/2026-09-11-carousel.mp4",
@@ -55,7 +56,7 @@
       "scenes": 3,
       "status": "təsdiq-gözləyir",
       "createdAt": "2026-09-11",
-      "note": "Mətni 1-ci və 2-ci slayd arasında davam edən formada bölmək lazımdır. 3-cü slaydda CTA istənilir, amma dəqiq CTA mətni göstərilməyib.",
+      "note": "İstifadəçi Carousel slayd mətnlərini konkret verib və onların olduğu kimi saxlanmasını istəyir. Səs, musiqi və vizual dəyişiklik barədə əlavə tələb yoxdur.",
       "template": "Carousel",
       "voice": null,
       "music": {

@@ -19,6 +19,6 @@
   },
   "2026-09-11-carousel": {
     "status": "təsdiq-gözləyir",
-    "note": "Mətni 1-ci və 2-ci slayd arasında davam edən formada bölmək lazımdır. 3-cü slaydda CTA istənilir, amma dəqiq CTA mətni göstərilməyib."
+    "note": "İstifadəçi Carousel slayd mətnlərini konkret verib və onların olduğu kimi saxlanmasını istəyir. Səs, musiqi və vizual dəyişiklik barədə əlavə tələb yoxdur."
   }
 }
