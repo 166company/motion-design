@@ -83,6 +83,8 @@ jobs:
           git config user.email "actions@github.com"
           git add docs/data.json content/data public/render
           git commit -m "reel: ${{ steps.reel.outputs.id }}" || echo "dəyişiklik yoxdur"
+          # Workflow işləyərkən main-ə başqa push gəlibsə, üstünə qoy — toqquşma olmasın
+          git pull --rebase --autostash origin main
           git push
 
       - name: Təsdiq üçün Issue aç
