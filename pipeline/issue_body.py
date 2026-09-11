@@ -26,6 +26,8 @@ lines = [
     "",
     f"**Mənbə məqalə:** {meta['link']}",
     "",
+    f"**Musiqi:** {meta.get('attribution') or meta.get('music') or 'sintez'}",
+    "",
     "---",
     "",
     "Yayımlamaq üçün bu Issue-ya şərh yaz: `/publish`",

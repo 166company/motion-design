@@ -53,6 +53,7 @@ git push -u origin main
 | `META_ACCESS_TOKEN` | Business Manager → System User token |
 | `META_PAGE_ID` | `1318449774679428` |
 | `META_IG_USER_ID` | `17841436916284553` |
+| `AUDIUS_API_TOKEN` | api.audius.co → API Bearer Token (pulsuz, kartsız) |
 
 İstəyə görə `Variables` bölməsində:
 `OPENAI_MODEL` (default `gpt-5.4-mini`), `TTS_VOICE` (default `az-AZ-BanuNeural`).
@@ -63,16 +64,23 @@ git push -u origin main
 
 Panel: `https://166company.github.io/motion-design/`
 
-### 4. Musiqi (istəyə görə)
+### 4. Musiqi
 
-Sistem musiqisiz də tam işləyir: `public/music/` boşdursa,
-[pipeline/music.py](pipeline/music.py) hər video üçün **orijinal fon yastığı**
-sintez edir — telif riski yoxdur, xərc yoxdur, açar yoxdur.
+Üç qatlı prioritet, hamısı avtomatik:
 
-Daha zəngin musiqi istəsən, `public/music/` qovluğuna `.mp3` at —
-sintezator avtomatik sönür və sənin treklərin işlədilir.
-Mənbə: Instagram **Sound Collection** (biznes hesab üçün rəsmi lisenziyalı)
-və ya Pixabay Music.
+1. **`public/music/`** — sənin əl ilə seçdiyin `.mp3` treklər (varsa, həmişə üstündür)
+2. **Audius** — [pipeline/audius.ts](pipeline/audius.ts) yalnız **CC BY / CC BY-SA /
+   Public Domain** trekləri seçir; atribut caption-a avtomatik əlavə olunur
+   (lisenziyanın tələbidir). Audius-dakı treklərin ~99%-i "All rights reserved"-dir
+   və süzülür — bu filtri zəiflətmə.
+3. **Sintez** — [pipeline/music.py](pipeline/music.py) orijinal fon yastığı,
+   heç biri olmasa.
+
+Audius-dan gələn trek xoşuna gəlmirsə (məs. vokallıdır), ID-sini
+`content/data/music-exclude.json` siyahısına yaz — bir daha seçilməz.
+Trek adı hər təsdiq Issue-sunda göstərilir.
+
+Kataloq `content/data/audius-catalog.json`-da 7 gün keşlənir.
 
 ---
 
@@ -127,6 +135,7 @@ pipeline/
   assets.ts             Pexels portret video
   run.ts                bütün zənciri birləşdirir
   qa.ts                 render sonrası yoxlamalar
+  audius.ts             Audius — CC lisenziyalı musiqi + atribut
   music.py              orijinal fon musiqisi sintezatoru
   publish.ts            Meta Graph API
   panel.ts              docs/data.json

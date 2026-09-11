@@ -6,6 +6,7 @@ import path from "node:path";
 import { pickArticle } from "./wp.ts";
 import { writeScript } from "./script.ts";
 import { findMedia } from "./assets.ts";
+import { pickAndDownload } from "./audius.ts";
 
 const FPS = 30;
 const TAIL = 10;        // səhnə sonuna nəfəs payı (kadr)
@@ -107,18 +108,36 @@ const main = async () => {
     },
   ];
 
-  // Musiqi public/music/ qovluğundan götürülür (staticFile yalnız public/ görür).
-  // Trek məqalə ID-sinə görə seçilir — eyni video həmişə eyni musiqi ilə render olunur.
-  const tracks = await fs
+  // Musiqi prioriteti:
+  //   1) public/music/ — sənin əl ilə seçdiyin treklər (varsa)
+  //   2) Audius — Creative Commons, atributla (caption-a əlavə olunur)
+  //   3) music.py — orijinal sintez (heç biri olmasa)
+  const secs = scenes.reduce((a, b) => a + b.durationInFrames, 0) / FPS;
+  let track: string | null = null;
+  let attribution: string | null = null;
+
+  const local = await fs
     .readdir("public/music")
     .then((f) => f.filter((x) => /\.(mp3|m4a|wav)$/i.test(x)).sort())
     .catch(() => [] as string[]);
-  let track = tracks.length ? `music/${tracks[article.id % tracks.length]}` : null;
 
-  // Real trek yoxdursa, videonun uzunluğuna uyğun orijinal fon musiqisi sintez et.
-  // Telif riski yoxdur. public/music/ dolduqda bu blok özü sönür.
+  if (local.length) {
+    track = `music/${local[article.id % local.length]}`;
+    log(`musiqi: lokal — ${track}`);
+  } else {
+    const dest = path.join(dir, "music.mp3");
+    const picked = await pickAndDownload(article.id, secs, dest).catch((e) => {
+      log(`⚠ Audius: ${e.message}`);
+      return null;
+    });
+    if (picked) {
+      track = `render/${id}/music.mp3`;
+      attribution = picked.attribution;
+      log(`musiqi: Audius — ${picked.track.title} (${picked.track.artist}, ${picked.track.license})`);
+    }
+  }
+
   if (!track) {
-    const secs = scenes.reduce((a, b) => a + b.durationInFrames, 0) / FPS;
     const wav = path.join(dir, "music.wav");
     await new Promise<void>((res, rej) => {
       const py = spawn("python", ["pipeline/music.py", wav, String(article.id), secs.toFixed(1)], {
@@ -129,7 +148,7 @@ const main = async () => {
       py.on("close", (c) => (c === 0 ? res() : rej(new Error(`music.py ${c}: ${err.slice(-300)}`))));
     });
     track = `render/${id}/music.wav`;
-    log("fon musiqisi sintez olundu");
+    log("musiqi: sintez (orijinal)");
   }
 
   const reel = {
@@ -146,7 +165,15 @@ const main = async () => {
   await fs.writeFile("src/defaultProps.json", JSON.stringify(reel, null, 2), "utf-8");
   await fs.writeFile(
     path.join("content", "data", `${id}.meta.json`),
-    JSON.stringify({ id, articleId: article.id, link: article.link, caption: s.caption, hashtags: s.hashtags }, null, 2),
+    JSON.stringify({
+      id, articleId: article.id, link: article.link,
+      // CC BY lisenziyası atribut tələb edir — caption-ın sonuna əlavə olunur
+      caption: attribution ? `${s.caption}
+
+${attribution}` : s.caption,
+      hashtags: s.hashtags,
+      music: track, attribution,
+    }, null, 2),
     "utf-8"
   );
   await fs.writeFile(usedPath, JSON.stringify([...used, article.id]), "utf-8");
@@ -154,7 +181,7 @@ const main = async () => {
   const total = scenes.reduce((a, b) => a + b.durationInFrames, 0);
   console.log(`\n✓ Hazırdır: ${id}`);
   console.log(`  müddət: ${(total / FPS).toFixed(1)} saniyə (${total} kadr)`);
-  console.log(`  musiqi: ${track}`);
+
   console.log(`\n  Render: npm run render -- --props=${dir}/props.json out/${id}.mp4\n`);
 };
 

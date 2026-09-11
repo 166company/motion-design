@@ -20,6 +20,7 @@ jobs:
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       OPENAI_MODEL: ${{ vars.OPENAI_MODEL || 'gpt-5.4-mini' }}
       PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+      AUDIUS_API_TOKEN: ${{ secrets.AUDIUS_API_TOKEN }}
       TTS_VOICE: ${{ vars.TTS_VOICE || 'az-AZ-BanuNeural' }}
 
     steps:
@@ -82,5 +83,6 @@ jobs:
           ID: ${{ steps.reel.outputs.id }}
           REPO: ${{ github.repository }}
         run: |
+          gh label create "təsdiq-gözləyir" --color FF6600 --force 2>/dev/null || true
           python pipeline/issue_body.py "$ID" "$REPO" > issue.md
           gh issue create --title "Təsdiq: $ID" --label "təsdiq-gözləyir" --body-file issue.md

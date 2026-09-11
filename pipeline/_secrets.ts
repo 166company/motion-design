@@ -12,6 +12,7 @@ const NAMES = [
   "META_ACCESS_TOKEN",
   "META_PAGE_ID",
   "META_IG_USER_ID",
+  "AUDIUS_API_TOKEN",
 ] as const;
 
 const gh = async (path: string, init: RequestInit = {}) =>
