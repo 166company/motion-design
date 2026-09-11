@@ -16,7 +16,7 @@ import { Caption } from "../components/Caption";
 import { CtaScene } from "../components/CtaScene";
 import { LogoBug } from "../components/LogoBug";
 import { AnimatedTitle, AccentLine } from "../components/AnimatedTitle";
-import { Vignette, ProgressBar } from "../components/Overlay";
+import { Vignette } from "../components/Overlay";
 import { Box, Truck, Road, Skyline, Clouds, RingingPhone, Bubble, RouteMap } from "../components/explainer/assets";
 
 export const TRANSITION = 12;
@@ -252,7 +252,6 @@ export const Explainer: React.FC<ExplainerProps> = ({ cta, scenes, music, musicV
       <Vignette />
       {ctaFrom > 0 && (
         <Sequence durationInFrames={ctaFrom}>
-          <ProgressBar segments={scenes.filter((s) => s.kind !== "cta").map((s) => s.durationInFrames - TRANSITION)} total={ctaFrom} />
           <LogoBug />
         </Sequence>
       )}

@@ -143,17 +143,18 @@ function render() {
     const approve =
       "https://github.com/" + esc(DATA.repo) +
       "/issues?q=is%3Aissue+is%3Aopen+" + esc(e.id);
+    // Sil / Dəyişiklik / Yayımla — hazır doldurulmuş Issue açır; manage.yml onu icra edir
+    const newIssue = (title, body) =>
+      "https://github.com/" + esc(DATA.repo) + "/issues/new?title=" +
+      encodeURIComponent(title) + "&body=" + encodeURIComponent(body);
     const right =
       e.status === "yayımlanıb"
         ? '<a class="btn primary" target="_blank" rel="noopener" href="' +
           esc(e.instagram || "#") + '">Instagram-da bax</a>'
         : '<a class="btn primary" target="_blank" rel="noopener" href="' +
-          approve + '">Təsdiqlə</a>';
+          newIssue("Yayımla: " + e.id, "Bu video Instagram + Facebook-a yayımlansın. Açılan səhifədə \"Submit new issue\" bas — qalanı avtomatikdir.") +
+          '">🚀 Yayımla</a>';
 
-    // Sil / Dəyişiklik — hazır doldurulmuş Issue açır; manage.yml onu icra edir
-    const newIssue = (title, body) =>
-      "https://github.com/" + esc(DATA.repo) + "/issues/new?title=" +
-      encodeURIComponent(title) + "&body=" + encodeURIComponent(body);
     const changeBody =
       "Bu videoda nə dəyişməlidir? Aşağıya sərbəst yaz — qeyd ssenari modelinə ötürülür və video yenidən istehsal olunur." + "\n\n" +
       "Məsələn: başlıqlar daha qısa olsun / musiqi daha gümrah / 3-cü bənd lazım deyil / CTA-da telefon yazılsın" + "\n\n---\n\n";

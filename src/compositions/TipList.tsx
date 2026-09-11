@@ -11,7 +11,7 @@ import { IconBadge } from "../components/IconBadge";
 import { CtaScene } from "../components/CtaScene";
 import { LogoBug } from "../components/LogoBug";
 import { AnimatedTitle, AccentLine } from "../components/AnimatedTitle";
-import { Vignette, ProgressBar, Sweep } from "../components/Overlay";
+import { Vignette, Sweep } from "../components/Overlay";
 import type { Reel, Scene } from "../types";
 
 /** Səhnələrarası keçidin uzunluğu (kadr). Root-dakı calculateMetadata bunu nəzərə alır. */
@@ -187,7 +187,6 @@ export const TipList: React.FC<Reel> = ({ hook, total, cta, scenes, music, music
       <Vignette />
       {ctaFrom > 0 && (
         <Sequence durationInFrames={ctaFrom}>
-          <ProgressBar segments={scenes.filter((s) => s.kind !== "cta").map((s) => s.durationInFrames - TRANSITION)} total={ctaFrom} />
           <LogoBug />
         </Sequence>
       )}

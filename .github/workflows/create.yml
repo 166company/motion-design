@@ -28,6 +28,7 @@ jobs:
       TTS_ENGINE: ${{ vars.TTS_ENGINE || 'openai' }}
       # OPENAI_TTS_VOICE boşdursa hər video fərqli səslə çıxır (rotasiya); sabit istəsən Variables-də təyin et
       OPENAI_TTS_VOICE: ${{ vars.OPENAI_TTS_VOICE }}
+      OPENAI_TTS_MODEL: ${{ vars.OPENAI_TTS_MODEL || 'gpt-4o-mini-tts-2025-12-15' }}
       TTS_VOICE: ${{ vars.TTS_VOICE || 'az-AZ-BanuNeural' }}
 
     steps:

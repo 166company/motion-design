@@ -11,7 +11,7 @@ import { pickVoice, contact } from "../src/brand/contact.ts";
 
 const FPS = 30;
 const TAIL = 16;        // səhnə sonuna nəfəs payı (kadr) — keçid (12) bunun içində qalır
-const CTA_FRAMES = 96;  // 3.2 saniyə — loqo animasiyası + pill üçün
+const CTA_FRAMES = 110; // 3.7 saniyə — loqo + düymə + klik + nömrənin oxunması
 
 const log = (m: string) => console.log(`  ${m}`);
 

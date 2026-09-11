@@ -19,15 +19,40 @@ MODEL = os.environ.get("OPENAI_TTS_MODEL", "gpt-4o-mini-tts-2025-12-15")
 VOICE = os.environ.get("OPENAI_TTS_VOICE", "marin")
 SPEED = float(os.environ.get("OPENAI_TTS_SPEED", "1.1"))  # reels ritmi — 1.0 çox yavaş idi (33 san)
 
+# İngiliscə göstəriş: model fonetik təlimatı ingiliscə daha dəqiq izləyir.
+# Ən vacib sətir: "NOT Turkish" — model azərbaycan mətnini türkcə kimi oxumağa meyllidir.
 INSTRUCTIONS = (
-    "Azərbaycan dilində, doğma azərbaycanlı danışan kimi, təbii və canlı danış. "
-    "Instagram reels üçün: enerjili, dostyana, bir az sürətli, amma hər söz aydın. "
-    "Robot kimi yox — canlı insan kimi, cümlə sonlarında təbii intonasiya, sualda yüksələn ton. "
-    "'Yukaz' sözünü 'Yük-az' kimi oxu."
+    "Language: AZERBAIJANI (Azərbaycan dili), NOT Turkish. You are a native speaker from Baku. "
+    "Pronounce every word with authentic Azerbaijani phonetics: 'ə' is an open e (as in 'ev'), "
+    "'q' is a hard g, 'x' is a voiceless kh, 'ğ' is soft, 'c' is like English j. "
+    "Tone: warm, energetic Instagram reels narrator; natural sentence intonation, rising on questions; "
+    "slightly fast but every word clear. "
+    "The brand name is read as three parts: 'Yük' - 'nöqtə' - 'az'. Read the text verbatim, do not translate."
 )
 
 
+def tts_chat_audio(text: str, out_path: str):
+    """gpt-audio-* modelləri: chat completions üzərindən audio çıxışı (daha güclü model)"""
+    import base64
+    body = json.dumps({
+        "model": MODEL, "modalities": ["text", "audio"], "audio": {"voice": VOICE, "format": "mp3"},
+        "messages": [
+            {"role": "system", "content": INSTRUCTIONS + " Output ONLY the spoken reading of the user's text, nothing else."},
+            {"role": "user", "content": text},
+        ],
+    }).encode()
+    req = urllib.request.Request(
+        "https://api.openai.com/v1/chat/completions", data=body,
+        headers={"Authorization": f"Bearer {KEY}", "Content-Type": "application/json"},
+    )
+    with urllib.request.urlopen(req, timeout=180) as r:
+        d = json.load(r)
+    open(out_path, "wb").write(base64.b64decode(d["choices"][0]["message"]["audio"]["data"]))
+
+
 def tts(text: str, out_path: str):
+    if MODEL.startswith("gpt-audio"):
+        return tts_chat_audio(text, out_path)
     body = json.dumps({
         "model": MODEL, "voice": VOICE, "input": text,
         "instructions": INSTRUCTIONS, "response_format": "mp3", "speed": SPEED,
@@ -110,6 +135,8 @@ def main():
     result = {}
     for j in jobs:
         path = os.path.join(outdir, f"{j['id']}.mp3")
+        # brend adı hər halda düzgün formada olsun
+        j["text"] = re.sub(r"Yuk\.az|Yukaz", "Yük nöqtə az", j["text"], flags=re.I)
         tts(j["text"], path)
         duration = MP3(path).info.length
         heard = whisper_words(path, j["text"])

@@ -35,7 +35,7 @@ QAYDALAR:
 - Hər bənd bir praktik fayda versin — ümumi sözlər yox.
 - QISALIQ ƏSASDIR: bütün video 25-28 saniyə olmalıdır. Uzun cümlə yazma.
 - "spoken" sahəsi səsləndirilir: rəvan, danışıq dilində, qısaltma və simvol olmasın.
-  "Yuk.az" əvəzinə "Yukaz" yaz (səs düzgün oxusun).
+  "Yuk.az" əvəzinə "Yük nöqtə az" yaz (brend belə tələffüz olunur).
 - "title" ekranda böyük hərflərlə görünür: qısa və zərbəli.
   ÇOX VACİB: title tam və qrammatik cəhətdən düzgün azərbaycan ifadəsi olmalıdır.
   Simvol limitinə sığdırmaq üçün sözləri kəsmə və söz sırasını pozma.
@@ -143,7 +143,7 @@ ${feedback.trim()}`
  * Ekranda və caption-da həmişə "Yuk.az" olmalıdır.
  */
 const toBrand = (t: string) => t.replace(/Yukaz/gi, "Yuk.az");
-const toSpoken = (t: string) => t.replace(/Yuk\.az/gi, "Yukaz");
+const toSpoken = (t: string) => t.replace(/Yuk\.az|Yukaz/gi, "Yük nöqtə az");
 
 /** Caption-ın sonunda nömrəli CTA mütləq olsun — model unutsa da */
 const ensurePhoneCta = (caption: string) =>

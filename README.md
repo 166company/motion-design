@@ -101,7 +101,7 @@ Paneldə hər videonun 4 düyməsi var:
 
 | Düymə | Nə edir |
 |---|---|
-| **Təsdiqlə** | Təsdiq Issue-suna aparır; ora `/publish` yaz → Instagram + Facebook |
+| **🚀 Yayımla** | Hazır Issue açır, "Submit" basırsan → dərhal Instagram + Facebook. (Alternativ: Təsdiq Issue-suna `/publish` şərhi) |
 | **✏️ Dəyişiklik** | Hazır Issue açır; nə dəyişməli olduğunu sərbəst yaz. Qeyd ssenari modelinə ötürülür, video **yenidən istehsal olunur**, Release əvəz olunur, panel yenilənir. Son qeyd kartda görünür. |
 | **🗑 Sil** | Release silinir, təsdiq Issue-su bağlanır, paneldən çıxır |
 | **Caption kopyala** | Emoji + abzas + CTA formatlı caption, hashtag-larla |

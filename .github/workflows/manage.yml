@@ -2,6 +2,7 @@ name: Reels idarə
 
 # Paneldəki "Sil" və "Dəyişiklik" düymələri hazır doldurulmuş Issue açır.
 # Bu workflow Issue başlığına görə işi görür:
+#   "Yayımla: <id>"     → dərhal Instagram + Facebook-a yüklənir (paneldəki "Təsdiqlə")
 #   "Sil: <id>"         → Release silinir, təsdiq Issue-su bağlanır, panel yenilənir
 #   "Dəyişiklik: <id>"  → Issue mətnindəki qeyd ssenari modelinə ötürülür,
 #                          video eyni məqalədən YENİDƏN istehsal olunur, Release əvəz olunur
@@ -15,6 +16,66 @@ permissions:
   issues: write
 
 jobs:
+  # ------------------------------------------------------------------ YAYIMLA
+  publish:
+    if: startsWith(github.event.issue.title, 'Yayımla:')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      PYTHONUTF8: "1"
+      META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
+      META_PAGE_ID: ${{ secrets.META_PAGE_ID }}
+      META_IG_USER_ID: ${{ secrets.META_IG_USER_ID }}
+      META_GRAPH_VERSION: v21.0
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "24", cache: "npm" }
+      - run: npm ci
+
+      - name: ID
+        id: pick
+        env:
+          TITLE: ${{ github.event.issue.title }}
+        run: |
+          echo "id=$(printf '%s' "$TITLE" | sed 's/^Yayımla:[[:space:]]*//' | tr -d ' ')" >> "$GITHUB_OUTPUT"
+
+      - name: Instagram + Facebook
+        id: pub
+        run: |
+          ID="${{ steps.pick.outputs.id }}"
+          gh issue comment ${{ github.event.issue.number }} --body "🚀 Yayımlanır… (Instagram videonu emal edir, ~2 dəq)"
+          URL="https://github.com/${{ github.repository }}/releases/download/reel-$ID/$ID.mp4"
+          npx tsx pipeline/publish.ts "$URL" "content/data/$ID.meta.json" | tee pub.log
+          echo "ig=$(grep -oE 'https://www.instagram.com[^ ]*' pub.log | head -1)" >> "$GITHUB_OUTPUT"
+          echo "fb=$(grep -oE 'https://www.facebook.com/reel/[0-9]+' pub.log | head -1)" >> "$GITHUB_OUTPUT"
+
+      - name: Status, panel, Issue-lar
+        run: |
+          ID="${{ steps.pick.outputs.id }}"
+          python - <<PY
+          import json, io, os
+          p = "content/data/status.json"
+          d = json.load(io.open(p, encoding="utf-8")) if os.path.exists(p) else {}
+          d["$ID"] = {**d.get("$ID", {}), "status": "yayımlanıb",
+                      "instagram": "${{ steps.pub.outputs.ig }}", "facebook": "${{ steps.pub.outputs.fb }}"}
+          io.open(p, "w", encoding="utf-8").write(json.dumps(d, ensure_ascii=False, indent=2))
+          PY
+          npx tsx pipeline/panel.ts "$ID" "${{ github.repository }}"
+          git config user.name "yukaz-agent"
+          git config user.email "actions@github.com"
+          git add content/data/status.json docs/data.json
+          git commit -m "yayımlandı: $ID" || true
+          git pull --rebase --autostash origin main
+          git push
+          for n in $(gh issue list --state open --search "Təsdiq: $ID in:title" --json number -q '.[].number'); do
+            gh issue close "$n" --comment "✅ Paneldən yayımlandı."
+          done
+          gh issue close ${{ github.event.issue.number }} --comment "✅ Yayımlandı.
+          Instagram: ${{ steps.pub.outputs.ig }}
+          Facebook: ${{ steps.pub.outputs.fb }}"
+
   # ------------------------------------------------------------------ SİL
   delete:
     if: startsWith(github.event.issue.title, 'Sil:')
@@ -74,6 +135,7 @@ jobs:
       TTS_ENGINE: ${{ vars.TTS_ENGINE || 'openai' }}
       # OPENAI_TTS_VOICE boşdursa hər video fərqli səslə çıxır (rotasiya); sabit istəsən Variables-də təyin et
       OPENAI_TTS_VOICE: ${{ vars.OPENAI_TTS_VOICE }}
+      OPENAI_TTS_MODEL: ${{ vars.OPENAI_TTS_MODEL || 'gpt-4o-mini-tts-2025-12-15' }}
       # Issue mətni = sənin qeydin → ssenari promptuna gedir
       FEEDBACK: ${{ github.event.issue.body }}
     steps:

@@ -17,7 +17,7 @@ const TAIL = 16;
 const TRANSITION = 12;
 /** Animasiyaların tamamlanması üçün minimum kadr — səsləndirmə qısa olsa da */
 const MIN_FRAMES: Record<string, number> = { intro: 110, call: 100, chat: 130, load: 140, route: 140 };
-const CTA_FRAMES = 96;
+const CTA_FRAMES = 110;
 
 const MODEL = process.env.OPENAI_MODEL ?? "gpt-5.4-mini";
 const log = (m: string) => console.log(`  ${m}`);
@@ -65,7 +65,7 @@ const SYSTEM = `Sən Yuk.az üçün Instagram Reels ssenaristisən. Yuk.az — A
 Hədəf: yük sahibləri. Bu video "Yuk.az ilə daşınma 4 addımda" izahatıdır — tam animasiyalı, stok video yoxdur.
 Səhnələr sabitdir: intro (kub loqo düşür) → zəng (telefon çalır) → çat (operatorla yazışma) → yükləmə (maşına qutular) → marşrut (xəritədə yol) → CTA.
 QAYDALAR: yalnız verilən məqalə faktlarına söykən; KONKRET QİYMƏT YAZMA; sadə danışıq azərbaycan dili, "sən"; hər "spoken" 7-11 söz (intro 6-9), canlı, ritmik. Ümumi video 28-32 saniyə olmalıdır.
-"spoken"-də "Yuk.az" əvəzinə "Yukaz" yaz. Ekran mətnlərində "Yuk.az".
+"spoken"-də "Yuk.az" əvəzinə "Yük nöqtə az" yaz (brend belə tələffüz olunur). Ekran mətnlərində "Yuk.az".
 Caption formatı MƏCBURİ: emoji hook → boş sətir → 2-3 emojili qısa abzas → boş sətir → "📞 Zəng et: ${contact.phone}".`;
 
 const writeContent = async (facts: string, feedback?: string): Promise<Content> => {
