@@ -67,6 +67,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          # Eyni ID yenidən istehsal olunursa, köhnə Release-i əvəz et
+          gh release delete "reel-${{ steps.reel.outputs.id }}" --yes --cleanup-tag 2>/dev/null || true
           gh release create "reel-${{ steps.reel.outputs.id }}" \
             "out/${{ steps.reel.outputs.id }}.mp4" \
             --title "Reel ${{ steps.reel.outputs.id }}" \
