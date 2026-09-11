@@ -70,6 +70,33 @@ def tick(seconds=0.06, freq=1800):
     return np.sin(2 * math.pi * freq * t) * np.exp(-60 * t)
 
 
+def engine(seconds=2.0, seed=3):
+    """Mühərrik uğultusu: aşağı tezlikli küy + 55 Hz vızıltı, yavaş dalğalanma"""
+    rng = np.random.default_rng(seed)
+    n = int(seconds * SR); t = np.arange(n) / SR
+    rumble = lowpass_sweep(rng.normal(0, 1, n), 140, 140)
+    hum = 0.5 * np.sin(2 * math.pi * 55 * t) + 0.25 * np.sin(2 * math.pi * 110 * t)
+    x = (rumble * 0.9 + hum) * (1 + 0.15 * np.sin(2 * math.pi * 6 * t))
+    return x * env(n, 0.15, 0.25)
+
+
+def ring(seconds=0.75):
+    """Telefon zəngi: iki ton, iki qısa vuruş"""
+    n = int(seconds * SR); t = np.arange(n) / SR
+    tone = np.sin(2 * math.pi * 1200 * t) + 0.6 * np.sin(2 * math.pi * 1600 * t)
+    gate = ((t % 0.36) < 0.16).astype(float)
+    return tone * gate * env(n, 0.02, 0.1)
+
+
+def step(seconds=0.09, seed=4):
+    """Addım: qısa, tutqun vuruş"""
+    rng = np.random.default_rng(seed)
+    n = int(seconds * SR); t = np.arange(n) / SR
+    x = lowpass_sweep(rng.normal(0, 1, n), 900, 300) * np.exp(-45 * t)
+    x += 0.4 * np.sin(2 * math.pi * 90 * t) * np.exp(-60 * t)
+    return x
+
+
 def write(name, x, peak_db=-6.0):
     x = x / (np.max(np.abs(x)) + 1e-9) * (10 ** (peak_db / 20))
     pcm = (x * 32767).astype(np.int16)
@@ -85,3 +112,6 @@ if __name__ == "__main__":
     write("pop.wav", pop())
     write("riser.wav", riser())
     write("tick.wav", tick(), peak_db=-12)
+    write("engine.wav", engine(), peak_db=-10)
+    write("ring.wav", ring(), peak_db=-9)
+    write("step.wav", step(), peak_db=-14)

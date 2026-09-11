@@ -299,13 +299,9 @@ function render() {
     '</article>';
   }).join("");
 
-  // Videonu yalnız həqiqətən mövcuddursa göstər; Release hələ yoxdursa placeholder qalır
-  grid.querySelectorAll(".slot").forEach((slot) => {
-    const v = document.createElement("video");
-    v.controls = true; v.preload = "metadata"; v.playsInline = true;
-    v.onloadedmetadata = () => { slot.innerHTML = ""; slot.appendChild(v); };
-    v.src = slot.dataset.src;
-  });
+  // Videonu yalnız həqiqətən mövcuddursa göstər; yoxdursa placeholder qalır və 20 san sonra yenidən yoxlanır
+  // (Release "Dəyişiklik" zamanı bir neçə saniyəlik silinib-yenidən yaranır — o anda açılan səhifə 404 görür)
+  probeSlots();
 
   if (RUNS.length) renderRuns();
   grid.querySelectorAll("[data-copy]").forEach((b) => {
@@ -402,6 +398,17 @@ async function pollRuns() {
 }
 // tokensiz limit 60 sorğu/saat — 65 san; tokenlə 20 san
 setInterval(pollRuns, getToken() ? 20000 : 65000);
+
+function probeSlots() {
+  document.querySelectorAll(".slot").forEach((slot) => {
+    if (slot.querySelector("video")) return;
+    const v = document.createElement("video");
+    v.controls = true; v.preload = "metadata"; v.playsInline = true;
+    v.onloadedmetadata = () => { slot.innerHTML = ""; slot.appendChild(v); };
+    v.src = slot.dataset.src + "?t=" + Date.now();   // keş yox — təzə cəhd
+  });
+}
+setInterval(probeSlots, 20000);
 
 function stats() {
   const n = (s) => DATA.entries.filter((e) => e.status === s).length;

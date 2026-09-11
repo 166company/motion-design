@@ -118,6 +118,8 @@ const Call: React.FC<{ s: S }> = ({ s }) => {
       })}
       <Head text={s.heading} />
       <Caption words={s.words} />
+      <Sequence from={6} durationInFrames={10}><Audio src={staticFile("sfx/pop.wav")} volume={0.5} /></Sequence>
+      {[20, 56].map((f) => <Sequence key={f} from={f} durationInFrames={24}><Audio src={staticFile("sfx/ring.wav")} volume={0.45} /></Sequence>)}
     </World>
   );
 };
@@ -143,8 +145,10 @@ const Pack: React.FC<{ s: S }> = ({ s }) => {
       <Sprite name="plant" x={80} y={footTop("plant", FLOOR_Y - 10, 260)} w={260} style={{ transform: `scale(${plant})`, opacity: plant }} />
       <Head text={s.heading} />
       <Caption words={s.words} />
-      <Sequence from={48} durationInFrames={10}><Audio src={staticFile("sfx/pop.wav")} volume={0.5} /></Sequence>
-      <Sequence from={72} durationInFrames={14}><Audio src={staticFile("sfx/whoosh.wav")} volume={0.35} /></Sequence>
+      {[6, 12, 18, 24, 30, 36, 42].map((f) => <Sequence key={f} from={f} durationInFrames={6}><Audio src={staticFile("sfx/step.wav")} volume={0.35} /></Sequence>)}
+      <Sequence from={48} durationInFrames={10}><Audio src={staticFile("sfx/pop.wav")} volume={0.55} /></Sequence>
+      <Sequence from={72} durationInFrames={14}><Audio src={staticFile("sfx/whoosh.wav")} volume={0.4} /></Sequence>
+      <Sequence from={86} durationInFrames={10}><Audio src={staticFile("sfx/pop.wav")} volume={0.45} /></Sequence>
     </World>
   );
 };
@@ -154,9 +158,10 @@ const Load: React.FC<{ s: S }> = ({ s }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const D = s.durationInFrames;
-  const arrive = interpolate(frame, [0, 40], [1400, 380], { extrapolateRight: "clamp", easing: Easing.out(Easing.cubic) });
+  // maşının üzü sağa baxır: SOLDAN gəlir, dayanır, yüklənir, SAĞA yola düşür
+  const arrive = interpolate(frame, [0, 40], [-1100, 100], { extrapolateRight: "clamp", easing: Easing.out(Easing.cubic) });
   const leaveStart = D - 50;
-  const leave = interpolate(frame, [leaveStart, D], [0, -1600], { extrapolateLeft: "clamp", easing: Easing.in(Easing.quad) });
+  const leave = interpolate(frame, [leaveStart, D], [0, 1700], { extrapolateLeft: "clamp", easing: Easing.in(Easing.quad) });
   const truckX = arrive + leave;
   const bounce = frame < 40 || frame > leaveStart ? Math.sin(frame / 2) * 3 : 0;
   // əşyalar: 46-cı kadrdan maşına "uçur"
@@ -172,11 +177,16 @@ const Load: React.FC<{ s: S }> = ({ s }) => {
       {/* divan */}
       <Sprite name="sofa" x={interpolate(fs, [0, 1], [1900, inTruck.x + 60])} y={interpolate(fs, [0, 1], [footTop("sofa", GROUND_Y, 520), inTruck.y - 60])} w={interpolate(fs, [0, 1], [520, 240])} style={{ opacity: 1 - Math.max(0, fs - 0.8) / 0.2 }} />
       {/* toz — yola düşəndə */}
-      <Puffs x={truckX + 860} y={GROUND_Y - 40} from={leaveStart} />
+      <Puffs x={truckX + 40} y={GROUND_Y - 40} from={leaveStart} />
       <Head text={s.heading} />
       <Caption words={s.words} />
-      <Sequence from={46} durationInFrames={14}><Audio src={staticFile("sfx/whoosh.wav")} volume={0.4} /></Sequence>
-      <Sequence from={64} durationInFrames={14}><Audio src={staticFile("sfx/whoosh.wav")} volume={0.4} /></Sequence>
+      <Sequence from={0} durationInFrames={44}><Audio src={staticFile("sfx/engine.wav")} volume={0.5} /></Sequence>
+      <Sequence from={40} durationInFrames={10}><Audio src={staticFile("sfx/pop.wav")} volume={0.4} /></Sequence>
+      <Sequence from={46} durationInFrames={14}><Audio src={staticFile("sfx/whoosh.wav")} volume={0.45} /></Sequence>
+      <Sequence from={58} durationInFrames={8}><Audio src={staticFile("sfx/pop.wav")} volume={0.5} /></Sequence>
+      <Sequence from={64} durationInFrames={14}><Audio src={staticFile("sfx/whoosh.wav")} volume={0.45} /></Sequence>
+      <Sequence from={76} durationInFrames={8}><Audio src={staticFile("sfx/pop.wav")} volume={0.5} /></Sequence>
+      <Sequence from={leaveStart} durationInFrames={50}><Audio src={staticFile("sfx/engine.wav")} volume={0.55} /></Sequence>
     </World>
   );
 };
@@ -195,6 +205,9 @@ const Arrive: React.FC<{ s: S }> = ({ s }) => {
       {frame > 50 && <Sprite name="mover" x={moverX} y={footTop("mover", GROUND_Y, 440) - bob} w={440} />}
       <Head text={s.heading} />
       <Caption words={s.words} />
+      <Sequence from={0} durationInFrames={46}><Audio src={staticFile("sfx/engine.wav")} volume={0.45} /></Sequence>
+      <Sequence from={44} durationInFrames={10}><Audio src={staticFile("sfx/pop.wav")} volume={0.4} /></Sequence>
+      {[54, 60, 66, 72, 78, 84, 90, 96].map((f) => <Sequence key={f} from={f} durationInFrames={6}><Audio src={staticFile("sfx/step.wav")} volume={0.3} /></Sequence>)}
     </World>
   );
 };

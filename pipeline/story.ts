@@ -73,7 +73,8 @@ const writeContent = async (facts: string, feedback?: string): Promise<Content> 
 };
 
 const main = async () => {
-  const silent = process.env.EXPLAINER_SILENT === "1";
+  // İllüstrasiya videosu default səssizdir — yalnız musiqi + effektlər + ekran mətni (STORY_VOICE=1 ilə səsli)
+  const silent = process.env.STORY_VOICE !== "1";
   const feedback = process.env.FEEDBACK?.trim() || undefined;
 
   console.log("\n1. Faktlar (yuk.az)…");
