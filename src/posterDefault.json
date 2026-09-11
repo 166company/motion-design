@@ -1,0 +1,13 @@
+{
+ "id": "poster-demo",
+ "photo": "assets/scenes/workers.jpg",
+ "headline": "Köçün ağır\nhissəsi bizdə",
+ "sub": "Qablaşdırma, yükləmə və daşınma — sığortalı.",
+ "bullets": [
+  "Bir zənglə sifariş",
+  "Qablaşdırma daxil",
+  "Sığortalı daşınma"
+ ],
+ "cta": "Zəng et",
+ "variant": "hero"
+}

@@ -6,6 +6,8 @@ import { Story, storySchema, storyTotal, type StoryProps } from "./compositions/
 import storyDefault from "./storyDefault.json";
 import { Carousel, carouselSchema, type CarouselProps } from "./compositions/Carousel";
 import carouselDefault from "./carouselDefault.json";
+import { Poster, posterSchema, type PosterProps } from "./compositions/Poster";
+import posterDefault from "./posterDefault.json";
 import { reelSchema, type Reel } from "./types";
 import { canvas } from "./brand/theme";
 import defaultProps from "./defaultProps.json";
@@ -13,6 +15,16 @@ import defaultProps from "./defaultProps.json";
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+    <Composition
+      id="Poster"
+      component={Poster}
+      schema={posterSchema}
+      defaultProps={posterDefault as unknown as PosterProps}
+      width={1080}
+      height={1350}
+      fps={1}
+      durationInFrames={1}
+    />
     <Composition
       id="Carousel"
       component={Carousel}

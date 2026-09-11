@@ -2,12 +2,14 @@ name: Reels yarat
 
 on:
   schedule:
-    # Bazar ertəsi / Çərşənbə / Cümə — 14:30 UTC = 18:30 Bakı
+    # Bazar ertəsi / Çərşənbə / Cümə — 14:30 UTC = 18:30 Bakı (video/karusel növbəsi)
     - cron: "30 14 * * 1,3,5"
+    # Hər gün 05:00 UTC = 09:00 Bakı — 3 statik satış postu
+    - cron: "0 5 * * *"
   workflow_dispatch:
     inputs:
       template:
-        description: "Şablon: auto (növbə), tiplist, explainer, explainer-silent, story, story-silent, carousel"
+        description: "Şablon: auto (növbə), tiplist, explainer, explainer-silent, story, story-silent, carousel, poster"
         default: "auto"
 
 permissions:
@@ -61,8 +63,9 @@ jobs:
           REQ: ${{ inputs.template || 'auto' }}
         run: |
           # auto növbəsi: tiplist, story, tiplist, explainer, ... (məqalə videoları arasında animasiyalar)
-          N=$(ls content/data/*.meta.json 2>/dev/null | wc -l)
-          if [ "$REQ" = "auto" ]; then
+          N=$(ls content/data/*.meta.json 2>/dev/null | grep -vc poster)
+          if [ "${{ github.event.schedule }}" = "0 5 * * *" ]; then T=poster
+          elif [ "$REQ" = "auto" ]; then
             case $((N % 5)) in 1) T=story ;; 2) T=carousel ;; 4) T=explainer ;; *) T=tiplist ;; esac
           else T="$REQ"; fi
           echo "template=$T" >> "$GITHUB_OUTPUT"
@@ -76,45 +79,48 @@ jobs:
             explainer|explainer-silent) npx tsx pipeline/explainer.ts ;;
             story|story-silent) npx tsx pipeline/story.ts ;;
             carousel) npx tsx pipeline/carousel.ts ;;
+            poster) npx tsx pipeline/poster.ts ;;
             *) npx tsx pipeline/run.ts ;;
           esac
 
-      - name: ID-ni oxu
+      - name: ID-ləri oxu
         id: reel
-        run: echo "id=$(ls -1t public/render | head -1)" >> $GITHUB_OUTPUT
+        run: |
+          # poster.ts bir dəfəyə bir neçə ID yaradır (out/new-ids.txt); digərləri tək ID
+          if [ -f out/new-ids.txt ]; then IDS=$(paste -sd ' ' out/new-ids.txt); else IDS=$(ls -1t public/render | head -1); fi
+          echo "ids=$IDS" >> "$GITHUB_OUTPUT"
+          echo "id=$(echo $IDS | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
+          echo "ID-lər: $IDS"
 
       - name: Render
         run: |
           mkdir -p out
-          ID="${{ steps.reel.outputs.id }}"
-          # Kompozisiya meta-dakı şablondan gəlir: TipList / Explainer / Story
-          COMP=$(python -c "import json,io;print(json.load(io.open('content/data/$ID.meta.json',encoding='utf-8')).get('template','TipList'))")
-          echo "kompozisiya: $COMP"
-          if [ "$COMP" = "Carousel" ]; then
-            for i in 0 1 2; do npx remotion still src/index.ts Carousel "out/$ID-$((i+1)).png" --frame=$i --props="public/render/$ID/props.json"; done
-          else
-            npx remotion render src/index.ts "$COMP" "out/$ID.mp4" --props="public/render/$ID/props.json"
-          fi
+          for ID in ${{ steps.reel.outputs.ids }}; do
+            COMP=$(python -c "import json,io;print(json.load(io.open('content/data/$ID.meta.json',encoding='utf-8')).get('template','TipList'))")
+            echo "== $ID → $COMP"
+            case "$COMP" in
+              Carousel) for i in 0 1 2; do npx remotion still src/index.ts Carousel "out/$ID-$((i+1)).png" --frame=$i --props="public/render/$ID/props.json"; done ;;
+              Poster)   npx remotion still src/index.ts Poster "out/$ID-1.png" --frame=0 --props="public/render/$ID/props.json" ;;
+              *)        npx remotion render src/index.ts "$COMP" "out/$ID.mp4" --props="public/render/$ID/props.json" ;;
+            esac
+          done
 
       - name: QA
         run: |
-          ID="${{ steps.reel.outputs.id }}"
-          if [ -f "out/$ID.mp4" ]; then
-            npx tsx pipeline/qa.ts "out/$ID.mp4" "public/render/$ID/props.json"
-          else
-            ls -la out/$ID-*.png && [ $(ls out/$ID-*.png | wc -l) -ge 3 ] && echo "QA: 3 slayd hazırdır"
-          fi
+          for ID in ${{ steps.reel.outputs.ids }}; do
+            if [ -f "out/$ID.mp4" ]; then npx tsx pipeline/qa.ts "out/$ID.mp4" "public/render/$ID/props.json"
+            else ls -la out/$ID-*.png && echo "QA: $ID şəkilləri hazırdır"; fi
+          done
 
       - name: Release yarat (ictimai video linki)
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Eyni ID yenidən istehsal olunursa, köhnə Release-i əvəz et
-          gh release delete "reel-${{ steps.reel.outputs.id }}" --yes --cleanup-tag 2>/dev/null || true
-          gh release create "reel-${{ steps.reel.outputs.id }}" \
-            out/${{ steps.reel.outputs.id }}* \
-            --title "Reel ${{ steps.reel.outputs.id }}" \
-            --notes "Avtomatik yaradılıb. Təsdiq üçün Issue-ya bax."
+          for ID in ${{ steps.reel.outputs.ids }}; do
+            # Eyni ID yenidən istehsal olunursa, köhnə Release-i əvəz et
+            gh release delete "reel-$ID" --yes --cleanup-tag 2>/dev/null || true
+            gh release create "reel-$ID" out/$ID* --title "Reel $ID" --notes "Avtomatik yaradılıb. Təsdiq üçün Issue-ya bax."
+          done
 
       - name: Panel məlumatını yenilə
         run: npx tsx pipeline/panel.ts "${{ steps.reel.outputs.id }}" "${{ github.repository }}"
@@ -124,7 +130,7 @@ jobs:
           git config user.name "yukaz-agent"
           git config user.email "actions@github.com"
           git add docs/data.json content/data public/render
-          git commit -m "reel: ${{ steps.reel.outputs.id }}" || echo "dəyişiklik yoxdur"
+          git commit -m "reel: ${{ steps.reel.outputs.ids }}" || echo "dəyişiklik yoxdur"
           # Workflow işləyərkən main-ə başqa push gəlibsə, üstünə qoy — toqquşma olmasın
           git pull --rebase --autostash -X theirs origin main
           git push
@@ -132,9 +138,10 @@ jobs:
       - name: Təsdiq üçün Issue aç
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ID: ${{ steps.reel.outputs.id }}
           REPO: ${{ github.repository }}
         run: |
           gh label create "təsdiq-gözləyir" --color FF6600 --force 2>/dev/null || true
-          python pipeline/issue_body.py "$ID" "$REPO" > issue.md
-          gh issue create --title "Təsdiq: $ID" --label "təsdiq-gözləyir" --body-file issue.md
+          for ID in ${{ steps.reel.outputs.ids }}; do
+            python pipeline/issue_body.py "$ID" "$REPO" > issue.md
+            gh issue create --title "Təsdiq: $ID" --label "təsdiq-gözləyir" --body-file issue.md
+          done

@@ -203,6 +203,7 @@ jobs:
             Explainer) npx tsx pipeline/explainer.ts ;;
             Story) npx tsx pipeline/story.ts ;;
             Carousel) npx tsx pipeline/carousel.ts ;;
+            Poster) POSTER_COUNT=1 npx tsx pipeline/poster.ts ;;
             *) npx tsx pipeline/run.ts ;;
           esac
           echo "template=$T" >> "$GITHUB_OUTPUT"
@@ -214,6 +215,8 @@ jobs:
           T="${{ steps.plan.outputs.template }}"; [ -z "$T" ] && T="${{ steps.pick.outputs.template }}"
           if [ "$T" = "Carousel" ]; then
             for i in 0 1 2; do npx remotion still src/index.ts Carousel "out/$ID-$((i+1)).png" --frame=$i --props="public/render/$ID/props.json"; done
+          elif [ "$T" = "Poster" ]; then
+            npx remotion still src/index.ts Poster "out/$ID-1.png" --frame=0 --props="public/render/$ID/props.json"
           else
             npx remotion render src/index.ts "$T" "out/$ID.mp4" --props="public/render/$ID/props.json"
             npx tsx pipeline/qa.ts "out/$ID.mp4" "public/render/$ID/props.json"

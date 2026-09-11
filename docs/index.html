@@ -313,9 +313,9 @@ function render() {
         '<p class="hook">' + esc(e.hook) + '</p>' +
         '<div class="meta">' +
           '<span class="pill status ' + badgeClass(e.status) + '">' + esc(e.status) + '</span>' +
-          (e.images ? '<span class="pill">' + e.images.length + ' slayd</span>' : '<span class="pill">' + esc(e.duration) + ' san</span><span class="pill">' + esc(e.scenes) + ' səhnə</span>') +
+          (e.images ? (e.images.length > 1 ? '<span class="pill">' + e.images.length + ' slayd</span>' : '<span class="pill">şəkil</span>') : '<span class="pill">' + esc(e.duration) + ' san</span><span class="pill">' + esc(e.scenes) + ' səhnə</span>') +
           '<span class="pill">' + esc(e.createdAt) + '</span>' +
-          '<span class="pill">' + (e.template === "Explainer" ? "🎬 Animasiya" : e.template === "Story" ? "🎨 İllüstrasiya" : e.template === "Carousel" ? "🃏 Karusel" : "📰 Məqalə") + '</span>' +
+          '<span class="pill">' + (e.template === "Explainer" ? "🎬 Animasiya" : e.template === "Story" ? "🎨 İllüstrasiya" : e.template === "Carousel" ? "🃏 Karusel" : e.template === "Poster" ? "🖼 Qrafik post" : "📰 Məqalə") + '</span>' +
           (e.voice ? '<span class="pill">🎙 ' + esc(e.voice) + '</span>' : "") +
         '</div>' +
         musicRow(e.music) +

@@ -11,8 +11,9 @@ import sys
 reel_id, repo = sys.argv[1], sys.argv[2]
 meta = json.load(io.open(f"content/data/{reel_id}.meta.json", encoding="utf-8"))
 base = f"https://github.com/{repo}/releases/download/reel-{reel_id}"
-if meta.get("template") == "Carousel":
-    video = " · ".join(f"[slayd {i+1}]({base}/{reel_id}-{i+1}.png)" for i in range(meta.get("slides", 3)))
+if meta.get("template") in ("Carousel", "Poster"):
+    n = meta.get("slides", 3)
+    video = f"{base}/{reel_id}-1.png" if n == 1 else " · ".join(f"[slayd {i+1}]({base}/{reel_id}-{i+1}.png)" for i in range(n))
 else:
     video = f"{base}/{reel_id}.mp4"
 

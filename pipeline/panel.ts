@@ -64,8 +64,8 @@ export const buildPanel = async (repo: string) => {
     const relBase = `https://github.com/${repo}/releases/download/reel-${meta.id}`;
     entries.push({
       id: meta.id,
-      images: meta.template === "Carousel" ? Array.from({ length: meta.slides ?? 3 }, (_, i) => `${relBase}/${meta.id}-${i + 1}.png`) : undefined,
-      hook: props.hook ?? props.scenes?.[0]?.heading ?? (props.lines ? `${props.lines.join(" ").replace(/\n/g, " ")} → ${props.punch}` : meta.id),
+      images: (meta.template === "Carousel" || meta.template === "Poster") ? Array.from({ length: meta.slides ?? 3 }, (_, i) => `${relBase}/${meta.id}-${i + 1}.png`) : undefined,
+      hook: props.hook ?? props.scenes?.[0]?.heading ?? (props.lines ? `${props.lines.join(" ").replace(/\n/g, " ")} → ${props.punch}` : props.headline ? props.headline.replace(/\n/g, " ") : meta.id),
       caption: meta.caption,
       hashtags: meta.hashtags,
       source: meta.link,

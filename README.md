@@ -211,7 +211,9 @@ GitHub-da `Variables` bölməsindən, lokal `.env`-dən dəyişilir.
 
 | **Carousel** | aviasales.az üslubunda hazırcavab **statik 3 slayd**: fotorealist AI foto + nəhəng mətn, cümlə sözün ortasından kəsilir (sürüşdürmə hiyləsi), 3-cü slayd narıncı punchline. Söz oyununu `gpt-5.5` yazır (tanış ifadənin köç mövzusuna çevrilməsi), bölünmə kodda. Instagram karusel + Facebook foto post kimi yayımlanır | — | növbədə hər 5-ci |
 
-Növbə: tiplist → story → carousel → tiplist → explainer → … Əl ilə: `Actions → Reels yarat → template:` `tiplist` / `explainer` / `story` (`-silent` şəkilçisi ilə səssiz — yalnız musiqi + SFX).
+| **Poster** | **Statik satış postu** (1080×1350): AI səhnə — loqolu işçilər / loqolu maşın / telefon ekranında loqo (loqo istinad şəkil kimi verilir, dəqiq çıxır) + kod tipoqrafiyası, nömrə. 3 layout: hero / narıncı panel / fayda kartı. Hər gün **09:00-da 3 post** (fərqli səhnə və satış bucağı), Instagram foto + Facebook foto | yuk.az faktları | hər gün 05:00 UTC |
+
+Növbə (video günləri): tiplist → story → carousel → tiplist → explainer → … Əl ilə: `Actions → Reels yarat → template:` `tiplist` / `explainer` / `story` (`-silent` şəkilçisi ilə səssiz — yalnız musiqi + SFX).
 
 Assetlər [pipeline/gen_assets.py](pipeline/gen_assets.py) ilə yaranır: OpenAI `gpt-image-2.5`, "high",
 3D-yə yaxın Pixar üslubu, brend paleti. 6 şəffaf obyekt (yük maşını, qutular, daşıyıcı, telefon, divan, bitki)

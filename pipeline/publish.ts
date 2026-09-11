@@ -124,6 +124,19 @@ export const publishFacebookPhotos = async (imageUrls: string[], message: string
   return { id: post.id as string, permalink: pid ? `https://www.facebook.com/${pg}/posts/${pid}` : `https://www.facebook.com/${post.id}` };
 };
 
+/** Tək şəkil: Instagram foto + Facebook foto */
+export const publishInstagramImage = async (imageUrl: string, caption: string) => {
+  const c = await api(`${IG}/media?image_url=${encodeURIComponent(imageUrl)}&caption=${encodeURIComponent(caption)}&access_token=${TOKEN}`, { method: "POST" });
+  const pub = await api(`${IG}/media_publish?creation_id=${c.id}&access_token=${TOKEN}`, { method: "POST" });
+  const link = await api(`${pub.id}?fields=permalink&access_token=${TOKEN}`);
+  return { id: pub.id as string, permalink: link.permalink as string };
+};
+export const publishFacebookPhoto = async (imageUrl: string, message: string) => {
+  const pt = await pageToken();
+  const ph = await api(`${PAGE}/photos?url=${encodeURIComponent(imageUrl)}&message=${encodeURIComponent(message)}&access_token=${pt}`, { method: "POST" });
+  return { id: ph.post_id ?? ph.id, permalink: `https://www.facebook.com/${ph.post_id ?? ph.id}` };
+};
+
 /** Musiqi krediti (CC BY) — caption əvəzinə ilk şərh. Uğursuz olsa yayımı pozmur. */
 const creditComment = async (igMediaId: string | null, fbObjectId: string | null, attribution: string | null) => {
   if (!attribution) return;
@@ -144,7 +157,16 @@ if (process.argv[1]?.endsWith("publish.ts")) {
   const meta = JSON.parse(await (await import("node:fs/promises")).readFile(metaPath, "utf-8"));
   const caption = `${meta.caption}\n\n${meta.hashtags.join(" ")}`;
 
-  if (meta.template === "Carousel") {
+  if (meta.template === "Poster") {
+    const base = videoUrl.replace(/[^/]+$/, "");
+    const url = `${base}${meta.id}-1.png`;
+    console.log("Instagram (foto)…");
+    const ig = await publishInstagramImage(url, caption);
+    console.log("  ✓", ig.permalink);
+    console.log("Facebook (foto)…");
+    const fb = await publishFacebookPhoto(url, caption);
+    console.log("  ✓", fb.permalink);
+  } else if (meta.template === "Carousel") {
     // videoUrl = .../reel-<id>/<id>.mp4 → şəkillər eyni qovluqda <id>-1.png, -2, -3
     const base = videoUrl.replace(/[^/]+$/, "");
     const urls = Array.from({ length: meta.slides ?? 3 }, (_, i) => `${base}${meta.id}-${i + 1}.png`);
