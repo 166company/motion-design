@@ -136,7 +136,7 @@ src/
   brand/theme.ts        rəng, şrift, ölçü, təhlükəsiz zonalar — brend burada
   brand/fonts.ts        Inter + latin-ext (ə ğ ı ş üçün MƏCBURİ)
   components/           Caption, BackgroundMedia, IconBadge, AnimatedTitle, Overlay, CtaScene, LogoBug
-  compositions/         TipList (məqalə), Explainer (tam animasiya)
+  compositions/         TipList (məqalə), Explainer (kod animasiya), Story (AI illüstrasiya)
   components/explainer/ kodla çəkilmiş assetlər: Truck, Box, Road, Skyline, RingingPhone, Bubble, RouteMap
 pipeline/
   wp.ts                 yuk.az WordPress REST API
@@ -147,6 +147,7 @@ pipeline/
   assets.ts             Pexels portret video
   run.ts                TipList zənciri
   explainer.ts          Explainer zənciri
+  story.ts              Story zənciri
   audio.ts              ortaq: TTS, normallaşdırma, musiqi seçimi
   qa.ts                 render sonrası yoxlamalar
   audius.ts             Audius — CC lisenziyalı musiqi + atribut
@@ -176,8 +177,9 @@ səsləndirmədən əvvəl hamısını azərbaycan sözünə çevirir: `3` → �
 
 **Şrift subset-i.** `latin-ext` olmasa `ə ğ ı ş` hərfləri kvadrat kimi görünür.
 
-**Təhlükəsiz zonalar.** Instagram UI yuxarıdan 220px, aşağıdan 380px örtür.
-`theme.ts`-dəki `safeArea` bunu idarə edir, QA yoxlayır.
+**Təhlükəsiz zonalar.** Real Instagram ekranından ölçülüb: yuxarı 320px ("Reels/Friends"),
+aşağı 440px (ad + caption), yanlar 140px (hündür ekranlarda kəsilmə), altyazı eni ≤ 640px
+(sağ ikon sütunu). `theme.ts`-dəki `safeArea` — bütün şablonlar buradan oxuyur.
 
 **Remotion lisenziyası.** 3 nəfərdən böyük şirkətlər üçün company license tələb olunur.
 
@@ -204,7 +206,12 @@ GitHub-da `Variables` bölməsindən, lokal `.env`-dən dəyişilir.
 | Şablon | Nə | Mənbə | Nə vaxt |
 |---|---|---|---|
 | **TipList** | Məqalə əsaslı nömrələnmiş məsləhətlər, stok video fonlu | yuk.az məqaləsi | default |
-| **Explainer** | "4 addımda daşınma" — **tam kodla çəkilmiş** animasiya: kub loqo düşür, telefon çalır, çat baloncuqları, yük maşınına qutular hoppanır, xəritədə marşrut cızılır | yuk.az faktları | cron-da hər 3-cü video; əl ilə: `Actions → Reels yarat → template: explainer` (və ya `explainer-silent` — səssiz, yalnız musiqi + SFX) |
+| **Explainer** | "4 addımda daşınma" — **tam kodla çəkilmiş** animasiya: kub loqo düşür, telefon çalır, çat baloncuqları, yük maşınına qutular hoppanır, xəritədə marşrut cızılır | yuk.az faktları | növbədə hər 4-cü |
+| **Story** | "Köç günü" — **AI ilə yaradılmış illüstrasiyalar** (`public/assets/`: yük maşını, qutular, daşıyıcı, telefon, bina, divan) + kod animasiyası: yeriş, parallaks, əşyaların maşına uçması, toz, kamera panı | yuk.az faktları | növbədə hər 4-cü |
+
+Növbə: tiplist → story → tiplist → explainer → … Əl ilə: `Actions → Reels yarat → template:` `tiplist` / `explainer` / `story` (`-silent` şəkilçisi ilə səssiz — yalnız musiqi + SFX).
+
+Assetləri yenidən yaratmaq (brend dəyişsə): OpenAI `gpt-image-1`, şəffaf fon, brend paleti; sərhədlər `src/assetBounds.json`-da ölçülür ki, personaj yerə otursun.
 
 Explainer-in bütün assetləri [src/components/explainer/assets.tsx](src/components/explainer/assets.tsx)-də SVG/CSS ilə çəkilib — stok yoxdur, telif yoxdur, brendin kub loqosu birbaşa "qutu"dur.
 

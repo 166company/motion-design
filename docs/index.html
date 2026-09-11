@@ -229,7 +229,7 @@ function render() {
           '<span class="pill">' + esc(e.duration) + ' san</span>' +
           '<span class="pill">' + esc(e.scenes) + ' səhnə</span>' +
           '<span class="pill">' + esc(e.createdAt) + '</span>' +
-          '<span class="pill">' + (e.template === "Explainer" ? "🎬 Animasiya" : "📰 Məqalə") + '</span>' +
+          '<span class="pill">' + (e.template === "Explainer" ? "🎬 Animasiya" : e.template === "Story" ? "🎨 İllüstrasiya" : "📰 Məqalə") + '</span>' +
           (e.voice ? '<span class="pill">🎙 ' + esc(e.voice) + '</span>' : "") +
         '</div>' +
         musicRow(e.music) +

@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       template:
-        description: "Şablon: auto (növbə), tiplist, explainer, explainer-silent"
+        description: "Şablon: auto (növbə), tiplist, explainer, explainer-silent, story, story-silent"
         default: "auto"
 
 permissions:
@@ -60,20 +60,21 @@ jobs:
         env:
           REQ: ${{ inputs.template || 'auto' }}
         run: |
-          # auto: hər 3-cü video Explainer (tam animasiya), qalanı TipList (məqalə əsaslı)
+          # auto növbəsi: tiplist, story, tiplist, explainer, ... (məqalə videoları arasında animasiyalar)
           N=$(ls content/data/*.meta.json 2>/dev/null | wc -l)
           if [ "$REQ" = "auto" ]; then
-            if [ $((N % 3)) -eq 2 ]; then T=explainer; else T=tiplist; fi
+            case $((N % 4)) in 1) T=story ;; 3) T=explainer ;; *) T=tiplist ;; esac
           else T="$REQ"; fi
           echo "template=$T" >> "$GITHUB_OUTPUT"
           echo "şablon: $T (mövcud: $N)"
 
       - name: Ssenari + səs + assetlər
         env:
-          EXPLAINER_SILENT: ${{ steps.tpl.outputs.template == 'explainer-silent' && '1' || '' }}
+          EXPLAINER_SILENT: ${{ endsWith(steps.tpl.outputs.template, '-silent') && '1' || '' }}
         run: |
           case "${{ steps.tpl.outputs.template }}" in
             explainer|explainer-silent) npx tsx pipeline/explainer.ts ;;
+            story|story-silent) npx tsx pipeline/story.ts ;;
             *) npx tsx pipeline/run.ts ;;
           esac
 

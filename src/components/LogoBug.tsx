@@ -14,9 +14,9 @@ export const LogoBug: React.FC<{ variant?: "light" | "dark" }> = ({ variant = "l
         )}
         style={{
           position: "absolute",
-          top: safeArea.top - 60,
+          top: safeArea.top,
           right: safeArea.side,
-          width: 260,
+          width: 230,
           opacity,
           borderRadius: 12,
         }}

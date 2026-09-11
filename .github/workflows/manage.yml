@@ -166,7 +166,11 @@ jobs:
           REEL_ID: ${{ steps.pick.outputs.id }}
         run: |
           gh issue comment ${{ github.event.issue.number }} --body "🔄 Qeydin alındı, video yenidən istehsal olunur (~6 dəq)…"
-          if [ "${{ steps.pick.outputs.template }}" = "Explainer" ]; then npx tsx pipeline/explainer.ts; else npx tsx pipeline/run.ts; fi
+          case "${{ steps.pick.outputs.template }}" in
+            Explainer) npx tsx pipeline/explainer.ts ;;
+            Story) npx tsx pipeline/story.ts ;;
+            *) npx tsx pipeline/run.ts ;;
+          esac
 
       - name: Render + QA
         run: |

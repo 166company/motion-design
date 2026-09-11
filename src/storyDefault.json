@@ -1,0 +1,51 @@
+{
+ "id": "story-demo",
+ "cta": {
+  "line1": "Köçün rahat olsun",
+  "line2": "Zəng et"
+ },
+ "music": null,
+ "musicVolume": 0.5,
+ "scenes": [
+  {
+   "kind": "call",
+   "heading": "Köç var? Bir zəng bəsdir",
+   "spoken": "",
+   "audio": null,
+   "words": [],
+   "durationInFrames": 120
+  },
+  {
+   "kind": "pack",
+   "heading": "Qablaşdırma bizdən",
+   "spoken": "",
+   "audio": null,
+   "words": [],
+   "durationInFrames": 130
+  },
+  {
+   "kind": "load",
+   "heading": "Yüklədik, yola düşdük",
+   "spoken": "",
+   "audio": null,
+   "words": [],
+   "durationInFrames": 140
+  },
+  {
+   "kind": "arrive",
+   "heading": "Yeni evə xoş gəldin",
+   "spoken": "",
+   "audio": null,
+   "words": [],
+   "durationInFrames": 130
+  },
+  {
+   "kind": "cta",
+   "heading": "",
+   "spoken": "",
+   "audio": null,
+   "words": [],
+   "durationInFrames": 110
+  }
+ ]
+}

@@ -25,10 +25,18 @@ export const canvas = {
  * Instagram UI-nin örtdüyü sahələr.
  * Heç bir mətn bu zonalara girməməlidir — QA bunu yoxlayır.
  */
+/**
+ * Real Instagram ekranından ölçülüb (iPhone, 2026-09):
+ *  - yuxarı "Reels / Friends" çubuğu ~250 px-ə qədər enir
+ *  - hündür ekranlarda video yanlardan ~60–100 px kəsilir
+ *  - sağ ikon sütunu (like/comment/share) y 1040–1560, x > 880
+ *  - istifadəçi adı + caption y 1500-dən aşağı
+ */
 export const safeArea = {
-  top: 220,     // profil adı, "Reels" başlığı
-  bottom: 380,  // caption, səs adı, düymələr
-  side: 80,     // sağ tərəfdəki like/share sütunu üçün də ehtiyat
+  top: 320,     // "Reels/Friends" çubuğunun altı
+  bottom: 440,  // istifadəçi adı və caption-ın üstü
+  side: 140,    // yan kəsilmə + ehtiyat
+  captionMaxWidth: 640, // sağ ikon sütununa dəyməsin (x ≤ 860)
 } as const;
 
 export const type = {

@@ -1,11 +1,11 @@
-import { useCurrentFrame, useVideoConfig, interpolate } from "remotion";
+import { useCurrentFrame, useVideoConfig, interpolate, spring } from "remotion";
 import { colors, safeArea, type, radius, spacing } from "../brand/theme";
 import { font } from "../brand/fonts";
 
 export type Word = { w: string; start: number; dur: number };
 
 /** Sözləri qısa sətirlərə yığır — telefonda 2 sətirdən çox oxunmur */
-const buildLines = (words: Word[], maxChars = 28, maxWords = 5) => {
+const buildLines = (words: Word[], maxChars = 24, maxWords = 4) => {
   const lines: Word[][] = [];
   let cur: Word[] = [];
   let len = 0;
@@ -24,9 +24,9 @@ const buildLines = (words: Word[], maxChars = 28, maxWords = 5) => {
 };
 
 /**
- * Söz-səviyyəsində sinxron altyazı.
- * Bir tam sətir tünd lövhədə, aktiv söz narıncı və bir az böyük — səpələnmiş
- * qutular yox, bir bütöv blok. Vaxtlar TTS/Whisper-dən gəlir.
+ * "Karaoke pop" altyazı: sətrin sözləri deyildikcə görünür; aktiv söz narıncı
+ * pill-in içində spring ilə sıçrayır; deyilmiş sözlər ağ qalır.
+ * Vaxtlar TTS/Whisper-dən gəlir. Blok sağ ikon sütununa dəyməyəcək qədər dardır.
  */
 export const Caption: React.FC<{ words: Word[]; offset?: number }> = ({ words, offset = 0 }) => {
   const frame = useCurrentFrame();
@@ -42,57 +42,65 @@ export const Caption: React.FC<{ words: Word[]; offset?: number }> = ({ words, o
   if (idx < 0) return null;
   const active = lines[idx];
 
-  // sətir dəyişəndə yumşaq giriş
-  const lineStart = active[0].start - 0.08;
-  // Eyni anda YALNIZ bir söz aktiv olsun: başlanğıcı keçilmiş sonuncu söz.
-  // Əks halda qonşu sözlər birlikdə böyüyüb bir-birinə toxunur.
   let onIdx = -1;
   active.forEach((w, i) => { if (t >= w.start - 0.04) onIdx = i; });
-  const enter = interpolate(t, [lineStart, lineStart + 0.12], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+
+  const lineStart = active[0].start - 0.08;
+  const enter = interpolate(t, [lineStart, lineStart + 0.1], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
 
   return (
     <div
       style={{
         position: "absolute",
-        left: safeArea.side,
-        right: safeArea.side,
+        left: 0,
+        right: 0,
         bottom: safeArea.bottom,
         display: "flex",
         justifyContent: "center",
         fontFamily: font,
+        pointerEvents: "none",
       }}
     >
       <div
         style={{
-          background: "rgba(20,22,24,0.78)",
+          maxWidth: safeArea.captionMaxWidth,
+          background: "rgba(16,18,20,0.72)",
           borderRadius: radius.lg,
-          padding: `${spacing.sm - 4}px ${spacing.md}px`,
+          padding: `${spacing.sm - 2}px ${spacing.md - 6}px`,
           display: "flex",
           flexWrap: "wrap",
           justifyContent: "center",
-          columnGap: 26,
-          rowGap: 4,
-          maxWidth: "100%",
-          boxShadow: "0 12px 40px rgba(0,0,0,0.45)",
-          backdropFilter: "blur(6px)",
-          transform: `translateY(${(1 - enter) * 14}px)`,
+          alignItems: "center",
+          columnGap: 10,
+          rowGap: 8,
+          boxShadow: "0 14px 40px rgba(0,0,0,0.5)",
+          backdropFilter: "blur(8px)",
+          transform: `translateY(${(1 - enter) * 18}px) scale(${0.96 + enter * 0.04})`,
           opacity: enter,
         }}
       >
         {active.map((word, i) => {
           const isOn = i === onIdx;
-          const past = i < onIdx;
+          const said = i <= onIdx;
+          // aktiv sözün sıçrayışı — söz başlayan andan spring
+          const sinceStart = Math.max(0, (t - (word.start - 0.04)) * fps);
+          const pop = spring({ frame: sinceStart, fps, config: { damping: 9, stiffness: 240, mass: 0.5 } });
+          const scale = isOn ? 1 + 0.12 * (1 - Math.abs(pop - 1)) + 0.04 : 1;
           return (
             <span
               key={`${word.start}-${i}`}
               style={{
+                display: "inline-block",
                 fontSize: type.caption,
                 fontWeight: 800,
-                lineHeight: 1.22,
-                color: isOn ? colors.orange : past ? colors.white : "rgba(255,255,255,0.72)",
-                transform: isOn ? "scale(1.05)" : "scale(1)",
-                display: "inline-block",
-                textShadow: isOn ? "0 0 24px rgba(255,102,0,0.55)" : "none",
+                lineHeight: 1.15,
+                padding: "4px 12px",
+                borderRadius: 16,
+                color: isOn ? colors.graphite : said ? colors.white : "rgba(255,255,255,0.45)",
+                background: isOn ? colors.orange : "transparent",
+                transform: `scale(${scale}) translateY(${isOn ? -2 : 0}px)`,
+                boxShadow: isOn ? "0 8px 24px rgba(255,102,0,0.45)" : "none",
+                opacity: said ? 1 : 0.55,
               }}
             >
               {word.w}
