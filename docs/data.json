@@ -1,6 +1,6 @@
 {
   "repo": "166company/motion-design",
-  "updatedAt": "2026-09-11T07:42:19.001Z",
+  "updatedAt": "2026-09-11T08:01:32.542Z",
   "entries": [
     {
       "id": "2026-09-11-explainer",
@@ -45,8 +45,10 @@
       "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-10764/2026-09-11-10764.mp4",
       "duration": 31.3,
       "scenes": 6,
-      "status": "təsdiq-gözləyir",
+      "status": "yayımlanıb",
       "createdAt": "2026-09-11",
+      "instagram": "https://www.instagram.com/reel/DdI7uJtiq74/",
+      "facebook": "https://www.facebook.com/reel/2603971053386761",
       "template": "TipList",
       "voice": "marin",
       "music": {
