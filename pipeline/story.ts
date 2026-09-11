@@ -50,7 +50,7 @@ const SYSTEM = `Sən Yuk.az üçün Instagram Reels ssenaristisən. Yuk.az — A
 Hədəf: yük sahibləri. Bu video "Köç günü" illüstrasiyalı hekayəsidir — personaj, qutular, yük maşını, binalar.
 Səhnələr sabitdir: zəng (bina + telefon) → qablaşdırma (daşıyıcı, qutular, divan) → yükləmə (maşın, əşyalar içinə uçur) → çatdı (yeni bina) → CTA.
 QAYDALAR: yalnız verilən məqalə faktlarına söykən; KONKRET QİYMƏT YAZMA; sadə danışıq azərbaycan dili, "sən"; hər "spoken" 7-11 söz (intro 6-9), canlı, ritmik. Ümumi video 28-32 saniyə olmalıdır.
-"spoken"-də "Yuk.az" əvəzinə "Yük nöqtə az" yaz (brend belə tələffüz olunur). Ekran mətnlərində "Yuk.az".
+"spoken"-də "Yuk.az" əvəzinə "Yük nöqtə az" yaz (brend belə tələffüz olunur). Ekran mətnlərində "Yük.az".
 Caption formatı MƏCBURİ: emoji hook → boş sətir → 2-3 emojili qısa abzas → boş sətir → "📞 Zəng et: ${contact.phone}".`;
 
 const writeContent = async (facts: string, feedback?: string): Promise<Content> => {

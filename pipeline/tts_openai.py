@@ -138,7 +138,7 @@ def main():
     for j in jobs:
         path = os.path.join(outdir, f"{j['id']}.mp3")
         # brend adı hər halda düzgün formada olsun
-        j["text"] = re.sub(r"Yuk\.az|Yukaz", "Yük nöqtə az", j["text"], flags=re.I)
+        j["text"] = re.sub(r"Y[uü]k\.?az", "Yük nöqtə az", j["text"], flags=re.I)
         # rəqəmlər azərbaycanca oxunsun ("3" → "üç", "4-cü" → "dördüncü")
         j["text"] = az_normalize(j["text"])
         tts(j["text"], path)

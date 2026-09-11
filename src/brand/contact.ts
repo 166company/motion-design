@@ -2,7 +2,7 @@
 export const contact = {
   phone: "050 209 62 99",
   phoneTel: "+994502096299",
-  site: "yuk.az",
+  site: "yük.az",
 } as const;
 
 /** Səsləndirmə səsləri — hər video üçün ID hash-inə görə seçilir */

@@ -5,6 +5,6 @@
     <polygon fill="#1E2124" points="80,168 256,264 256,440 80,344"/>
     <polygon fill="#FF6600" points="432,168 256,264 256,440 432,344"/>
   </g>
-  <text x="430" y="255" font-family="Arial, Helvetica, sans-serif" font-size="190" font-weight="800" fill="#FFFFFF" letter-spacing="-8">yuk</text>
+  <text x="430" y="255" font-family="Arial, Helvetica, sans-serif" font-size="190" font-weight="800" fill="#FFFFFF" letter-spacing="-8">yük</text>
   <text x="760" y="255" font-family="Arial, Helvetica, sans-serif" font-size="190" font-weight="800" fill="#FF6600" letter-spacing="-8">.az</text>
 </svg>

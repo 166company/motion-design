@@ -140,10 +140,10 @@ ${feedback.trim()}`
 
 /**
  * "Yukaz" yalnız səsləndirmə üçündür (TTS düzgün oxusun).
- * Ekranda və caption-da həmişə "Yuk.az" olmalıdır.
+ * Ekranda və caption-da həmişə "Yük.az" olmalıdır (yeni söz işarəsi).
  */
-const toBrand = (t: string) => t.replace(/Yukaz/gi, "Yuk.az");
-const toSpoken = (t: string) => t.replace(/Yuk\.az|Yukaz/gi, "Yük nöqtə az");
+const toBrand = (t: string) => t.replace(/Yukaz|Yuk\.az/gi, "Yük.az");
+const toSpoken = (t: string) => t.replace(/Y[uü]k\.?az/gi, "Yük nöqtə az");
 
 /** Caption-ın sonunda nömrəli CTA mütləq olsun — model unutsa da */
 const ensurePhoneCta = (caption: string) =>

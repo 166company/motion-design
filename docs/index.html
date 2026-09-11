@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Yuk.az — Reels Paneli</title>
+<title>Yük.az — Reels Paneli</title>
 <link rel="icon" href="logo-icon.svg">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
 <style>
@@ -96,6 +96,17 @@
   .run .bar i{display:block;height:100%;background:var(--orange);transition:width 1s linear}
   .run a{margin-left:auto;font-size:12px;font-weight:700;white-space:nowrap}
   .card.working{outline:2px solid rgba(255,102,0,.55)}
+  .setup{background:linear-gradient(135deg,rgba(255,102,0,.16),rgba(255,255,255,.03));border:1px solid rgba(255,102,0,.45);
+         border-radius:18px;padding:18px 20px;margin:20px 0 6px}
+  .setup h2{margin:0 0 6px;font-size:16px;font-weight:900}
+  .setup p{margin:0 0 10px;color:var(--muted);font-size:13px;line-height:1.5}
+  .setup ol{margin:0 0 12px 18px;padding:0;font-size:13px;line-height:1.7}
+  .setup ol b{color:var(--white)}
+  .setup .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .setup input{flex:1;min-width:220px;background:#111315;border:1px solid var(--line);color:var(--white);
+               border-radius:12px;padding:11px 14px;font:inherit;font-size:13px}
+  .setup .ok{color:#7EE0A4;font-size:13px;font-weight:700}
+  .setup .err{color:#FF8A8A;font-size:13px;font-weight:700}
   footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);
          color:var(--muted);font-size:12px;display:flex;justify-content:space-between;
          gap:12px;flex-wrap:wrap}
@@ -109,7 +120,7 @@
     <div class="brand">
       <img src="logo-icon.svg" alt="">
       <div>
-        <h1>yuk<span>.az</span> — Reels Paneli</h1>
+        <h1>yük<span>.az</span> — Reels Paneli</h1>
         <div class="sub" id="updated">yüklənir…</div>
       </div>
     </div>
@@ -119,6 +130,22 @@
     </div>
   </header>
   <div class="toast" id="toast"></div>
+
+  <div class="setup" id="setup" hidden>
+    <h2>🔐 Bir-klik rejimi — bir dəfəlik quraşdırma (2 dəqiqə)</h2>
+    <p>Bundan sonra Yayımla / Dəyişiklik / Sil düymələri panelin içində işləyir, GitHub açılmır. Token yalnız bu brauzerdə saxlanır.</p>
+    <ol>
+      <li><a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Bu linki aç</a> → <b>Token name:</b> yuk-panel</li>
+      <li><b>Repository access:</b> Only select repositories → <b>motion-design</b></li>
+      <li><b>Permissions → Repository permissions → Issues:</b> Read and write (başqa heç nə)</li>
+      <li><b>Generate token</b> → kopyala → aşağıya yapışdır</li>
+    </ol>
+    <div class="row">
+      <input id="tokenInput" type="password" placeholder="github_pat_…" autocomplete="off">
+      <button class="btn primary" id="tokenSave" style="flex:0 0 auto">Yoxla və saxla</button>
+      <span id="tokenMsg"></span>
+    </div>
+  </div>
 
   <div class="tabs" id="tabs">
     <button class="tab" data-f="all" aria-selected="true">Hamısı</button>
@@ -162,18 +189,33 @@ const refreshGear = () => {
   g.textContent = on ? "✓ Bir-klik aktiv" : "⚙️ Token";
   g.classList.toggle("on", on);
 };
+const setupBox = document.getElementById("setup");
+const showSetup = (on) => { setupBox.hidden = !on; };
 document.getElementById("gear").onclick = () => {
-  const cur = getToken();
-  const v = prompt(
-    "Bir-klik yayım üçün GitHub fine-grained token yapışdır." + NL +
-    "github.com/settings/personal-access-tokens → Generate → Repository: motion-design → Permissions: Issues: Read and write." + NL +
-    "Token yalnız bu brauzerdə saxlanır, səhifənin koduna düşmür. Silmək üçün boş buraxıb OK bas.",
-    cur
-  );
-  if (v === null) return;
-  try { if (v.trim()) localStorage.setItem(TOKEN_KEY, v.trim()); else localStorage.removeItem(TOKEN_KEY); } catch (e) {}
-  refreshGear();
-  toast(v.trim() ? "Token saxlanıldı — düymələr indi birbaşa işləyir." : "Token silindi — düymələr GitHub səhifəsini açacaq.");
+  if (getToken() && confirm("Bir-klik rejimi aktivdir. Tokeni silmək istəyirsən?")) {
+    try { localStorage.removeItem(TOKEN_KEY); } catch (e) {}
+    refreshGear(); showSetup(true); toast("Token silindi.");
+    return;
+  }
+  showSetup(setupBox.hidden);
+};
+document.getElementById("tokenSave").onclick = async () => {
+  const v = document.getElementById("tokenInput").value.trim();
+  const msg = document.getElementById("tokenMsg");
+  if (!v) { msg.className = "err"; msg.textContent = "Token boşdur"; return; }
+  msg.className = ""; msg.textContent = "Yoxlanılır…";
+  try {
+    const r = await fetch("https://api.github.com/repos/" + DATA.repo + "/issues?per_page=1&state=all", {
+      headers: { Authorization: "Bearer " + v, Accept: "application/vnd.github+json" },
+    });
+    if (!r.ok) throw new Error("GitHub " + r.status + " — token və ya icazə səhvdir");
+    try { localStorage.setItem(TOKEN_KEY, v); } catch (e) {}
+    msg.className = "ok"; msg.textContent = "✓ Aktiv";
+    refreshGear(); setTimeout(() => showSetup(false), 900);
+    toast("Bir-klik rejimi aktivdir — düymələr panelin içində işləyir.");
+  } catch (e) {
+    msg.className = "err"; msg.textContent = e.message;
+  }
 };
 
 async function createIssue(title, body) {
@@ -298,6 +340,8 @@ document.getElementById("grid").addEventListener("click", async (ev) => {
     const msg = act === "publish" ? "🚀 Yayımlanır — Instagram emalı ~2–3 dəq. " :
                 act === "change"  ? "🔄 Yenidən istehsal başladı, ~7 dəq. " : "🗑 Silinir… ";
     toast(msg + '<a href="' + issue.html_url + '" target="_blank" rel="noopener">İzlə</a>', 9000);
+    RUNS.unshift({ display_title: title, name: "Reels idarə", html_url: issue.html_url, run_started_at: new Date().toISOString(), status: "queued" });
+    renderRuns(); setTimeout(pollRuns, 8000);
     if (act === "publish") {
       const e = DATA.entries.find((x) => x.id === id);
       if (e) e.status = "yayımlanır";
@@ -383,6 +427,7 @@ function loadData() {
       document.getElementById("updated").textContent = "Son yenilənmə: " + new Date(d.updatedAt).toLocaleString("az-AZ");
       document.getElementById("repo").textContent = d.repo;
       stats(); render(); renderRuns(); pollRuns();
+      showSetup(!getToken());
     })
     .catch(() => {
       document.getElementById("updated").textContent = "Məlumat tapılmadı";

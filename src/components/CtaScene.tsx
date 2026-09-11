@@ -76,7 +76,7 @@ export const CtaScene: React.FC<{ line1: string; line2: string }> = ({ line1, li
   const fingerOut = interpolate(frame, [TAP + 10, TAP + 26], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const pulse = frame > 40 && frame < TAP ? 1 + 0.03 * Math.sin((frame - 40) / 5) : 1;
 
-  const brand = ["y", "u", "k", ".", "a", "z"];
+  const brand = ["y", "ü", "k", ".", "a", "z"];
 
   return (
     <AbsoluteFill style={{ backgroundColor: colors.graphite, fontFamily: font, overflow: "hidden" }}>

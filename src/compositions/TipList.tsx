@@ -67,7 +67,7 @@ const HookScene: React.FC<{ scene: Scene; text: string }> = ({ scene, text }) =>
             opacity: tag,
           }}
         >
-          YUK.AZ MƏSLƏHƏT
+          YÜK.AZ MƏSLƏHƏT
         </div>
         <AnimatedTitle text={text} size={type.hook} delay={6} stagger={4} accent={-1} />
         <div style={{ marginTop: spacing.md }}>

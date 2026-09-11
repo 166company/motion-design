@@ -69,7 +69,7 @@ export const Truck: React.FC<{ x: number; y: number; scale?: number; boxes?: num
         <Wheel cx={470} />
         {/* loqo yazısı */}
         <text x={190} y={132} textAnchor="middle" fontFamily="Inter, Arial" fontWeight={900} fontSize={54} fill="#FFFFFF" letterSpacing={-2}>
-          yuk<tspan fill={colors.orange}>.az</tspan>
+          yük<tspan fill={colors.orange}>.az</tspan>
         </text>
       </svg>
       {/* yük bölməsindəki qutular */}
