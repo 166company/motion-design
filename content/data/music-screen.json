@@ -104,8 +104,11 @@
     "title": "Lucifer <end>"
   },
   "eJEO6": {
-    "error": "HTTP Error 403: Forbidden",
-    "vocal": null,
+    "words": 0,
+    "wpm": 0.0,
+    "real_words": 0,
+    "vocal": false,
+    "sample": "",
     "title": "sheki. - waiting for you"
   },
   "emz0A": {
