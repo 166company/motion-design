@@ -51,7 +51,8 @@ export const Carousel: React.FC<CarouselProps> = ({ photo, lines, punch, fontSiz
   const text = lines[i];
   const alignRight = i % 2 === 0; // 1-ci slayd sağa (mətn kəsilib sonrakı slayda "axır"), 2-ci sola
   // Uzun sətir → şrift kiçilir ki, çərçivəyə sığsın (1 hərf ≈ 0.62 × fontSize eni)
-  const rows = text.split("\n");
+  // Sətir bölgüsü verilməyibsə (tək sətir), hər söz öz sətrində — üslubun tələbi
+  const rows = text.includes("\n") ? text.split("\n") : text.split(/\s+/).filter(Boolean);
   const longest = Math.max(...rows.map((r) => r.length), 1);
   const fit = Math.min(fontSize, Math.floor((W - 120) / (longest * 0.62)), Math.floor((H - 520) / (rows.length * 0.95)));
   return (
@@ -71,11 +72,11 @@ export const Carousel: React.FC<CarouselProps> = ({ photo, lines, punch, fontSiz
           paddingLeft: alignRight ? 0 : 40, paddingRight: alignRight ? 0 : 0,
         }}
       >
-        {text.split("\n").map((ln, k) => (
+        {rows.map((ln, k) => (
           <div
             key={k}
             style={{
-              fontSize, fontWeight: 900, color: colors.white, lineHeight: 0.95, letterSpacing: -6,
+              fontSize: fit, fontWeight: 900, color: colors.white, lineHeight: 0.95, letterSpacing: -fit * 0.03,
               textTransform: "uppercase", whiteSpace: "nowrap",
               textShadow: "0 8px 30px rgba(0,0,0,0.45)",
               // sağa hizalanan sətir kənardan kəsilsin — davamı növbəti slayddadır
