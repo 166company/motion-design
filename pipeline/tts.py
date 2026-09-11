@@ -3,8 +3,10 @@ edge-tts ilə səsləndirmə — açar yoxdur, kart yoxdur.
 Hər səhnə üçün ayrıca mp3 + söz vaxtları. Səhnə uzunluğu birbaşa səsdən gəlir.
 """
 import asyncio, json, sys, os, io
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import edge_tts
 from mutagen.mp3 import MP3
+from az_numbers import normalize as az_normalize
 
 VOICE = os.environ.get("TTS_VOICE", "az-AZ-BanuNeural")
 RATE = os.environ.get("TTS_RATE", "+8%")   # bir az sürətli — reels ritmi
@@ -38,7 +40,7 @@ async def main():
     result = {}
     for j in jobs:
         path = os.path.join(outdir, f"{j['id']}.mp3")
-        result[j["id"]] = await synth(j["text"], path)
+        result[j["id"]] = await synth(az_normalize(j["text"]), path)
         result[j["id"]]["file"] = path.replace("\\", "/")
     sys.stdout.write(json.dumps(result, ensure_ascii=False))
 

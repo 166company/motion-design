@@ -76,6 +76,14 @@
         border:1px dashed rgba(255,102,0,.35);border-radius:10px;padding:8px 10px}
   .note b{display:block;font-size:10.5px;letter-spacing:.4px;text-transform:uppercase;margin-bottom:2px;color:var(--orange)}
   .empty{text-align:center;padding:70px 20px;color:var(--muted)}
+  .gear{background:var(--soft);border:1px solid var(--line);color:var(--white);border-radius:12px;
+        padding:10px 14px;font:inherit;font-weight:700;font-size:13px;cursor:pointer}
+  .gear.on{border-color:rgba(76,217,123,.5);color:#7EE0A4}
+  .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:#111315;color:var(--white);
+         border:1px solid var(--line);border-radius:14px;padding:14px 18px;font-size:13.5px;font-weight:600;
+         box-shadow:0 20px 50px rgba(0,0,0,.6);max-width:92vw;z-index:9;display:none}
+  .toast a{color:var(--orange)}
+  .pill.busy{background:rgba(120,160,255,.14);border-color:rgba(120,160,255,.4);color:#B9C8FF}
   footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);
          color:var(--muted);font-size:12px;display:flex;justify-content:space-between;
          gap:12px;flex-wrap:wrap}
@@ -93,8 +101,12 @@
         <div class="sub" id="updated">yüklənir…</div>
       </div>
     </div>
-    <div class="stats" id="stats"></div>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+      <div class="stats" id="stats"></div>
+      <button class="gear" id="gear" title="Bir-klik yayım üçün GitHub tokeni">⚙️ Token</button>
+    </div>
   </header>
+  <div class="toast" id="toast"></div>
 
   <div class="tabs" id="tabs">
     <button class="tab" data-f="all" aria-selected="true">Hamısı</button>
@@ -114,12 +126,52 @@
 <script>
 const ESCAPES = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" };
 const esc = (s) => String(s == null ? "" : s).replace(/[&<>"]/g, (c) => ESCAPES[c]);
+const NL = "\n";
 
 let DATA = { entries: [], repo: "" };
 let filter = "all";
 
 const badgeClass = (s) =>
-  s === "yayımlanıb" ? "done" : s === "imtina" ? "skip" : "wait";
+  s === "yayımlanıb" ? "done" : s === "imtina" ? "skip" : s === "yayımlanır" ? "busy" : "wait";
+
+/* ---------------- bir-klik: token yalnız brauzerdə, API çağırışı paneldən ---------------- */
+const TOKEN_KEY = "yukaz_gh_token";
+const getToken = () => { try { return localStorage.getItem(TOKEN_KEY) || ""; } catch (e) { return ""; } };
+let toastTimer = null;
+const toast = (html, ms) => {
+  const t = document.getElementById("toast");
+  t.innerHTML = html; t.style.display = "block";
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => { t.style.display = "none"; }, ms || 6000);
+};
+const refreshGear = () => {
+  const g = document.getElementById("gear");
+  const on = !!getToken();
+  g.textContent = on ? "✓ Bir-klik aktiv" : "⚙️ Token";
+  g.classList.toggle("on", on);
+};
+document.getElementById("gear").onclick = () => {
+  const cur = getToken();
+  const v = prompt(
+    "Bir-klik yayım üçün GitHub fine-grained token yapışdır." + NL +
+    "github.com/settings/personal-access-tokens → Generate → Repository: motion-design → Permissions: Issues: Read and write." + NL +
+    "Token yalnız bu brauzerdə saxlanır, səhifənin koduna düşmür. Silmək üçün boş buraxıb OK bas.",
+    cur
+  );
+  if (v === null) return;
+  try { if (v.trim()) localStorage.setItem(TOKEN_KEY, v.trim()); else localStorage.removeItem(TOKEN_KEY); } catch (e) {}
+  refreshGear();
+  toast(v.trim() ? "Token saxlanıldı — düymələr indi birbaşa işləyir." : "Token silindi — düymələr GitHub səhifəsini açacaq.");
+};
+
+async function createIssue(title, body) {
+  const r = await fetch("https://api.github.com/repos/" + DATA.repo + "/issues", {
+    method: "POST",
+    headers: { Authorization: "Bearer " + getToken(), Accept: "application/vnd.github+json", "Content-Type": "application/json" },
+    body: JSON.stringify({ title: title, body: body }),
+  });
+  if (!r.ok) throw new Error("GitHub " + r.status + ": " + (await r.text()).slice(0, 120));
+  return r.json();
+}
 
 // Musiqi sətri: trek, lisenziya və Whisper vokal yoxlamasının nəticəsi
 function musicRow(m) {
@@ -134,33 +186,34 @@ function musicRow(m) {
          '<span class="tag dim">' + src + '</span>' + lic + vocal + '</div>';
 }
 
+// Sil / Dəyişiklik / Yayımla: token varsa panel Issue-nu özü yaradır (bir klik),
+// yoxsa hazır doldurulmuş Issue səhifəsi açılır. manage.yml başlığa görə işi görür.
+const newIssue = (title, body) =>
+  "https://github.com/" + esc(DATA.repo) + "/issues/new?title=" +
+  encodeURIComponent(title) + "&body=" + encodeURIComponent(body);
+const changeBody =
+  "Bu videoda nə dəyişməlidir? Aşağıya sərbəst yaz — qeyd ssenari modelinə ötürülür və video yenidən istehsal olunur." + NL + NL +
+  "Məsələn: başlıqlar daha qısa olsun / musiqi daha gümrah / 3-cü bənd lazım deyil" + NL + NL + "---" + NL + NL;
+
 function render() {
   const list = DATA.entries.filter((e) => filter === "all" || e.status === filter);
   const grid = document.getElementById("grid");
   document.getElementById("empty").hidden = list.length > 0;
 
   grid.innerHTML = list.map((e) => {
-    const approve =
-      "https://github.com/" + esc(DATA.repo) +
-      "/issues?q=is%3Aissue+is%3Aopen+" + esc(e.id);
-    // Sil / Dəyişiklik / Yayımla — hazır doldurulmuş Issue açır; manage.yml onu icra edir
-    const newIssue = (title, body) =>
-      "https://github.com/" + esc(DATA.repo) + "/issues/new?title=" +
-      encodeURIComponent(title) + "&body=" + encodeURIComponent(body);
+    const busy = e.status === "yayımlanır";
     const right =
       e.status === "yayımlanıb"
-        ? '<a class="btn primary" target="_blank" rel="noopener" href="' +
-          esc(e.instagram || "#") + '">Instagram-da bax</a>'
-        : '<a class="btn primary" target="_blank" rel="noopener" href="' +
-          newIssue("Yayımla: " + e.id, "Bu video Instagram + Facebook-a yayımlansın. Açılan səhifədə \"Submit new issue\" bas — qalanı avtomatikdir.") +
-          '">🚀 Yayımla</a>';
-
-    const changeBody =
-      "Bu videoda nə dəyişməlidir? Aşağıya sərbəst yaz — qeyd ssenari modelinə ötürülür və video yenidən istehsal olunur." + "\n\n" +
-      "Məsələn: başlıqlar daha qısa olsun / musiqi daha gümrah / 3-cü bənd lazım deyil / CTA-da telefon yazılsın" + "\n\n---\n\n";
+        ? '<a class="btn primary" target="_blank" rel="noopener" href="' + esc(e.instagram || "#") + '">Instagram-da bax</a>'
+        : busy
+          ? '<span class="btn" style="opacity:.6">⏳ Yayımlanır…</span>'
+          : '<a class="btn primary" data-act="publish" data-id="' + esc(e.id) + '" target="_blank" rel="noopener" href="' +
+            newIssue("Yayımla: " + e.id, "Bu video Instagram + Facebook-a yayımlansın.") + '">🚀 Yayımla</a>';
     const manage =
-      '<a class="btn" target="_blank" rel="noopener" href="' + newIssue("Dəyişiklik: " + e.id, changeBody) + '">✏️ Dəyişiklik</a>' +
-      '<a class="btn danger ghost" target="_blank" rel="noopener" href="' + newIssue("Sil: " + e.id, "Bu video paneldən və Release-dən silinsin.") + '">🗑</a>';
+      '<a class="btn" data-act="change" data-id="' + esc(e.id) + '" target="_blank" rel="noopener" href="' +
+        newIssue("Dəyişiklik: " + e.id, changeBody) + '">✏️ Dəyişiklik</a>' +
+      '<a class="btn danger ghost" data-act="delete" data-id="' + esc(e.id) + '" target="_blank" rel="noopener" href="' +
+        newIssue("Sil: " + e.id, "Bu video paneldən və Release-dən silinsin.") + '">🗑</a>';
     const note = e.note ? '<div class="note"><b>Son qeyd</b>' + esc(e.note) + '</div>' : "";
 
     return '<article class="card">' +
@@ -183,9 +236,7 @@ function render() {
         note +
         '<p class="cap">' + esc(e.caption) + '</p>' +
         '<div class="actions">' +
-          '<button class="btn" data-copy="' +
-            esc(e.caption + " " + (e.hashtags || []).join(" ")) +
-          '">Caption kopyala</button>' +
+          '<button class="btn" data-copy="' + esc(e.caption + " " + (e.hashtags || []).join(" ")) + '">Caption kopyala</button>' +
           right +
         '</div>' +
         '<div class="actions">' + manage + '</div>' +
@@ -193,29 +244,56 @@ function render() {
     '</article>';
   }).join("");
 
-  // Videonu yalnız həqiqətən mövcuddursa göstər.
-  // Release hələ yaranmayıbsa (workflow işləyir), placeholder qalır.
+  // Videonu yalnız həqiqətən mövcuddursa göstər; Release hələ yoxdursa placeholder qalır
   grid.querySelectorAll(".slot").forEach((slot) => {
     const v = document.createElement("video");
-    v.controls = true;
-    v.preload = "metadata";
-    v.playsInline = true;
-    v.onloadedmetadata = () => {
-      slot.innerHTML = "";
-      slot.appendChild(v);
-    };
+    v.controls = true; v.preload = "metadata"; v.playsInline = true;
+    v.onloadedmetadata = () => { slot.innerHTML = ""; slot.appendChild(v); };
     v.src = slot.dataset.src;
   });
 
   grid.querySelectorAll("[data-copy]").forEach((b) => {
     b.onclick = async () => {
       await navigator.clipboard.writeText(b.dataset.copy);
-      const t = b.textContent;
-      b.textContent = "Kopyalandı ✓";
+      const t = b.textContent; b.textContent = "Kopyalandı ✓";
       setTimeout(() => { b.textContent = t; }, 1600);
     };
   });
 }
+
+document.getElementById("grid").addEventListener("click", async (ev) => {
+  const a = ev.target.closest("[data-act]");
+  if (!a || !getToken()) return;                       // token yoxdursa adi link işləsin
+  ev.preventDefault();
+  const id = a.dataset.id, act = a.dataset.act;
+  let title, body;
+  if (act === "publish") {
+    if (!confirm("Bu video İNDİ Instagram + Facebook-a yayımlansın?" + NL + NL + id)) return;
+    title = "Yayımla: " + id; body = "Paneldən bir-klik ilə yayımlandı.";
+  } else if (act === "change") {
+    const noteText = prompt("Nə dəyişməlidir? (qeyd ssenari modelinə gedir, video yenidən istehsal olunur)");
+    if (!noteText || !noteText.trim()) return;
+    title = "Dəyişiklik: " + id; body = noteText.trim();
+  } else {
+    if (!confirm("Bu video silinsin? (Release ləğv olunur, paneldən çıxır)")) return;
+    title = "Sil: " + id; body = "Paneldən silindi.";
+  }
+  a.style.opacity = ".5"; a.style.pointerEvents = "none";
+  try {
+    const issue = await createIssue(title, body);
+    const msg = act === "publish" ? "🚀 Yayımlanır — Instagram emalı ~2–3 dəq. " :
+                act === "change"  ? "🔄 Yenidən istehsal başladı, ~7 dəq. " : "🗑 Silinir… ";
+    toast(msg + '<a href="' + issue.html_url + '" target="_blank" rel="noopener">İzlə</a>', 9000);
+    if (act === "publish") {
+      const e = DATA.entries.find((x) => x.id === id);
+      if (e) e.status = "yayımlanır";
+      render();
+    }
+  } catch (err) {
+    toast("Xəta: " + esc(err.message), 9000);
+    a.style.opacity = ""; a.style.pointerEvents = "";
+  }
+});
 
 function stats() {
   const n = (s) => DATA.entries.filter((e) => e.status === s).length;
@@ -229,21 +307,18 @@ document.getElementById("tabs").onclick = (e) => {
   const b = e.target.closest(".tab");
   if (!b) return;
   filter = b.dataset.f;
-  document.querySelectorAll(".tab").forEach((t) =>
-    t.setAttribute("aria-selected", String(t === b))
-  );
+  document.querySelectorAll(".tab").forEach((t) => t.setAttribute("aria-selected", String(t === b)));
   render();
 };
 
+refreshGear();
 fetch("data.json?" + Date.now())
   .then((r) => (r.ok ? r.json() : Promise.reject(new Error("yox"))))
   .then((d) => {
     DATA = d;
-    document.getElementById("updated").textContent =
-      "Son yenilənmə: " + new Date(d.updatedAt).toLocaleString("az-AZ");
+    document.getElementById("updated").textContent = "Son yenilənmə: " + new Date(d.updatedAt).toLocaleString("az-AZ");
     document.getElementById("repo").textContent = d.repo;
-    stats();
-    render();
+    stats(); render();
   })
   .catch(() => {
     document.getElementById("updated").textContent = "Məlumat tapılmadı";

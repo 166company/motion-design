@@ -101,7 +101,7 @@ Paneldə hər videonun 4 düyməsi var:
 
 | Düymə | Nə edir |
 |---|---|
-| **🚀 Yayımla** | Hazır Issue açır, "Submit" basırsan → dərhal Instagram + Facebook. (Alternativ: Təsdiq Issue-suna `/publish` şərhi) |
+| **🚀 Yayımla** | Dərhal Instagram + Facebook. Bir-klik üçün bir dəfə ⚙️ Token düyməsindən GitHub fine-grained token yapışdır (Repository: motion-design, Permissions: Issues: Read and write) — token yalnız sənin brauzerində saxlanır, səhifə kodunda yoxdur. Tokensiz: hazır doldurulmuş Issue səhifəsi açılır, bir "Submit" |
 | **✏️ Dəyişiklik** | Hazır Issue açır; nə dəyişməli olduğunu sərbəst yaz. Qeyd ssenari modelinə ötürülür, video **yenidən istehsal olunur**, Release əvəz olunur, panel yenilənir. Son qeyd kartda görünür. |
 | **🗑 Sil** | Release silinir, təsdiq Issue-su bağlanır, paneldən çıxır |
 | **Caption kopyala** | Emoji + abzas + CTA formatlı caption, hashtag-larla |
@@ -169,6 +169,10 @@ oxuyur. Kod avtomatik çevirir: ekranda və caption-da həmişə `Yuk.az`.
 
 **UTF-8.** Windows-da Python default `cp1252` işlədir və `ı` hərfini sındırır.
 Bütün fayl əməliyyatlarında `encoding="utf-8"`, mühitdə `PYTHONUTF8=1`.
+
+**Rəqəmlər səsdə.** TTS rəqəmi ingiliscə oxuyur ("three"). [pipeline/az_numbers.py](pipeline/az_numbers.py)
+səsləndirmədən əvvəl hamısını azərbaycan sözünə çevirir: `3` → üç, `4-cü` → dördüncü, `050 209 62 99` →
+"sıfır əlli, iki yüz doqquz, altmış iki, doxsan doqquz", `25%` → iyirmi beş faiz.
 
 **Şrift subset-i.** `latin-ext` olmasa `ə ğ ı ş` hərfləri kvadrat kimi görünür.
 

@@ -12,7 +12,9 @@ stdin: [{"id": "s0", "text": "..."}], argv[1]: çıxış qovluğu
 stdout: {"s0": {"words": [...], "duration": 4.2, "file": "..."}}
 """
 import asyncio, difflib, io, json, os, re, sys, urllib.request
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from mutagen.mp3 import MP3
+from az_numbers import normalize as az_normalize
 
 KEY = os.environ["OPENAI_API_KEY"]
 MODEL = os.environ.get("OPENAI_TTS_MODEL", "gpt-4o-mini-tts-2025-12-15")
@@ -137,6 +139,8 @@ def main():
         path = os.path.join(outdir, f"{j['id']}.mp3")
         # brend adı hər halda düzgün formada olsun
         j["text"] = re.sub(r"Yuk\.az|Yukaz", "Yük nöqtə az", j["text"], flags=re.I)
+        # rəqəmlər azərbaycanca oxunsun ("3" → "üç", "4-cü" → "dördüncü")
+        j["text"] = az_normalize(j["text"])
         tts(j["text"], path)
         duration = MP3(path).info.length
         heard = whisper_words(path, j["text"])
