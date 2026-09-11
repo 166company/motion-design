@@ -22,7 +22,8 @@ jobs:
       PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
       AUDIUS_API_TOKEN: ${{ secrets.AUDIUS_API_TOKEN }}
       TTS_ENGINE: ${{ vars.TTS_ENGINE || 'openai' }}
-      OPENAI_TTS_VOICE: ${{ vars.OPENAI_TTS_VOICE || 'marin' }}
+      # OPENAI_TTS_VOICE boşdursa hər video fərqli səslə çıxır (rotasiya); sabit istəsən Variables-də təyin et
+      OPENAI_TTS_VOICE: ${{ vars.OPENAI_TTS_VOICE }}
       TTS_VOICE: ${{ vars.TTS_VOICE || 'az-AZ-BanuNeural' }}
 
     steps:

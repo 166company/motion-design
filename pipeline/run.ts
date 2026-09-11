@@ -7,6 +7,7 @@ import { pickArticle, getArticle } from "./wp.ts";
 import { writeScript } from "./script.ts";
 import { findMedia, normalizeVideo } from "./assets.ts";
 import { pickAndDownload } from "./audius.ts";
+import { voices, contact } from "../src/brand/contact.ts";
 
 const FPS = 30;
 const TAIL = 16;        // səhnə sonuna nəfəs payı (kadr) — keçid (12) bunun içində qalır
@@ -19,10 +20,10 @@ const log = (m: string) => console.log(`  ${m}`);
  * İkisi də eyni formatda cavab verir: söz vaxtları + müddət.
  */
 const TTS_SCRIPT = process.env.TTS_ENGINE === "edge" ? "pipeline/tts.py" : "pipeline/tts_openai.py";
-const runTts = (jobs: { id: string; text: string }[], outDir: string) =>
+const runTts = (jobs: { id: string; text: string }[], outDir: string, voice: string) =>
   new Promise<Record<string, { words: any[]; duration: number; file: string }>>((res, rej) => {
     const py = spawn("python", [TTS_SCRIPT, outDir], {
-      env: { ...process.env, PYTHONUTF8: "1", PYTHONIOENCODING: "utf-8" },
+      env: { ...process.env, PYTHONUTF8: "1", PYTHONIOENCODING: "utf-8", OPENAI_TTS_VOICE: voice },
     });
     let out = "", err = "";
     py.stdout.on("data", (d) => (out += d));
@@ -71,12 +72,14 @@ const main = async () => {
   const dir = path.join("public", "render", id);
   await fs.mkdir(dir, { recursive: true });
 
-  console.log(`3. Səsləndirilir (${process.env.TTS_ENGINE === "edge" ? "edge-tts" : "OpenAI " + (process.env.OPENAI_TTS_VOICE ?? "marin")})…`);
+  // Hər video fərqli səslə — məqalə ID-sinə görə növbə. OPENAI_TTS_VOICE verilibsə, o üstündür.
+  const voice = process.env.OPENAI_TTS_VOICE || voices[article.id % voices.length];
+  console.log(`3. Səsləndirilir (${process.env.TTS_ENGINE === "edge" ? "edge-tts" : "OpenAI " + voice})…`);
   const jobs = [
     { id: "s0", text: s.hookSpoken },
     ...s.items.map((it, i) => ({ id: `s${i + 1}`, text: it.spoken })),
   ];
-  const tts = await runTts(jobs, dir);
+  const tts = await runTts(jobs, dir, voice);
   const voTotal = Object.values(tts).reduce((a, b) => a + b.duration, 0);
   log(`${jobs.length} səhnə, ${voTotal.toFixed(1)} san səs`);
   // edge-tts çıxışı sakitdir (~-25 dBFS) — sosial media üçün -18-ə qaldır
@@ -220,7 +223,7 @@ const main = async () => {
     id,
     hook: s.hook,
     total: s.items.length,
-    cta: s.cta,
+    cta: { line1: s.cta.line1, line2: "Zəng et" },
     music: track,
     musicVolume: 0.45,  // səsləndirmə altında; CTA-da TipList özü qaldırır
     scenes,
@@ -237,7 +240,7 @@ const main = async () => {
 
 ${attribution}` : s.caption,
       hashtags: s.hashtags,
-      music: track, attribution, musicTrack,
+      music: track, attribution, musicTrack, voice,
     }, null, 2),
     "utf-8"
   );

@@ -1,5 +1,6 @@
 /** Məqalə → reels ssenarisi. Yalnız məqalədəki məlumatdan istifadə edir. */
 import type { Article } from "./wp.ts";
+import { contact } from "../src/brand/contact.ts";
 
 const MODEL = process.env.OPENAI_MODEL ?? "gpt-5.4-mini";
 
@@ -84,7 +85,7 @@ const schema = {
       description:
         "Instagram təsviri. FORMAT MƏCBURİDİR: (1) emoji ilə başlayan zərbəli 1 sətirlik hook; " +
         "(2) boş sətir; (3) 2-4 qısa abzas, hər abzas boş sətirlə ayrılır, hər birinin əvvəlində uyğun emoji (📦 🚚 🏠 💡 ✅ ⏱ 📞 kimi); " +
-        "(4) boş sətir; (5) SONDA aydın CTA — məs: '📞 Qiyməti öyrənmək üçün zəng et' və ya '👉 Yuk.az-a keç'. " +
+        "(4) boş sətir; (5) SONDA CTA, MƏCBURİ olaraq bu formada: '📞 Zəng et: " + contact.phone + "' (nömrəni dəyişmə). " +
         "Hashtag YAZMA (ayrıca sahədə gəlir). Rəqəm/qiymət yazma.",
     },
     hashtags: { type: "array", minItems: 5, maxItems: 10, items: { type: "string" } },
@@ -144,6 +145,12 @@ ${feedback.trim()}`
 const toBrand = (t: string) => t.replace(/Yukaz/gi, "Yuk.az");
 const toSpoken = (t: string) => t.replace(/Yuk\.az/gi, "Yukaz");
 
+/** Caption-ın sonunda nömrəli CTA mütləq olsun — model unutsa da */
+const ensurePhoneCta = (caption: string) =>
+  caption.includes(contact.phone) ? caption : `${caption.trim()}
+
+📞 Zəng et: ${contact.phone}`;
+
 const normalize = (s: ScriptOut): ScriptOut => ({
   ...s,
   hook: toBrand(s.hook),
@@ -155,5 +162,5 @@ const normalize = (s: ScriptOut): ScriptOut => ({
     spoken: toSpoken(i.spoken),
   })),
   cta: { line1: toBrand(s.cta.line1), line2: toBrand(s.cta.line2) },
-  caption: toBrand(s.caption),
+  caption: ensurePhoneCta(toBrand(s.caption)),
 });

@@ -185,10 +185,12 @@ export const TipList: React.FC<Reel> = ({ hook, total, cta, scenes, music, music
       })}
 
       <Vignette />
-      <Sequence durationInFrames={ctaFrom}>
-        <ProgressBar segments={scenes.filter((s) => s.kind !== "cta").map((s) => s.durationInFrames - TRANSITION)} total={ctaFrom} />
-        <LogoBug />
-      </Sequence>
+      {ctaFrom > 0 && (
+        <Sequence durationInFrames={ctaFrom}>
+          <ProgressBar segments={scenes.filter((s) => s.kind !== "cta").map((s) => s.durationInFrames - TRANSITION)} total={ctaFrom} />
+          <LogoBug />
+        </Sequence>
+      )}
     </AbsoluteFill>
   );
 };
