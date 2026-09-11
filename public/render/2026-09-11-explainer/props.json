@@ -1,0 +1,243 @@
+{
+  "id": "2026-09-11-explainer",
+  "cta": {
+    "line1": "İndi zəng et, daşınmanı öyrən",
+    "line2": "Zəng et"
+  },
+  "music": "render/2026-09-11-explainer/music.norm.wav",
+  "musicVolume": 0.5,
+  "scenes": [
+    {
+      "kind": "intro",
+      "heading": "Daşınma dörd addımda, rahat başla",
+      "sub": "",
+      "lines": [],
+      "spoken": "Yük nöqtə az ilə daşınma belə başlayır",
+      "audio": "render/2026-09-11-explainer/intro.wav",
+      "words": [
+        {
+          "w": "Yük",
+          "start": 0,
+          "dur": 0.4
+        },
+        {
+          "w": "nöqtə",
+          "start": 0.4,
+          "dur": 0.72
+        },
+        {
+          "w": "az",
+          "start": 1.12,
+          "dur": 0.2
+        },
+        {
+          "w": "ilə",
+          "start": 1.32,
+          "dur": 0.4
+        },
+        {
+          "w": "daşınma",
+          "start": 1.72,
+          "dur": 0.58
+        },
+        {
+          "w": "belə",
+          "start": 2.3,
+          "dur": 0.56
+        },
+        {
+          "w": "başlayır",
+          "start": 2.86,
+          "dur": 0.44
+        }
+      ],
+      "durationInFrames": 134
+    },
+    {
+      "kind": "call",
+      "heading": "Zəng et, məlumat ver",
+      "sub": "050 209 62 99",
+      "lines": [],
+      "spoken": "Operatora yükün həcmini və ünvanları de",
+      "audio": "render/2026-09-11-explainer/call.wav",
+      "words": [
+        {
+          "w": "Operatora",
+          "start": 0,
+          "dur": 1.08
+        },
+        {
+          "w": "yükün",
+          "start": 1.08,
+          "dur": 0.38
+        },
+        {
+          "w": "həcmini",
+          "start": 1.46,
+          "dur": 0.5
+        },
+        {
+          "w": "və",
+          "start": 1.96,
+          "dur": 0.6
+        },
+        {
+          "w": "ünvanları",
+          "start": 2.56,
+          "dur": 0.6
+        },
+        {
+          "w": "de",
+          "start": 3.16,
+          "dur": 0.2
+        }
+      ],
+      "durationInFrames": 137
+    },
+    {
+      "kind": "chat",
+      "heading": "Operator detallarını dəqiqləşdirir",
+      "sub": "",
+      "lines": [
+        "Ev neçə otaqlıdır?",
+        "İki otaqdır, lift var.",
+        "Məlumatlarındandır, hesablayıram."
+      ],
+      "spoken": "Operator detallarını soruşur, sən qısa cavab verirsən",
+      "audio": "render/2026-09-11-explainer/chat.wav",
+      "words": [
+        {
+          "w": "Operator",
+          "start": 0,
+          "dur": 0.56
+        },
+        {
+          "w": "detallarını",
+          "start": 0.56,
+          "dur": 0.66
+        },
+        {
+          "w": "soruşur,",
+          "start": 1.22,
+          "dur": 0.54
+        },
+        {
+          "w": "sən",
+          "start": 2.38,
+          "dur": 0.08
+        },
+        {
+          "w": "qısa",
+          "start": 2.46,
+          "dur": 0.7
+        },
+        {
+          "w": "cavab",
+          "start": 3.16,
+          "dur": 0.3
+        },
+        {
+          "w": "verirsən",
+          "start": 3.46,
+          "dur": 0.42
+        }
+      ],
+      "durationInFrames": 149
+    },
+    {
+      "kind": "load",
+      "heading": "Qutular maşına yüklənir",
+      "sub": "",
+      "lines": [],
+      "spoken": "Briqada qutuları səliqə ilə maşına yerləşdirir",
+      "audio": "render/2026-09-11-explainer/load.wav",
+      "words": [
+        {
+          "w": "Briqada",
+          "start": 0,
+          "dur": 0.68
+        },
+        {
+          "w": "qutuları",
+          "start": 0.68,
+          "dur": 1.12
+        },
+        {
+          "w": "səliqə",
+          "start": 1.8,
+          "dur": 0.5
+        },
+        {
+          "w": "ilə",
+          "start": 2.3,
+          "dur": 0.46
+        },
+        {
+          "w": "maşına",
+          "start": 2.76,
+          "dur": 0.4
+        },
+        {
+          "w": "yerləşdirir",
+          "start": 3.16,
+          "dur": 0.68
+        }
+      ],
+      "durationInFrames": 140
+    },
+    {
+      "kind": "route",
+      "heading": "Marşrut xəritədə görünür",
+      "sub": "",
+      "lines": [
+        "Bakı",
+        "Şirvan"
+      ],
+      "spoken": "Marşrut planlanır, maşın ünvanına doğru çıxır",
+      "audio": "render/2026-09-11-explainer/route.wav",
+      "words": [
+        {
+          "w": "Marşrut",
+          "start": 0,
+          "dur": 0.56
+        },
+        {
+          "w": "planlanır,",
+          "start": 0.56,
+          "dur": 0.68
+        },
+        {
+          "w": "maşın",
+          "start": 1.86,
+          "dur": 0.4
+        },
+        {
+          "w": "ünvanına",
+          "start": 2.26,
+          "dur": 0.6
+        },
+        {
+          "w": "doğru",
+          "start": 2.86,
+          "dur": 0.42
+        },
+        {
+          "w": "çıxır",
+          "start": 3.28,
+          "dur": 0.56
+        }
+      ],
+      "durationInFrames": 145
+    },
+    {
+      "kind": "cta",
+      "heading": "",
+      "sub": "",
+      "lines": [],
+      "spoken": "",
+      "audio": null,
+      "words": [],
+      "durationInFrames": 110
+    }
+  ]
+}
