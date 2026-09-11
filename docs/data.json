@@ -1,6 +1,6 @@
 {
   "repo": "166company/motion-design",
-  "updatedAt": "2026-09-11T13:03:18.551Z",
+  "updatedAt": "2026-09-11T13:27:39.933Z",
   "entries": [
     {
       "id": "2026-09-11-story",
@@ -31,37 +31,6 @@
         "license": "Attribution CC BY",
         "vocal": false,
         "source": "audius"
-      }
-    },
-    {
-      "id": "2026-09-11-poster-6",
-      "images": [
-        "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-poster-6/2026-09-11-poster-6-1.png"
-      ],
-      "hook": "Köç qiyməti? — Əvvəlcədən bil",
-      "caption": "📦 Yük.az-da məbləğ hazır tariflə yox, yükün həcmi, ünvan şəraiti və işin növünə görə hesablanır.\n\nOperator telefonda əvvəlcədən bildirir; qablaşdırma materialı və sığorta daxildir.\n\n📞 Zəng et: 050 209 62 99",
-      "hashtags": [
-        "#Yükaz",
-        "#Yukaz",
-        "#EvDaşınması",
-        "#Yükdaşıma",
-        "#BakıKöçü",
-        "#SığortalıDaşıma"
-      ],
-      "source": "https://yuk.az",
-      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-poster-6/2026-09-11-poster-6.mp4",
-      "duration": 0,
-      "scenes": 1,
-      "status": "təsdiq-gözləyir",
-      "kind": "sales",
-      "createdAt": "2026-09-11",
-      "template": "Poster",
-      "voice": null,
-      "music": {
-        "label": "Orijinal sintez",
-        "license": null,
-        "vocal": false,
-        "source": "synth"
       }
     },
     {
@@ -116,35 +85,6 @@
       "scenes": 1,
       "status": "təsdiq-gözləyir",
       "kind": "fun",
-      "createdAt": "2026-09-11",
-      "template": "Poster",
-      "voice": null,
-      "music": {
-        "label": "Orijinal sintez",
-        "license": null,
-        "vocal": false,
-        "source": "synth"
-      }
-    },
-    {
-      "id": "2026-09-11-poster-3",
-      "images": [
-        "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-poster-3/2026-09-11-poster-3-1.png"
-      ],
-      "hook": "Bakıdan Rayonlara",
-      "caption": "🛣️ Bakıdan rayona köç planlayırsan?\n\n🚚 Yük.az Şirvan və Naxçıvan kimi istiqamətlərdə yükün həcmi, ünvana giriş və tarixə görə plan qurur.\n\n📞 Məbləğ telefonda əvvəlcədən bildirilir, sığorta daxildir.\n\n📞 Zəng et: 050 209 62 99",
-      "hashtags": [
-        "#Yükaz",
-        "#BakıdanRayona",
-        "#Şirvan",
-        "#Naxçıvan",
-        "#YükDaşıma"
-      ],
-      "source": "https://yuk.az",
-      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-11-poster-3/2026-09-11-poster-3.mp4",
-      "duration": 0,
-      "scenes": 1,
-      "status": "təsdiq-gözləyir",
       "createdAt": "2026-09-11",
       "template": "Poster",
       "voice": null,
