@@ -18,3 +18,4 @@ public/render/**/*.svg
 content/output/
 
 # DİQQƏT: public/music/ commit OLUNUR — GitHub Actions ona ehtiyac duyur
+feedback-plan.json
