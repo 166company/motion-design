@@ -1,7 +1,105 @@
 {
   "repo": "166company/motion-design",
-  "updatedAt": "2026-09-11T17:51:58.900Z",
+  "updatedAt": "2026-09-13T09:58:42.605Z",
   "entries": [
+    {
+      "id": "2026-09-13-poster-3",
+      "images": [
+        "https://github.com/166company/motion-design/releases/download/reel-2026-09-13-poster-3/2026-09-13-poster-3-1.png"
+      ],
+      "hook": "Həcm, lift, məsafə — Yük.az Hesablayır",
+      "caption": "📦 Köçün məbləği yükün həcmi, mərtəbə, lift, məsafə və işin növünə görə hesablanır.\n\nYük.az operatoru məbləği əvvəlcədən bildirir; qablaşdırma və sığorta daxildir.\n\n📞 Zəng et: 050 209 62 99",
+      "hashtags": [
+        "#Yukaz",
+        "#EvDasinmasi",
+        "#Yukdasima",
+        "#Baki",
+        "#SigortaliDasinma"
+      ],
+      "source": "https://yuk.az",
+      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-13-poster-3/2026-09-13-poster-3.mp4",
+      "duration": 0,
+      "scenes": 1,
+      "status": "təsdiq-gözləyir",
+      "kind": "sales",
+      "createdAt": "2026-09-13",
+      "template": "Poster",
+      "voice": null,
+      "music": {
+        "label": "Orijinal sintez",
+        "license": null,
+        "vocal": false,
+        "source": "synth"
+      }
+    },
+    {
+      "id": "2026-09-13-poster-2",
+      "images": [
+        "https://github.com/166company/motion-design/releases/download/reel-2026-09-13-poster-2/2026-09-13-poster-2-1.png"
+      ],
+      "hook": "Dostların gözü pilləkəndə qalanda — Yük.az Sevgisi",
+      "caption": "“Az qutu var” dedin, evin yarısı çıxdı 😭\nDostluq qalsın, yükü biz daşıyaq 🚚\n\n📞 Zəng et: 050 209 62 99",
+      "hashtags": [
+        "#Yukaz",
+        "#KocStressi",
+        "#Yukdasima",
+        "#BakiKocu",
+        "#EvKocu"
+      ],
+      "source": "https://yuk.az",
+      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-13-poster-2/2026-09-13-poster-2.mp4",
+      "duration": 0,
+      "scenes": 1,
+      "status": "təsdiq-gözləyir",
+      "kind": "fun",
+      "inspiration": {
+        "url": "https://i.imgflip.com/1ur9b0.jpg",
+        "quote": "Distracted Boyfriend"
+      },
+      "createdAt": "2026-09-13",
+      "template": "Poster",
+      "voice": null,
+      "music": {
+        "label": "Orijinal sintez",
+        "license": null,
+        "vocal": false,
+        "source": "synth"
+      }
+    },
+    {
+      "id": "2026-09-13-poster-1",
+      "images": [
+        "https://github.com/166company/motion-design/releases/download/reel-2026-09-13-poster-1/2026-09-13-poster-1-1.png"
+      ],
+      "hook": "Dostları çağırım, yoxsa özüm daşıyım? — Yük.az Düyməsi",
+      "caption": "Lift balaca, divan böyük, qonşu artıq baxır 😅\nBir toxunuşla panika bitir 📦\n\n📞 Zəng et: 050 209 62 99",
+      "hashtags": [
+        "#Yukaz",
+        "#Koc",
+        "#Yukdasima",
+        "#Baki",
+        "#EvDasinmasi"
+      ],
+      "source": "https://yuk.az",
+      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-13-poster-1/2026-09-13-poster-1.mp4",
+      "duration": 0,
+      "scenes": 1,
+      "status": "təsdiq-gözləyir",
+      "kind": "fun",
+      "inspiration": {
+        "url": "https://i.imgflip.com/1g8my4.jpg",
+        "quote": "Two Buttons"
+      },
+      "createdAt": "2026-09-13",
+      "template": "Poster",
+      "voice": null,
+      "music": {
+        "label": "Orijinal sintez",
+        "license": null,
+        "vocal": false,
+        "source": "synth"
+      }
+    },
     {
       "id": "2026-09-11-story",
       "hook": "Bir zəng bəsdir",
