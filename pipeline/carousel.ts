@@ -9,6 +9,7 @@
  */
 import "dotenv/config";
 import "./plan.ts";
+import { playbook, planFor, memory, postCount } from "./skills.ts";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { contact } from "../src/brand/contact.ts";
@@ -80,7 +81,7 @@ const writeConcept = async (feedback?: string): Promise<Concept> => {
     body: JSON.stringify({
       model: MODEL,
       messages: [
-        { role: "system", content: SYSTEM },
+        { role: "system", content: SYSTEM + playbook(["carousel-builder", "viral-hook-writer", "going-viral"]) + planFor("Carousel", postCount()).text + memory() },
         { role: "user", content: `Yeni bir karusel konsepti yaz.${feedback ? `${NL}${NL}İSTİFADƏÇİ QEYDİ, MÜTLƏQ nəzərə al:${NL}${feedback}` : ""}` },
       ],
       response_format: { type: "json_schema", json_schema: { name: "carousel", strict: true, schema } },

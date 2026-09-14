@@ -1,6 +1,7 @@
 /** Məqalə → reels ssenarisi. Yalnız məqalədəki məlumatdan istifadə edir. */
 import type { Article } from "./wp.ts";
 import { contact } from "../src/brand/contact.ts";
+import { playbook, planFor, memory, postCount, type Strategy } from "./skills.ts";
 
 const MODEL = process.env.OPENAI_MODEL ?? "gpt-5.4-mini";
 
@@ -16,6 +17,10 @@ export type ScriptItem = {
 
 export type ScriptOut = {
   hook: string;
+  /** A/B üçün alternativ hook-lar (viral-hook-writer) */
+  hookAlternatives: string[];
+  /** going-viral strategiyası (meta-ya yazılır) */
+  strategy?: Strategy;
   hookSpoken: string;
   hookQuery: string;
   items: ScriptItem[];
@@ -44,14 +49,16 @@ QAYDALAR:
 - "query" mütləq İNGİLİS dilində, stok video axtarışı üçün (məs: "movers carrying boxes stairs").
 - "icon" hər bənd üçün Lucide ikon adı (İNGİLİS, kiçik hərf, defislə): məs "truck", "package", "building-2",
   "phone-call", "shield-check", "clock", "stairs", "home", "boxes", "calculator", "map-pin", "wallet".
-- Caption formatı: emoji ilə hook → boş sətir → emojili qısa abzaslar → boş sətir → CTA. Divar kimi mətn YOX.`;
+- Caption formatı: emoji ilə hook → boş sətir → emojili qısa abzaslar → boş sətir → CTA. Divar kimi mətn YOX.`
+  + playbook(["going-viral", "viral-hook-writer", "reel-scripter", "on-screen-text-writer", "cta-writer"]);
 
 const schema = {
   type: "object",
   additionalProperties: false,
-  required: ["hook", "hookSpoken", "hookQuery", "items", "cta", "caption", "hashtags"],
+  required: ["hook", "hookAlternatives", "hookSpoken", "hookQuery", "items", "cta", "caption", "hashtags"],
   properties: {
-    hook: { type: "string", description: "Ekrandakı açılış sualı, maksimum 55 simvol" },
+    hook: { type: "string", description: "Ekrandakı açılış — viral-hook-writer üsulu ilə daxilən 10 hook yaz, STRATEGİYAdakı bucağa uyğun ən güclüsünü seç; maksimum 55 simvol, səssiz oxunanda da işləsin" },
+    hookAlternatives: { type: "array", minItems: 3, maxItems: 3, items: { type: "string" }, description: "A/B test üçün 3 fərqli bucaqlı alternativ hook (hər biri maks 55 simvol)" },
     hookSpoken: { type: "string", description: "TƏK qısa cümlə, maksimum 10 söz — ilk 3 saniyə həlledicidir" },
     hookQuery: { type: "string", description: "açılış səhnəsi üçün ingiliscə stok video sorğusu" },
     items: {
@@ -96,10 +103,12 @@ export const writeScript = async (article: Article, feedback?: string): Promise<
   const key = process.env.OPENAI_API_KEY;
   if (!key) throw new Error("OPENAI_API_KEY yoxdur");
 
+  const plan = planFor("TipList", postCount());
+  const strategy = plan.strategy;
   const body = {
     model: MODEL,
     messages: [
-      { role: "system", content: SYSTEM },
+      { role: "system", content: SYSTEM + plan.text + memory() },
       {
         role: "user",
         content: `MƏQALƏ BAŞLIĞI: ${article.title}
@@ -137,14 +146,14 @@ ${feedback.trim()}`
 
   if (!res.ok) throw new Error(`OpenAI ${res.status}: ${(await res.text()).slice(0, 400)}`);
   const data = (await res.json()) as any;
-  return normalize(JSON.parse(data.choices[0].message.content) as ScriptOut);
+  return { ...normalize(JSON.parse(data.choices[0].message.content) as ScriptOut), strategy };
 };
 
 /**
  * "Yukaz" yalnız səsləndirmə üçündür (TTS düzgün oxusun).
  * Ekranda və caption-da həmişə "Yük.az" olmalıdır (yeni söz işarəsi).
  */
-const toBrand = (t: string) => t.replace(/Yukaz|Yuk\.az/gi, "Yük.az");
+const toBrand = (t: string) => t.replace(/Y[uü]k n[öo]qt[əe] az|Yukaz|Yuk\.az/gi, "Yük.az");
 const toSpoken = (t: string) => t.replace(/Y[uü]k\.?az/gi, "Yük nöqtə az");
 
 /** Caption-ın sonunda nömrəli CTA mütləq olsun — model unutsa da */
@@ -156,6 +165,7 @@ const ensurePhoneCta = (caption: string) =>
 const normalize = (s: ScriptOut): ScriptOut => ({
   ...s,
   hook: toBrand(s.hook),
+  hookAlternatives: (s.hookAlternatives ?? []).map(toBrand),
   hookSpoken: toSpoken(s.hookSpoken),
   items: s.items.map((i) => ({
     ...i,

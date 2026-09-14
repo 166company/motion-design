@@ -137,10 +137,11 @@ export const publishFacebookPhoto = async (imageUrl: string, message: string) =>
   return { id: ph.post_id ?? ph.id, permalink: `https://www.facebook.com/${ph.post_id ?? ph.id}` };
 };
 
-/** Musiqi krediti (CC BY) — caption əvəzinə ilk şərh. Uğursuz olsa yayımı pozmur. */
-const creditComment = async (igMediaId: string | null, fbObjectId: string | null, attribution: string | null) => {
-  if (!attribution) return;
-  const text = attribution.replace(/^🎵\s*/, "🎵 Musiqi: ");
+/** İlk şərh: sual + pilləli hashtag-lər (caption-and-hashtags) + musiqi krediti (CC BY). Uğursuz olsa yayımı pozmur. */
+const creditComment = async (igMediaId: string | null, fbObjectId: string | null, attribution: string | null, firstComment?: string | null) => {
+  const credit = attribution ? attribution.replace(/^🎵\s*/, "🎵 Musiqi: ") : "";
+  const text = [firstComment?.trim(), credit].filter(Boolean).join("\n\n");
+  if (!text) return;
   if (igMediaId) {
     await api(`${igMediaId}/comments?message=${encodeURIComponent(text)}&access_token=${TOKEN}`, { method: "POST" })
       .then(() => console.log("  ✓ IG kredit şərhi")).catch((e) => console.log("  ⚠ IG şərh:", e.message.slice(0, 80)));
@@ -155,7 +156,8 @@ const creditComment = async (igMediaId: string | null, fbObjectId: string | null
 if (process.argv[1]?.endsWith("publish.ts")) {
   const [, , videoUrl, metaPath] = process.argv;
   const meta = JSON.parse(await (await import("node:fs/promises")).readFile(metaPath, "utf-8"));
-  const caption = `${meta.caption}\n\n${meta.hashtags.join(" ")}`;
+  // copy.ts işləyibsə caption artıq 2-3 hashtag-la bitir, qalanı ilk şərhə gedir; köhnə meta üçün hashtag-lər caption-a
+  const caption = meta.firstComment ? meta.caption : `${meta.caption}\n\n${meta.hashtags.join(" ")}`;
 
   if (meta.template === "Poster") {
     const base = videoUrl.replace(/[^/]+$/, "");
@@ -166,6 +168,7 @@ if (process.argv[1]?.endsWith("publish.ts")) {
     console.log("Facebook (foto)…");
     const fb = await publishFacebookPhoto(url, caption);
     console.log("  ✓", fb.permalink);
+    await creditComment(ig.id, fb.id, null, meta.firstComment);
   } else if (meta.template === "Carousel") {
     // videoUrl = .../reel-<id>/<id>.mp4 → şəkillər eyni qovluqda <id>-1.png, -2, -3
     const base = videoUrl.replace(/[^/]+$/, "");
@@ -176,6 +179,7 @@ if (process.argv[1]?.endsWith("publish.ts")) {
     console.log("Facebook (foto post)…");
     const fb = await publishFacebookPhotos(urls, caption);
     console.log("  ✓", fb.permalink);
+    await creditComment(ig.id, fb.id, null, meta.firstComment);
   } else {
     console.log("Instagram…");
     const ig = await publishInstagram(videoUrl, caption);
@@ -183,7 +187,7 @@ if (process.argv[1]?.endsWith("publish.ts")) {
     console.log("Facebook…");
     const fb = await publishFacebook(videoUrl, caption);
     console.log("  ✓", fb.permalink);
-    await creditComment(ig.id, fb.id, meta.attribution ?? null);
+    await creditComment(ig.id, fb.id, meta.attribution ?? null, meta.firstComment);
   }
 }
 process.on("unhandledRejection", (e: any) => {

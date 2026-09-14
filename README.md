@@ -185,6 +185,29 @@ aşağı 440px (ad + caption), yanlar 140px (hündür ekranlarda kəsilmə), alt
 
 ---
 
+## Kontent strategiyası — Ootto Content Skills inteqrasiyası
+
+[Ootto-AI/claude-content-skills](https://github.com/Ootto-AI/claude-content-skills) (MIT, 50 skill) layihəyə iki qatda daxil edilib:
+
+**1. Claude Code-da birbaşa** — `.claude/skills/` (bütün 50 skill). Bu qovluqda Claude Code açıb `/viral-hook-writer`, `/going-viral`, `/content-calendar`, `/competitor-teardown`, `/reel-analyzer` və s. yazmaq kifayətdir.
+
+**2. Pipeline-ın içində (avtomatik, OpenAI ilə)** — `pipeline/skills.ts` SKILL.md playbook-larını oxuyub hər şablonun sistem promptuna qoşur:
+
+| Harada | Skill-lər | Nə edir |
+|---|---|---|
+| `script.ts` (TipList) | going-viral, viral-hook-writer, reel-scripter, on-screen-text-writer, cta-writer | 10 hook-dan ən güclüsü + 3 A/B alternativ (`meta.hookAlternatives`), 4-hissəli struktur, səssiz oxunan ekran mətni, BİR CTA |
+| `explainer.ts`, `story.ts` | going-viral, reel-builder, story-sequencer, on-screen-text-writer | beat-by-beat, hər sətrə vizual, tap-through arkı |
+| `carousel.ts` | carousel-builder, viral-hook-writer, going-viral | slayd 1 < 8 söz, hər slayd 1 fikir |
+| `poster.ts` | viral-hook-writer, cta-writer, trend-spotter | bucaq rotasiyası, real trend uyğunluğu |
+| `copy.ts` (hamısı) | caption-and-hashtags, hashtag-keyword-research, cta-writer | caption-ın ilk sətri 2-ci hook; caption-da 2-3 hashtag, **12-15 pilləli hashtag + sual ilk şərhə** (`meta.firstComment`, `publish.ts` yayımdan sonra yazır) |
+| `analytics.ts` (həftəlik) | analytics-readout, hook-mining, content-audit, ai-brain | Instagram insights (baxış/əhatə/saxlama/paylaşım) → `content/analytics.json`; sadə dillə həftəlik hesabat (Issue "📊"); **yaddaş** `content/brain.md` — qalib hook-lar və qaydalar, sonrakı bütün promptlara "YADDAŞ" kimi gedir |
+| `calendar.ts` (həftəlik) | content-calendar, content-pillar-builder, series-planner, best-time-scheduler | 2 həftəlik plan `content/calendar.json`: sütunlar, seriyalar, hər slot üçün şablon/məqsəd/bucaq/hook; `create.yml` video günlərində şablonu, `run.ts` məqaləni plandan götürür; paneldə "📅 Kontent planı" |
+| `comments.ts` (saatlıq) | comment-responder, dm-script-writer | cavabsız şərhlərə isti, linksiz cavab; lead-lər `content/data/comments.json`. **Default önizləmə** — göndərmək üçün repo Variables-də `AUTO_REPLY=1` |
+
+**going-viral strategiyası** hər post üçün deterministik rotasiya ilə seçilir (`skills.ts → strategyFor`): məqsəd SAVE → SHARE → FOLLOW → LEAD, bucaq nəticə/necə/əks-fikir/POV/nömrəli/səhv/sual; plan varsa slotun məqsədi üstündür. Paneldə hər kartda "🎯 SHARE · sual" pill-i, yayımlananlarda ▶ 👥 🔖 ↗ ❤ 💬 rəqəmləri.
+
+Workflow: `weekly.yml` — B.e. 06:00 UTC analitika + yaddaş + plan + hesabat Issue; hər saat `:17` şərhlər.
+
 ## Səs
 
 **Default: OpenAI `gpt-4o-mini-tts`** ([pipeline/tts_openai.py](pipeline/tts_openai.py)) —

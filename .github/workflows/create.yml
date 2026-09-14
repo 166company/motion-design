@@ -64,7 +64,10 @@ jobs:
         run: |
           # auto növbəsi: tiplist, story, tiplist, explainer, ... (məqalə videoları arasında animasiyalar)
           N=$(ls content/data/*.meta.json 2>/dev/null | grep -vc poster)
+          # kontent təqvimində (calendar.ts) bu gün üçün video slotu varsa, onun şablonu
+          CAL=$(python -c "import json,io,datetime;c=json.load(io.open('content/calendar.json',encoding='utf-8'));d=datetime.date.today().isoformat();print(next((s['template'].lower() for s in c['slots'] if s['date']==d and s['template']!='Poster'),''))" 2>/dev/null || true)
           if [ "${{ github.event.schedule }}" = "0 5 * * *" ]; then T=poster
+          elif [ "$REQ" = "auto" ] && [ -n "$CAL" ]; then T="$CAL"; echo "təqvimdən: $CAL"
           elif [ "$REQ" = "auto" ]; then
             case $((N % 5)) in 1) T=story ;; 2) T=carousel ;; 4) T=explainer ;; *) T=tiplist ;; esac
           else T="$REQ"; fi
@@ -91,6 +94,10 @@ jobs:
           echo "ids=$IDS" >> "$GITHUB_OUTPUT"
           echo "id=$(echo $IDS | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
           echo "ID-lər: $IDS"
+
+      - name: Kopiya (caption-and-hashtags → caption, pilləli hashtag-lər, ilk şərh)
+        run: |
+          for ID in ${{ steps.reel.outputs.ids }}; do npx tsx pipeline/copy.ts "$ID"; done
 
       - name: Render
         run: |

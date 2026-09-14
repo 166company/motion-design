@@ -16,6 +16,10 @@ type Entry = {
   template: string;
   kind?: string;         // Poster: fun | sales
   inspiration?: { url: string; quote: string };  // fun post: uyğunlaşdırılan real nümunə
+  strategy?: { goal: string; angle: string } | null;   // going-viral: məqsəd + bucaq
+  hookAlternatives?: string[];                          // A/B hook-lar
+  firstComment?: string;                                // ilk şərh (sual + hashtag-lər)
+  metrics?: { views: number; reach: number; saved: number; shares: number; likes: number; comments: number } | null;
   /** karusel üçün slayd şəkilləri */
   images?: string[];
   voice?: string | null;
@@ -38,6 +42,8 @@ export const buildPanel = async (repo: string) => {
   const screen: Record<string, { vocal: boolean | null; title?: string }> = JSON.parse(
     await fs.readFile(path.join(dataDir, "music-screen.json"), "utf-8").catch(() => "{}")
   );
+
+  const analytics: Record<string, any> = JSON.parse(await fs.readFile("content/analytics.json", "utf-8").catch(() => "{}"));
 
   const musicOf = (meta: any): Entry["music"] => {
     if (meta.musicTrack || meta.attribution) {
@@ -77,6 +83,10 @@ export const buildPanel = async (repo: string) => {
       status: st.status ?? "təsdiq-gözləyir",
       kind: meta.kind ?? undefined,
       inspiration: meta.inspiration ?? undefined,
+      strategy: meta.strategy ? { goal: meta.strategy.goal, angle: meta.strategy.angle } : null,
+      hookAlternatives: meta.hookAlternatives ?? undefined,
+      firstComment: meta.firstComment ?? undefined,
+      metrics: analytics[meta.id] ? { views: analytics[meta.id].views, reach: analytics[meta.id].reach, saved: analytics[meta.id].saved, shares: analytics[meta.id].shares, likes: analytics[meta.id].likes, comments: analytics[meta.id].comments } : null,
       createdAt: meta.id.slice(0, 10),
       instagram: st.instagram,
       facebook: st.facebook,
@@ -88,10 +98,16 @@ export const buildPanel = async (repo: string) => {
   }
 
   entries.sort((a, b) => (a.id < b.id ? 1 : -1));
+  // kontent təqvimi (növbəti 10 gün) + yaddaş — panelin yuxarısında
+  const cal = JSON.parse(await fs.readFile("content/calendar.json", "utf-8").catch(() => "null"));
+  const today = new Date().toISOString().slice(0, 10);
+  const plan = cal ? { pillars: cal.pillars, series: cal.series, slots: cal.slots.filter((s: any) => s.date >= today).slice(0, 14) } : null;
+  const brain = await fs.readFile("content/brain.md", "utf-8").catch(() => "");
+  const leads = Object.values(JSON.parse(await fs.readFile("content/data/comments.json", "utf-8").catch(() => "{}")) as any[]).filter((c) => c.lead).length;
   await fs.mkdir("docs", { recursive: true });
   await fs.writeFile(
     "docs/data.json",
-    JSON.stringify({ repo, updatedAt: new Date().toISOString(), entries }, null, 2),
+    JSON.stringify({ repo, updatedAt: new Date().toISOString(), plan, brain, leads, entries }, null, 2),
     "utf-8"
   );
   return entries.length;

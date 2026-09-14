@@ -7,6 +7,7 @@
  */
 import "dotenv/config";
 import "./plan.ts";
+import { playbook, planFor, memory, postCount } from "./skills.ts";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { listArticles } from "./wp.ts";
@@ -61,7 +62,7 @@ const writeContent = async (facts: string, feedback?: string): Promise<Content> 
     body: JSON.stringify({
       model: MODEL,
       messages: [
-        { role: "system", content: SYSTEM },
+        { role: "system", content: SYSTEM + playbook(["going-viral", "story-sequencer", "reel-builder", "on-screen-text-writer"]) + planFor("Story", postCount()).text + memory() },
         { role: "user", content: `MƏQALƏ FAKTLARI (yuk.az):\n${facts}\n\nBu faktlara əsaslanan 4 addımlı izahat yaz.${feedback ? `\n\nİSTİFADƏÇİ QEYDİ, MÜTLƏQ nəzərə al:\n${feedback}` : ""}` },
       ],
       response_format: { type: "json_schema", json_schema: { name: "explainer", strict: true, schema } },

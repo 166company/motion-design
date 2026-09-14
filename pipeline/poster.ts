@@ -9,6 +9,7 @@
  */
 import "dotenv/config";
 import "./plan.ts";
+import { playbook, planFor, memory, postCount } from "./skills.ts";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { contact } from "../src/brand/contact.ts";
@@ -85,7 +86,7 @@ const writeConcepts = async (facts: string, trends: Trends, feedback?: string): 
     body: JSON.stringify({
       model: MODEL,
       messages: [
-        { role: "system", content: SYSTEM },
+        { role: "system", content: SYSTEM + playbook(["viral-hook-writer", "cta-writer", "trend-spotter"]) + planFor("Poster", postCount()).text + memory() },
         { role: "user", content: [
           { type: "text", text:
             `REAL VİRAL NÜMUNƏLƏR (webdən, dəqiq sitat + URL):\n${exText}\n\n` +

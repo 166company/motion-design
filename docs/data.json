@@ -1,6 +1,178 @@
 {
   "repo": "166company/motion-design",
-  "updatedAt": "2026-09-13T09:58:43.497Z",
+  "updatedAt": "2026-09-14T05:53:12.406Z",
+  "plan": {
+    "pillars": [
+      "Qiymətin gizli amilləri",
+      "Köç günü stressi azalsın",
+      "Yük təhlükəsizliyi və sığorta",
+      "Bakıdan bölgələrə rahat daşıma",
+      "Usta seçimi və etibar"
+    ],
+    "series": [
+      "Qiymət niyə dəyişir?",
+      "Köç günü dramı",
+      "Bir zəng bəsdir storyləri “Bilmədən etmə”"
+    ],
+    "slots": [
+      {
+        "date": "2026-09-14",
+        "template": "Explainer",
+        "pillar": "Qiymətin gizli amilləri",
+        "idea": "Reel: ev daşınması qiymətinin niyə dəyişdiyini mərtəbə, məsafə, yük həcmi, usta sayı və qablaşdırma üzərindən izah et. Son kadrda izləyicini öz köç detallarını yazmağa çağır.",
+        "goal": "SAVE",
+        "angle": "sual",
+        "hook": "Köç qiyməti niyə birdən dəyişir?",
+        "articleId": null,
+        "series": "Qiymət niyə dəyişir?"
+      },
+      {
+        "date": "2026-09-14",
+        "template": "Poster",
+        "pillar": "Köç günü stressi azalsın",
+        "idea": "Satış posterində liftsiz bina ağrısını vurğula: ağır əşyalar, mərtəbə və dar blok varsa, planı əvvəlcədən qurmağın rahatlığını göstər. Paylaşım CTA-sı: köçəcək dostuna göndər.",
+        "goal": "SHARE",
+        "angle": "POV",
+        "hook": "Lift yoxdursa, plan dəyişir.",
+        "articleId": null,
+        "series": "Köç günü dramı"
+      },
+      {
+        "date": "2026-09-15",
+        "template": "Poster",
+        "pillar": "Usta seçimi və etibar",
+        "idea": "Satış postu: “köçü dost-tanışla yox, işini bilən komanda ilə et” mesajı. Vizualda yorulmuş dostlar və rahat peşəkar komanda kontrastı olsun.",
+        "goal": "FOLLOW",
+        "angle": "əks-fikir",
+        "hook": "Köç edənlər bizi izləyir.",
+        "articleId": null,
+        "series": "Bilmədən etmə"
+      },
+      {
+        "date": "2026-09-16",
+        "template": "Story",
+        "pillar": "Köç günü stressi azalsın",
+        "idea": "Mini hekayə: ailə qutuları qarışdırır, mətbəx əşyası yataq otağından çıxır; sonra etiketləmə və əvvəlcədən planla problem həll olunur. Açar söz: PLAN — DM-də köç öncəsi yoxlama siyahısı və əlaqə yönləndirməsi.",
+        "goal": "LEAD",
+        "angle": "nəticə",
+        "hook": "Qutular qarışmasın? Açar söz var.",
+        "articleId": null,
+        "series": "Köç günü dramı"
+      },
+      {
+        "date": "2026-09-16",
+        "template": "Poster",
+        "pillar": "Qiymətin gizli amilləri",
+        "idea": "Satış posterində son dəqiqə sifarişin yaratdığı riskləri göstər: boş maşın tapılmaması, usta sayının uyğun seçilməməsi, qablaşdırmanın gecikməsi. CTA: köç tarixini əvvəlcədən yaz.",
+        "goal": "SAVE",
+        "angle": "səhv",
+        "hook": "Ən baha səhv: son dəqiqə.",
+        "articleId": null,
+        "series": "Qiymət niyə dəyişir?"
+      },
+      {
+        "date": "2026-09-17",
+        "template": "Poster",
+        "pillar": "Köç günü stressi azalsın",
+        "idea": "Satış postu: “dostu köçə çağırıb dostluğu test etmə” zarafatlı bucağı ilə peşəkar daşıma təklif et. CTA paylaşım yönümlü olsun: köçə hazırlaşan adama göndər.",
+        "goal": "SHARE",
+        "angle": "trend-meme",
+        "hook": "Bu yükü dostuna yükləmə.",
+        "articleId": null,
+        "series": "Köç günü dramı"
+      },
+      {
+        "date": "2026-09-18",
+        "template": "TipList",
+        "pillar": "Bakıdan bölgələrə rahat daşıma",
+        "idea": "Bakıda yükdaşıma prosesi üçün qısa tiplist: ünvanı dəqiqləşdir, lift və mərtəbəni bildir, yük həcmini öncədən göstər, qablaşdırmanı planla, köç saatını razılaşdır. Caption-da məqaləyə yönləndir.",
+        "goal": "FOLLOW",
+        "angle": "necə",
+        "hook": "Bakı köçü belə daha sakitdir.",
+        "articleId": 10715,
+        "series": "Bilmədən etmə"
+      },
+      {
+        "date": "2026-09-18",
+        "template": "Poster",
+        "pillar": "Köç günü stressi azalsın",
+        "idea": "Satış posterində minimum addım vədini işlət: müştəri yük detalını deyir, komanda planı qurur. Açar söz: YÜK — DM-də əlaqə və köç planı üçün yönləndirmə.",
+        "goal": "LEAD",
+        "angle": "plain-statement",
+        "hook": "Bir zəng, yük dərdi bizdə.",
+        "articleId": null,
+        "series": "Bir zəng bəsdir storyləri"
+      },
+      {
+        "date": "2026-09-19",
+        "template": "Poster",
+        "pillar": "Yük təhlükəsizliyi və sığorta",
+        "idea": "Satış postu: köçdən əvvəl qırılacaq əşyaları ayrıca qeyd etməyin vacibliyini göstər. Vizualda şüşə qab, televizor, güzgü kimi riskli əşyalar üçün qeyd bloku olsun.",
+        "goal": "SAVE",
+        "angle": "nömrəli",
+        "hook": "Köçdən əvvəl bunu qeyd et.",
+        "articleId": null,
+        "series": "Bilmədən etmə"
+      },
+      {
+        "date": "2026-09-20",
+        "template": "Poster",
+        "pillar": "Usta seçimi və etibar",
+        "idea": "Satış postu: ofis köçündə işçiləri stol, dolab və arxiv qutusu daşımaqdan xilas edən komanda bucağı. CTA: ofis dəyişən tanışına göndər.",
+        "goal": "SHARE",
+        "angle": "sual",
+        "hook": "Ofis daşınır? Komandanı xilas et.",
+        "articleId": null,
+        "series": "Köç günü dramı"
+      },
+      {
+        "date": "2026-09-21",
+        "template": "Carousel",
+        "pillar": "Yük təhlükəsizliyi və sığorta",
+        "idea": "Karusel: qırılan əşyanın çox vaxt səhv qablaşdırma, tələsik daşıma və yanlış yerləşdirmədən yarandığını göstər. Son slaydda “bizi izlə, köç risklərini əvvəlcədən bil” CTA-sı.",
+        "goal": "FOLLOW",
+        "angle": "hekayə-dərs",
+        "hook": "Qırılan əşyanın dərsi gec gəlir.",
+        "articleId": null,
+        "series": "Bilmədən etmə"
+      },
+      {
+        "date": "2026-09-21",
+        "template": "Poster",
+        "pillar": "Qiymətin gizli amilləri",
+        "idea": "Satış postu: mərtəbə, lift, məsafə və yük həcmini əvvəlcədən deyən müştəriyə daha düzgün plan qurulduğunu göstər. Açar söz: MƏRTƏBƏ — DM-də planlama sualları.",
+        "goal": "LEAD",
+        "angle": "necə",
+        "hook": "Mərtəbəni de, planı quraq.",
+        "articleId": null,
+        "series": "Qiymət niyə dəyişir?"
+      },
+      {
+        "date": "2026-09-22",
+        "template": "Poster",
+        "pillar": "Bakıdan bölgələrə rahat daşıma",
+        "idea": "Satış postu: Xırdalan-Bakı və Bakı-Xırdalan köçlərində məsafə, giriş yolu, mərtəbə və yük həcmini əvvəlcədən bildirməyin faydasını göstər. CTA: yadda saxla.",
+        "goal": "SAVE",
+        "angle": "sual",
+        "hook": "Xırdalan köçündə bu sual vacibdir.",
+        "articleId": null,
+        "series": "Qiymət niyə dəyişir?"
+      },
+      {
+        "date": "2026-09-23",
+        "template": "TipList",
+        "pillar": "Yük təhlükəsizliyi və sığorta",
+        "idea": "Sığortalanma mövzusunu sadə dillə aç: hansı yüklər risklidir, niyə öncədən danışılmalıdır, qablaşdırma və daşıma zamanı nəyi dəqiqləşdirmək lazımdır. Paylaşım CTA-sı: dəyərli əşya daşıdan adama göndər.",
+        "goal": "SHARE",
+        "angle": "əks-fikir",
+        "hook": "Sığortasız yük? Riskin adını bil.",
+        "articleId": 8055,
+        "series": "Bilmədən etmə"
+      }
+    ]
+  },
+  "brain": "## Qaliblər\n- “EV DAŞINMASI QİYMƏTİ NƏYƏ GÖRƏ DƏYİŞİR?” — **question / secret-gap**. Alıcının real qərar sualını açır; qiymət mövzusu ən güclü siqnal verdi: 107 baxış, 56 əhatə.\n- “Bir zəng bəsdir” — **plain-statement / low-friction promise**. Sadə rahatlıq və minimum addım vədi paylaşım gətirdi: 2 paylaşım.\n- “SƏNİN GÖTÜRƏ BİLMƏDİYİN YÜKÜ BİZ GÖTÜRƏK.” — **plain-statement / relief promise**. Emosional yükü azaltma mesajı var, amma yayılma zəif qaldı.\n\n## İşləməyənlər\n- “Zəng et Rahat köç” — çox ümumi reklam cümləsidir; konkret ağrı, sual və ya səbəb yoxdur.\n- Poster formatı bu data ilə zəifdir: 34 baxış, 7 əhatə.\n- Saxlama və şərhlərdən nəticə çıxarmaq olmur: hər ikisi 0 siqnal verir.\n\n## Qaydalar\n- Qiymət mövzusu prioritetdir: real alıcı sualı kimi işləyir.\n- Hook sual formasında olanda daha güclü siqnal verdi.\n- Ümumi “zəng et / rahat köç” tipli reklam dili zəifdir.\n- Sadə CTA işləyə bilər, amma lead ölçmək üçün DM açar sözü lazımdır.\n- Postlarda konkret faktor göstər: mərtəbə, məsafə, yük həcmi, usta sayı, qablaşdırma.\n- Hər həftə ən azı 1 qiymət izahı, 1 problem-həll, 1 müştəri narahatlığı postu test et.\n- Data azdır; qaydalar hələ ilkin hipotezdir, qəti nəticə deyil.\n",
+  "leads": 0,
   "entries": [
     {
       "id": "2026-09-13-poster-3",
@@ -118,6 +290,15 @@
       "duration": 21.3,
       "scenes": 5,
       "status": "yayımlanıb",
+      "strategy": null,
+      "metrics": {
+        "views": 68,
+        "reach": 14,
+        "saved": 0,
+        "shares": 2,
+        "likes": 4,
+        "comments": 0
+      },
       "createdAt": "2026-09-11",
       "instagram": "https://www.instagram.com/reel/DdJJ02zAOQK/",
       "facebook": "https://www.facebook.com/reel/1635264734608392",
@@ -150,6 +331,8 @@
       "scenes": 1,
       "status": "təsdiq-gözləyir",
       "kind": "sales",
+      "strategy": null,
+      "metrics": null,
       "createdAt": "2026-09-11",
       "template": "Poster",
       "voice": null,
@@ -183,6 +366,8 @@
         "url": "https://www.thepoke.com/2026/09/11/our-25-favourite-funny-tweets-of-the-week-133/",
         "quote": "Went to get a snack, and my watch congratulated me on standing up, so yes, I do take fitness very seriously"
       },
+      "strategy": null,
+      "metrics": null,
       "createdAt": "2026-09-11",
       "template": "Poster",
       "voice": null,
@@ -216,6 +401,8 @@
         "url": "https://www.thepoke.com/2026/09/11/our-25-favourite-funny-tweets-of-the-week-133/",
         "quote": "I regret to inform you that the secret to a clean house is to clean the house"
       },
+      "strategy": null,
+      "metrics": null,
       "createdAt": "2026-09-11",
       "template": "Poster",
       "voice": null,
@@ -245,6 +432,15 @@
       "duration": 0,
       "scenes": 1,
       "status": "yayımlanıb",
+      "strategy": null,
+      "metrics": {
+        "views": 34,
+        "reach": 7,
+        "saved": 0,
+        "shares": 0,
+        "likes": 1,
+        "comments": 0
+      },
       "createdAt": "2026-09-11",
       "instagram": "https://www.instagram.com/p/DdJbuuxjjKS/",
       "facebook": "",
@@ -279,6 +475,15 @@
       "duration": 0,
       "scenes": 3,
       "status": "yayımlanıb",
+      "strategy": null,
+      "metrics": {
+        "views": 61,
+        "reach": 8,
+        "saved": 0,
+        "shares": 0,
+        "likes": 3,
+        "comments": 0
+      },
       "createdAt": "2026-09-11",
       "instagram": "https://www.instagram.com/p/DdJYyWCIGgX/",
       "facebook": "",
@@ -308,6 +513,15 @@
       "duration": 31.3,
       "scenes": 6,
       "status": "yayımlanıb",
+      "strategy": null,
+      "metrics": {
+        "views": 107,
+        "reach": 56,
+        "saved": 0,
+        "shares": 1,
+        "likes": 4,
+        "comments": 0
+      },
       "createdAt": "2026-09-11",
       "instagram": "https://www.instagram.com/reel/DdI7uJtiq74/",
       "facebook": "https://www.facebook.com/reel/2603971053386761",

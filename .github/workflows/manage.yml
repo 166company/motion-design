@@ -211,6 +211,7 @@ jobs:
             npx remotion render src/index.ts "$T" "out/$ID.mp4" --props="public/render/$ID/props.json"
             npx tsx pipeline/qa.ts "out/$ID.mp4" "public/render/$ID/props.json"
           fi
+          npx tsx pipeline/copy.ts "$ID"
 
       - name: Release-i əvəz et, panel, Issue
         run: |

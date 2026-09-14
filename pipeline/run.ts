@@ -6,6 +6,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { pickArticle, getArticle } from "./wp.ts";
 import { writeScript } from "./script.ts";
+import { todaySlot } from "./skills.ts";
 import { findMedia, normalizeVideo } from "./assets.ts";
 import { pickAndDownload } from "./audius.ts";
 import { pickVoice, contact } from "../src/brand/contact.ts";
@@ -62,7 +63,9 @@ const main = async () => {
   const used: number[] = JSON.parse(await fs.readFile(usedPath, "utf-8").catch(() => "[]"));
 
   console.log("\n1. Məqalə seçilir…");
-  const article = await pickArticle(used);
+  // Dəyişiklikdə eyni məqalə (ARTICLE_ID), yoxsa kontent təqviminin bu günkü slotu, yoxsa növbəti istifadə olunmamış
+  const wanted = Number(process.env.ARTICLE_ID || todaySlot("TipList")?.articleId || 0);
+  const article = wanted ? await getArticle(wanted).catch(() => pickArticle(used)) : await pickArticle(used);
   log(article.title);
 
   console.log("2. Ssenari yazılır…");
@@ -242,6 +245,7 @@ const main = async () => {
       caption: s.caption,
       hashtags: s.hashtags,
       music: track, attribution, musicTrack, voice,
+      strategy: s.strategy ?? null, hookAlternatives: s.hookAlternatives ?? [],
     }, null, 2),
     "utf-8"
   );

@@ -72,6 +72,17 @@
   .btn.primary{background:var(--orange);border-color:var(--orange);color:var(--graphite)}
   .btn.danger{border-color:rgba(255,80,80,.35);color:#FF8A8A}
   .btn.ghost{flex:0 0 auto;min-width:0;padding:10px 14px}
+  .plan{margin:14px 0 18px;padding:14px 16px;border:1px solid var(--line,#2a2d31);border-radius:14px;background:rgba(255,255,255,.03);font-size:13px}
+  .plan h2{margin:0 0 8px;font-size:15px}
+  .plan .row{display:flex;gap:10px;flex-wrap:wrap;padding:6px 0;border-top:1px solid rgba(255,255,255,.06)}
+  .plan .row:first-of-type{border-top:0}
+  .plan .d{opacity:.7;min-width:88px}
+  .plan .t{min-width:80px;font-weight:600}
+  .plan .g{color:#FF6600;min-width:60px}
+  .plan details{margin-top:8px}
+  .plan summary{cursor:pointer;opacity:.85}
+  .plan pre{white-space:pre-wrap;font:inherit;font-size:12px;opacity:.85;margin:6px 0 0}
+  .stat{display:inline-flex;gap:4px;align-items:center;font-size:12px;opacity:.85;margin-right:10px}
   .note{font-size:12px;line-height:1.45;color:#FFB273;background:rgba(255,102,0,.08);
         border:1px dashed rgba(255,102,0,.35);border-radius:10px;padding:8px 10px}
   .note b{display:block;font-size:10.5px;letter-spacing:.4px;text-transform:uppercase;margin-bottom:2px;color:var(--orange)}
@@ -186,6 +197,7 @@
   </div>
 
   <div class="runs" id="runs"></div>
+  <section class="plan" id="plan" hidden></section>
   <div class="grid" id="grid"></div>
   <div class="empty" id="empty" hidden>Hələ video yoxdur.</div>
 
@@ -282,7 +294,19 @@ const changeBody =
   "Bu videoda nə dəyişməlidir? Aşağıya sərbəst yaz — qeyd ssenari modelinə ötürülür və video yenidən istehsal olunur." + NL + NL +
   "Məsələn: başlıqlar daha qısa olsun / musiqi daha gümrah / 3-cü bənd lazım deyil" + NL + NL + "---" + NL + NL;
 
+function renderPlan() {
+  const el = document.getElementById("plan");
+  const p = DATA.plan;
+  if (!p || !p.slots || !p.slots.length) { el.hidden = true; return; }
+  const tName = { TipList: "📰 Məqalə", Explainer: "🎬 Animasiya", Story: "🎨 İllüstrasiya", Carousel: "🃏 Karusel", Poster: "🖼 Poster" };
+  el.innerHTML = '<h2>📅 Kontent planı (2 həftə) <span style="font-weight:400;opacity:.7;font-size:12px">sütunlar: ' + esc((p.pillars || []).join(" · ")) + '</span></h2>' +
+    p.slots.map((s) => '<div class="row"><span class="d">' + esc(s.date) + '</span><span class="t">' + (tName[s.template] || esc(s.template)) + '</span><span class="g">' + esc(s.goal) + '</span><span>' + esc(s.hook) + '</span><span style="opacity:.6">' + esc(s.pillar) + '</span></div>').join("") +
+    (DATA.brain ? '<details><summary>🧠 Yaddaş — nə işləyir (həftəlik analitikadan)' + (DATA.leads ? ' · 📥 ' + DATA.leads + ' lead' : "") + '</summary><pre>' + esc(DATA.brain) + '</pre></details>' : "");
+  el.hidden = false;
+}
+
 function render() {
+  renderPlan();
   const list = DATA.entries.filter((e) => filter === "all" || e.status === filter);
   const grid = document.getElementById("grid");
   document.getElementById("empty").hidden = list.length > 0;
@@ -302,7 +326,11 @@ function render() {
       '<a class="btn danger ghost" data-act="delete" data-id="' + esc(e.id) + '" target="_blank" rel="noopener" href="' +
         newIssue("Sil: " + e.id, "Bu video paneldən və Release-dən silinsin.") + '">🗑</a>';
     const note = (e.note ? '<div class="note"><b>Son qeyd</b>' + esc(e.note) + '</div>' : "") +
-      (e.inspiration ? '<div class="note"><b>💡 Real nümunə</b>“' + esc(e.inspiration.quote) + '” — <a href="' + esc(e.inspiration.url) + '" target="_blank" rel="noopener">mənbə</a></div>' : "");
+      (e.inspiration ? '<div class="note"><b>💡 Real nümunə</b>“' + esc(e.inspiration.quote) + '” — <a href="' + esc(e.inspiration.url) + '" target="_blank" rel="noopener">mənbə</a></div>' : "") +
+      (e.hookAlternatives && e.hookAlternatives.length ? '<div class="note"><b>🅰️🅱️ Alternativ hook-lar</b>' + e.hookAlternatives.map(esc).join(" · ") + '</div>' : "");
+    const stats = e.metrics ? '<div style="margin:6px 0">' +
+      '<span class="stat">▶ ' + e.metrics.views + '</span><span class="stat">👥 ' + e.metrics.reach + '</span><span class="stat">🔖 ' + e.metrics.saved + '</span>' +
+      '<span class="stat">↗ ' + e.metrics.shares + '</span><span class="stat">❤ ' + e.metrics.likes + '</span><span class="stat">💬 ' + e.metrics.comments + '</span></div>' : "";
 
     const media = e.images
       ? '<div class="slot carousel"><img src="' + esc(e.images[0]) + '" alt="" style="width:100%;aspect-ratio:4/5;object-fit:cover;display:block">' +
@@ -318,12 +346,15 @@ function render() {
           '<span class="pill">' + esc(e.createdAt) + '</span>' +
           '<span class="pill">' + (e.template === "Explainer" ? "🎬 Animasiya" : e.template === "Story" ? "🎨 İllüstrasiya" : e.template === "Carousel" ? "🃏 Karusel" : e.template === "Poster" ? (e.kind === "fun" ? "😂 Fun post" : "🖼 Satış postu") : "📰 Məqalə") + '</span>' +
           (e.voice ? '<span class="pill">🎙 ' + esc(e.voice) + '</span>' : "") +
+          (e.strategy ? '<span class="pill" title="going-viral strategiyası">🎯 ' + esc(e.strategy.goal) + ' · ' + esc(e.strategy.angle) + '</span>' : "") +
         '</div>' +
         musicRow(e.music) +
+        stats +
         note +
         '<p class="cap">' + esc(e.caption) + '</p>' +
         '<div class="actions">' +
-          '<button class="btn" data-copy="' + esc(e.caption + " " + (e.hashtags || []).join(" ")) + '">Caption kopyala</button>' +
+          '<button class="btn" data-copy="' + esc(e.caption + (e.firstComment ? "" : " " + (e.hashtags || []).join(" "))) + '">Caption kopyala</button>' +
+          (e.firstComment ? '<button class="btn" data-copy="' + esc(e.firstComment) + '">İlk şərhi kopyala</button>' : "") +
           right +
         '</div>' +
         '<div class="actions">' + manage + '</div>' +
