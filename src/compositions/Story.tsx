@@ -3,6 +3,7 @@
  * animasiya tamamilə kodladır: parallaks, yeriş, uçan əşyalar, toz, kamera panı.
  * Səhnələr: call → pack → load → arrive → cta.
  */
+import { createContext, useContext } from "react";
 import { AbsoluteFill, Audio, Img, Sequence, staticFile, interpolate, spring, useCurrentFrame, useVideoConfig, Easing } from "remotion";
 import { TransitionSeries, linearTiming, type TransitionPresentation } from "@remotion/transitions";
 import { slide } from "@remotion/transitions/slide";
@@ -53,6 +54,9 @@ const starts = (scenes: { durationInFrames: number }[]) => {
 /* ---------------------------------------------------------------- Səhnə fonu: AI illüstrasiya + parallaks */
 const GROUND_Y = 1500;   // küçə/ev fonlarında yol səthi (~78%)
 const FLOOR_Y = 1460;    // interyerdə döşəmə
+/** Pan dəyəri — Head/Caption kimi sabit qalmalı elementlər bunu kompensasiya edir */
+const PanCtx = createContext(0);
+
 const World: React.FC<{ bg: "bg_street" | "bg_home" | "bg_interior"; pan?: number; duration: number; children?: React.ReactNode }> = ({ bg, pan = 0, duration, children }) => {
   const frame = useCurrentFrame();
   const p = interpolate(frame, [0, duration], [0, 1], { extrapolateRight: "clamp" });
@@ -68,7 +72,7 @@ const World: React.FC<{ bg: "bg_street" | "bg_home" | "bg_interior"; pan?: numbe
       {/* oxunaqlıq: yuxarı və aşağı yumşaq qaralma */}
       <AbsoluteFill style={{ background: "linear-gradient(180deg, rgba(20,22,24,0.72) 0%, rgba(20,22,24,0.15) 30%, rgba(20,22,24,0) 55%, rgba(20,22,24,0.55) 100%)" }} />
       {/* yaxın qat — səhnə elementləri tam pan ilə */}
-      <div style={{ position: "absolute", left: -pan, top: 0, width: 3000, height: 1920 }}>{children}</div>
+      <div style={{ position: "absolute", left: -pan, top: 0, width: 3000, height: 1920 }}><PanCtx.Provider value={pan}>{children}</PanCtx.Provider></div>
     </AbsoluteFill>
   );
 };
@@ -96,11 +100,22 @@ const Puffs: React.FC<{ x: number; y: number; from: number }> = ({ x, y, from })
   );
 };
 
-const Head: React.FC<{ text: string }> = ({ text }) => (
-  <div style={{ position: "absolute", left: safeArea.side, right: safeArea.side, top: safeArea.top + 130, fontFamily: font }}>
-    <AnimatedTitle text={text} size={type.title} delay={4} stagger={3} accent={-1} lineHeight={1.08} />
-  </div>
-);
+/** Kadr enində sabit qat (pan-ı kompensasiya edir) — altyazı üçün */
+const Fixed: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
+  const pan = useContext(PanCtx);
+  return <div style={{ position: "absolute", left: pan, top: 0, width: 1080, height: 1920 }}>{children}</div>;
+};
+
+// Səhnə qatı 3000px enlidir və pan ilə sürüşür — başlıq kadr enində (1080 − kənarlar) və sabit qalır
+const Head: React.FC<{ text: string }> = ({ text }) => {
+  const pan = useContext(PanCtx);
+  const size = text.length > 30 ? 64 : type.title;
+  return (
+    <div style={{ position: "absolute", left: safeArea.side + pan, width: 1080 - safeArea.side * 2, top: safeArea.top + 130, fontFamily: font }}>
+      <AnimatedTitle text={text} size={size} delay={4} stagger={3} accent={-1} lineHeight={1.08} />
+    </div>
+  );
+};
 
 /* ---------------------------------------------------------------- 1. Zəng: bina + telefon */
 const Call: React.FC<{ s: S }> = ({ s }) => {
@@ -117,7 +132,7 @@ const Call: React.FC<{ s: S }> = ({ s }) => {
         return frame > 20 ? <div key={i} style={{ position: "absolute", left: 390, top: GROUND_Y - 520, width: 300, height: 300, borderRadius: "50%", border: `6px solid ${colors.orange}`, transform: `scale(${1 + p * 1.2})`, opacity: (1 - p) * 0.6 }} /> : null;
       })}
       <Head text={s.heading} />
-      <Caption words={s.words} />
+      <Fixed><Caption words={s.words} /></Fixed>
       <Sequence from={6} durationInFrames={10}><Audio src={staticFile("sfx/pop.wav")} volume={0.5} /></Sequence>
       {[20, 56].map((f) => <Sequence key={f} from={f} durationInFrames={24}><Audio src={staticFile("sfx/ring.wav")} volume={0.45} /></Sequence>)}
     </World>
@@ -144,7 +159,7 @@ const Pack: React.FC<{ s: S }> = ({ s }) => {
       <Sprite name="sofa" x={1040 + (1 - sofa) * 700} y={footTop("sofa", FLOOR_Y, 600)} w={600} style={{ opacity: sofa }} />
       <Sprite name="plant" x={80} y={footTop("plant", FLOOR_Y - 10, 260)} w={260} style={{ transform: `scale(${plant})`, opacity: plant }} />
       <Head text={s.heading} />
-      <Caption words={s.words} />
+      <Fixed><Caption words={s.words} /></Fixed>
       {[6, 12, 18, 24, 30, 36, 42].map((f) => <Sequence key={f} from={f} durationInFrames={6}><Audio src={staticFile("sfx/step.wav")} volume={0.35} /></Sequence>)}
       <Sequence from={48} durationInFrames={10}><Audio src={staticFile("sfx/pop.wav")} volume={0.55} /></Sequence>
       <Sequence from={72} durationInFrames={14}><Audio src={staticFile("sfx/whoosh.wav")} volume={0.4} /></Sequence>
@@ -179,7 +194,7 @@ const Load: React.FC<{ s: S }> = ({ s }) => {
       {/* toz — yola düşəndə */}
       <Puffs x={truckX + 40} y={GROUND_Y - 40} from={leaveStart} />
       <Head text={s.heading} />
-      <Caption words={s.words} />
+      <Fixed><Caption words={s.words} /></Fixed>
       <Sequence from={0} durationInFrames={44}><Audio src={staticFile("sfx/engine.wav")} volume={0.5} /></Sequence>
       <Sequence from={40} durationInFrames={10}><Audio src={staticFile("sfx/pop.wav")} volume={0.4} /></Sequence>
       <Sequence from={46} durationInFrames={14}><Audio src={staticFile("sfx/whoosh.wav")} volume={0.45} /></Sequence>
@@ -204,7 +219,7 @@ const Arrive: React.FC<{ s: S }> = ({ s }) => {
       <Sprite name="truck" x={truckX} y={footTop("truck", GROUND_Y, 900) + (frame < 45 ? Math.sin(frame / 2) * 3 : 0)} w={900} />
       {frame > 50 && <Sprite name="mover" x={moverX} y={footTop("mover", GROUND_Y, 440) - bob} w={440} />}
       <Head text={s.heading} />
-      <Caption words={s.words} />
+      <Fixed><Caption words={s.words} /></Fixed>
       <Sequence from={0} durationInFrames={46}><Audio src={staticFile("sfx/engine.wav")} volume={0.45} /></Sequence>
       <Sequence from={44} durationInFrames={10}><Audio src={staticFile("sfx/pop.wav")} volume={0.4} /></Sequence>
       {[54, 60, 66, 72, 78, 84, 90, 96].map((f) => <Sequence key={f} from={f} durationInFrames={6}><Audio src={staticFile("sfx/step.wav")} volume={0.3} /></Sequence>)}
