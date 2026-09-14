@@ -1,177 +1,177 @@
 {
   "repo": "166company/motion-design",
-  "updatedAt": "2026-09-14T05:59:43.379Z",
+  "updatedAt": "2026-09-14T05:59:44.315Z",
   "plan": {
     "pillars": [
-      "Qiymətin gizli amilləri",
-      "Köç günü stressi azalsın",
-      "Yük təhlükəsizliyi və sığorta",
-      "Bakıdan bölgələrə rahat daşıma",
-      "Usta seçimi və etibar"
+      "Qiymət sirrini açırıq",
+      "Köç günü rahatlığı",
+      "Yük təhlükəsizliyi",
+      "Bakı yük dramları",
+      "Bir zənglik proses"
     ],
     "series": [
       "Qiymət niyə dəyişir?",
-      "Köç günü dramı",
-      "Bir zəng bəsdir storyləri “Bilmədən etmə”"
+      "Köç günü dramı #N",
+      "Liftə sığmayan həqiqətlər"
     ],
     "slots": [
       {
         "date": "2026-09-14",
         "template": "Explainer",
-        "pillar": "Qiymətin gizli amilləri",
-        "idea": "Reel: ev daşınması qiymətinin niyə dəyişdiyini mərtəbə, məsafə, yük həcmi, usta sayı və qablaşdırma üzərindən izah et. Son kadrda izləyicini öz köç detallarını yazmağa çağır.",
-        "goal": "SAVE",
-        "angle": "sual",
-        "hook": "Köç qiyməti niyə birdən dəyişir?",
+        "pillar": "Qiymət sirrini açırıq",
+        "idea": "Reel: ev daşınması qiymətinin niyə hər mənzildə fərqli olduğunu 5 faktorla göstər: mərtəbə, lift, məsafə, yük həcmi, qablaşdırma. Sonda: “DM-ə QİYMƏT yaz, vəziyyətini yaz — yönləndirək.”",
+        "goal": "LEAD",
+        "angle": "sual / secret-gap",
+        "hook": "Qiymət niyə hər evdə dəyişir?",
         "articleId": null,
         "series": "Qiymət niyə dəyişir?"
       },
       {
         "date": "2026-09-14",
         "template": "Poster",
-        "pillar": "Köç günü stressi azalsın",
-        "idea": "Satış posterində liftsiz bina ağrısını vurğula: ağır əşyalar, mərtəbə və dar blok varsa, planı əvvəlcədən qurmağın rahatlığını göstər. Paylaşım CTA-sı: köçəcək dostuna göndər.",
-        "goal": "SHARE",
-        "angle": "POV",
-        "hook": "Lift yoxdursa, plan dəyişir.",
+        "pillar": "Bir zənglik proses",
+        "idea": "Satış postu: “Köç planın qarışıbsa, işi 3 hissəyə bölürük: baxış, daşıma, yerləşdirmə.” Vizualda qutuların üzərində 3 addım olsun. CTA: “DM-ə KÖÇ yaz.”",
+        "goal": "SAVE",
+        "angle": "nəticə / rahatlıq",
+        "hook": "Köçü qarışıqlıqdan plana çevir",
         "articleId": null,
-        "series": "Köç günü dramı"
+        "series": ""
       },
       {
         "date": "2026-09-15",
         "template": "Poster",
-        "pillar": "Usta seçimi və etibar",
-        "idea": "Satış postu: “köçü dost-tanışla yox, işini bilən komanda ilə et” mesajı. Vizualda yorulmuş dostlar və rahat peşəkar komanda kontrastı olsun.",
-        "goal": "FOLLOW",
-        "angle": "əks-fikir",
-        "hook": "Köç edənlər bizi izləyir.",
+        "pillar": "Köç günü rahatlığı",
+        "idea": "Satış postu: “Sənin götürə bilmədiyin yükü biz götürək — divan, soyuducu, şkaf, ofis avadanlığı.” Ümumi şüar yox, konkret ağır əşyaları göstər. CTA: “WhatsApp-a YÜK yaz.”",
+        "goal": "LEAD",
+        "angle": "POV / relief",
+        "hook": "Bu yük bel üçün deyil",
         "articleId": null,
-        "series": "Bilmədən etmə"
+        "series": "Liftə sığmayan həqiqətlər"
       },
       {
         "date": "2026-09-16",
-        "template": "Story",
-        "pillar": "Köç günü stressi azalsın",
-        "idea": "Mini hekayə: ailə qutuları qarışdırır, mətbəx əşyası yataq otağından çıxır; sonra etiketləmə və əvvəlcədən planla problem həll olunur. Açar söz: PLAN — DM-də köç öncəsi yoxlama siyahısı və əlaqə yönləndirməsi.",
-        "goal": "LEAD",
-        "angle": "nəticə",
-        "hook": "Qutular qarışmasın? Açar söz var.",
-        "articleId": null,
-        "series": "Köç günü dramı"
+        "template": "TipList",
+        "pillar": "Qiymət sirrini açırıq",
+        "idea": "Sumqayıt-Bakı və Sumqayıt daxili köç üçün yadda saxlanmalı 7 məqam: ünvan dəqiqliyi, mərtəbə, maşına yaxınlıq, yük həcmi, qablaşdırma, vaxt pəncərəsi, usta sayı. Caption-da məqaləyə yönləndir.",
+        "goal": "SAVE",
+        "angle": "nömrəli / checklist",
+        "hook": "Sumqayıtda köçdən əvvəl 7 qeyd",
+        "articleId": 10728,
+        "series": "Qiymət niyə dəyişir?"
       },
       {
         "date": "2026-09-16",
         "template": "Poster",
-        "pillar": "Qiymətin gizli amilləri",
-        "idea": "Satış posterində son dəqiqə sifarişin yaratdığı riskləri göstər: boş maşın tapılmaması, usta sayının uyğun seçilməməsi, qablaşdırmanın gecikməsi. CTA: köç tarixini əvvəlcədən yaz.",
-        "goal": "SAVE",
-        "angle": "səhv",
-        "hook": "Ən baha səhv: son dəqiqə.",
+        "pillar": "Yük təhlükəsizliyi",
+        "idea": "Satış postu: “Köç günü ən bahalı şey təkcə mebel deyil — vaxt və əsəb də daşınır.” Vizualda qorunan televizor/şüşə əşya. CTA: “DM-ə QORU yaz.”",
+        "goal": "SHARE",
+        "angle": "əks-fikir",
+        "hook": "Mebel yox, əsəb də daşınır",
         "articleId": null,
-        "series": "Qiymət niyə dəyişir?"
+        "series": ""
       },
       {
         "date": "2026-09-17",
         "template": "Poster",
-        "pillar": "Köç günü stressi azalsın",
-        "idea": "Satış postu: “dostu köçə çağırıb dostluğu test etmə” zarafatlı bucağı ilə peşəkar daşıma təklif et. CTA paylaşım yönümlü olsun: köçə hazırlaşan adama göndər.",
-        "goal": "SHARE",
-        "angle": "trend-meme",
-        "hook": "Bu yükü dostuna yükləmə.",
+        "pillar": "Bir zənglik proses",
+        "idea": "Satış postu: “Bir zənglə komanda, maşın və usta planı qurulsun.” Sadə reklam yox: vizualda müştərinin yazdığı yük siyahısı → komanda planı. CTA: “DM-ə PLAN yaz.”",
+        "goal": "FOLLOW",
+        "angle": "necə / proses",
+        "hook": "Bir mesajla köç planı qurulur",
         "articleId": null,
-        "series": "Köç günü dramı"
+        "series": "Bir zənglik proses"
       },
       {
         "date": "2026-09-18",
-        "template": "TipList",
-        "pillar": "Bakıdan bölgələrə rahat daşıma",
-        "idea": "Bakıda yükdaşıma prosesi üçün qısa tiplist: ünvanı dəqiqləşdir, lift və mərtəbəni bildir, yük həcmini öncədən göstər, qablaşdırmanı planla, köç saatını razılaşdır. Caption-da məqaləyə yönləndir.",
-        "goal": "FOLLOW",
-        "angle": "necə",
-        "hook": "Bakı köçü belə daha sakitdir.",
-        "articleId": 10715,
-        "series": "Bilmədən etmə"
+        "template": "Story",
+        "pillar": "Bakı yük dramları",
+        "idea": "Trend ruhunda Reel: “Təmiz evin sirri evi təmizləməkdirsə, rahat köçün sirri də son gecə başlamamaqdır.” Mini-səhnələr: son gecə qutu axtaran adam, sonra əvvəlcədən qablaşdırılmış sakit köç.",
+        "goal": "SHARE",
+        "angle": "trend / self-aware humor",
+        "hook": "Rahat köçün sirri acıdır",
+        "articleId": null,
+        "series": "Köç günü dramı #N"
       },
       {
         "date": "2026-09-18",
         "template": "Poster",
-        "pillar": "Köç günü stressi azalsın",
-        "idea": "Satış posterində minimum addım vədini işlət: müştəri yük detalını deyir, komanda planı qurur. Açar söz: YÜK — DM-də əlaqə və köç planı üçün yönləndirmə.",
+        "pillar": "Qiymət sirrini açırıq",
+        "idea": "Satış postu: “Qiymət soruşanda bunları da yaz: ünvan, mərtəbə, lift, yük şəkli, əlavə qablaşdırma.” Vizual checklist formatında olsun. CTA: “DM-ə QİYMƏT yaz.”",
         "goal": "LEAD",
-        "angle": "plain-statement",
-        "hook": "Bir zəng, yük dərdi bizdə.",
+        "angle": "səhv / düzəltmə",
+        "hook": "Qiymət üçün tək ünvan yetmir",
         "articleId": null,
-        "series": "Bir zəng bəsdir storyləri"
+        "series": "Qiymət niyə dəyişir?"
       },
       {
         "date": "2026-09-19",
         "template": "Poster",
-        "pillar": "Yük təhlükəsizliyi və sığorta",
-        "idea": "Satış postu: köçdən əvvəl qırılacaq əşyaları ayrıca qeyd etməyin vacibliyini göstər. Vizualda şüşə qab, televizor, güzgü kimi riskli əşyalar üçün qeyd bloku olsun.",
+        "pillar": "Köç günü rahatlığı",
+        "idea": "Satış postu: “Şənbə köçü istəyirsənsə, son dəqiqə dramını bizə saxlatma.” Vizual: dolu qutular + təqvim. CTA: “Postu saxla, köç tarixinə yaxın yaz.”",
         "goal": "SAVE",
-        "angle": "nömrəli",
-        "hook": "Köçdən əvvəl bunu qeyd et.",
+        "angle": "xəbərdarlıq / FOMO",
+        "hook": "Şənbə köçü əvvəlcədən planlanır",
         "articleId": null,
-        "series": "Bilmədən etmə"
+        "series": ""
       },
       {
         "date": "2026-09-20",
         "template": "Poster",
-        "pillar": "Usta seçimi və etibar",
-        "idea": "Satış postu: ofis köçündə işçiləri stol, dolab və arxiv qutusu daşımaqdan xilas edən komanda bucağı. CTA: ofis dəyişən tanışına göndər.",
-        "goal": "SHARE",
-        "angle": "sual",
-        "hook": "Ofis daşınır? Komandanı xilas et.",
+        "pillar": "Bakı yük dramları",
+        "idea": "Satış postu: “Lift işləməyəndə dostlar yox, hazırlıqlı komanda lazımdır.” Vizual: lift qapısında ‘işləmir’ kağızı və yanında daşıma komandası. CTA: “Bizi izlə, köç səhvlərinə düşmə.”",
+        "goal": "FOLLOW",
+        "angle": "POV / Bakı reallığı",
+        "hook": "Lift işləmirsə, plan dəyişir",
         "articleId": null,
-        "series": "Köç günü dramı"
+        "series": "Liftə sığmayan həqiqətlər"
       },
       {
         "date": "2026-09-21",
-        "template": "Carousel",
-        "pillar": "Yük təhlükəsizliyi və sığorta",
-        "idea": "Karusel: qırılan əşyanın çox vaxt səhv qablaşdırma, tələsik daşıma və yanlış yerləşdirmədən yarandığını göstər. Son slaydda “bizi izlə, köç risklərini əvvəlcədən bil” CTA-sı.",
-        "goal": "FOLLOW",
-        "angle": "hekayə-dərs",
-        "hook": "Qırılan əşyanın dərsi gec gəlir.",
-        "articleId": null,
-        "series": "Bilmədən etmə"
+        "template": "TipList",
+        "pillar": "Yük təhlükəsizliyi",
+        "idea": "Reel/karusel: yük sığortalanması və təhlükəsiz daşıma üçün 5 praktik məqam: əvvəlcədən şəkil, qablaşdırma, şüşə əşya ayırımı, siyahı, məsuliyyətin dəqiqləşməsi. Caption-da məqalənin əsas fikirlərini aç.",
+        "goal": "SAVE",
+        "angle": "nömrəli / risk azaltma",
+        "hook": "Bu 5 şeyi köçdən əvvəl et",
+        "articleId": 8055,
+        "series": ""
       },
       {
         "date": "2026-09-21",
         "template": "Poster",
-        "pillar": "Qiymətin gizli amilləri",
-        "idea": "Satış postu: mərtəbə, lift, məsafə və yük həcmini əvvəlcədən deyən müştəriyə daha düzgün plan qurulduğunu göstər. Açar söz: MƏRTƏBƏ — DM-də planlama sualları.",
+        "pillar": "Bir zənglik proses",
+        "idea": "Satış postu: “Ofis köçündə iş dayanmasın deyə əvvəlcə avadanlıq siyahısı çıxarılır.” Vizual: monitorlar, printer, sənəd qutuları. CTA: “DM-ə OFİS yaz.”",
         "goal": "LEAD",
-        "angle": "necə",
-        "hook": "Mərtəbəni de, planı quraq.",
+        "angle": "nəticə / biznes rahatlığı",
+        "hook": "Ofis köçü işini dayandırmasın",
         "articleId": null,
-        "series": "Qiymət niyə dəyişir?"
+        "series": "Bir zənglik proses"
       },
       {
         "date": "2026-09-22",
         "template": "Poster",
-        "pillar": "Bakıdan bölgələrə rahat daşıma",
-        "idea": "Satış postu: Xırdalan-Bakı və Bakı-Xırdalan köçlərində məsafə, giriş yolu, mərtəbə və yük həcmini əvvəlcədən bildirməyin faydasını göstər. CTA: yadda saxla.",
-        "goal": "SAVE",
-        "angle": "sual",
-        "hook": "Xırdalan köçündə bu sual vacibdir.",
+        "pillar": "Köç günü rahatlığı",
+        "idea": "Satış postu: “Qohumu çağırmaq ucuz görünür, amma divan pilləkəndə ilişəndə fikir dəyişir.” Vizual yumorlu, amma satış mesajı: peşəkar daşıma. CTA: “Bunu köçən dostuna göndər.”",
+        "goal": "SHARE",
+        "angle": "əks-fikir / dostlara mesaj",
+        "hook": "Qohum köməyi həmişə plan deyil",
         "articleId": null,
-        "series": "Qiymət niyə dəyişir?"
+        "series": "Köç günü dramı #N"
       },
       {
         "date": "2026-09-23",
-        "template": "TipList",
-        "pillar": "Yük təhlükəsizliyi və sığorta",
-        "idea": "Sığortalanma mövzusunu sadə dillə aç: hansı yüklər risklidir, niyə öncədən danışılmalıdır, qablaşdırma və daşıma zamanı nəyi dəqiqləşdirmək lazımdır. Paylaşım CTA-sı: dəyərli əşya daşıdan adama göndər.",
-        "goal": "SHARE",
-        "angle": "əks-fikir",
-        "hook": "Sığortasız yük? Riskin adını bil.",
-        "articleId": 8055,
-        "series": "Bilmədən etmə"
+        "template": "Carousel",
+        "pillar": "Qiymət sirrini açırıq",
+        "idea": "Karusel: “Qiymətə təsir edən 6 görünməyən detal” — dar küçə, parkinq məsafəsi, lift ölçüsü, sökülüb-yığılma, qablaşdırma, şəhərdaxili məsafə. Son slayd: “DM-ə QİYMƏT yaz, detallarını göndər.”",
+        "goal": "LEAD",
+        "angle": "secret-gap / görünməyən detallar",
+        "hook": "Qiyməti dəyişən gizli detallar",
+        "articleId": null,
+        "series": "Qiymət niyə dəyişir?"
       }
     ]
   },
-  "brain": "## Qaliblər\n- “EV DAŞINMASI QİYMƏTİ NƏYƏ GÖRƏ DƏYİŞİR?” — **question / secret-gap**. Alıcının real qərar sualını açır; qiymət mövzusu ən güclü siqnal verdi: 107 baxış, 56 əhatə.\n- “Bir zəng bəsdir” — **plain-statement / low-friction promise**. Sadə rahatlıq və minimum addım vədi paylaşım gətirdi: 2 paylaşım.\n- “SƏNİN GÖTÜRƏ BİLMƏDİYİN YÜKÜ BİZ GÖTÜRƏK.” — **plain-statement / relief promise**. Emosional yükü azaltma mesajı var, amma yayılma zəif qaldı.\n\n## İşləməyənlər\n- “Zəng et Rahat köç” — çox ümumi reklam cümləsidir; konkret ağrı, sual və ya səbəb yoxdur.\n- Poster formatı bu data ilə zəifdir: 34 baxış, 7 əhatə.\n- Saxlama və şərhlərdən nəticə çıxarmaq olmur: hər ikisi 0 siqnal verir.\n\n## Qaydalar\n- Qiymət mövzusu prioritetdir: real alıcı sualı kimi işləyir.\n- Hook sual formasında olanda daha güclü siqnal verdi.\n- Ümumi “zəng et / rahat köç” tipli reklam dili zəifdir.\n- Sadə CTA işləyə bilər, amma lead ölçmək üçün DM açar sözü lazımdır.\n- Postlarda konkret faktor göstər: mərtəbə, məsafə, yük həcmi, usta sayı, qablaşdırma.\n- Hər həftə ən azı 1 qiymət izahı, 1 problem-həll, 1 müştəri narahatlığı postu test et.\n- Data azdır; qaydalar hələ ilkin hipotezdir, qəti nəticə deyil.\n",
+  "brain": "## Qaliblər\n- “EV DAŞINMASI QİYMƏTİ NƏYƏ GÖRƏ DƏYİŞİR?” — **question / secret-gap**. Ən güclü siqnal: 107 baxış, 56 əhatə; median baxışdan ~1.66x yuxarı. Real alıcı sualını açır.\n- “Bir zəng bəsdir” — **plain-statement / low-friction promise**. 68 baxış, 14 əhatə, 2 paylaşım; sadə addım vədi işləyir, amma daha konkretləşməlidir.\n- “SƏNİN GÖTÜRƏ BİLMƏDİYİN YÜKÜ BİZ GÖTÜRƏK.” — **plain-statement / relief promise**. 61 baxış; emosional rahatlıq var, amma konkret fayda zəifdir.\n\n## İşləməyənlər\n- “Zəng et Rahat köç” — **plain ad slogan**. 34 baxış, 7 əhatə; median baxışın ~0.53x-i. Çox ümumi reklam dilidir.\n- Saxlama və şərh metrikası hələ siqnal vermir: hamısı 0.\n- Lead ölçümü yoxdur: zəng, DM, WhatsApp klikləri görünmür.\n\n## Qaydalar\n- Qiymət mövzusu əsas xəttdir; həftəlik mütləq test olunmalıdır.\n- Hook sual və ya “niyə dəyişir?” tipli secret-gap olduqda daha güclü işləyir.\n- Ümumi “zəng et / rahat köç” şüarları zəifdir.\n- Konkret faktorlar yaz: mərtəbə, məsafə, yük həcmi, usta sayı, qablaşdırma.\n- Poster formatına hələ pul/enerji xərcləmə; izahlı Reel və Carousel test et.\n- CTA ölçülə bilən olmalıdır: “DM-ə KÖÇ yaz”, “WhatsApp-a QİYMƏT yaz”.\n- Data azdır; bütün nəticələr ilkin hipotezdir, qəti hökm deyil.\n",
   "leads": 0,
   "entries": [
     {
