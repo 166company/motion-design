@@ -140,6 +140,16 @@ const main = async () => {
   const az = (await listArticles()).filter((a) => a.lang === "az");
   const facts = az.slice(0, 3).map((a) => `• ${a.title}: ${a.text.slice(0, 700)}`).join("\n");
   const trends = await getTrends();
+  // eyni real nümunə iki dəfə istifadə olunmasın — əvvəlki postların ilham sitatlarını çıxar
+  const usedQuotes = new Set<string>();
+  for (const f of await fs.readdir("content/data").catch(() => [] as string[])) {
+    if (!f.endsWith(".meta.json")) continue;
+    const q = JSON.parse(await fs.readFile(`content/data/${f}`, "utf-8").catch(() => "{}"))?.inspiration?.quote;
+    if (q) usedQuotes.add(String(q).trim().toLowerCase());
+  }
+  const fresh = trends.examples.filter((e) => !usedQuotes.has(e.quote.trim().toLowerCase()));
+  if (fresh.length >= 2) trends.examples = fresh;
+  log(`${trends.examples.length} real nümunə (istifadə olunmuş ${usedQuotes.size} çıxarıldı)`);
 
   console.log(`2. ${COUNT} konsept (${MODEL}, mix: ${MIX.join("/")})…`);
   const posts = await writeConcepts(facts, trends, feedback);
