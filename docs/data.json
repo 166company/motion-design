@@ -1,6 +1,6 @@
 {
   "repo": "166company/motion-design",
-  "updatedAt": "2026-09-14T06:39:33.797Z",
+  "updatedAt": "2026-09-14T07:10:54.863Z",
   "plan": {
     "pillars": [
       "Qiymətin sirri",
@@ -171,7 +171,7 @@
       }
     ]
   },
-  "brain": "## Qaliblər\r\n- “EV DAŞINMASI QİYMƏTİ NƏYƏ GÖRƏ DƏYİŞİR?” — **question / secret-gap**. Ən güclü siqnal: 107 baxış, 56 əhatə; median baxışdan ~1.66x yuxarı. Real alıcı sualını açır.\r\n- “Bir zəng bəsdir” — **plain-statement / low-friction promise**. 68 baxış, 14 əhatə, 2 paylaşım; sadə addım vədi işləyir, amma daha konkretləşməlidir.\r\n- “SƏNİN GÖTÜRƏ BİLMƏDİYİN YÜKÜ BİZ GÖTÜRƏK.” — **plain-statement / relief promise**. 61 baxış; emosional rahatlıq var, amma konkret fayda zəifdir.\r\n\r\n## İşləməyənlər\r\n- “Zəng et Rahat köç” — **plain ad slogan**. 34 baxış, 7 əhatə; median baxışın ~0.53x-i. Çox ümumi reklam dilidir.\r\n- Saxlama və şərh metrikası hələ siqnal vermir: hamısı 0.\r\n- Lead ölçümü yoxdur: zəng, DM, WhatsApp klikləri görünmür.\r\n\r\n## Qaydalar\r\n- Qiymət mövzusu əsas xəttdir; həftəlik mütləq test olunmalıdır.\r\n- Hook sual və ya “niyə dəyişir?” tipli secret-gap olduqda daha güclü işləyir.\r\n- Ümumi “zəng et / rahat köç” şüarları zəifdir.\r\n- Konkret faktorlar yaz: mərtəbə, məsafə, yük həcmi, usta sayı, qablaşdırma.\r\n- Poster formatına hələ pul/enerji xərcləmə; izahlı Reel və Carousel test et.\r\n- CTA ölçülə bilən olmalıdır: “DM-ə KÖÇ yaz”, “WhatsApp-a QİYMƏT yaz”.\r\n- Data azdır; bütün nəticələr ilkin hipotezdir, qəti hökm deyil.\r\n",
+  "brain": "## Qaliblər\n- “EV DAŞINMASI QİYMƏTİ NƏYƏ GÖRƏ DƏYİŞİR?” — **question / secret-gap**. Ən güclü siqnal: 107 baxış, 56 əhatə; median baxışdan ~1.66x yuxarı. Real alıcı sualını açır.\n- “Bir zəng bəsdir” — **plain-statement / low-friction promise**. 68 baxış, 14 əhatə, 2 paylaşım; sadə addım vədi işləyir, amma daha konkretləşməlidir.\n- “SƏNİN GÖTÜRƏ BİLMƏDİYİN YÜKÜ BİZ GÖTÜRƏK.” — **plain-statement / relief promise**. 61 baxış; emosional rahatlıq var, amma konkret fayda zəifdir.\n\n## İşləməyənlər\n- “Zəng et Rahat köç” — **plain ad slogan**. 34 baxış, 7 əhatə; median baxışın ~0.53x-i. Çox ümumi reklam dilidir.\n- Saxlama və şərh metrikası hələ siqnal vermir: hamısı 0.\n- Lead ölçümü yoxdur: zəng, DM, WhatsApp klikləri görünmür.\n\n## Qaydalar\n- Qiymət mövzusu əsas xəttdir; həftəlik mütləq test olunmalıdır.\n- Hook sual və ya “niyə dəyişir?” tipli secret-gap olduqda daha güclü işləyir.\n- Ümumi “zəng et / rahat köç” şüarları zəifdir.\n- Konkret faktorlar yaz: mərtəbə, məsafə, yük həcmi, usta sayı, qablaşdırma.\n- Poster formatına hələ pul/enerji xərcləmə; izahlı Reel və Carousel test et.\n- CTA ölçülə bilən olmalıdır: “DM-ə KÖÇ yaz”, “WhatsApp-a QİYMƏT yaz”.\n- Data azdır; bütün nəticələr ilkin hipotezdir, qəti hökm deyil.\n",
   "leads": 0,
   "entries": [
     {
@@ -439,7 +439,7 @@
       "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-13-poster-1/2026-09-13-poster-1.mp4",
       "duration": 0,
       "scenes": 1,
-      "status": "təsdiq-gözləyir",
+      "status": "yayımlanıb",
       "kind": "fun",
       "inspiration": {
         "url": "https://i.imgflip.com/1g8my4.jpg",
@@ -448,6 +448,8 @@
       "strategy": null,
       "metrics": null,
       "createdAt": "2026-09-13",
+      "instagram": "https://www.instagram.com/p/DdQkXV6HKqJ/",
+      "facebook": "",
       "template": "Poster",
       "voice": null,
       "music": {
