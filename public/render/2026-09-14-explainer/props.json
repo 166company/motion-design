@@ -1,0 +1,248 @@
+{
+  "id": "2026-09-14-explainer",
+  "cta": {
+    "line1": "Qiymət üçün zəng et",
+    "line2": "Zəng et"
+  },
+  "music": "render/2026-09-14-explainer/music.norm.wav",
+  "musicVolume": 0.5,
+  "scenes": [
+    {
+      "kind": "intro",
+      "heading": "4 addımda köç",
+      "sub": "",
+      "lines": [],
+      "spoken": "Yük nöqtə az ilə daşınma, dörd addımda.",
+      "audio": "render/2026-09-14-explainer/intro.wav",
+      "words": [
+        {
+          "w": "Yük",
+          "start": 0,
+          "dur": 0.54
+        },
+        {
+          "w": "nöqtə",
+          "start": 0.54,
+          "dur": 0.66
+        },
+        {
+          "w": "az",
+          "start": 1.2,
+          "dur": 0.32
+        },
+        {
+          "w": "ilə",
+          "start": 1.52,
+          "dur": 0.56
+        },
+        {
+          "w": "daşınma,",
+          "start": 2.08,
+          "dur": 0.64
+        },
+        {
+          "w": "dörd",
+          "start": 3.36,
+          "dur": 0.22
+        },
+        {
+          "w": "addımda.",
+          "start": 3.58,
+          "dur": 0.5
+        }
+      ],
+      "durationInFrames": 155
+    },
+    {
+      "kind": "call",
+      "heading": "Zəngi et, başla",
+      "sub": "050 209 62 99",
+      "lines": [],
+      "spoken": "Bir zəng et, operator detalını dərhal götürsün.",
+      "audio": "render/2026-09-14-explainer/call.wav",
+      "words": [
+        {
+          "w": "Bir",
+          "start": 0,
+          "dur": 0.36
+        },
+        {
+          "w": "zəng",
+          "start": 0.36,
+          "dur": 0.32
+        },
+        {
+          "w": "et,",
+          "start": 0.68,
+          "dur": 0.2
+        },
+        {
+          "w": "operator",
+          "start": 1.54,
+          "dur": 0.32
+        },
+        {
+          "w": "detalını",
+          "start": 1.86,
+          "dur": 0.68
+        },
+        {
+          "w": "dərhal",
+          "start": 2.54,
+          "dur": 0.96
+        },
+        {
+          "w": "götürsün.",
+          "start": 3.5,
+          "dur": 0.52
+        }
+      ],
+      "durationInFrames": 150
+    },
+    {
+      "kind": "chat",
+      "heading": "Detallar yazışmada",
+      "sub": "",
+      "lines": [
+        "Mənzil neçə mərtəbədir?",
+        "Lift var, yoxsa yox?",
+        "Məlum oldu, qiymət dəqiqləşdi."
+      ],
+      "spoken": "Operator səndən ünvan və yük detalları soruşur.",
+      "audio": "render/2026-09-14-explainer/chat.wav",
+      "words": [
+        {
+          "w": "Operator",
+          "start": 0,
+          "dur": 1.02
+        },
+        {
+          "w": "səndən",
+          "start": 1.02,
+          "dur": 0.6
+        },
+        {
+          "w": "ünvan",
+          "start": 1.62,
+          "dur": 0.66
+        },
+        {
+          "w": "və",
+          "start": 2.28,
+          "dur": 0.44
+        },
+        {
+          "w": "yük",
+          "start": 2.72,
+          "dur": 0.3
+        },
+        {
+          "w": "detalları",
+          "start": 3.02,
+          "dur": 0.56
+        },
+        {
+          "w": "soruşur.",
+          "start": 3.58,
+          "dur": 0.48
+        }
+      ],
+      "durationInFrames": 153
+    },
+    {
+      "kind": "load",
+      "heading": "Qutular maşına",
+      "sub": "",
+      "lines": [],
+      "spoken": "Sonra qutular yüklənir, mebel sökülüb hazırlanır.",
+      "audio": "render/2026-09-14-explainer/load.wav",
+      "words": [
+        {
+          "w": "Sonra",
+          "start": 0,
+          "dur": 0.82
+        },
+        {
+          "w": "qutular",
+          "start": 0.82,
+          "dur": 0.76
+        },
+        {
+          "w": "yüklənir,",
+          "start": 1.58,
+          "dur": 0.68
+        },
+        {
+          "w": "mebel",
+          "start": 2.96,
+          "dur": 0.28
+        },
+        {
+          "w": "sökülüb",
+          "start": 3.24,
+          "dur": 0.7
+        },
+        {
+          "w": "hazırlanır.",
+          "start": 3.94,
+          "dur": 0.82
+        }
+      ],
+      "durationInFrames": 175
+    },
+    {
+      "kind": "route",
+      "heading": "Yol xəritədə",
+      "sub": "",
+      "lines": [
+        "Bakı",
+        "Naxçıvan"
+      ],
+      "spoken": "Yükün marşrutu xəritədə görünür, yol izlənir.",
+      "audio": "render/2026-09-14-explainer/route.wav",
+      "words": [
+        {
+          "w": "Yükün",
+          "start": 0,
+          "dur": 0.58
+        },
+        {
+          "w": "marşrutu",
+          "start": 0.58,
+          "dur": 0.82
+        },
+        {
+          "w": "xəritədə",
+          "start": 1.4,
+          "dur": 0.54
+        },
+        {
+          "w": "görünür,",
+          "start": 1.94,
+          "dur": 0.44
+        },
+        {
+          "w": "yol",
+          "start": 3.24,
+          "dur": 0.1
+        },
+        {
+          "w": "izlənir.",
+          "start": 3.34,
+          "dur": 0.74
+        }
+      ],
+      "durationInFrames": 149
+    },
+    {
+      "kind": "cta",
+      "heading": "",
+      "sub": "",
+      "lines": [],
+      "spoken": "",
+      "audio": null,
+      "words": [],
+      "durationInFrames": 110
+    }
+  ]
+}

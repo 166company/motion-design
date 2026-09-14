@@ -1,6 +1,6 @@
 {
   "repo": "166company/motion-design",
-  "updatedAt": "2026-09-14T18:40:13.432Z",
+  "updatedAt": "2026-09-14T19:34:25.852Z",
   "plan": {
     "pillars": [
       "Qiymət sirri açılır",
@@ -488,6 +488,42 @@
         "license": null,
         "vocal": false,
         "source": "synth"
+      }
+    },
+    {
+      "id": "2026-09-14-explainer",
+      "hook": "4 addımda köç",
+      "caption": "Köçü 4 addımda rahat elə 📦\n\nZəng edirsən, detallarını deyirsən 📞\nOperator hər şeyi əvvəlcədən aydınlaşdırır 🚚\nQablaşdırma materialı və sığorta da işin içində olur ✨\n\nİndi əlaqə saxla, köçünü başa salmaqla yox, rahatlıqla həll et.\n\n📞 Zəng et: 050 209 62 99\n\n#yükdaşıma #evdaşınması #daşınma",
+      "hashtags": [
+        "#bakı",
+        "#köç",
+        "#evköçü",
+        "#ofisköçü",
+        "#yükdaşıma",
+        "#evdaşınması",
+        "#daşınma",
+        "#köçxidməti",
+        "#qablaşdırma",
+        "#sığorta",
+        "#rahatköç",
+        "#yüklədaşıma"
+      ],
+      "source": "https://yuk.az",
+      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-14-explainer/2026-09-14-explainer.mp4",
+      "duration": 29.7,
+      "scenes": 6,
+      "status": "təsdiq-gözləyir",
+      "strategy": null,
+      "firstComment": "Sən köçdə ən çox nədən narahat olursan?\n\n#bakı #köç #evköçü #ofisköçü #yükdaşıma #evdaşınması #daşınma #köçxidməti #qablaşdırma #sığorta #rahatköç #yüklədaşıma",
+      "metrics": null,
+      "createdAt": "2026-09-14",
+      "template": "Explainer",
+      "voice": "ash",
+      "music": {
+        "label": "Winter — Enter Void ",
+        "license": "Attribution CC BY",
+        "vocal": false,
+        "source": "audius"
       }
     },
     {
