@@ -20,11 +20,21 @@ import { Vignette } from "../components/Overlay";
 import bounds from "../assetBounds.json";
 
 /** PNG-lər kvadratdır, içində boşluq var — kontentin altı yerə otursun deyə bbox-a görə hesablanır */
-const B = bounds as Record<string, { left: number; top: number; right: number; bottom: number }>;
-const footTop = (name: string, foot: number, w: number) => foot - w * B[name].bottom;
+type Bounds = Record<string, { left: number; top: number; right: number; bottom: number }>;
+const DEFAULT_BOUNDS = bounds as Bounds;
+
+/** Hər postun öz asset dəsti ola bilər (public/render/<id>/assets) — base + bounds kontekstlə gəlir */
+const AssetsCtx = createContext<{ base: string; bounds: Bounds }>({ base: "assets", bounds: DEFAULT_BOUNDS });
+const useAssets = () => {
+  const a = useContext(AssetsCtx);
+  return {
+    A: (n: string) => staticFile(`${a.base}/${n}.png`),
+    bgSrc: (n: string) => staticFile(`${a.base}/${n}.jpg`),
+    footTop: (name: string, foot: number, w: number) => foot - w * (a.bounds[name] ?? DEFAULT_BOUNDS[name]).bottom,
+  };
+};
 
 export const TRANSITION = 12;
-const A = (n: string) => staticFile(`assets/${n}.png`);
 
 export const storySceneSchema = z.object({
   kind: z.enum(["call", "pack", "load", "arrive", "cta"]),
@@ -36,6 +46,9 @@ export const storySceneSchema = z.object({
 });
 export const storySchema = z.object({
   id: z.string(),
+  /** asset qovluğu (public-nisbi) — post üçün fərqli dəst; default ortaq public/assets */
+  assets: z.string().default("assets"),
+  bounds: z.record(z.string(), z.object({ left: z.number(), top: z.number(), right: z.number(), bottom: z.number() })).optional(),
   cta: z.object({ line1: z.string(), line2: z.string() }),
   music: z.string().nullable(),
   musicVolume: z.number().default(0.5),
@@ -59,13 +72,14 @@ const PanCtx = createContext(0);
 
 const World: React.FC<{ bg: "bg_street" | "bg_home" | "bg_interior"; pan?: number; duration: number; children?: React.ReactNode }> = ({ bg, pan = 0, duration, children }) => {
   const frame = useCurrentFrame();
+  const { bgSrc } = useAssets();
   const p = interpolate(frame, [0, duration], [0, 1], { extrapolateRight: "clamp" });
   const zoom = 1.08 + p * 0.06;
   return (
     <AbsoluteFill style={{ backgroundColor: colors.graphite, overflow: "hidden" }}>
       {/* fon — yavaş zoom + panın 20%-i (parallaks) */}
       <Img
-        src={staticFile(`assets/${bg}.jpg`)}
+        src={bgSrc(bg)}
         style={{ position: "absolute", left: 0, top: 0, width: 1080, height: 1920, objectFit: "cover",
                  transform: `translateX(${-pan * 0.2}px) scale(${zoom})`, transformOrigin: "50% 70%" }}
       />
@@ -78,9 +92,12 @@ const World: React.FC<{ bg: "bg_street" | "bg_home" | "bg_interior"; pan?: numbe
 };
 
 /* ---------------------------------------------------------------- yardımçılar */
-const Sprite: React.FC<{ name: string; x: number; y: number; w: number; style?: React.CSSProperties; flip?: boolean }> = ({ name, x, y, w, style, flip }) => (
+const Sprite: React.FC<{ name: string; x: number; y: number; w: number; style?: React.CSSProperties; flip?: boolean }> = ({ name, x, y, w, style, flip }) => {
+  const { A } = useAssets();
+  return (
   <Img src={A(name)} style={{ position: "absolute", left: x, top: y, width: w, transform: `${flip ? "scaleX(-1) " : ""}${style?.transform ?? ""}`, transformOrigin: "bottom center", filter: "drop-shadow(0 18px 24px rgba(0,0,0,0.45))", ...style, }} />
-);
+  );
+};
 
 const Shadow: React.FC<{ x: number; y: number; w: number; s?: number }> = ({ x, y, w, s = 1 }) => (
   <div style={{ position: "absolute", left: x, top: y, width: w, height: w * 0.12, borderRadius: "50%", background: "rgba(0,0,0,0.4)", transform: `scale(${s})`, filter: "blur(6px)" }} />
@@ -111,7 +128,7 @@ const Head: React.FC<{ text: string }> = ({ text }) => {
   const pan = useContext(PanCtx);
   const size = text.length > 30 ? 64 : type.title;
   return (
-    <div style={{ position: "absolute", left: safeArea.side + pan, width: 1080 - safeArea.side * 2, top: safeArea.top + 130, fontFamily: font }}>
+    <div style={{ position: "absolute", left: safeArea.side + pan, width: 1080 - safeArea.side * 2, top: safeArea.top + 130, fontFamily: font, textShadow: "0 4px 22px rgba(0,0,0,0.55), 0 1px 3px rgba(0,0,0,0.5)" }}>
       <AnimatedTitle text={text} size={size} delay={4} stagger={3} accent={-1} lineHeight={1.08} />
     </div>
   );
@@ -120,6 +137,7 @@ const Head: React.FC<{ text: string }> = ({ text }) => {
 /* ---------------------------------------------------------------- 1. Zəng: bina + telefon */
 const Call: React.FC<{ s: S }> = ({ s }) => {
   const frame = useCurrentFrame();
+  const { footTop } = useAssets();
   const { fps } = useVideoConfig();
   const phone = spring({ frame: Math.max(0, frame - 6), fps, config: { damping: 10, stiffness: 150 } });
   const shake = frame > 20 && frame % 36 < 16 ? Math.sin(frame * 1.5) * 6 : 0;
@@ -142,6 +160,7 @@ const Call: React.FC<{ s: S }> = ({ s }) => {
 /* ---------------------------------------------------------------- 2. Qablaşdırma: daşıyıcı gəlir, qutular yığılır */
 const Pack: React.FC<{ s: S }> = ({ s }) => {
   const frame = useCurrentFrame();
+  const { footTop } = useAssets();
   const { fps } = useVideoConfig();
   const walk = interpolate(frame, [0, 50], [-500, 120], { extrapolateRight: "clamp", easing: Easing.out(Easing.quad) });
   const bob = frame < 50 ? Math.abs(Math.sin(frame / 3)) * 14 : 0;
@@ -171,6 +190,7 @@ const Pack: React.FC<{ s: S }> = ({ s }) => {
 /* ---------------------------------------------------------------- 3. Yükləmə: maşın gəlir, əşyalar içinə uçur, yola düşür */
 const Load: React.FC<{ s: S }> = ({ s }) => {
   const frame = useCurrentFrame();
+  const { footTop } = useAssets();
   const { fps } = useVideoConfig();
   const D = s.durationInFrames;
   // maşının üzü sağa baxır: SOLDAN gəlir, dayanır, yüklənir, SAĞA yola düşür
@@ -209,6 +229,7 @@ const Load: React.FC<{ s: S }> = ({ s }) => {
 /* ---------------------------------------------------------------- 4. Çatdı: kamera panı, yeni bina, daşıyıcı qutu ilə */
 const Arrive: React.FC<{ s: S }> = ({ s }) => {
   const frame = useCurrentFrame();
+  const { footTop } = useAssets();
   const pan = interpolate(frame, [0, s.durationInFrames], [0, 420], { extrapolateRight: "clamp", easing: Easing.inOut(Easing.quad) });
   const truckX = interpolate(frame, [0, 45], [-1000, 900], { extrapolateRight: "clamp", easing: Easing.out(Easing.cubic) });
   const moverX = interpolate(frame, [50, 100], [1150, 1420], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
@@ -228,12 +249,13 @@ const Arrive: React.FC<{ s: S }> = ({ s }) => {
 };
 
 /* ---------------------------------------------------------------- Kompozisiya */
-export const Story: React.FC<StoryProps> = ({ cta, scenes, music, musicVolume }) => {
+export const Story: React.FC<StoryProps> = ({ cta, scenes, music, musicVolume, assets, bounds: b }) => {
   const st = starts(scenes);
   const total = storyTotal(scenes);
   const ctaIdx = scenes.findIndex((s) => s.kind === "cta");
   const ctaFrom = ctaIdx >= 0 ? st[ctaIdx] : total;
   return (
+    <AssetsCtx.Provider value={{ base: assets || "assets", bounds: { ...DEFAULT_BOUNDS, ...(b ?? {}) } }}>
     <AbsoluteFill style={{ backgroundColor: colors.graphite }}>
       {music && (
         <Audio src={staticFile(music)} loop volume={(f) => {
@@ -269,5 +291,6 @@ export const Story: React.FC<StoryProps> = ({ cta, scenes, music, musicVolume })
       <Vignette />
       {ctaFrom > 0 && <Sequence durationInFrames={ctaFrom}><LogoBug /></Sequence>}
     </AbsoluteFill>
+    </AssetsCtx.Provider>
   );
 };

@@ -22,7 +22,7 @@ const schema = {
     pillars: { type: "array", minItems: 3, maxItems: 5, items: { type: "string" }, description: "3-5 kontent sütunu (content-pillar-builder), hər biri 3-6 söz" },
     series: { type: "array", minItems: 1, maxItems: 3, items: { type: "string" }, description: "təkrarlanan seriya formatları (series-planner), məs. 'Köç günü dramı #N'" },
     slots: {
-      type: "array", minItems: 10, maxItems: 40,
+      type: "array", minItems: 10, maxItems: 45,
       items: {
         type: "object", additionalProperties: false,
         required: ["date", "template", "pillar", "idea", "goal", "angle", "hook", "articleId", "series"],
@@ -48,9 +48,11 @@ const main = async () => {
   const days: string[] = [];
   for (let i = 0; i < 14; i++) { const d = new Date(today); d.setUTCDate(today.getUTCDate() + i); days.push(fmt(d)); }
   const dow = (s: string) => new Date(s + "T00:00:00Z").getUTCDay();
-  // cədvəl: B.e(1)/Ç(3)/C(5) → reels/karusel növbəsi; hər gün → Poster (3 ədəd, plan 1 slot verir, poster.ts özü 2 fun + 1 satış edir)
+  // cədvəl: B.e/Ç/C → video növbəsi (Story | Explainer | TipList | Carousel), Ç.a/C.a/Ş → illüstrasiya/animasiya (Story | Explainer);
+  // hər gün → Poster (3 ədəd, plan 1 slot verir, poster.ts özü 2 fun + 1 satış edir). Əsas yer illüstrasiya və videoya.
   const schedule = days.flatMap((d) => [
-    ...([1, 3, 5].includes(dow(d)) ? [`${d}: video/karusel (TipList | Explainer | Story | Carousel)`] : []),
+    ...([1, 3, 5].includes(dow(d)) ? [`${d}: video (Story | Explainer | TipList | Carousel — Story/Explainer üstünlük)`] : []),
+    ...([2, 4, 6].includes(dow(d)) ? [`${d}: illüstrasiya/animasiya (Story | Explainer)`] : []),
     `${d}: Poster (gündəlik 3 statik post: 2 fun + 1 satış — plan yalnız satış postunun ideyasını verir)`,
   ]);
   const az = (await listArticles()).filter((a) => a.lang === "az");
@@ -66,7 +68,7 @@ const main = async () => {
     body: JSON.stringify({
       model: MODEL,
       messages: [
-        { role: "system", content: `Sən Yük.az (Bakı; ev/ofis köçü, yükdaşıma, hədəf: yük sahibləri) Instagram/Facebook səhifəsinin kontent planlayıcısısan. Azərbaycanca. Qiymət rəqəmi yox. Səhifə fun + faydalı olmalıdır; məqsəd (SAVE/SHARE/FOLLOW/LEAD) və bucaq slotdan slota rotasiya olunsun; eyni məqalə 2 həftədə 1 dəfə.` + playbook(["content-calendar", "content-pillar-builder", "series-planner", "best-time-scheduler", "going-viral"], 12000) + memory() },
+        { role: "system", content: `Sən Yük.az (Bakı; ev/ofis köçü, yükdaşıma, hədəf: yük sahibləri) Instagram/Facebook səhifəsinin kontent planlayıcısısan. Azərbaycanca. Qiymət rəqəmi yox. Səhifə FUN olmalıdır: əsas yer illüstrasiya (Story) və videoya (Explainer) — hər həftə ən azı 3 Story + 2 Explainer; TipList maks 1/həftə. Fun konseptlər verilən beynəlxalq real trend nümunələrindən (formatı saxla, mövzunu köçə çevir). Məqsəd (SAVE/SHARE/FOLLOW/LEAD) və bucaq slotdan slota rotasiya olunsun; eyni məqalə 2 həftədə 1 dəfə.` + playbook(["content-calendar", "content-pillar-builder", "series-planner", "best-time-scheduler", "going-viral"], 12000) + memory() },
         { role: "user", content: `BU GÜN: ${fmt(today)}\n\nSLOTLAR (hər sətir üçün 1 plan yaz, tarix və şablon dəqiq uyğun olsun):\n${schedule.join("\n")}\n\nMƏQALƏLƏR (TipList üçün ID ver):\n${articles}\n\nBU HƏFTƏNİN REAL TREND NÜMUNƏLƏRİ:\n${trendText || "(yoxdur)"}\n\nSON RƏQƏMLƏR:\n${analytics.slice(0, 3000)}` },
       ],
       response_format: { type: "json_schema", json_schema: { name: "calendar", strict: true, schema } },

@@ -3,20 +3,23 @@
   "template": "Story",
   "articleId": null,
   "link": "https://yuk.az",
-  "caption": "Köç günü dramı, 1-ci seriya: sənin də belə olub? 😅\n\n📦 Səhər hər şey “asan olacaq” kimi başlayır.\n🚚 Günortaya yaxın qutular artır, sözlər azalır.\n☕ Axırda isə yeni evdə ilk çayla nəfəs alırsan.\n\nSənin köç günün nə vaxt dramaya çevrilir?\n\n📞 Zəng et: 050 209 62 99\n\n#köç #evdaşınması #yükdaşıma",
+  "caption": "Hazır tarif niyə köç günü “sürpriz” olur?\n\n📦 “Az şeyimiz var” deyirsən, amma sonra dəhliz dolur.\n🏢 Lift, mərtəbə, məsafə — bunlar başdan bilinməyəndə plan da dəyişir.\n📩 Köçən dostuna göndər, əvvəlcədən hazırlıqlı olsun.\n\nSəndə ən çox hansı detal “əslində bu da var imiş” dedizdirib?\n\n📞 Zəng et: 050 209 62 99\n\n#köç #yükdaşıma #evdaşınması",
   "hashtags": [
     "#bakı",
     "#köç",
-    "#evdaşınması",
     "#yükdaşıma",
-    "#evköçü",
+    "#evdaşınması",
+    "#ofisköçü",
     "#köçgünü",
-    "#qutular",
-    "#yeniEv",
-    "#köçHazırlığı",
-    "#evdəyişmə",
     "#daşınma",
-    "#yükaz"
+    "#yükdaşınma",
+    "#evköçü",
+    "#ofisdaşınma",
+    "#planlama",
+    "#köçmə",
+    "#rahatköç",
+    "#daşınmaq",
+    "#hərəkət"
   ],
   "music": "render/2026-09-14-story/music.norm.wav",
   "attribution": "🎵 Winter — Enter Void  (CC BY) https://audius.co/entervoid/winter-20320",
@@ -28,7 +31,14 @@
   },
   "voice": null,
   "silent": true,
-  "firstComment": "Səndə də köç günü planlar bir anda pozulub? 😅\n\n#bakı #köç #evdaşınması #yükdaşıma #evköçü #köçgünü #qutular #yeniEv #köçHazırlığı #evdəyişmə #daşınma #yükaz",
-  "altText": "Köç günü qarışıqlıq içində qutuların yığılması və yeni evdə çay içilən qısa, yumorlu bir köç səhnəsi.",
-  "captionRaw": "Köç günü dramı, 1-ci seriya: sənin də belə olub? 😅\n\n📦 08:00-da plan yoxdur, amma köç başlayır. 🚚 10:00-da “az şeyimiz var” sözü qutuya dönür. ☕ 16:00-da isə yeni evdə ilk çay içilir.\n\nSənin köç günün saat neçədə dramaya çevrilir?\n\n📞 Zəng et: 050 209 62 99"
+  "style": "ligne-claire",
+  "setting": "A bright, windy afternoon in Baku, outside a tall apartment block with a tiny elevator sign and very serious neighbors at the windows. Clean ligne-claire comic style, flat colors, crisp outlines, playful but realistic moving-day chaos.",
+  "kind": "fun",
+  "inspiration": {
+    "url": "https://www.thepoke.com/2026/09/11/our-25-favourite-funny-tweets-of-the-week-133/",
+    "quote": "i’m so over captcha pls stop making me select photos i’m not the editor of vogue"
+  },
+  "firstComment": "Səndə köçən adamın unudduğu ən çox nə olur?\n\n#bakı #köç #yükdaşıma #evdaşınması #ofisköçü #köçgünü #daşınma #yükdaşınma #evköçü #ofisdaşınma #planlama #köçmə #rahatköç #daşınmaq #hərəkət",
+  "altText": "Köç günü qiyməti dəyişən detalları yumorla izah edən qısa mətnli sosial media postu",
+  "captionRaw": "Hazır tarif niyə köç günü “sürpriz” olur?\n\n📦 “Az şeyimiz var” bəzən dəhlizi doldurur.\n🏢 Lift, mərtəbə, məsafə əvvəlcədən deyilsə, plan dəyişir.\n📩 Köçən dostuna göndər, hazırlıqlı olsun.\n\nSəndə ən çox hansı detal qiyməti dəyişib?\n\n📞 Zəng et: 050 209 62 99"
 }

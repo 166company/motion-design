@@ -7,21 +7,28 @@ Story şablonu üçün AI illüstrasiya assetləri — OpenAI gpt-image, brend p
 
 Nəticə: public/assets/*.png (şəffaf obyektlər, ≤900px) və *.jpg (9:16 fonlar),
 src/assetBounds.json (obyektlərin real sərhədləri — yerə oturtmaq üçün).
-Xərc: ~0.2 $/şəkil (high). Bir dəfəlik.
+Xərc: ~0.2 $/şəkil (high).
+
+Hər post üçün FƏRQLİ asset dəsti (story.ts):
+  ASSET_DIR=public/render/<id>/assets  BOUNDS_PATH=public/render/<id>/bounds.json
+  ASSET_STYLE="<ingiliscə üslub>"  ASSET_SETTING="<ingiliscə məkan/əhval>"  ASSET_OBJECTS='{"truck": "...", ...}'
 """
 import base64, io, json, os, sys, time, urllib.request
 from PIL import Image
 
 KEY = os.environ["OPENAI_API_KEY"]
 MODEL = os.environ.get("OPENAI_IMAGE_MODEL", "gpt-image-2.5-sunburst-2026-09-08")
-OUT = os.path.join("public", "assets")
+OUT = os.environ.get("ASSET_DIR") or os.path.join("public", "assets")
+BOUNDS_PATH = os.environ.get("BOUNDS_PATH") or os.path.join("src", "assetBounds.json")
 
-STYLE = (
+PALETTE = "Brand palette dominant: bright orange #FF6600 and dark graphite #1E2124 with white and warm neutral accents. No text, no letters, no logos."
+DEFAULT_STYLE = (
     "Vibrant, polished 3D-rendered illustration, modern Pixar-like look: soft warm studio lighting, rich gradients, "
     "subtle rim light, gentle ambient occlusion, rounded friendly shapes, high detail but clean silhouettes. "
-    "Brand palette dominant: bright orange #FF6600 and dark graphite #1E2124 with white and warm neutral accents. "
-    "No text, no letters, no logos."
 )
+# Post üçün fərqli üslub (story.ts verir) — bütün assetlər eyni üslubda olsun deyə hər prompta eyni cümlə gedir
+STYLE = (os.environ.get("ASSET_STYLE", "").strip() or DEFAULT_STYLE).rstrip(".") + ". " + PALETTE
+SETTING = os.environ.get("ASSET_SETTING", "").strip()
 ISO = " Single isolated object, strict side view (orthographic), centered, fully TRANSPARENT background."
 
 OBJECTS = {
@@ -38,6 +45,15 @@ BACKGROUNDS = {
     "bg_interior": "Vertical 9:16 scene: a bright cozy apartment living room being packed for moving, cardboard boxes stacked along the walls, morning sunlight through a big window, wooden floor occupying the bottom third, empty center floor space, no people, no text.",
 }
 
+
+# obyekt təsvirlərini post-a görə dəyişmək (JSON, ingiliscə) — məs. mover → "cat mover", truck → "tiny vintage van"
+_ovr = os.environ.get("ASSET_OBJECTS", "").strip()
+if _ovr:
+    try:
+        for k, v in json.loads(_ovr).items():
+            if k in OBJECTS and v: OBJECTS[k] = v
+    except Exception as e:
+        print("ASSET_OBJECTS oxunmadı:", e)
 
 VISUAL = os.environ.get("VISUAL_NOTES", "").strip()
 REFS = [u for u in os.environ.get("IMAGE_REFS", "").split(",") if u]
@@ -92,7 +108,7 @@ def main():
     os.makedirs(OUT, exist_ok=True)
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
     force = "--all" in sys.argv
-    bounds_path = os.path.join("src", "assetBounds.json")
+    bounds_path = BOUNDS_PATH
     bounds = json.load(open(bounds_path)) if os.path.exists(bounds_path) else {}
 
     for name, desc in OBJECTS.items():
@@ -100,7 +116,7 @@ def main():
         if not force and not args and os.path.exists(path): continue
         if args and name not in args: continue
         t = time.time()
-        im = Image.open(io.BytesIO(generate(desc + " " + STYLE + ISO, "1024x1024", True))).convert("RGBA")
+        im = Image.open(io.BytesIO(generate(desc + " " + STYLE + ISO + " No text, letters or logos on the object.", "1024x1024", True))).convert("RGBA")
         im = clean_transparent(im); im.thumbnail((900, 900)); im.save(path, optimize=True)
         bounds[name] = bbox(im)
         print(f"{name:12} ok  {time.time() - t:.0f}s  alt={bounds[name]['bottom']}")
@@ -110,7 +126,8 @@ def main():
         if not force and not args and os.path.exists(path): continue
         if args and name not in args: continue
         t = time.time()
-        im = Image.open(io.BytesIO(generate(desc + " " + STYLE, "1024x1536", False))).convert("RGB")
+        strict = " STRICT: empty background plate for animation — absolutely NO people, NO characters, NO faces in windows, NO vehicles, NO furniture, NO boxes, NO text, letters, signs or logos anywhere."
+        im = Image.open(io.BytesIO(generate(desc + ((" Mood, weather, season and time of day: " + SETTING + ".") if SETTING else "") + " " + STYLE + strict, "1024x1536", False))).convert("RGB")
         im.thumbnail((1080, 1620)); im.save(path, quality=88, optimize=True)
         print(f"{name:12} ok  {time.time() - t:.0f}s")
 

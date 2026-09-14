@@ -1,7 +1,58 @@
 {
   "id": "2026-09-14-story",
+  "assets": "render/2026-09-14-story/assets",
+  "bounds": {
+    "truck": {
+      "w": 900,
+      "h": 900,
+      "left": 0.028,
+      "top": 0.261,
+      "right": 0.988,
+      "bottom": 0.733
+    },
+    "boxes": {
+      "w": 900,
+      "h": 900,
+      "left": 0.182,
+      "top": 0.062,
+      "right": 0.813,
+      "bottom": 0.93
+    },
+    "mover": {
+      "w": 900,
+      "h": 900,
+      "left": 0.156,
+      "top": 0.019,
+      "right": 0.853,
+      "bottom": 0.97
+    },
+    "phone": {
+      "w": 900,
+      "h": 900,
+      "left": 0.257,
+      "top": 0.052,
+      "right": 0.743,
+      "bottom": 0.948
+    },
+    "sofa": {
+      "w": 900,
+      "h": 900,
+      "left": 0.008,
+      "top": 0.434,
+      "right": 0.992,
+      "bottom": 0.578
+    },
+    "plant": {
+      "w": 900,
+      "h": 900,
+      "left": 0.13,
+      "top": 0.024,
+      "right": 0.896,
+      "bottom": 0.973
+    }
+  },
   "cta": {
-    "line1": "Köç günü dramına son",
+    "line1": "Köçənə Yük.az göndər",
     "line2": "Zəng et"
   },
   "music": "render/2026-09-14-story/music.norm.wav",
@@ -9,32 +60,32 @@
   "scenes": [
     {
       "kind": "call",
-      "heading": "08:00 — Sabah köçürük. Plan? Yox.",
-      "spoken": "Səncə, köç günü niyə hamıda eyni başlayır?",
+      "heading": "Hazır tarif niyə aldadır?",
+      "spoken": "Hazır tarifə inanma, əvvəl ünvan şəraitini de.",
       "audio": null,
       "words": [],
       "durationInFrames": 110
     },
     {
       "kind": "pack",
-      "heading": "10:00 — “Az şeyimiz var” dedik…",
-      "spoken": "Ölçü dəyişir, çünki qutu sayı az olmur.",
+      "heading": "“Az şey” otağı doldurur",
+      "spoken": "“Az şey” deyirsən, sonra qutular dəhlizə çıxır.",
       "audio": null,
       "words": [],
       "durationInFrames": 130
     },
     {
       "kind": "load",
-      "heading": "13:00 — Divan liftə sığmır. Maşına sığır.",
-      "spoken": "Məhz burada maşın və məsafə hesabı dəyişir.",
+      "heading": "Lift CAPTCHA kimi seçdirir",
+      "spoken": "Divan liftə sığmayanda, məbləğ də yön dəyişir.",
       "audio": null,
       "words": [],
       "durationInFrames": 150
     },
     {
       "kind": "arrive",
-      "heading": "16:00 — Yeni evdə ilk çay ☕",
-      "spoken": "Yeni ünvanda iş bitir, rahat nəfəs alırsan.",
+      "heading": "Qiymət şəraitə görə dəyişir",
+      "spoken": "Yük nöqtə az soruşur: həcm, lift, məsafə, tarix.",
       "audio": null,
       "words": [],
       "durationInFrames": 140
