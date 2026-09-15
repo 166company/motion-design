@@ -1,6 +1,6 @@
 {
   "repo": "166company/motion-design",
-  "updatedAt": "2026-09-15T18:15:03.160Z",
+  "updatedAt": "2026-09-15T18:27:36.196Z",
   "plan": {
     "pillars": [
       "Qiymət sirri açılır",
@@ -174,6 +174,49 @@
   "brain": "## Qaliblər\n- “EV DAŞINMASI QİYMƏTİ NƏYƏ GÖRƏ DƏYİŞİR?” — **question / secret-gap**. 107 baxış, 56 əhatə. Median baxışdan **1.60x**, median əhatədən **7x** yuxarı. Real alıcı sualı açılır.\n- “Bir zəng bəsdir” — **plain-statement / low-friction promise**. 68 baxış, 2 paylaşım. Sadə addım vədi işləyir, amma daha konkret fayda lazımdır.\n- “SƏNİN GÖTÜRƏ BİLMƏDİYİN YÜKÜ BİZ GÖTÜRƏK.” — **plain-statement / relief promise**. 67 baxış; median səviyyə. Emosional yük götürmə mesajı var.\n\n## İşləməyənlər\n- “Yük.az Düyməsi” — **plain/fun poster**. 11 baxış, medianın **0.16x**-i. Fun poster üçün siqnal zəifdir.\n- “Zəng et Rahat köç” — **plain ad slogan**. 42 baxış, medianın **0.63x**-i. Çox ümumi reklam dilidir.\n- Saxlama və şərh hələ siqnal vermir: bütün postlarda saxlama 0, şərh 0.\n- Lead ölçümü yoxdur: zəng, DM, WhatsApp klikləri verilmir.\n\n## Qaydalar\n- Qiymət mövzusu əsas kontent xəttidir; həftədə minimum 2 dəfə test olunmalıdır.\n- Hook sual/secret-gap olarsa daha güclü işləyir: “nəyə görə dəyişir?”, “niyə baha çıxır?”\n- Ümumi şüarlar zəifdir; konkret səbəb və fayda yaz.\n- Qiymət izahında mütləq faktorlar: mərtəbə, lift, məsafə, yük həcmi, usta sayı, qablaşdırma.\n- Poster/fun formatını azalt; izahlı Reel və faydalı Carousel test et.\n- CTA ölçülə bilən olsun: “DM-ə QİYMƏT yaz”, “WhatsApp-a KÖÇ yaz”.\n- Data azdır; nəticələr ilkin hipotezdir, qəti qayda deyil.\n",
   "leads": 0,
   "entries": [
+    {
+      "id": "2026-09-15-story",
+      "hook": "Ən çətini mebel deyil",
+      "caption": "Köçdə ən ağır əşya kreslo deyil, “bunu saxlayırıq!” cümləsidir.\n\n📦 Yükü biz daşıyaq\n🏢 Lift, mərtəbə, qutu — əvvəlcədən de\n😅 Ailə qərarına qarışmırıq\n\nSəndə evdə hansı əşya “mədəni irs” elan olunub?\n\n📞 Zəng et: 050 209 62 99\n\n#Yükdaşıma #EvDaşınması #KöçDramı",
+      "hashtags": [
+        "#Bakı",
+        "#Köç",
+        "#Yükdaşıma",
+        "#EvDaşınması",
+        "#BakıKöç",
+        "#KöçGünü",
+        "#KöçDramı",
+        "#AiləKomediyası",
+        "#MənzilKöçü",
+        "#OfisKöçü",
+        "#MebelDaşıma",
+        "#QutuYığma",
+        "#KöçHazırlığı",
+        "#Yükaz"
+      ],
+      "source": "https://yuk.az",
+      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-15-story/2026-09-15-story.mp4",
+      "duration": 21.3,
+      "scenes": 5,
+      "status": "təsdiq-gözləyir",
+      "kind": "fun",
+      "inspiration": {
+        "url": "https://pleated-jeans.com/2026/09/12/funniest-tweets-of-the-week-9-12-26/",
+        "quote": "It's actually insane how crocs won the culture war."
+      },
+      "strategy": null,
+      "firstComment": "Səndə “bunu atmayın” deyilən ən əziz əşya nədir?\n\n#Bakı #Köç #Yükdaşıma #EvDaşınması #BakıKöç #KöçGünü #KöçDramı #AiləKomediyası #MənzilKöçü #OfisKöçü #MebelDaşıma #QutuYığma #KöçHazırlığı #Yükaz",
+      "metrics": null,
+      "createdAt": "2026-09-15",
+      "template": "Story",
+      "voice": null,
+      "music": {
+        "label": "Freak With You — thoomn",
+        "license": "Attribution CC BY",
+        "vocal": false,
+        "source": "audius"
+      }
+    },
     {
       "id": "2026-09-15-poster-3",
       "images": [

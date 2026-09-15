@@ -1,0 +1,102 @@
+{
+  "id": "2026-09-15-story",
+  "assets": "render/2026-09-15-story/assets",
+  "bounds": {
+    "truck": {
+      "w": 900,
+      "h": 900,
+      "left": 0.009,
+      "top": 0.202,
+      "right": 0.99,
+      "bottom": 0.798
+    },
+    "boxes": {
+      "w": 900,
+      "h": 900,
+      "left": 0.263,
+      "top": 0.027,
+      "right": 0.74,
+      "bottom": 0.981
+    },
+    "mover": {
+      "w": 900,
+      "h": 900,
+      "left": 0.177,
+      "top": 0.013,
+      "right": 0.833,
+      "bottom": 0.984
+    },
+    "phone": {
+      "w": 900,
+      "h": 900,
+      "left": 0.273,
+      "top": 0.031,
+      "right": 0.743,
+      "bottom": 0.971
+    },
+    "sofa": {
+      "w": 900,
+      "h": 900,
+      "left": 0.007,
+      "top": 0.2,
+      "right": 0.993,
+      "bottom": 0.781
+    },
+    "plant": {
+      "w": 900,
+      "h": 900,
+      "left": 0.116,
+      "top": 0.021,
+      "right": 0.901,
+      "bottom": 0.979
+    }
+  },
+  "cta": {
+    "line1": "Köç dramını azalt: Yük.az",
+    "line2": "Zəng et"
+  },
+  "music": "render/2026-09-15-story/music.norm.wav",
+  "musicVolume": 0.75,
+  "scenes": [
+    {
+      "kind": "call",
+      "heading": "Ən çətini mebel deyil",
+      "spoken": "Yük nöqtə az-a zəng edirsən, drama başlayır.",
+      "audio": null,
+      "words": [],
+      "durationInFrames": 110
+    },
+    {
+      "kind": "pack",
+      "heading": "Hamı ekspert olur",
+      "spoken": "Birdən köhnə vaza ailənin mədəni irsinə çevrilir.",
+      "audio": null,
+      "words": [],
+      "durationInFrames": 130
+    },
+    {
+      "kind": "load",
+      "heading": "“Az şeyimiz var” deyirlər",
+      "spoken": "Sonra liftin qabağında yarım muzey düzülür.",
+      "audio": null,
+      "words": [],
+      "durationInFrames": 150
+    },
+    {
+      "kind": "arrive",
+      "heading": "Payoff: dava daşınmadı",
+      "spoken": "Yük nöqtə az daşıdı, qərarı ailə saxladı.",
+      "audio": null,
+      "words": [],
+      "durationInFrames": 140
+    },
+    {
+      "kind": "cta",
+      "heading": "",
+      "spoken": "",
+      "audio": null,
+      "words": [],
+      "durationInFrames": 110
+    }
+  ]
+}
