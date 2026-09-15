@@ -1,6 +1,6 @@
 {
   "repo": "166company/motion-design",
-  "updatedAt": "2026-09-14T22:32:50.216Z",
+  "updatedAt": "2026-09-15T01:32:08.143Z",
   "plan": {
     "pillars": [
       "Qiymət sirri açılır",
@@ -15,28 +15,6 @@
       "Usta vs Divan #N"
     ],
     "slots": [
-      {
-        "date": "2026-09-14",
-        "template": "Explainer",
-        "pillar": "Qiymət sirri açılır",
-        "idea": "Animasiya/video: köç qiymətinin niyə dəyişdiyini detektiv kimi açırıq — mərtəbə, lift, məsafə, yük həcmi, usta sayı, qablaşdırma. Sonda ölçülə bilən CTA: “DM-ə QİYMƏT yaz, detalları göndər.”",
-        "goal": "LEAD",
-        "angle": "sual",
-        "hook": "Köç niyə baha çıxır?",
-        "articleId": null,
-        "series": "Qiymət Detektivi #1"
-      },
-      {
-        "date": "2026-09-14",
-        "template": "Poster",
-        "pillar": "Bir mesajla sifariş",
-        "idea": "Satış statiki: “Köçdən əvvəl mərtəbə, lift, məsafə və yük həcmini bir mesajda yaz — komandamız planı daha rahat qursun.” Vizualda qutuların üstündə faktor etiketləri olsun.",
-        "goal": "SAVE",
-        "angle": "necə",
-        "hook": "Köçdən əvvəl bunu yaz",
-        "articleId": null,
-        "series": ""
-      },
       {
         "date": "2026-09-15",
         "template": "Story",
@@ -168,6 +146,28 @@
         "hook": "Rahat köçün sirri budur",
         "articleId": null,
         "series": "Qiymət Detektivi #3"
+      },
+      {
+        "date": "2026-09-21",
+        "template": "Poster",
+        "pillar": "Ehtiyatlı yük etibarı",
+        "idea": "Satış statiki: “Ağır dolabı dostla yox, komanda ilə daşı.” Vizualda dostlar tərəddüd edir, ustalar isə planlı şəkildə gəlir.",
+        "goal": "SHARE",
+        "angle": "əks-fikir",
+        "hook": "Bunu tək qaldırma",
+        "articleId": null,
+        "series": ""
+      },
+      {
+        "date": "2026-09-22",
+        "template": "Story",
+        "pillar": "Köç dramı komediyası",
+        "idea": "Trend adaptasiyası: “cats have a very important message” — soyuducu danışır: “məni əvvəlcədən boşalt, sonra qəhrəmanlıq etmə.” İllüstrasiya: soyuducu ofisdən müştərini çağırır.",
+        "goal": "SAVE",
+        "angle": "POV",
+        "hook": "Soyuducunun vacib mesajı var",
+        "articleId": null,
+        "series": "Köç Günü Dramı #4"
       }
     ]
   },
