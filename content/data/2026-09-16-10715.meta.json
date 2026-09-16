@@ -1,0 +1,47 @@
+{
+  "id": "2026-09-16-10715",
+  "template": "TipList",
+  "articleId": 10715,
+  "link": "https://yuk.az/bakida-yukdasima-xidmeti/",
+  "caption": "🏠 Bakıda köç planın belə qurulur\n\n📦 Əvvəl yükün həcmi, giriş şəraiti və tarix dəqiqləşir.\n🚪 Lift, mərtəbə və dar giriş varsa, işin planı dəyişir.\n✅ Qablaşdırma, yükləmə, daşınma və yeni ünvanda quraşdırma ardıcıllıqla gedir.\n\nYadda saxla ki, köç günü çaşıb qalma — lazım olanda baxasan deyə save et.\n\n📞 Zəng et: 050 209 62 99\n\n#yukdasima #koc #yukaz",
+  "hashtags": [
+    "#bakı",
+    "#köç",
+    "#yükdaşıma",
+    "#evköçü",
+    "#ofisköçü",
+    "#bakidakoc",
+    "#bakidayukdasima",
+    "#evdasinmasi",
+    "#yukdasimaazərbaycan",
+    "#kocxidmeti",
+    "#yukaz",
+    "#mudafieyuk",
+    "#yukdasima",
+    "#koc"
+  ],
+  "music": "render/2026-09-16-10715/music.norm.wav",
+  "attribution": "🎵 Renderself — Enter Void  (CC BY) https://audius.co/entervoid/renderself-20326",
+  "musicTrack": {
+    "id": "ndKwP",
+    "title": "Renderself",
+    "artist": "Enter Void ",
+    "license": "Attribution CC BY"
+  },
+  "voice": "marin",
+  "strategy": {
+    "goal": "SAVE",
+    "emotion": "rahatlıq + unutmaq qorxusu",
+    "mechanic": "sonlu nömrəli sistem / addımlar — 'gələcək sən buna ehtiyac duyacaq', dərinlik caption-da",
+    "angle": "necə",
+    "rehook": "'amma heç kimin demədiyi hissə…'"
+  },
+  "hookAlternatives": [
+    "KÖÇDƏN ƏVVƏL BUNU BİL",
+    "QİYMƏT NƏYƏ GÖRƏ DƏYİŞİR?",
+    "KÖÇ ÜÇÜN 7 ADDIM VAR"
+  ],
+  "firstComment": "Səncə köçdə ən çox çaşdıran hissə hansıdır?\n\n#bakı #köç #yükdaşıma #evköçü #ofisköçü #bakidakoc #bakidayukdasima #evdasinmasi #yukdasimaazərbaycan #kocxidmeti #yukaz #mudafieyuk #yukdasima #koc",
+  "altText": "Bakıda köçün planlanma mərhələlərini göstərən sadə mətnli reel: yükün həcmi, giriş şəraiti, lift və mərtəbə, sonra qablaşdırma, yükləmə, daşınma və quraşdırma.",
+  "captionRaw": "🏠 Bakıda köç planın belə qurulur\n\n📦 Əvvəl yükün həcmi, giriş şəraiti və tarix dəqiqləşir.\n\n🚪 Lift, mərtəbə və dar giriş varsa, işin planı dəyişir.\n\n✅ Qablaşdırma, yükləmə, daşınma və yeni ünvanda quraşdırma ardıcıllıqla gedir.\n\n📞 Zəng et: 050 209 62 99"
+}

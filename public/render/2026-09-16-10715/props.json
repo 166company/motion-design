@@ -1,0 +1,259 @@
+{
+  "id": "2026-09-16-10715",
+  "hook": "BAKIDA KÖÇ PLANI BELƏ QURULUR",
+  "total": 4,
+  "cta": {
+    "line1": "KÖÇDƏN ƏVVƏL SAXLA",
+    "line2": "Zəng et"
+  },
+  "music": "render/2026-09-16-10715/music.norm.wav",
+  "musicVolume": 0.45,
+  "scenes": [
+    {
+      "kind": "hook",
+      "spoken": "Bakıda köç planın belə qurulur.",
+      "audio": "render/2026-09-16-10715/s0.wav",
+      "words": [
+        {
+          "w": "Bakıda",
+          "start": 0,
+          "dur": 0.86
+        },
+        {
+          "w": "köç",
+          "start": 0.86,
+          "dur": 0.34
+        },
+        {
+          "w": "planın",
+          "start": 1.2,
+          "dur": 0.48
+        },
+        {
+          "w": "belə",
+          "start": 1.68,
+          "dur": 0.44
+        },
+        {
+          "w": "qurulur.",
+          "start": 2.12,
+          "dur": 0.36
+        }
+      ],
+      "durationInFrames": 108,
+      "media": {
+        "kind": "video",
+        "src": "render/2026-09-16-10715/m0.mp4",
+        "duration": 8
+      },
+      "icon": null
+    },
+    {
+      "kind": "item",
+      "spoken": "Əvvəl yükün həcmini yazırsan, sonra maşın seçilir.",
+      "title": "HƏCMİ ƏVVƏL YAZ",
+      "body": "Qiymətin əsası budur.",
+      "index": 1,
+      "icon": "render/2026-09-16-10715/icon0.svg",
+      "audio": "render/2026-09-16-10715/s1.wav",
+      "words": [
+        {
+          "w": "Əvvəl",
+          "start": 0,
+          "dur": 0.68
+        },
+        {
+          "w": "yükün",
+          "start": 0.68,
+          "dur": 0.44
+        },
+        {
+          "w": "həcmini",
+          "start": 1.12,
+          "dur": 0.5
+        },
+        {
+          "w": "yazırsan,",
+          "start": 1.62,
+          "dur": 0.52
+        },
+        {
+          "w": "sonra",
+          "start": 2.68,
+          "dur": 0.26
+        },
+        {
+          "w": "maşın",
+          "start": 2.94,
+          "dur": 0.64
+        },
+        {
+          "w": "seçilir.",
+          "start": 3.58,
+          "dur": 0.4
+        }
+      ],
+      "durationInFrames": 144,
+      "media": {
+        "kind": "video",
+        "src": "render/2026-09-16-10715/m1.mp4",
+        "duration": 13
+      }
+    },
+    {
+      "kind": "item",
+      "spoken": "Ünvan girişi, lift və mərtəbə əvvəl deyilir.",
+      "title": "GİRİŞİ DEYİŞ",
+      "body": "Dar giriş və lift işi uzadır.",
+      "index": 2,
+      "icon": "render/2026-09-16-10715/icon1.svg",
+      "audio": "render/2026-09-16-10715/s2.wav",
+      "words": [
+        {
+          "w": "Ünvan",
+          "start": 0,
+          "dur": 0.52
+        },
+        {
+          "w": "girişi,",
+          "start": 0.52,
+          "dur": 0.52
+        },
+        {
+          "w": "lift",
+          "start": 1.56,
+          "dur": 0.14
+        },
+        {
+          "w": "və",
+          "start": 1.7,
+          "dur": 0.24
+        },
+        {
+          "w": "mərtəbə",
+          "start": 1.94,
+          "dur": 0.58
+        },
+        {
+          "w": "əvvəl",
+          "start": 2.52,
+          "dur": 0.38
+        },
+        {
+          "w": "deyilir.",
+          "start": 2.9,
+          "dur": 0.32
+        }
+      ],
+      "durationInFrames": 126,
+      "media": {
+        "kind": "video",
+        "src": "render/2026-09-16-10715/m2.mp4",
+        "duration": 10
+      }
+    },
+    {
+      "kind": "item",
+      "spoken": "Qablaşdırma edilir, mebel sökülür, yük bərkidilir.",
+      "title": "QABLAŞDIRMA HAZIRLA",
+      "body": "Streç, karton, qoruyucu örtük işləyir.",
+      "index": 3,
+      "icon": "render/2026-09-16-10715/icon2.svg",
+      "audio": "render/2026-09-16-10715/s3.wav",
+      "words": [
+        {
+          "w": "Qablaşdırma",
+          "start": 0,
+          "dur": 0.9
+        },
+        {
+          "w": "edilir,",
+          "start": 0.9,
+          "dur": 0.4
+        },
+        {
+          "w": "mebel",
+          "start": 1.78,
+          "dur": 0.16
+        },
+        {
+          "w": "sökülür,",
+          "start": 1.94,
+          "dur": 0.54
+        },
+        {
+          "w": "yük",
+          "start": 2.96,
+          "dur": 0.12
+        },
+        {
+          "w": "bərkidilir.",
+          "start": 3.08,
+          "dur": 0.62
+        }
+      ],
+      "durationInFrames": 144,
+      "media": {
+        "kind": "video",
+        "src": "render/2026-09-16-10715/m3.mp4",
+        "duration": 10
+      }
+    },
+    {
+      "kind": "item",
+      "spoken": "Sonra tarix, saat və marşrut dəqiqləşir.",
+      "title": "SƏN SONDA DANIŞMA",
+      "body": "Tarix, saat və marşrut əvvəl razılaşır.",
+      "index": 4,
+      "icon": "render/2026-09-16-10715/icon3.svg",
+      "audio": "render/2026-09-16-10715/s4.wav",
+      "words": [
+        {
+          "w": "Sonra",
+          "start": 0,
+          "dur": 0.62
+        },
+        {
+          "w": "tarix,",
+          "start": 0.62,
+          "dur": 0.86
+        },
+        {
+          "w": "saat",
+          "start": 2.24,
+          "dur": 0.08
+        },
+        {
+          "w": "və",
+          "start": 2.24,
+          "dur": 0.48
+        },
+        {
+          "w": "marşrut",
+          "start": 2.72,
+          "dur": 0.52
+        },
+        {
+          "w": "dəqiqləşir.",
+          "start": 3.24,
+          "dur": 0.9
+        }
+      ],
+      "durationInFrames": 158,
+      "media": {
+        "kind": "video",
+        "src": "render/2026-09-16-10715/m4.mp4",
+        "duration": 22
+      }
+    },
+    {
+      "kind": "cta",
+      "spoken": "",
+      "icon": null,
+      "audio": null,
+      "words": [],
+      "durationInFrames": 110,
+      "media": null
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "repo": "166company/motion-design",
-  "updatedAt": "2026-09-16T17:04:35.887Z",
+  "updatedAt": "2026-09-16T18:22:43.560Z",
   "plan": {
     "pillars": [
       "Qiymət sirri açılır",
@@ -305,6 +305,52 @@
         "license": null,
         "vocal": false,
         "source": "synth"
+      }
+    },
+    {
+      "id": "2026-09-16-10715",
+      "hook": "BAKIDA KÖÇ PLANI BELƏ QURULUR",
+      "caption": "🏠 Bakıda köç planın belə qurulur\n\n📦 Əvvəl yükün həcmi, giriş şəraiti və tarix dəqiqləşir.\n🚪 Lift, mərtəbə və dar giriş varsa, işin planı dəyişir.\n✅ Qablaşdırma, yükləmə, daşınma və yeni ünvanda quraşdırma ardıcıllıqla gedir.\n\nYadda saxla ki, köç günü çaşıb qalma — lazım olanda baxasan deyə save et.\n\n📞 Zəng et: 050 209 62 99\n\n#yukdasima #koc #yukaz",
+      "hashtags": [
+        "#bakı",
+        "#köç",
+        "#yükdaşıma",
+        "#evköçü",
+        "#ofisköçü",
+        "#bakidakoc",
+        "#bakidayukdasima",
+        "#evdasinmasi",
+        "#yukdasimaazərbaycan",
+        "#kocxidmeti",
+        "#yukaz",
+        "#mudafieyuk",
+        "#yukdasima",
+        "#koc"
+      ],
+      "source": "https://yuk.az/bakida-yukdasima-xidmeti/",
+      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-16-10715/2026-09-16-10715.mp4",
+      "duration": 26.3,
+      "scenes": 6,
+      "status": "təsdiq-gözləyir",
+      "strategy": {
+        "goal": "SAVE",
+        "angle": "necə"
+      },
+      "hookAlternatives": [
+        "KÖÇDƏN ƏVVƏL BUNU BİL",
+        "QİYMƏT NƏYƏ GÖRƏ DƏYİŞİR?",
+        "KÖÇ ÜÇÜN 7 ADDIM VAR"
+      ],
+      "firstComment": "Səncə köçdə ən çox çaşdıran hissə hansıdır?\n\n#bakı #köç #yükdaşıma #evköçü #ofisköçü #bakidakoc #bakidayukdasima #evdasinmasi #yukdasimaazərbaycan #kocxidmeti #yukaz #mudafieyuk #yukdasima #koc",
+      "metrics": null,
+      "createdAt": "2026-09-16",
+      "template": "TipList",
+      "voice": "marin",
+      "music": {
+        "label": "Renderself — Enter Void ",
+        "license": "Attribution CC BY",
+        "vocal": false,
+        "source": "audius"
       }
     },
     {
