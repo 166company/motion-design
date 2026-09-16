@@ -1,6 +1,6 @@
 {
   "repo": "166company/motion-design",
-  "updatedAt": "2026-09-16T06:06:14.102Z",
+  "updatedAt": "2026-09-16T09:53:03.573Z",
   "plan": {
     "pillars": [
       "Qiymət sirri açılır",
@@ -174,6 +174,139 @@
   "brain": "## Qaliblər\n- “EV DAŞINMASI QİYMƏTİ NƏYƏ GÖRƏ DƏYİŞİR?” — **question / secret-gap**. 107 baxış, 56 əhatə. Median baxışdan **1.60x**, median əhatədən **7x** yuxarı. Real alıcı sualı açılır.\n- “Bir zəng bəsdir” — **plain-statement / low-friction promise**. 68 baxış, 2 paylaşım. Sadə addım vədi işləyir, amma daha konkret fayda lazımdır.\n- “SƏNİN GÖTÜRƏ BİLMƏDİYİN YÜKÜ BİZ GÖTÜRƏK.” — **plain-statement / relief promise**. 67 baxış; median səviyyə. Emosional yük götürmə mesajı var.\n\n## İşləməyənlər\n- “Yük.az Düyməsi” — **plain/fun poster**. 11 baxış, medianın **0.16x**-i. Fun poster üçün siqnal zəifdir.\n- “Zəng et Rahat köç” — **plain ad slogan**. 42 baxış, medianın **0.63x**-i. Çox ümumi reklam dilidir.\n- Saxlama və şərh hələ siqnal vermir: bütün postlarda saxlama 0, şərh 0.\n- Lead ölçümü yoxdur: zəng, DM, WhatsApp klikləri verilmir.\n\n## Qaydalar\n- Qiymət mövzusu əsas kontent xəttidir; həftədə minimum 2 dəfə test olunmalıdır.\n- Hook sual/secret-gap olarsa daha güclü işləyir: “nəyə görə dəyişir?”, “niyə baha çıxır?”\n- Ümumi şüarlar zəifdir; konkret səbəb və fayda yaz.\n- Qiymət izahında mütləq faktorlar: mərtəbə, lift, məsafə, yük həcmi, usta sayı, qablaşdırma.\n- Poster/fun formatını azalt; izahlı Reel və faydalı Carousel test et.\n- CTA ölçülə bilən olsun: “DM-ə QİYMƏT yaz”, “WhatsApp-a KÖÇ yaz”.\n- Data azdır; nəticələr ilkin hipotezdir, qəti qayda deyil.\n",
   "leads": 0,
   "entries": [
+    {
+      "id": "2026-09-16-poster-3",
+      "images": [
+        "https://github.com/166company/motion-design/releases/download/reel-2026-09-16-poster-3/2026-09-16-poster-3-1.png"
+      ],
+      "hook": "Yükün şəkli kifayətdir — Planı Quraq",
+      "caption": "📲 Yükünü göstər, həcminə görə plan quraq.\n\nOperatorumuz yükə baxıb sənə əvvəlcədən aydın məlumat verir.\n\nEv köçü də, ofis daşıma da rahat getsin deyə işi qabaqcadan düzənləyirik.\n\nİndi əlaqə saxla, köçünü başından rahat et.\n\n📞 Zəng et: 050 209 62 99\n\n#yukaz #yukdasima #evdasinmasi",
+      "hashtags": [
+        "#yukaz",
+        "#yukdasima",
+        "#evdasinmasi",
+        "#ofisdasinmasi",
+        "#bakida",
+        "#koc",
+        "#dasima",
+        "#yukdasimaaz",
+        "#evkocu",
+        "#ofiskocu",
+        "#bakikoc",
+        "#yuk",
+        "#dasima_xidmeti"
+      ],
+      "source": "https://yuk.az",
+      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-16-poster-3/2026-09-16-poster-3.mp4",
+      "duration": 0,
+      "scenes": 1,
+      "status": "təsdiq-gözləyir",
+      "kind": "sales",
+      "strategy": null,
+      "firstComment": "Səncə köç zamanı ən çox nə çətin olur? 👇\n\n#yukaz #yukdasima #evdasinmasi #ofisdasinmasi #bakida #koc #dasima #yukdasimaaz #evkocu #ofiskocu #bakikoc #yuk #dasima_xidmeti",
+      "metrics": null,
+      "createdAt": "2026-09-16",
+      "template": "Poster",
+      "voice": null,
+      "music": {
+        "label": "Orijinal sintez",
+        "license": null,
+        "vocal": false,
+        "source": "synth"
+      }
+    },
+    {
+      "id": "2026-09-16-poster-2",
+      "images": [
+        "https://github.com/166company/motion-design/releases/download/reel-2026-09-16-poster-2/2026-09-16-poster-2-1.png"
+      ],
+      "hook": "Divan sığmır, lift də küsüb — Bir Zəng Bəsdir",
+      "caption": "😅 Bir tərəfdə lift, bir tərəfdə divan dramı.\n\nYük.az var — yükün həcminə görə əvvəlcədən plan quraq.\n\nÇağır, yükü sən yox, biz daşıyaq.\n\n📞 Zəng et: 050 209 62 99\n\n#yukaz #koc #yukdasima",
+      "hashtags": [
+        "#bakı",
+        "#köç",
+        "#yükdaşıma",
+        "#evköçü",
+        "#ofisköçü",
+        "#daşınma",
+        "#mebeldaşıma",
+        "#yüklük",
+        "#bakıdaevköçü",
+        "#ofisdaşınması",
+        "#şəhərdaxiliköç",
+        "#yükdaşımaxidməti",
+        "#yukaz",
+        "#koc",
+        "#yukdasima"
+      ],
+      "source": "https://yuk.az",
+      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-16-poster-2/2026-09-16-poster-2.mp4",
+      "duration": 0,
+      "scenes": 1,
+      "status": "təsdiq-gözləyir",
+      "kind": "fun",
+      "inspiration": {
+        "url": "https://i.imgflip.com/1g8my4.jpg",
+        "quote": "Two Buttons"
+      },
+      "strategy": null,
+      "firstComment": "Sənin daşınanda ən böyük əngəl nə olur: lift, pilləkən, yoxsa divan?\n\n#bakı #köç #yükdaşıma #evköçü #ofisköçü #daşınma #mebeldaşıma #yüklük #bakıdaevköçü #ofisdaşınması #şəhərdaxiliköç #yükdaşımaxidməti #yukaz #koc #yukdasima",
+      "metrics": null,
+      "createdAt": "2026-09-16",
+      "template": "Poster",
+      "voice": null,
+      "music": {
+        "label": "Orijinal sintez",
+        "license": null,
+        "vocal": false,
+        "source": "synth"
+      }
+    },
+    {
+      "id": "2026-09-16-poster-1",
+      "images": [
+        "https://github.com/166company/motion-design/releases/download/reel-2026-09-16-poster-1/2026-09-16-poster-1-1.png"
+      ],
+      "hook": "Dostları pilləkənə çağırmaq? — Yük.az-a Yaz",
+      "caption": "📦 Divan da rahatdır, dostluq da salamat.\n\nYükün də yerində olsun, əhvalın da.\nBiz yüklə işi götürürük, sən rahat izləyirsən.\n\nYük.az-a yaz, köçü birlikdə planlayaq.\n\n📞 Zəng et: 050 209 62 99\n\n#yukaz #yukdasima #evdasinmasi",
+      "hashtags": [
+        "#bakı",
+        "#köç",
+        "#yukdasima",
+        "#evdasinmasi",
+        "#bakikocu",
+        "#ofisköçü",
+        "#mebeldaşima",
+        "#yükdaşıma",
+        "#rahatköç",
+        "#tezköç",
+        "#köçxidməti",
+        "#yükaz",
+        "#yukaz"
+      ],
+      "source": "https://yuk.az",
+      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-16-poster-1/2026-09-16-poster-1.mp4",
+      "duration": 0,
+      "scenes": 1,
+      "status": "təsdiq-gözləyir",
+      "kind": "fun",
+      "inspiration": {
+        "url": "https://i.imgflip.com/30b1gx.jpg",
+        "quote": "Drake Hotline Bling"
+      },
+      "strategy": null,
+      "firstComment": "Sənin köçündə ən çox nə yorur: qablaşdırma, daşıma, yoxsa yerləşdirmə?\n\n#bakı #köç #yukdasima #evdasinmasi #bakikocu #ofisköçü #mebeldaşima #yükdaşıma #rahatköç #tezköç #köçxidməti #yükaz #yukaz",
+      "metrics": null,
+      "createdAt": "2026-09-16",
+      "template": "Poster",
+      "voice": null,
+      "music": {
+        "label": "Orijinal sintez",
+        "license": null,
+        "vocal": false,
+        "source": "synth"
+      }
+    },
     {
       "id": "2026-09-15-story",
       "hook": "Ən çətini mebel deyil",

@@ -1,77 +1,6 @@
 {
-  "date": "2026-09-15",
-  "examples": [
-    {
-      "url": "https://www.aol.com/articles/hilarious-complaint-grocery-bag-storage-150034000.html",
-      "quote": "Apparently people are folding their grocery bags into tiny perfect triangles now. I thought we all agreed the proper storage method was to nominate the strongest grocery bag and stuff 63 other bags inside it, like our mothers and grandmothers before us.",
-      "context": "Domestic / household; article says the post “quickly blew up” after being posted on Threads. ([aol.com](https://www.aol.com/articles/hilarious-complaint-grocery-bag-storage-150034000.html?utm_source=openai))",
-      "platform": "Threads",
-      "whyFunny": "Bag-of-bags adulthood joke."
-    },
-    {
-      "url": "https://www.aol.com/articles/hilarious-complaint-grocery-bag-storage-150034000.html",
-      "quote": "I can barely stay on top of folding my laundry; I'm not folding my grocery bags. Are you kidding me,",
-      "context": "Domestic / chores; quoted as a reaction in the same viral grocery-bag storage explainer. ([aol.com](https://www.aol.com/articles/hilarious-complaint-grocery-bag-storage-150034000.html?utm_source=openai))",
-      "platform": "Threads/comment",
-      "whyFunny": "Turns an organizing hack into unpaid labor."
-    },
-    {
-      "url": "https://pleated-jeans.com/2026/09/14/funniest-tweets-of-the-day-9-14-26/",
-      "quote": "Work hours so cooked Apple Maps thinks I live at work and work at my apartment",
-      "context": "Work / adulting; featured in Pleated Jeans’ September 14, 2026 funniest-tweets roundup. ([pleated-jeans.com](https://pleated-jeans.com/2026/09/14/funniest-tweets-of-the-day-9-14-26/))",
-      "platform": "X/Twitter",
-      "whyFunny": "Location-services burnout joke."
-    },
-    {
-      "url": "https://zamantika.com/ja/omgsidewalks/status/2096901290492133537",
-      "quote": "FUN FACT: doing absolutely nothing at work is more draining mentally than being busy at work.",
-      "context": "Work; the post page shows the tweet text and date, Sep. 7. It also appears in Pleated Jeans’ work roundup. ([zamantika.com](https://zamantika.com/ja/omgsidewalks/status/2096901290492133537?utm_source=openai))",
-      "platform": "X/Twitter",
-      "whyFunny": "Quiet-day-at-work paradox."
-    },
-    {
-      "url": "https://pleated-jeans.com/2026/09/12/funny-work-tweets-this-week-9-12-26/",
-      "quote": "Nobody wants to work anymore personally, I never wanted to work in the first place…",
-      "context": "Work; featured in Pleated Jeans’ September 12 work-tweets roundup. ([pleated-jeans.com](https://pleated-jeans.com/2026/09/12/funny-work-tweets-this-week-9-12-26/))",
-      "platform": "X/Twitter",
-      "whyFunny": "Classic labor complaint flipped inward."
-    },
-    {
-      "url": "https://pleated-jeans.com/2026/09/12/funny-work-tweets-this-week-9-12-26/",
-      "quote": "paycheck hit i'm at bed bath and beyond telling them to show me whats beyond",
-      "context": "Work/payday + shopping; visible in Pleated Jeans’ roundup and also surfaced in older BuzzFeed/Yahoo syndication as tweet text. ([pleated-jeans.com](https://pleated-jeans.com/2026/09/12/funny-work-tweets-this-week-9-12-26/))",
-      "platform": "X/Twitter",
-      "whyFunny": "Payday overconfidence, retail-store-name literalism."
-    },
-    {
-      "url": "https://pleated-jeans.com/2026/09/14/funny-self-checkout-tweets/",
-      "quote": "How to use the self-checkout: scan, bag, scream, take out, repeat.",
-      "context": "Shopping / errands; featured in Pleated Jeans’ September 14 self-checkout roundup. ([pleated-jeans.com](https://pleated-jeans.com/2026/09/14/funny-self-checkout-tweets/))",
-      "platform": "X/Twitter",
-      "whyFunny": "Accurate self-checkout rage loop."
-    },
-    {
-      "url": "https://pleated-jeans.com/2026/09/12/funniest-tweets-of-the-week-9-12-26/",
-      "quote": "It's actually insane how crocs won the culture war.",
-      "context": "General hot take / fashion; featured in Pleated Jeans’ September 12 weekly tweets roundup. ([pleated-jeans.com](https://pleated-jeans.com/2026/09/12/funniest-tweets-of-the-week-9-12-26/))",
-      "platform": "X/Twitter",
-      "whyFunny": "Absurd seriousness applied to footwear."
-    },
-    {
-      "url": "https://onedio.com/haber/son-24-saatin-viral-tweetleri-1379292",
-      "quote": "2 aydır nadasa bıraktığım beynimi pazartesi kullanmaya başlarken",
-      "context": "Turkish school/adulting joke; in Onedio’s Sep. 6, 2026 “Son 24 Saatin Viral Tweetleri” roundup. ([onedio.com](https://onedio.com/haber/son-24-saatin-viral-tweetleri-1379292))",
-      "platform": "X/Twitter",
-      "whyFunny": "Back-to-school brain reboot."
-    },
-    {
-      "url": "https://onedio.com/haber/son-24-saatin-viral-tweetleri-1379292",
-      "quote": "araba yolculugunda babamın açtığı yapay zeka türküler yüzünden ben",
-      "context": "Turkish family/traffic/car-ride joke; in the same Onedio viral tweets roundup. ([onedio.com](https://onedio.com/haber/son-24-saatin-viral-tweetleri-1379292))",
-      "platform": "X/Twitter",
-      "whyFunny": "Dad music taste meets AI weirdness."
-    }
-  ],
+  "date": "2026-09-16",
+  "examples": [],
   "templates": [
     {
       "name": "Drake Hotline Bling",
@@ -138,20 +67,20 @@
       "url": "https://i.imgflip.com/54hjww.jpg"
     },
     {
-      "name": "Batman Slapping Robin",
-      "url": "https://i.imgflip.com/9ehk.jpg"
-    },
-    {
       "name": "Y'all Got Any More Of That",
       "url": "https://i.imgflip.com/21uy0f.jpg"
     },
     {
-      "name": "Ancient Aliens",
-      "url": "https://i.imgflip.com/26am.jpg"
+      "name": "Batman Slapping Robin",
+      "url": "https://i.imgflip.com/9ehk.jpg"
     },
     {
       "name": "X, X Everywhere",
       "url": "https://i.imgflip.com/1ihzfe.jpg"
+    },
+    {
+      "name": "Ancient Aliens",
+      "url": "https://i.imgflip.com/26am.jpg"
     },
     {
       "name": "Bernie Sanders Once Again Asking",
@@ -186,16 +115,16 @@
       "url": "https://i.imgflip.com/8d317n.png"
     },
     {
-      "name": "They're The Same Picture",
-      "url": "https://i.imgflip.com/2za3u1.jpg"
-    },
-    {
       "name": "You Guys are Getting Paid",
       "url": "https://i.imgflip.com/2xscjb.png"
     },
     {
       "name": "0 days without (Lenny, Simpsons)",
       "url": "https://i.imgflip.com/72epa9.png"
+    },
+    {
+      "name": "They're The Same Picture",
+      "url": "https://i.imgflip.com/2za3u1.jpg"
     },
     {
       "name": "Mother Ignoring Kid Drowning In A Pool",
@@ -214,12 +143,12 @@
       "url": "https://i.imgflip.com/43a45p.png"
     },
     {
-      "name": "Tuxedo Winnie The Pooh",
-      "url": "https://i.imgflip.com/2ybua0.png"
-    },
-    {
       "name": "Oprah You Get A",
       "url": "https://i.imgflip.com/gtj5t.jpg"
+    },
+    {
+      "name": "Tuxedo Winnie The Pooh",
+      "url": "https://i.imgflip.com/2ybua0.png"
     },
     {
       "name": "Squidward window",
