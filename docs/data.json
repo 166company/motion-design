@@ -1,6 +1,6 @@
 {
   "repo": "166company/motion-design",
-  "updatedAt": "2026-09-15T21:29:02.627Z",
+  "updatedAt": "2026-09-16T00:25:37.742Z",
   "plan": {
     "pillars": [
       "Qiymət sirri açılır",
@@ -15,28 +15,6 @@
       "Usta vs Divan #N"
     ],
     "slots": [
-      {
-        "date": "2026-09-15",
-        "template": "Story",
-        "pillar": "Köç dramı komediyası",
-        "idea": "Trend adaptasiyası: “art thief crew agrees on art” formatı — ailə köç günü nəyin ‘lazımlı əşya’, nəyin ‘atılacaq şey’ olduğuna razılaşa bilmir. İllüstrasiyada kreslo, köhnə vaza və “bunu saxlayırıq!” dramı.",
-        "goal": "SHARE",
-        "angle": "əks-fikir",
-        "hook": "Ən çətini mebel deyil",
-        "articleId": null,
-        "series": "Köç Günü Dramı #1"
-      },
-      {
-        "date": "2026-09-15",
-        "template": "Poster",
-        "pillar": "Bir mesajla sifariş",
-        "idea": "Satış statiki: “Evdən-ofisə köçürsən? Yükün foto/videosunu göndər, biz uyğun maşın və komanda planını deyək.” Sadə WhatsApp/DM vizualı.",
-        "goal": "FOLLOW",
-        "angle": "nəticə",
-        "hook": "Köç panikası azalır",
-        "articleId": null,
-        "series": ""
-      },
       {
         "date": "2026-09-16",
         "template": "TipList",
@@ -168,6 +146,28 @@
         "hook": "Soyuducunun vacib mesajı var",
         "articleId": null,
         "series": "Köç Günü Dramı #4"
+      },
+      {
+        "date": "2026-09-22",
+        "template": "Poster",
+        "pillar": "Bir mesajla sifariş",
+        "idea": "Satış statiki: “Soyuducu, paltaryuyan, iri texnika var? DM-ə KÖÇ yaz, planı öncədən quraq.” Vizualda iri texnikaların yanına ‘əvvəlcədən de’ etiketi.",
+        "goal": "LEAD",
+        "angle": "sual",
+        "hook": "İri texnika var?",
+        "articleId": null,
+        "series": ""
+      },
+      {
+        "date": "2026-09-23",
+        "template": "TipList",
+        "pillar": "Rahat köç sistemi",
+        "idea": "Sumqayıt istiqamətində yükdaşıma üçün məqalə əsaslı TipList: marşrut, yük həcmi, qablaşdırma, bina girişi və usta planı. Reel dərinliyə girmir, caption məqaləyə yönləndirir.",
+        "goal": "SAVE",
+        "angle": "nömrəli",
+        "hook": "Sumqayıt köçündə bunu unutma",
+        "articleId": 10728,
+        "series": ""
       }
     ]
   },
