@@ -16,7 +16,7 @@ const MODEL = process.env.OPENAI_CREATIVE_MODEL ?? "gpt-5.5";
 export type Plan = {
   silent: boolean | null;                 // null = dəyişmə
   voice: "marin" | "coral" | "cedar" | "ash" | null;
-  template: "TipList" | "Explainer" | "Story" | "Carousel" | "Poster" | null;
+  template: "TipList" | "Explainer" | "Story" | "Carousel" | "Poster" | "Motion" | null;
   musicMood: "energetic" | "calm" | "none" | null;
   contentNotes: string;                   // ssenari/mətn modelinə gedən qeyd
   visualNotes: string;                    // foto/illüstrasiya/asset promptlarına gedən qeyd (İNGİLİSCƏ)
@@ -34,7 +34,7 @@ const schema = {
   properties: {
     silent: { type: ["boolean", "null"], description: "səsləndirmə olmasın → true; səs olsun → false; qeyd yoxdursa null" },
     voice: { type: ["string", "null"], enum: ["marin", "coral", "cedar", "ash", null], description: "qadın: marin/coral, kişi: cedar/ash; qeyd yoxdursa null" },
-    template: { type: ["string", "null"], enum: ["TipList", "Explainer", "Story", "Carousel", "Poster", null], description: "şablon dəyişməli olduqda; yoxsa null" },
+    template: { type: ["string", "null"], enum: ["TipList", "Explainer", "Story", "Carousel", "Poster", "Motion", null], description: "şablon dəyişməli olduqda; yoxsa null" },
     musicMood: { type: ["string", "null"], enum: ["energetic", "calm", "none", null] },
     contentNotes: { type: "string", description: "mətn/ssenari üçün konkret göstərişlər, azərbaycanca; yoxdursa boş" },
     visualNotes: { type: "string", description: "vizual üçün konkret göstərişlər İNGİLİSCƏ (foto/illüstrasiya promptuna əlavə olunur): üslub, rəng, səhnə, istiqamət; yoxdursa boş" },
@@ -48,7 +48,7 @@ const schema = {
 
 const SYSTEM = `Sən Yük.az video-istehsal sisteminin şərh interpretatorusan. İstifadəçi paneldə videoya baxıb sərbəst qeyd yazır, bəzən şəkil əlavə edir.
 Sənin işin: qeydi (və şəkilləri) sistemin parametrlərinə çevirmək. Sistem haqqında:
-- Şablonlar: TipList (məqalə əsaslı, stok video fonlu, səsli), Explainer (kodla çəkilmiş animasiya), Story (AI illüstrasiya "Köç günü", default səssiz), Carousel (3 slaydlı statik hazırcavab post), Poster (tək statik post: fun — trend meme formatı yük.az-a uyğunlaşdırılıb, və ya satış — loqolu işçilər/maşın/telefon səhnəsi; qısa kicker + 2-4 sözlük başlıq + nömrə).
+- Şablonlar: TipList (məqalə əsaslı, stok video fonlu, səsli), Explainer (kodla çəkilmiş animasiya), Story (AI illüstrasiya "Köç günü", default səssiz), Carousel (3 slaydlı statik hazırcavab post), Motion (hər dəfə tam fərqli illüstrasiya/motion-design videosu — öz mövzusu, üslubu, səhnələri və assetləri), Poster (tək statik post: fun — trend meme formatı yük.az-a uyğunlaşdırılıb, və ya satış — loqolu işçilər/maşın/telefon səhnəsi; qısa kicker + 2-4 sözlük başlıq + nömrə).
 - Səs: OpenAI səsləri marin/coral (qadın), cedar/ash (kişi). "səs olmasın / yalnız musiqi" → silent=true.
 - Musiqi: energetic (gümrah), calm (sakit), none.
 - Story assetləri: truck, mover, boxes, sofa, phone, plant, bg_street, bg_home, bg_interior — "maşın pisdir" → assetHints:["truck"].

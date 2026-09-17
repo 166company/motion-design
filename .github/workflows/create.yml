@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
     inputs:
       template:
-        description: "Şablon: auto (növbə), tiplist, explainer, explainer-silent, story, story-silent, carousel, poster"
+        description: "Şablon: auto (növbə), motion, tiplist, explainer, explainer-silent, story, story-silent, carousel, poster"
         default: "auto"
 
 permissions:
@@ -81,9 +81,9 @@ jobs:
           CAL=$(python -c "import json,io,datetime;c=json.load(io.open('content/calendar.json',encoding='utf-8'));d=datetime.date.today().isoformat();print(next((s['template'].lower() for s in c['slots'] if s['date']==d and s['template']!='Poster'),''))" 2>/dev/null || true)
           if [ "${{ github.event.schedule }}" = "0 5 * * *" ]; then T=poster
           elif [ "$REQ" = "auto" ] && [ -n "$CAL" ]; then T="$CAL"; echo "təqvimdən: $CAL"
-          elif [ "${{ github.event.schedule }}" = "30 14 * * 2,4,6" ]; then case $((N % 2)) in 0) T=story ;; *) T=explainer ;; esac
+          elif [ "${{ github.event.schedule }}" = "30 14 * * 2,4,6" ]; then case $((N % 3)) in 0) T=motion ;; 1) T=story ;; *) T=explainer ;; esac
           elif [ "$REQ" = "auto" ]; then
-            case $((N % 4)) in 0) T=story ;; 1) T=explainer ;; 2) T=carousel ;; *) T=tiplist ;; esac
+            case $((N % 5)) in 0) T=motion ;; 1) T=story ;; 2) T=explainer ;; 3) T=carousel ;; *) T=tiplist ;; esac
           else T="$REQ"; fi
           echo "template=$T" >> "$GITHUB_OUTPUT"
           echo "şablon: $T (mövcud: $N)"
@@ -95,6 +95,7 @@ jobs:
           case "${{ steps.tpl.outputs.template }}" in
             explainer|explainer-silent) npx tsx pipeline/explainer.ts ;;
             story|story-silent) npx tsx pipeline/story.ts ;;
+            motion) npx tsx pipeline/motion.ts ;;
             carousel) npx tsx pipeline/carousel.ts ;;
             poster) npx tsx pipeline/poster.ts ;;
             *) npx tsx pipeline/run.ts ;;

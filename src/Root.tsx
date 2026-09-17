@@ -2,6 +2,8 @@ import { Composition } from "remotion";
 import { TipList, totalDuration } from "./compositions/TipList";
 import { Explainer, explainerSchema, explainerTotal, type ExplainerProps } from "./compositions/Explainer";
 import explainerDefault from "./explainerDefault.json";
+import { Motion, motionSchema, motionTotal, type MotionProps } from "./compositions/Motion";
+import motionDefault from "./motionDefault.json";
 import { Story, storySchema, storyTotal, type StoryProps } from "./compositions/Story";
 import storyDefault from "./storyDefault.json";
 import { Carousel, carouselSchema, type CarouselProps } from "./compositions/Carousel";
@@ -35,6 +37,17 @@ export const RemotionRoot: React.FC = () => {
       fps={1}
       durationInFrames={3}
       calculateMetadata={({ props }) => ({ durationInFrames: props.lines.length + 1 })}
+    />
+    <Composition
+      id="Motion"
+      component={Motion}
+      schema={motionSchema}
+      defaultProps={motionDefault as unknown as MotionProps}
+      width={canvas.width}
+      height={canvas.height}
+      fps={canvas.fps}
+      durationInFrames={600}
+      calculateMetadata={({ props }) => ({ durationInFrames: motionTotal(props.scenes) })}
     />
     <Composition
       id="Story"

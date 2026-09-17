@@ -1,0 +1,50 @@
+{
+ "cat_supervisor": {
+  "w": 900,
+  "h": 900,
+  "left": 0.114,
+  "top": 0.08,
+  "right": 0.941,
+  "bottom": 0.873
+ },
+ "tape_tangle": {
+  "w": 900,
+  "h": 900,
+  "left": 0.064,
+  "top": 0.154,
+  "right": 0.964,
+  "bottom": 0.82
+ },
+ "folding_box": {
+  "w": 900,
+  "h": 900,
+  "left": 0.036,
+  "top": 0.209,
+  "right": 0.964,
+  "bottom": 0.782
+ },
+ "familiar_blanket": {
+  "w": 900,
+  "h": 900,
+  "left": 0.044,
+  "top": 0.272,
+  "right": 0.963,
+  "bottom": 0.731
+ },
+ "bubble_wrap_roll": {
+  "w": 900,
+  "h": 900,
+  "left": 0.082,
+  "top": 0.186,
+  "right": 0.922,
+  "bottom": 0.823
+ },
+ "approved_cat_in_box": {
+  "w": 900,
+  "h": 900,
+  "left": 0.071,
+  "top": 0.04,
+  "right": 0.912,
+  "bottom": 0.938
+ }
+}

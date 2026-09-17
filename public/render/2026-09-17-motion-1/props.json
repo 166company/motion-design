@@ -1,0 +1,267 @@
+{
+  "id": "2026-09-17-motion-1",
+  "assets": "render/2026-09-17-motion-1/assets",
+  "bounds": {
+    "worried_piano": {
+      "w": 900,
+      "h": 900,
+      "left": 0.057,
+      "top": 0.142,
+      "right": 0.943,
+      "bottom": 0.886
+    },
+    "measuring_tape": {
+      "w": 900,
+      "h": 900,
+      "left": 0.092,
+      "top": 0.099,
+      "right": 0.908,
+      "bottom": 0.854
+    },
+    "padded_blanket": {
+      "w": 900,
+      "h": 900,
+      "left": 0.088,
+      "top": 0.077,
+      "right": 0.924,
+      "bottom": 0.889
+    },
+    "corner_guard": {
+      "w": 900,
+      "h": 900,
+      "left": 0.166,
+      "top": 0.039,
+      "right": 0.92,
+      "bottom": 0.893
+    },
+    "piano_dolly": {
+      "w": 900,
+      "h": 900,
+      "left": 0.023,
+      "top": 0.181,
+      "right": 0.978,
+      "bottom": 0.804
+    },
+    "golden_chord": {
+      "w": 900,
+      "h": 900,
+      "left": 0.107,
+      "top": 0.138,
+      "right": 0.882,
+      "bottom": 0.892
+    }
+  },
+  "scenes": [
+    {
+      "bg": "bg_music_floor",
+      "text": "Piano nədən qorxur?",
+      "textPos": "top",
+      "camera": "push",
+      "transition": "slide",
+      "sfx": "tick",
+      "items": [
+        {
+          "asset": "worried_piano",
+          "x": 0.5,
+          "y": 0.84,
+          "w": 0.78,
+          "anim": "swing",
+          "delay": 0,
+          "flip": false,
+          "z": 3
+        },
+        {
+          "asset": "measuring_tape",
+          "x": 0.22,
+          "y": 0.88,
+          "w": 0.24,
+          "anim": "float",
+          "delay": 8,
+          "flip": false,
+          "z": 1
+        },
+        {
+          "asset": "corner_guard",
+          "x": 0.78,
+          "y": 0.86,
+          "w": 0.22,
+          "anim": "rise",
+          "delay": 14,
+          "flip": false,
+          "z": 2
+        }
+      ],
+      "durationInFrames": 120
+    },
+    {
+      "bg": "bg_stair_turn",
+      "text": "Döngə əvvəl ölçülür",
+      "textPos": "top",
+      "camera": "panRight",
+      "transition": "wipe",
+      "sfx": "whoosh",
+      "items": [
+        {
+          "asset": "worried_piano",
+          "x": 0.38,
+          "y": 0.83,
+          "w": 0.56,
+          "anim": "slideRight",
+          "delay": 0,
+          "flip": false,
+          "z": 3
+        },
+        {
+          "asset": "measuring_tape",
+          "x": 0.68,
+          "y": 0.85,
+          "w": 0.3,
+          "anim": "rise",
+          "delay": 6,
+          "flip": true,
+          "z": 2
+        },
+        {
+          "asset": "corner_guard",
+          "x": 0.79,
+          "y": 0.74,
+          "w": 0.2,
+          "anim": "spin",
+          "delay": 15,
+          "flip": false,
+          "z": 1
+        }
+      ],
+      "durationInFrames": 120
+    },
+    {
+      "bg": "bg_music_floor",
+      "text": "Kövrək yerlər gizlənmir",
+      "textPos": "top",
+      "camera": "pull",
+      "transition": "fade",
+      "sfx": "pop",
+      "items": [
+        {
+          "asset": "worried_piano",
+          "x": 0.5,
+          "y": 0.86,
+          "w": 0.8,
+          "anim": "float",
+          "delay": 0,
+          "flip": false,
+          "z": 2
+        },
+        {
+          "asset": "padded_blanket",
+          "x": 0.5,
+          "y": 0.84,
+          "w": 0.35,
+          "anim": "fall",
+          "delay": 8,
+          "flip": false,
+          "z": 4
+        },
+        {
+          "asset": "corner_guard",
+          "x": 0.77,
+          "y": 0.86,
+          "w": 0.24,
+          "anim": "pop",
+          "delay": 16,
+          "flip": false,
+          "z": 5
+        }
+      ],
+      "durationInFrames": 120
+    },
+    {
+      "bg": "bg_stair_turn",
+      "text": "Ağırlıq ritmlə keçir",
+      "textPos": "top",
+      "camera": "panLeft",
+      "transition": "slide",
+      "sfx": "riser",
+      "items": [
+        {
+          "asset": "worried_piano",
+          "x": 0.51,
+          "y": 0.84,
+          "w": 0.64,
+          "anim": "driveIn",
+          "delay": 0,
+          "flip": false,
+          "z": 4
+        },
+        {
+          "asset": "piano_dolly",
+          "x": 0.51,
+          "y": 0.89,
+          "w": 0.34,
+          "anim": "slideLeft",
+          "delay": 6,
+          "flip": false,
+          "z": 2
+        },
+        {
+          "asset": "padded_blanket",
+          "x": 0.28,
+          "y": 0.86,
+          "w": 0.28,
+          "anim": "float",
+          "delay": 12,
+          "flip": false,
+          "z": 1
+        }
+      ],
+      "durationInFrames": 120
+    },
+    {
+      "bg": "bg_new_room",
+      "text": "İlk akkord yeni evdə",
+      "textPos": "top",
+      "camera": "shake",
+      "transition": "none",
+      "sfx": "ring",
+      "items": [
+        {
+          "asset": "worried_piano",
+          "x": 0.5,
+          "y": 0.82,
+          "w": 0.76,
+          "anim": "zoom",
+          "delay": 0,
+          "flip": false,
+          "z": 3
+        },
+        {
+          "asset": "golden_chord",
+          "x": 0.5,
+          "y": 0.52,
+          "w": 0.3,
+          "anim": "rise",
+          "delay": 10,
+          "flip": false,
+          "z": 4
+        },
+        {
+          "asset": "corner_guard",
+          "x": 0.2,
+          "y": 0.88,
+          "w": 0.2,
+          "anim": "driveOut",
+          "delay": 18,
+          "flip": true,
+          "z": 1
+        }
+      ],
+      "durationInFrames": 120
+    }
+  ],
+  "cta": {
+    "line1": "Saxla, piano köçəndə lazım",
+    "line2": "Zəng et"
+  },
+  "music": "render/2026-09-17-motion-1/music.norm.wav",
+  "musicVolume": 0.75
+}

@@ -11,11 +11,12 @@ import fs from "node:fs/promises";
 import { listArticles } from "./wp.ts";
 import { getTrends } from "./trends.ts";
 import { playbook, memory } from "./skills.ts";
+import { TOPICS, usedTopics } from "./topics.ts";
 import { chat } from "./llm.ts";
 
 const MODEL = process.env.OPENAI_CREATIVE_MODEL ?? "gpt-5.5";
 
-export type Slot = { date: string; template: "TipList" | "Explainer" | "Story" | "Carousel" | "Poster"; pillar: string; idea: string; goal: string; angle: string; hook: string; articleId: number | null; series: string };
+export type Slot = { date: string; template: "TipList" | "Explainer" | "Story" | "Carousel" | "Poster" | "Motion"; pillar: string; idea: string; goal: string; angle: string; hook: string; articleId: number | null; series: string; topic: string };
 
 const schema = {
   type: "object", additionalProperties: false, required: ["pillars", "series", "slots"],
@@ -26,10 +27,10 @@ const schema = {
       type: "array", minItems: 10, maxItems: 45,
       items: {
         type: "object", additionalProperties: false,
-        required: ["date", "template", "pillar", "idea", "goal", "angle", "hook", "articleId", "series"],
+        required: ["date", "template", "pillar", "idea", "goal", "angle", "hook", "articleId", "series", "topic"],
         properties: {
           date: { type: "string", description: "YYYY-MM-DD" },
-          template: { type: "string", enum: ["TipList", "Explainer", "Story", "Carousel", "Poster"] },
+          template: { type: "string", enum: ["Motion", "TipList", "Explainer", "Story", "Carousel", "Poster"] },
           pillar: { type: "string" },
           idea: { type: "string", description: "1-2 cümlə, konkret" },
           goal: { type: "string", enum: ["SAVE", "SHARE", "FOLLOW", "LEAD"] },
@@ -37,6 +38,7 @@ const schema = {
           hook: { type: "string", description: "hook fikri, maks 10 söz, azərbaycanca" },
           articleId: { type: ["integer", "null"], description: "TipList üçün məqalə ID (siyahıdan), digərlərində null" },
           series: { type: "string", description: "seriya adı və ya boş" },
+          topic: { type: "string", description: "MÖVZU BANKINDAN id — video slotları (Motion/Story/Explainer/Carousel/TipList) üçün MƏCBURİ, Poster üçün boş ola bilər. Plan boyu hər slotda FƏRQLİ id" },
         },
       },
     },
@@ -49,11 +51,10 @@ const main = async () => {
   const days: string[] = [];
   for (let i = 0; i < 14; i++) { const d = new Date(today); d.setUTCDate(today.getUTCDate() + i); days.push(fmt(d)); }
   const dow = (s: string) => new Date(s + "T00:00:00Z").getUTCDay();
-  // cədvəl: B.e/Ç/C → video növbəsi (Story | Explainer | TipList | Carousel), Ç.a/C.a/Ş → illüstrasiya/animasiya (Story | Explainer);
-  // hər gün → Poster (3 ədəd, plan 1 slot verir, poster.ts özü 2 fun + 1 satış edir). Əsas yer illüstrasiya və videoya.
+  // cədvəl: B.e/Ç/C və Ç.a/C.a/Ş → illüstrasiya/motion videosu (əsas format: Motion), hər gün → Poster.
   const schedule = days.flatMap((d) => [
-    ...([1, 3, 5].includes(dow(d)) ? [`${d}: video (Story | Explainer | TipList | Carousel — Story/Explainer üstünlük)`] : []),
-    ...([2, 4, 6].includes(dow(d)) ? [`${d}: illüstrasiya/animasiya (Story | Explainer)`] : []),
+    ...([1, 3, 5].includes(dow(d)) ? [`${d}: video (Motion | Story | Explainer | Carousel | TipList — Motion üstünlük)`] : []),
+    ...([2, 4, 6].includes(dow(d)) ? [`${d}: illüstrasiya/motion (Motion | Story | Explainer)`] : []),
     `${d}: Poster (gündəlik 3 statik post: 2 fun + 1 satış — plan yalnız satış postunun ideyasını verir)`,
   ]);
   const az = (await listArticles()).filter((a) => a.lang === "az");
@@ -62,10 +63,13 @@ const main = async () => {
   const trends = await getTrends();
   const trendText = trends.examples.slice(0, 8).map((e) => `- "${e.quote.slice(0, 120)}"`).join("\n");
   const analytics = await fs.readFile("content/analytics.json", "utf-8").catch(() => "{}");
+  // mövzu bankı — işlənmişlər çıxarılır ki, plan hər dəfə yeni mövzularla dolsun
+  const usedTopicIds = [...new Set(usedTopics())];
+  const topicList = TOPICS.filter((t) => !usedTopicIds.includes(t.id)).map((t) => `- ${t.id}: ${t.title} (${t.audience}) — ${t.hint}`).join("\n");
 
   const __r = await chat<any>({ task: "smart", name: "calendar", model: MODEL, schema: schema, messages: [
-        { role: "system", content: `Sən Yük.az (Bakı; ev/ofis köçü, yükdaşıma, hədəf: yük sahibləri) Instagram/Facebook səhifəsinin kontent planlayıcısısan. Azərbaycanca. Qiymət rəqəmi yox. Səhifə FUN olmalıdır: əsas yer illüstrasiya (Story) və videoya (Explainer) — hər həftə ən azı 3 Story + 2 Explainer; TipList maks 1/həftə. Fun konseptlər verilən beynəlxalq real trend nümunələrindən (formatı saxla, mövzunu köçə çevir). Məqsəd (SAVE/SHARE/FOLLOW/LEAD) və bucaq slotdan slota rotasiya olunsun; eyni məqalə 2 həftədə 1 dəfə.` + playbook(["content-calendar", "content-pillar-builder", "series-planner", "best-time-scheduler", "going-viral"], 12000) + memory() },
-        { role: "user", content: `BU GÜN: ${fmt(today)}\n\nSLOTLAR (hər sətir üçün 1 plan yaz, tarix və şablon dəqiq uyğun olsun):\n${schedule.join("\n")}\n\nMƏQALƏLƏR (TipList üçün ID ver):\n${articles}\n\nBU HƏFTƏNİN REAL TREND NÜMUNƏLƏRİ:\n${trendText || "(yoxdur)"}\n\nSON RƏQƏMLƏR:\n${analytics.slice(0, 3000)}` },
+        { role: "system", content: `Sən Yük.az (Bakı; ev/ofis köçü, yükdaşıma, hədəf: yük sahibləri) Instagram/Facebook səhifəsinin kontent planlayıcısısan. Azərbaycanca. Qiymət rəqəmi yox. Səhifə FUN və HƏR DƏFƏ FƏRQLİ olmalıdır. Əsas format — **Motion**: hər dəfə öz mövzusu, vizual üslubu, səhnə quruluşu və öz assetləri olan illüstrasiya/motion-design videosu (həftədə ən azı 3); Story/Explainer 1-2; Carousel 1; TipList maks 1/həftə. TƏKRAR QADAĞANDIR: hər video slotu MÖVZU BANKINDAN fərqli "topic" alır (plan boyu heç bir id təkrarlanmır); artıq işlədilmiş zarafatlar — "lift", "az qutu var", "divan liftə sığmır", "Bakı tıxacı", "dostları çağırım" — YENİDƏN İSTİFADƏ OLUNMUR. Janr da növbələşsin: gülməli / epik / nostalji / sakit-gözəl / sənədli / uşaq nağılı. Auditoriya da dəyişsin (tələbə, yeni ailə, ofis, kolleksiyaçı, heyvan sahibi…). Məqsəd (SAVE/SHARE/FOLLOW/LEAD) və hook bucağı slotdan slota rotasiya olunsun; eyni məqalə 2 həftədə 1 dəfə.` + playbook(["content-calendar", "content-pillar-builder", "series-planner", "best-time-scheduler", "going-viral"], 12000) + memory() },
+        { role: "user", content: `BU GÜN: ${fmt(today)}\n\nSLOTLAR (hər sətir üçün 1 plan yaz, tarix və şablon dəqiq uyğun olsun):\n${schedule.join("\n")}\n\nMƏQALƏLƏR (TipList üçün ID ver):\n${articles}\n\nMÖVZU BANKI (video slotları üçün "topic" — YALNIZ bu id-lərdən, hər slotda fərqli):\n${topicList}\n\nSON POSTLARDA İŞLƏNİB (bunları SEÇMƏ):\n${usedTopicIds.join(", ") || "—"}\n\nBU HƏFTƏNİN REAL TREND NÜMUNƏLƏRİ:\n${trendText || "(yoxdur)"}\n\nSON RƏQƏMLƏR:\n${analytics.slice(0, 3000)}` },
       ] });
   const plan = (__r.data) as { pillars: string[]; series: string[]; slots: Slot[] };
   await fs.writeFile("content/calendar.json", JSON.stringify({ generatedAt: new Date().toISOString(), from: days[0], to: days[13], ...plan }, null, 2), "utf-8");

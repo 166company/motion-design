@@ -1,0 +1,50 @@
+{
+ "worried_piano": {
+  "w": 900,
+  "h": 900,
+  "left": 0.057,
+  "top": 0.142,
+  "right": 0.943,
+  "bottom": 0.886
+ },
+ "measuring_tape": {
+  "w": 900,
+  "h": 900,
+  "left": 0.092,
+  "top": 0.099,
+  "right": 0.908,
+  "bottom": 0.854
+ },
+ "padded_blanket": {
+  "w": 900,
+  "h": 900,
+  "left": 0.088,
+  "top": 0.077,
+  "right": 0.924,
+  "bottom": 0.889
+ },
+ "corner_guard": {
+  "w": 900,
+  "h": 900,
+  "left": 0.166,
+  "top": 0.039,
+  "right": 0.92,
+  "bottom": 0.893
+ },
+ "piano_dolly": {
+  "w": 900,
+  "h": 900,
+  "left": 0.023,
+  "top": 0.181,
+  "right": 0.978,
+  "bottom": 0.804
+ },
+ "golden_chord": {
+  "w": 900,
+  "h": 900,
+  "left": 0.107,
+  "top": 0.138,
+  "right": 0.882,
+  "bottom": 0.892
+ }
+}

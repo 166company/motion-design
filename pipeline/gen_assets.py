@@ -58,14 +58,25 @@ BACKGROUNDS = {
 }
 
 
-# obyekt təsvirlərini post-a görə dəyişmək (JSON, ingiliscə) — məs. mover → "cat mover", truck → "tiny vintage van"
-_ovr = os.environ.get("ASSET_OBJECTS", "").strip()
-if _ovr:
-    try:
-        for k, v in json.loads(_ovr).items():
-            if k in OBJECTS and v: OBJECTS[k] = v
-    except Exception as e:
-        print("ASSET_OBJECTS oxunmadı:", e)
+# Post üçün obyekt/fon dəsti (JSON, ingiliscə):
+#   ASSET_OBJECTS='{"grandpa_piano": "...", "truck": "..."}'  — mövcud adı əvəz edir, YENİ ad əlavə edir
+#   ASSET_BACKGROUNDS='{"bg_garage": "..."}'                  — eyni məntiq fonlar üçün
+#   ASSET_ONLY=1                                              — YALNIZ verilənlər (default dəst istehsal olunmur)
+_only = os.environ.get("ASSET_ONLY", "").strip() == "1"
+def _merge(target: dict, env_name: str):
+    raw = os.environ.get(env_name, "").strip()
+    given = {}
+    if raw:
+        try:
+            given = {k: v for k, v in json.loads(raw).items() if v}
+        except Exception as e:
+            print(f"{env_name} oxunmadı:", e)
+    if _only and given:
+        target.clear()
+    target.update(given)
+
+_merge(OBJECTS, "ASSET_OBJECTS")
+_merge(BACKGROUNDS, "ASSET_BACKGROUNDS")
 
 VISUAL = os.environ.get("VISUAL_NOTES", "").strip()
 REFS = [u for u in os.environ.get("IMAGE_REFS", "").split(",") if u]

@@ -1,0 +1,50 @@
+{
+ "alarm_clock_0800": {
+  "w": 900,
+  "h": 900,
+  "left": 0.267,
+  "top": 0.032,
+  "right": 0.757,
+  "bottom": 0.946
+ },
+ "mission_tablet": {
+  "w": 900,
+  "h": 900,
+  "left": 0.27,
+  "top": 0.086,
+  "right": 0.734,
+  "bottom": 0.911
+ },
+ "cargo_capsule": {
+  "w": 900,
+  "h": 900,
+  "left": 0.026,
+  "top": 0.174,
+  "right": 0.974,
+  "bottom": 0.792
+ },
+ "astronaut_mover": {
+  "w": 900,
+  "h": 900,
+  "left": 0.222,
+  "top": 0.042,
+  "right": 0.789,
+  "bottom": 0.947
+ },
+ "tea_set_evening": {
+  "w": 900,
+  "h": 900,
+  "left": 0.112,
+  "top": 0.089,
+  "right": 0.921,
+  "bottom": 0.888
+ },
+ "orbit_star_marker": {
+  "w": 900,
+  "h": 900,
+  "left": 0.206,
+  "top": 0.1,
+  "right": 0.783,
+  "bottom": 0.887
+ }
+}

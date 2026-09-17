@@ -1,0 +1,33 @@
+{
+ "id": "motion-demo",
+ "assets": "assets",
+ "scenes": [
+  {
+   "bg": "bg_street",
+   "text": "Demo səhnə",
+   "textPos": "top",
+   "camera": "push",
+   "transition": "slide",
+   "sfx": "whoosh",
+   "items": [
+    {
+     "asset": "truck",
+     "x": 0.5,
+     "y": 0.8,
+     "w": 0.6,
+     "anim": "driveIn",
+     "delay": 0,
+     "flip": false,
+     "z": 1
+    }
+   ],
+   "durationInFrames": 90
+  }
+ ],
+ "cta": {
+  "line1": "Bir zəng bəsdir",
+  "line2": "Zəng et"
+ },
+ "music": null,
+ "musicVolume": 0.75
+}

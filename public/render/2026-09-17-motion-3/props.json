@@ -1,0 +1,267 @@
+{
+  "id": "2026-09-17-motion-3",
+  "assets": "render/2026-09-17-motion-3/assets",
+  "bounds": {
+    "alarm_clock_0800": {
+      "w": 900,
+      "h": 900,
+      "left": 0.267,
+      "top": 0.032,
+      "right": 0.757,
+      "bottom": 0.946
+    },
+    "mission_tablet": {
+      "w": 900,
+      "h": 900,
+      "left": 0.27,
+      "top": 0.086,
+      "right": 0.734,
+      "bottom": 0.911
+    },
+    "cargo_capsule": {
+      "w": 900,
+      "h": 900,
+      "left": 0.026,
+      "top": 0.174,
+      "right": 0.974,
+      "bottom": 0.792
+    },
+    "astronaut_mover": {
+      "w": 900,
+      "h": 900,
+      "left": 0.222,
+      "top": 0.042,
+      "right": 0.789,
+      "bottom": 0.947
+    },
+    "tea_set_evening": {
+      "w": 900,
+      "h": 900,
+      "left": 0.112,
+      "top": 0.089,
+      "right": 0.921,
+      "bottom": 0.888
+    },
+    "orbit_star_marker": {
+      "w": 900,
+      "h": 900,
+      "left": 0.206,
+      "top": 0.1,
+      "right": 0.783,
+      "bottom": 0.887
+    }
+  },
+  "scenes": [
+    {
+      "bg": "bg_old_home_pad",
+      "text": "08:00: missiya alınacaq?",
+      "textPos": "top",
+      "camera": "push",
+      "transition": "slide",
+      "sfx": "tick",
+      "items": [
+        {
+          "asset": "alarm_clock_0800",
+          "x": 0.5,
+          "y": 0.84,
+          "w": 0.78,
+          "anim": "shake",
+          "delay": 0,
+          "flip": false,
+          "z": 3
+        },
+        {
+          "asset": "mission_tablet",
+          "x": 0.78,
+          "y": 0.82,
+          "w": 0.28,
+          "anim": "rise",
+          "delay": 10,
+          "flip": false,
+          "z": 2
+        },
+        {
+          "asset": "orbit_star_marker",
+          "x": 0.22,
+          "y": 0.76,
+          "w": 0.22,
+          "anim": "spin",
+          "delay": 18,
+          "flip": false,
+          "z": 1
+        }
+      ],
+      "durationInFrames": 120
+    },
+    {
+      "bg": "bg_old_home_pad",
+      "text": "Son kadrı gözlə",
+      "textPos": "top",
+      "camera": "panRight",
+      "transition": "wipe",
+      "sfx": "riser",
+      "items": [
+        {
+          "asset": "mission_tablet",
+          "x": 0.48,
+          "y": 0.84,
+          "w": 0.72,
+          "anim": "zoom",
+          "delay": 0,
+          "flip": false,
+          "z": 3
+        },
+        {
+          "asset": "astronaut_mover",
+          "x": 0.18,
+          "y": 0.86,
+          "w": 0.3,
+          "anim": "walkIn",
+          "delay": 8,
+          "flip": false,
+          "z": 4
+        },
+        {
+          "asset": "cargo_capsule",
+          "x": 0.78,
+          "y": 0.88,
+          "w": 0.3,
+          "anim": "slideLeft",
+          "delay": 16,
+          "flip": true,
+          "z": 2
+        }
+      ],
+      "durationInFrames": 120
+    },
+    {
+      "bg": "bg_soft_space_route",
+      "text": "Xaos orbit xəritəsinə dönür",
+      "textPos": "top",
+      "camera": "pull",
+      "transition": "fade",
+      "sfx": "whoosh",
+      "items": [
+        {
+          "asset": "cargo_capsule",
+          "x": 0.52,
+          "y": 0.8,
+          "w": 0.7,
+          "anim": "driveIn",
+          "delay": 0,
+          "flip": false,
+          "z": 3
+        },
+        {
+          "asset": "orbit_star_marker",
+          "x": 0.22,
+          "y": 0.7,
+          "w": 0.24,
+          "anim": "float",
+          "delay": 8,
+          "flip": false,
+          "z": 2
+        },
+        {
+          "asset": "mission_tablet",
+          "x": 0.8,
+          "y": 0.82,
+          "w": 0.24,
+          "anim": "swing",
+          "delay": 18,
+          "flip": false,
+          "z": 1
+        }
+      ],
+      "durationInFrames": 120
+    },
+    {
+      "bg": "bg_soft_space_route",
+      "text": "Kapsul yeni orbitə girir",
+      "textPos": "top",
+      "camera": "panLeft",
+      "transition": "none",
+      "sfx": "engine",
+      "items": [
+        {
+          "asset": "cargo_capsule",
+          "x": 0.46,
+          "y": 0.82,
+          "w": 0.76,
+          "anim": "float",
+          "delay": 0,
+          "flip": false,
+          "z": 3
+        },
+        {
+          "asset": "astronaut_mover",
+          "x": 0.78,
+          "y": 0.86,
+          "w": 0.28,
+          "anim": "slideRight",
+          "delay": 10,
+          "flip": true,
+          "z": 4
+        },
+        {
+          "asset": "orbit_star_marker",
+          "x": 0.2,
+          "y": 0.74,
+          "w": 0.25,
+          "anim": "rise",
+          "delay": 18,
+          "flip": false,
+          "z": 2
+        }
+      ],
+      "durationInFrames": 120
+    },
+    {
+      "bg": "bg_new_home_evening",
+      "text": "18:00: çay hazırdır",
+      "textPos": "top",
+      "camera": "shake",
+      "transition": "fade",
+      "sfx": "pop",
+      "items": [
+        {
+          "asset": "tea_set_evening",
+          "x": 0.5,
+          "y": 0.84,
+          "w": 0.82,
+          "anim": "rise",
+          "delay": 0,
+          "flip": false,
+          "z": 4
+        },
+        {
+          "asset": "cargo_capsule",
+          "x": 0.2,
+          "y": 0.88,
+          "w": 0.3,
+          "anim": "driveOut",
+          "delay": 8,
+          "flip": false,
+          "z": 2
+        },
+        {
+          "asset": "orbit_star_marker",
+          "x": 0.8,
+          "y": 0.72,
+          "w": 0.24,
+          "anim": "fall",
+          "delay": 18,
+          "flip": false,
+          "z": 3
+        }
+      ],
+      "durationInFrames": 120
+    }
+  ],
+  "cta": {
+    "line1": "İzlə, köç stresssiz olsun",
+    "line2": "Zəng et"
+  },
+  "music": "render/2026-09-17-motion-3/music.norm.wav",
+  "musicVolume": 0.75
+}
