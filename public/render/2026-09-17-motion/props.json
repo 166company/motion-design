@@ -1,0 +1,217 @@
+{
+  "id": "2026-09-17-motion",
+  "assets": "render/2026-09-17-motion/assets",
+  "bounds": {
+    "aquarium_planet": {
+      "w": 900,
+      "h": 900,
+      "left": 0.05,
+      "top": 0.07,
+      "right": 0.95,
+      "bottom": 0.929
+    },
+    "tilting_aquarium": {
+      "w": 900,
+      "h": 900,
+      "left": 0.08,
+      "top": 0.094,
+      "right": 0.939,
+      "bottom": 0.909
+    },
+    "water_level_marker": {
+      "w": 900,
+      "h": 900,
+      "left": 0.417,
+      "top": 0.044,
+      "right": 0.583,
+      "bottom": 0.956
+    },
+    "soft_cradle_pads": {
+      "w": 900,
+      "h": 900,
+      "left": 0.014,
+      "top": 0.329,
+      "right": 0.988,
+      "bottom": 0.672
+    },
+    "dolly_with_aquarium": {
+      "w": 900,
+      "h": 900,
+      "left": 0.047,
+      "top": 0.111,
+      "right": 0.979,
+      "bottom": 0.87
+    },
+    "calm_route_ribbon": {
+      "w": 900,
+      "h": 900,
+      "left": 0.024,
+      "top": 0.28,
+      "right": 0.979,
+      "bottom": 0.724
+    }
+  },
+  "scenes": [
+    {
+      "bg": "bg_split_living_room",
+      "text": "Balıqlar köçəndə nə dəyişir?",
+      "textPos": "top",
+      "camera": "push",
+      "transition": "wipe",
+      "sfx": "none",
+      "items": [
+        {
+          "asset": "tilting_aquarium",
+          "x": 0.5,
+          "y": 0.84,
+          "w": 0.78,
+          "anim": "float",
+          "delay": 0,
+          "flip": false,
+          "z": 3
+        }
+      ],
+      "durationInFrames": 120
+    },
+    {
+      "bg": "bg_split_prep_table",
+      "text": "Bir dalğa kifayətdir",
+      "textPos": "top",
+      "camera": "panLeft",
+      "transition": "slide",
+      "sfx": "none",
+      "items": [
+        {
+          "asset": "water_level_marker",
+          "x": 0.5,
+          "y": 0.88,
+          "w": 0.82,
+          "anim": "rise",
+          "delay": 0,
+          "flip": false,
+          "z": 3
+        },
+        {
+          "asset": "calm_route_ribbon",
+          "x": 0.17,
+          "y": 0.86,
+          "w": 0.22,
+          "anim": "swing",
+          "delay": 8,
+          "flip": false,
+          "z": 1
+        }
+      ],
+      "durationInFrames": 120
+    },
+    {
+      "bg": "bg_split_prep_table",
+      "text": "Yumşaq dayaq seçilir",
+      "textPos": "top",
+      "camera": "pull",
+      "transition": "fade",
+      "sfx": "none",
+      "items": [
+        {
+          "asset": "soft_cradle_pads",
+          "x": 0.33,
+          "y": 0.88,
+          "w": 0.46,
+          "anim": "slideRight",
+          "delay": 0,
+          "flip": false,
+          "z": 2
+        },
+        {
+          "asset": "aquarium_planet",
+          "x": 0.73,
+          "y": 0.86,
+          "w": 0.42,
+          "anim": "fall",
+          "delay": 10,
+          "flip": false,
+          "z": 3
+        }
+      ],
+      "durationInFrames": 120
+    },
+    {
+      "bg": "bg_split_quiet_corridor",
+      "text": "Sürət yox, tarazlıq",
+      "textPos": "top",
+      "camera": "panRight",
+      "transition": "wipe",
+      "sfx": "none",
+      "items": [
+        {
+          "asset": "dolly_with_aquarium",
+          "x": 0.47,
+          "y": 0.88,
+          "w": 0.72,
+          "anim": "driveIn",
+          "delay": 0,
+          "flip": false,
+          "z": 3
+        },
+        {
+          "asset": "calm_route_ribbon",
+          "x": 0.82,
+          "y": 0.9,
+          "w": 0.24,
+          "anim": "slideLeft",
+          "delay": 12,
+          "flip": false,
+          "z": 1
+        }
+      ],
+      "durationInFrames": 120
+    },
+    {
+      "bg": "bg_split_living_room",
+      "text": "Akvariuma ayrı plan lazımdır",
+      "textPos": "top",
+      "camera": "none",
+      "transition": "none",
+      "sfx": "none",
+      "items": [
+        {
+          "asset": "aquarium_planet",
+          "x": 0.5,
+          "y": 0.84,
+          "w": 0.58,
+          "anim": "zoom",
+          "delay": 0,
+          "flip": false,
+          "z": 3
+        },
+        {
+          "asset": "water_level_marker",
+          "x": 0.11,
+          "y": 0.87,
+          "w": 0.15,
+          "anim": "rise",
+          "delay": 8,
+          "flip": false,
+          "z": 2
+        },
+        {
+          "asset": "soft_cradle_pads",
+          "x": 0.89,
+          "y": 0.88,
+          "w": 0.15,
+          "anim": "pop",
+          "delay": 14,
+          "flip": false,
+          "z": 2
+        }
+      ],
+      "durationInFrames": 120
+    }
+  ],
+  "cta": {
+    "line1": "DM-ə BALIQ yaz",
+    "line2": "Zəng et"
+  },
+  "music": "render/2026-09-17-motion/music.norm.wav",
+  "musicVolume": 0.75
+}

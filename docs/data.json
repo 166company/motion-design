@@ -1,6 +1,6 @@
 {
   "repo": "166company/motion-design",
-  "updatedAt": "2026-09-17T18:17:50.723Z",
+  "updatedAt": "2026-09-17T18:32:38.816Z",
   "plan": {
     "pillars": [
       "Qiymət sirrini açırıq",
@@ -434,6 +434,46 @@
       "kind": "fun",
       "strategy": null,
       "firstComment": "Sənin evində ən kövrək əşya hansıdır?\n\n#Bakı #köç #daşınma #yüklərin-daşınması #evköçü #ofisköçü #yükdaşıma #pianoköçü #kövrəkəşyalar #köçməsləhətləri #köçhazırlığı #evdaşınması #daşınmaməsləhəti #Yukaz #PianoKocu #Yukdasima",
+      "metrics": null,
+      "createdAt": "2026-09-17",
+      "template": "Motion",
+      "voice": null,
+      "music": {
+        "label": "Bliss — middle child",
+        "license": "Attribution ShareAlike CC BY-SA",
+        "vocal": false,
+        "source": "audius"
+      }
+    },
+    {
+      "id": "2026-09-17-motion",
+      "hook": "2026-09-17-motion",
+      "caption": "Balıqlar da köçü hiss edir.\n\n🐟 Su səviyyəsi, dayaq və yol ayrı düşünülür.\n🫧 Akvarium adi yük kimi daşınmır.\nAkvarium köçürürsənsə, DM-ə BALIQ yazırsan?\n\n📞 Zəng et: 050 209 62 99\n\n#AkvariumDasinmasi #XususiYuk #YukDasima",
+      "hashtags": [
+        "#Bakı",
+        "#köç",
+        "#yükdaşıma",
+        "#evköçü",
+        "#ofisköçü",
+        "#akvarium",
+        "#akvariumdaşınması",
+        "#xüsusiyük",
+        "#həssasyük",
+        "#daşınma",
+        "#balıqlar",
+        "#yükgötürmə",
+        "#AkvariumDasinmasi",
+        "#XususiYuk",
+        "#YukDasima"
+      ],
+      "source": "https://yuk.az",
+      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-17-motion/2026-09-17-motion.mp4",
+      "duration": 20,
+      "scenes": 5,
+      "status": "təsdiq-gözləyir",
+      "kind": "fun",
+      "strategy": null,
+      "firstComment": "Səncə akvarium köçündə ən çətin nə olur?\n\n#Bakı #köç #yükdaşıma #evköçü #ofisköçü #akvarium #akvariumdaşınması #xüsusiyük #həssasyük #daşınma #balıqlar #yükgötürmə #AkvariumDasinmasi #XususiYuk #YukDasima",
       "metrics": null,
       "createdAt": "2026-09-17",
       "template": "Motion",

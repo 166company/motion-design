@@ -46,5 +46,13 @@
   "lens": "Zaman atlaması: səhər 08:00 xaos → axşam 18:00 yeni evdə çay",
   "visual": "Pastel yumşaq 3D, yumru formalar, sakit ovqat",
   "model": "openai/gpt-5.5"
+ },
+ {
+  "at": "2026-09-17T18:25:49.545Z",
+  "template": "Motion",
+  "summary": "styleKey: felt | setting: A soft dawn miniature world with diffused window light, cozy felt textures, calm documenta",
+  "lens": "Təbiət sənədli filmi diktoru kimi: 'Burada biz nadir Bakı köçkününü görürük…'",
+  "visual": "Split-screen: sol xaos / sağ nizam",
+  "model": "openai/gpt-5.5"
  }
 ]

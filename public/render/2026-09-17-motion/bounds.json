@@ -1,0 +1,50 @@
+{
+ "aquarium_planet": {
+  "w": 900,
+  "h": 900,
+  "left": 0.05,
+  "top": 0.07,
+  "right": 0.95,
+  "bottom": 0.929
+ },
+ "tilting_aquarium": {
+  "w": 900,
+  "h": 900,
+  "left": 0.08,
+  "top": 0.094,
+  "right": 0.939,
+  "bottom": 0.909
+ },
+ "water_level_marker": {
+  "w": 900,
+  "h": 900,
+  "left": 0.417,
+  "top": 0.044,
+  "right": 0.583,
+  "bottom": 0.956
+ },
+ "soft_cradle_pads": {
+  "w": 900,
+  "h": 900,
+  "left": 0.014,
+  "top": 0.329,
+  "right": 0.988,
+  "bottom": 0.672
+ },
+ "dolly_with_aquarium": {
+  "w": 900,
+  "h": 900,
+  "left": 0.047,
+  "top": 0.111,
+  "right": 0.979,
+  "bottom": 0.87
+ },
+ "calm_route_ribbon": {
+  "w": 900,
+  "h": 900,
+  "left": 0.024,
+  "top": 0.28,
+  "right": 0.979,
+  "bottom": 0.724
+ }
+}
