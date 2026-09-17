@@ -1,6 +1,77 @@
 {
-  "date": "2026-09-16",
-  "examples": [],
+  "date": "2026-09-17",
+  "examples": [
+    {
+      "url": "https://www.thepoke.com/2026/09/11/our-25-favourite-funny-tweets-of-the-week-133/",
+      "quote": "I regret to inform you that the secret to a clean house is to clean the house",
+      "context": "The Poke weekly funny tweets roundup, updated September 11, 2026. ([thepoke.com](https://www.thepoke.com/2026/09/11/our-25-favourite-funny-tweets-of-the-week-133/))",
+      "platform": "tweet/X",
+      "whyFunny": "domestic / cleaning"
+    },
+    {
+      "url": "https://www.thepoke.com/2026/09/11/our-25-favourite-funny-tweets-of-the-week-133/",
+      "quote": "Went to get a snack, and my watch congratulated me on standing up, so yes, I do take fitness very seriously",
+      "context": "The Poke weekly funny tweets roundup, updated September 11, 2026. ([thepoke.com](https://www.thepoke.com/2026/09/11/our-25-favourite-funny-tweets-of-the-week-133/))",
+      "platform": "tweet/X",
+      "whyFunny": "adulting / fitness"
+    },
+    {
+      "url": "https://www.thepoke.com/2026/09/11/our-25-favourite-funny-tweets-of-the-week-133/",
+      "quote": "Dear companies, please stop emailing me that you updated your terms of service. I didn’t read them in the first place and I won’t read them now.",
+      "context": "The Poke weekly funny tweets roundup, updated September 11, 2026. ([thepoke.com](https://www.thepoke.com/2026/09/11/our-25-favourite-funny-tweets-of-the-week-133/))",
+      "platform": "tweet/X",
+      "whyFunny": "relatable admin fatigue"
+    },
+    {
+      "url": "https://pleated-jeans.com/2026/09/16/funniest-tweets-of-the-day-9-16-26/",
+      "quote": "Got a parking ticket so my $9 coffee was actually $47.",
+      "context": "Pleated-Jeans daily funniest tweets, September 16, 2026; joke text is readable in the embedded tweet alt text on the page. ([pleated-jeans.com](https://pleated-jeans.com/2026/09/16/funniest-tweets-of-the-day-9-16-26/))",
+      "platform": "tweet/X",
+      "whyFunny": "traffic / city-life"
+    },
+    {
+      "url": "https://pleated-jeans.com/2026/09/16/funniest-tweets-of-the-day-9-16-26/",
+      "quote": "There should be a calorie refund for things that don't taste as good as they look.",
+      "context": "Pleated-Jeans daily funniest tweets, September 16, 2026; joke text is readable in the embedded tweet alt text on the page. ([pleated-jeans.com](https://pleated-jeans.com/2026/09/16/funniest-tweets-of-the-day-9-16-26/))",
+      "platform": "tweet/X",
+      "whyFunny": "food / everyday"
+    },
+    {
+      "url": "https://pleated-jeans.com/2026/09/16/funniest-tweets-of-the-day-9-16-26/",
+      "quote": "People in their mid 30s need to stretch daily, not me, because I'm special and different.",
+      "context": "Pleated-Jeans daily funniest tweets, September 16, 2026; joke text is readable in the embedded tweet alt text on the page. ([pleated-jeans.com](https://pleated-jeans.com/2026/09/16/funniest-tweets-of-the-day-9-16-26/))",
+      "platform": "tweet/X",
+      "whyFunny": "adulting / aging"
+    },
+    {
+      "url": "https://pleated-jeans.com/2026/09/12/funny-work-tweets-this-week-9-12-26/",
+      "quote": "Doing nothing at work is more draining mentally than being busy.",
+      "context": "Pleated-Jeans work tweets roundup, September 12, 2026; joke text is readable in the embedded tweet alt text on the page. ([pleated-jeans.com](https://pleated-jeans.com/2026/09/12/funny-work-tweets-this-week-9-12-26/))",
+      "platform": "tweet/X",
+      "whyFunny": "work"
+    },
+    {
+      "url": "https://pleated-jeans.com/2026/09/12/funny-work-tweets-this-week-9-12-26/",
+      "quote": "They don't warn you about the zoomies you get at an office job.",
+      "context": "Pleated-Jeans work tweets roundup, September 12, 2026; joke text is readable in the embedded tweet alt text on the page. ([pleated-jeans.com](https://pleated-jeans.com/2026/09/12/funny-work-tweets-this-week-9-12-26/))",
+      "platform": "tweet/X",
+      "whyFunny": "office / work"
+    },
+    {
+      "url": "https://pleated-jeans.com/2026/09/12/funniest-tweets-of-the-week-9-12-26/",
+      "quote": "i wish i could say '?????????' in real life, it would be very useful.",
+      "context": "Pleated-Jeans weekly funny tweets roundup, September 12, 2026; joke text is readable in the embedded tweet alt text on the page. ([pleated-jeans.com](https://pleated-jeans.com/2026/09/12/funniest-tweets-of-the-week-9-12-26/))",
+      "platform": "tweet/X",
+      "whyFunny": "general viral format / reaction"
+    },
+    {
+      "url": "https://pleated-jeans.com/2026/09/12/funniest-tweets-of-the-week-9-12-26/",
+      "quote": "Twitter lowkey the notes app if you're brave enough.",
+      "context": "Pleated-Jeans weekly funny tweets roundup, September 12, 2026; joke text is readable in the embedded tweet alt text on the page. ([pleated-jeans.com](https://pleated-jeans.com/2026/09/12/funniest-tweets-of-the-week-9-12-26/))",
+      "platform": "tweet/X",
+      "whyFunny": "general social-media format"
+    }
+  ],
   "templates": [
     {
       "name": "Drake Hotline Bling",
@@ -51,12 +122,12 @@
       "url": "https://i.imgflip.com/2fm6x.jpg"
     },
     {
-      "name": "Sad Pablo Escobar",
-      "url": "https://i.imgflip.com/1c1uej.jpg"
-    },
-    {
       "name": "Disaster Girl",
       "url": "https://i.imgflip.com/23ls.jpg"
+    },
+    {
+      "name": "Sad Pablo Escobar",
+      "url": "https://i.imgflip.com/1c1uej.jpg"
     },
     {
       "name": "Change My Mind",
@@ -67,24 +138,24 @@
       "url": "https://i.imgflip.com/54hjww.jpg"
     },
     {
-      "name": "Y'all Got Any More Of That",
-      "url": "https://i.imgflip.com/21uy0f.jpg"
-    },
-    {
       "name": "Batman Slapping Robin",
       "url": "https://i.imgflip.com/9ehk.jpg"
+    },
+    {
+      "name": "Y'all Got Any More Of That",
+      "url": "https://i.imgflip.com/21uy0f.jpg"
     },
     {
       "name": "X, X Everywhere",
       "url": "https://i.imgflip.com/1ihzfe.jpg"
     },
     {
-      "name": "Ancient Aliens",
-      "url": "https://i.imgflip.com/26am.jpg"
-    },
-    {
       "name": "Bernie Sanders Once Again Asking",
       "url": "https://i.imgflip.com/3pdf2w.png"
+    },
+    {
+      "name": "Ancient Aliens",
+      "url": "https://i.imgflip.com/26am.jpg"
     },
     {
       "name": "Marked Safe From",
@@ -107,24 +178,24 @@
       "url": "https://i.imgflip.com/345v97.jpg"
     },
     {
-      "name": "Is This A Pigeon",
-      "url": "https://i.imgflip.com/1o00in.jpg"
-    },
-    {
       "name": "Absolute Cinema",
       "url": "https://i.imgflip.com/8d317n.png"
+    },
+    {
+      "name": "Is This A Pigeon",
+      "url": "https://i.imgflip.com/1o00in.jpg"
     },
     {
       "name": "You Guys are Getting Paid",
       "url": "https://i.imgflip.com/2xscjb.png"
     },
     {
-      "name": "0 days without (Lenny, Simpsons)",
-      "url": "https://i.imgflip.com/72epa9.png"
-    },
-    {
       "name": "They're The Same Picture",
       "url": "https://i.imgflip.com/2za3u1.jpg"
+    },
+    {
+      "name": "0 days without (Lenny, Simpsons)",
+      "url": "https://i.imgflip.com/72epa9.png"
     },
     {
       "name": "Mother Ignoring Kid Drowning In A Pool",
@@ -139,12 +210,12 @@
       "url": "https://i.imgflip.com/1wz1x.jpg"
     },
     {
-      "name": "Buff Doge vs. Cheems",
-      "url": "https://i.imgflip.com/43a45p.png"
-    },
-    {
       "name": "Oprah You Get A",
       "url": "https://i.imgflip.com/gtj5t.jpg"
+    },
+    {
+      "name": "Buff Doge vs. Cheems",
+      "url": "https://i.imgflip.com/43a45p.png"
     },
     {
       "name": "Tuxedo Winnie The Pooh",

@@ -1,6 +1,6 @@
 {
   "repo": "166company/motion-design",
-  "updatedAt": "2026-09-17T07:45:03.288Z",
+  "updatedAt": "2026-09-17T09:49:50.243Z",
   "plan": {
     "pillars": [
       "Qiymət sirri açılır",
@@ -174,6 +174,144 @@
   "brain": "## Qaliblər\n- “EV DAŞINMASI QİYMƏTİ NƏYƏ GÖRƏ DƏYİŞİR?” — **question / secret-gap**. 107 baxış, 56 əhatə. Median baxışdan **1.60x**, median əhatədən **7x** yuxarı. Real alıcı sualı açılır.\n- “Bir zəng bəsdir” — **plain-statement / low-friction promise**. 68 baxış, 2 paylaşım. Sadə addım vədi işləyir, amma daha konkret fayda lazımdır.\n- “SƏNİN GÖTÜRƏ BİLMƏDİYİN YÜKÜ BİZ GÖTÜRƏK.” — **plain-statement / relief promise**. 67 baxış; median səviyyə. Emosional yük götürmə mesajı var.\n\n## İşləməyənlər\n- “Yük.az Düyməsi” — **plain/fun poster**. 11 baxış, medianın **0.16x**-i. Fun poster üçün siqnal zəifdir.\n- “Zəng et Rahat köç” — **plain ad slogan**. 42 baxış, medianın **0.63x**-i. Çox ümumi reklam dilidir.\n- Saxlama və şərh hələ siqnal vermir: bütün postlarda saxlama 0, şərh 0.\n- Lead ölçümü yoxdur: zəng, DM, WhatsApp klikləri verilmir.\n\n## Qaydalar\n- Qiymət mövzusu əsas kontent xəttidir; həftədə minimum 2 dəfə test olunmalıdır.\n- Hook sual/secret-gap olarsa daha güclü işləyir: “nəyə görə dəyişir?”, “niyə baha çıxır?”\n- Ümumi şüarlar zəifdir; konkret səbəb və fayda yaz.\n- Qiymət izahında mütləq faktorlar: mərtəbə, lift, məsafə, yük həcmi, usta sayı, qablaşdırma.\n- Poster/fun formatını azalt; izahlı Reel və faydalı Carousel test et.\n- CTA ölçülə bilən olsun: “DM-ə QİYMƏT yaz”, “WhatsApp-a KÖÇ yaz”.\n- Data azdır; nəticələr ilkin hipotezdir, qəti qayda deyil.\n",
   "leads": 0,
   "entries": [
+    {
+      "id": "2026-09-17-poster-3",
+      "images": [
+        "https://github.com/166company/motion-design/releases/download/reel-2026-09-17-poster-3/2026-09-17-poster-3-1.png"
+      ],
+      "hook": "Qırılanı gizlətmə — Yük.az qablaşdırsın",
+      "caption": "📦 Stəkan, güzgü, elektronika — əvvəlcədən de.\n\nSığorta və qablaşdırma işini Yük.az öz üzərinə götürür.\nKöçdən əvvəl bunu yadda saxla, sonradan çox işinə yarayacaq.\n\nBu postu saxla və köç vaxtı rahatlıqla bizə yaz.\n\n📞 Zəng et: 050 209 62 99\n\n#yükaz #qablaşdırma #sığorta",
+      "hashtags": [
+        "#baki",
+        "#koc",
+        "#yukdasima",
+        "#evkocu",
+        "#ofiskocu",
+        "#evdasinmasi",
+        "#mebelkocu",
+        "#qablasdirma",
+        "#sigorta",
+        "#korgu",
+        "#stakan",
+        "#guzgu",
+        "#elektronika",
+        "#yükaz",
+        "#qablaşdırma",
+        "#sığorta"
+      ],
+      "source": "https://yuk.az",
+      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-17-poster-3/2026-09-17-poster-3.mp4",
+      "duration": 0,
+      "scenes": 1,
+      "status": "təsdiq-gözləyir",
+      "kind": "sales",
+      "strategy": null,
+      "firstComment": "Köçdən əvvəl ən çox nəyi qorumaq istəyirsən?\n\n#baki #koc #yukdasima #evkocu #ofiskocu #evdasinmasi #mebelkocu #qablasdirma #sigorta #korgu #stakan #guzgu #elektronika #yükaz #qablaşdırma #sığorta",
+      "metrics": null,
+      "createdAt": "2026-09-17",
+      "template": "Poster",
+      "voice": null,
+      "music": {
+        "label": "Orijinal sintez",
+        "license": null,
+        "vocal": false,
+        "source": "synth"
+      }
+    },
+    {
+      "id": "2026-09-17-poster-2",
+      "images": [
+        "https://github.com/166company/motion-design/releases/download/reel-2026-09-17-poster-2/2026-09-17-poster-2-1.png"
+      ],
+      "hook": "Divanı dostlarla qaldıranlar dartınmalıdır — Mən fərqliyəm.",
+      "caption": "😅 Köç günü hamımız qəhrəman oluruq.\nSonra Yük.az çağırmaq ağla gəlir.\n\nSən də təkbaşına əşyalarla savaşma 😄\nQalxanı da, gücü də biz gətirək.\n\nYük.az-a yaz, köçün rahat keçsin.\n\n📞 Zəng et: 050 209 62 99\n\n#yükaz #köçgünü #yükdaşıma",
+      "hashtags": [
+        "#bakı",
+        "#köç",
+        "#köçgünü",
+        "#yükdaşıma",
+        "#evköçü",
+        "#ofisköçü",
+        "#mebelköçürmə",
+        "#evdənköç",
+        "#daşınma",
+        "#köçxidməti",
+        "#evköçmək",
+        "#ofisköçmək",
+        "#yukaz",
+        "#yükaz"
+      ],
+      "source": "https://yuk.az",
+      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-17-poster-2/2026-09-17-poster-2.mp4",
+      "duration": 0,
+      "scenes": 1,
+      "status": "təsdiq-gözləyir",
+      "kind": "fun",
+      "inspiration": {
+        "url": "https://pleated-jeans.com/2026/09/16/funniest-tweets-of-the-day-9-16-26/",
+        "quote": "People in their mid 30s need to stretch daily, not me, because I'm special and different."
+      },
+      "strategy": null,
+      "firstComment": "Köç günü sən də qəhrəmanlıq edənlərdənsən, yoxsa işi bizə buraxanlardansan?\n\n#bakı #köç #köçgünü #yükdaşıma #evköçü #ofisköçü #mebelköçürmə #evdənköç #daşınma #köçxidməti #evköçmək #ofisköçmək #yukaz #yükaz",
+      "metrics": null,
+      "createdAt": "2026-09-17",
+      "template": "Poster",
+      "voice": null,
+      "music": {
+        "label": "Orijinal sintez",
+        "license": null,
+        "vocal": false,
+        "source": "synth"
+      }
+    },
+    {
+      "id": "2026-09-17-poster-1",
+      "images": [
+        "https://github.com/166company/motion-design/releases/download/reel-2026-09-17-poster-1/2026-09-17-poster-1-1.png"
+      ],
+      "hook": "Əziz dostlar, “köçdə kömək” yazmayın — Gəlmədiniz. Gəlməyəcəksiniz.",
+      "caption": "📦 Dost sözü gözəldir, lift qabağı yox.\n\nYük.az var — bel də salamat, dostluq da.\n\nişin zarafatı qalsın, köçün rahat olsun deyə bizə yaz.\n\n📞 Zəng et: 050 209 62 99\n\n#yükaz #köç #yükdaşıma",
+      "hashtags": [
+        "#azərbaycan",
+        "#baki",
+        "#köç",
+        "#daşıma",
+        "#evköçü",
+        "#ofisköçü",
+        "#yükdaşıma",
+        "#evdaşınması",
+        "#ofisdaşınması",
+        "#mənzilköçü",
+        "#mebeldaşınması",
+        "#köçxidməti",
+        "#yüklər",
+        "#daşınma",
+        "#yardım",
+        "#yükaz"
+      ],
+      "source": "https://yuk.az",
+      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-17-poster-1/2026-09-17-poster-1.mp4",
+      "duration": 0,
+      "scenes": 1,
+      "status": "təsdiq-gözləyir",
+      "kind": "fun",
+      "inspiration": {
+        "url": "https://www.thepoke.com/2026/09/11/our-25-favourite-funny-tweets-of-the-week-133/",
+        "quote": "Dear companies, please stop emailing me that you updated your terms of service. I didn’t read them in the first place and I won’t read them now."
+      },
+      "strategy": null,
+      "firstComment": "Sən də “bir az kömək olar?” deyib sonra bütün evi dostlara daşıtdıranlardansan?\n\n#azərbaycan #baki #köç #daşıma #evköçü #ofisköçü #yükdaşıma #evdaşınması #ofisdaşınması #mənzilköçü #mebeldaşınması #köçxidməti #yüklər #daşınma #yardım #yükaz",
+      "metrics": null,
+      "createdAt": "2026-09-17",
+      "template": "Poster",
+      "voice": null,
+      "music": {
+        "label": "Orijinal sintez",
+        "license": null,
+        "vocal": false,
+        "source": "synth"
+      }
+    },
     {
       "id": "2026-09-16-poster-3",
       "images": [
