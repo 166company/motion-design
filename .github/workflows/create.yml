@@ -29,11 +29,22 @@ jobs:
       OPENAI_MODEL: ${{ vars.OPENAI_MODEL || 'gpt-5.4-mini' }}
       PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
       AUDIUS_API_TOKEN: ${{ secrets.AUDIUS_API_TOKEN }}
-      TTS_ENGINE: ${{ vars.TTS_ENGINE || 'openai' }}
       # OPENAI_TTS_VOICE boşdursa hər video fərqli səslə çıxır (rotasiya); sabit istəsən Variables-də təyin et
       OPENAI_TTS_VOICE: ${{ vars.OPENAI_TTS_VOICE }}
       OPENAI_TTS_MODEL: ${{ vars.OPENAI_TTS_MODEL || 'gpt-4o-mini-tts-2025-12-15' }}
       TTS_VOICE: ${{ vars.TTS_VOICE || 'az-AZ-BanuNeural' }}
+      NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+      CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+      OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+      GH_MODELS_TOKEN: ${{ secrets.GH_MODELS_TOKEN }}
+      MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+      SAMBANOVA_API_KEY: ${{ secrets.SAMBANOVA_API_KEY }}
+      LLM_ENGINE: ${{ vars.LLM_ENGINE || 'openai-first' }}
+      TTS_ENGINE: ${{ vars.TTS_ENGINE || 'openai-first' }}
+      IMAGE_ENGINE: ${{ vars.IMAGE_ENGINE || 'openai' }}
+      NOVELTY: ${{ vars.NOVELTY || '1' }}
 
     steps:
       - uses: actions/checkout@v4

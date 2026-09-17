@@ -53,23 +53,39 @@ def trim(src, dest, seconds):
     )
 
 
-def whisper(path):
-    key = os.environ["OPENAI_API_KEY"]
+def _transcribe(path, url, key, model):
     boundary = "----yukaz" + os.urandom(8).hex()
     with open(path, "rb") as f:
         audio = f.read()
-    fields = [("model", "whisper-1"), ("response_format", "verbose_json")]
+    fields = [("model", model), ("response_format", "verbose_json")]
     body = b""
     for k, v in fields:
         body += f"--{boundary}\r\nContent-Disposition: form-data; name=\"{k}\"\r\n\r\n{v}\r\n".encode()
     body += (f"--{boundary}\r\nContent-Disposition: form-data; name=\"file\"; filename=\"a.mp3\"\r\n"
              f"Content-Type: audio/mpeg\r\n\r\n").encode() + audio + f"\r\n--{boundary}--\r\n".encode()
     req = urllib.request.Request(
-        "https://api.openai.com/v1/audio/transcriptions", data=body, method="POST",
+        url, data=body, method="POST",
         headers={"Authorization": f"Bearer {key}", "Content-Type": f"multipart/form-data; boundary={boundary}"},
     )
     with urllib.request.urlopen(req, timeout=120) as r:
         return json.load(r)
+
+
+def whisper(path):
+    """ƏSAS: OpenAI whisper-1 (keyfiyyət) · EHTİYAT: Groq Whisper (GROQ_API_KEY, pulsuz)"""
+    openai_key = os.environ.get("OPENAI_API_KEY", "").strip()
+    groq = os.environ.get("GROQ_API_KEY", "").strip()
+    if not openai_key and not groq:
+        raise RuntimeError("OPENAI_API_KEY və ya GROQ_API_KEY lazımdır")
+    if openai_key:
+        try:
+            return _transcribe(path, "https://api.openai.com/v1/audio/transcriptions", openai_key, "whisper-1")
+        except Exception as e:
+            if not groq:
+                raise
+            print(f"  OpenAI whisper alınmadı ({str(e)[:100]}) → ehtiyat: Groq", file=sys.stderr)
+    return _transcribe(path, "https://api.groq.com/openai/v1/audio/transcriptions", groq,
+                       os.environ.get("GROQ_WHISPER_MODEL", "whisper-large-v3-turbo"))
 
 
 def analyze(result, seconds):

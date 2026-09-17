@@ -19,10 +19,18 @@ const py = (args: string[], extraEnv: Record<string, string> = {}) =>
 
 export type TtsResult = Record<string, { words: any[]; duration: number; file: string }>;
 
-/** TTS_ENGINE=openai (default) və ya edge. Nəticə: söz vaxtları + müddət. */
+/**
+ * Səsləndirmə skripti:
+ *   openai-first (DEFAULT) · openai → tts_openai.py (OpenAI səs + Whisper söz vaxtları; "openai-first"-də səhnə xətasında edge ehtiyat)
+ *   edge · auto            → tts.py (pulsuz edge-tts az-AZ; "auto"-da xətada OpenAI ehtiyat)
+ */
+export const ttsScript = () =>
+  ["edge", "auto"].includes((process.env.TTS_ENGINE ?? "openai-first").toLowerCase()) ? "pipeline/tts.py" : "pipeline/tts_openai.py";
+
+/** Nəticə: söz vaxtları + müddət. */
 export const runTts = (jobs: { id: string; text: string }[], outDir: string, voice: string): Promise<TtsResult> =>
   new Promise((res, rej) => {
-    const script = process.env.TTS_ENGINE === "edge" ? "pipeline/tts.py" : "pipeline/tts_openai.py";
+    const script = ttsScript();
     const p = spawn("python", [script, outDir], {
       env: { ...process.env, PYTHONUTF8: "1", PYTHONIOENCODING: "utf-8", OPENAI_TTS_VOICE: voice },
     });

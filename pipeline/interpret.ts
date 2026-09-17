@@ -9,6 +9,7 @@
  */
 import "dotenv/config";
 import fs from "node:fs/promises";
+import { chat } from "./llm.ts";
 
 const MODEL = process.env.OPENAI_CREATIVE_MODEL ?? "gpt-5.5";
 
@@ -62,17 +63,8 @@ export const interpret = async (note: string, meta: any, imageUrls: string[]): P
   ];
   for (const url of imageUrls.slice(0, 4)) content.push({ type: "image_url", image_url: { url } });
 
-  const res = await fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Authorization: `Bearer ${process.env.OPENAI_API_KEY}` },
-    body: JSON.stringify({
-      model: MODEL,
-      messages: [{ role: "system", content: SYSTEM }, { role: "user", content }],
-      response_format: { type: "json_schema", json_schema: { name: "plan", strict: true, schema } },
-    }),
-  });
-  if (!res.ok) throw new Error(`OpenAI ${res.status}: ${(await res.text()).slice(0, 300)}`);
-  const p = JSON.parse(((await res.json()) as any).choices[0].message.content);
+  const __r = await chat<any>({ task: "smart", name: "plan", model: MODEL, schema: schema, messages: [{ role: "system", content: SYSTEM }, { role: "user", content }] });
+  const p = (__r.data);
   return { ...p, imageRefs: imageUrls };
 };
 

@@ -12,6 +12,7 @@ import "dotenv/config";
 import fs from "node:fs/promises";
 import { contact } from "../src/brand/contact.ts";
 import { playbook } from "./skills.ts";
+import { chat } from "./llm.ts";
 
 const MODEL = process.env.OPENAI_MODEL ?? "gpt-5.4-mini";
 
@@ -40,17 +41,8 @@ export const polishCopy = async (meta: any) => {
     `Mövcud caption:\n${meta.caption}`,
     `Mövcud hashtag-lər: ${(meta.hashtags ?? []).join(" ")}`,
   ].filter(Boolean).join("\n\n");
-  const res = await fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Authorization: `Bearer ${process.env.OPENAI_API_KEY}` },
-    body: JSON.stringify({
-      model: MODEL,
-      messages: [{ role: "system", content: SYSTEM }, { role: "user", content: context }],
-      response_format: { type: "json_schema", json_schema: { name: "copy", strict: true, schema } },
-    }),
-  });
-  if (!res.ok) throw new Error(`OpenAI ${res.status}: ${(await res.text()).slice(0, 300)}`);
-  const c = JSON.parse(((await res.json()) as any).choices[0].message.content) as {
+  const __r = await chat<any>({ task: "smart", name: "copy", model: MODEL, schema: schema, messages: [{ role: "system", content: SYSTEM }, { role: "user", content: context }] });
+  const c = (__r.data) as {
     caption: string; captionTags: string[]; hashtags: string[]; firstComment: string; altText: string;
   };
   const tag = (t: string) => (t.startsWith("#") ? t : `#${t}`).replace(/\s+/g, "");

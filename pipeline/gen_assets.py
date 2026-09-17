@@ -7,16 +7,28 @@ Story şablonu üçün AI illüstrasiya assetləri — OpenAI gpt-image, brend p
 
 Nəticə: public/assets/*.png (şəffaf obyektlər, ≤900px) və *.jpg (9:16 fonlar),
 src/assetBounds.json (obyektlərin real sərhədləri — yerə oturtmaq üçün).
-Xərc: ~0.2 $/şəkil (high).
+Xərc: ~0.2 $/şəkil (high, OpenAI) · 0 $ (IMAGE_ENGINE=nvidia, NVIDIA_API_KEY).
 
 Hər post üçün FƏRQLİ asset dəsti (story.ts):
   ASSET_DIR=public/render/<id>/assets  BOUNDS_PATH=public/render/<id>/bounds.json
   ASSET_STYLE="<ingiliscə üslub>"  ASSET_SETTING="<ingiliscə məkan/əhval>"  ASSET_OBJECTS='{"truck": "...", ...}'
 """
-import base64, io, json, os, sys, time, urllib.request
+import base64, io, json, os, sys, time, urllib.error, urllib.request
 from PIL import Image
 
-KEY = os.environ["OPENAI_API_KEY"]
+# IMAGE_ENGINE=nvidia → NVIDIA build.nvidia.com (pulsuz, FLUX.1-schnell); default openai
+ENGINE = os.environ.get("IMAGE_ENGINE", "openai").lower()
+KEY = os.environ.get("OPENAI_API_KEY", "")
+NV_KEY = os.environ.get("NVIDIA_API_KEY", "")
+NV_MODEL = os.environ.get("NVIDIA_IMAGE_MODEL", "flux.1-schnell")
+NV_PATHS = {  # yalnız kommersiya icazəli modellər (bax pipeline/nvidia.ts)
+    "flux.1-schnell": ("black-forest-labs/flux.1-schnell", {"steps": 4, "cfg_scale": 0, "mode": "base"}),
+    "sd3.5-large": ("stabilityai/stable-diffusion-3_5-large", {"steps": 40, "cfg_scale": 4.5, "mode": "base"}),
+}
+if ENGINE == "nvidia" and not NV_KEY:
+    sys.exit("IMAGE_ENGINE=nvidia, amma NVIDIA_API_KEY yoxdur")
+if ENGINE != "nvidia" and not KEY:
+    sys.exit("OPENAI_API_KEY yoxdur (və ya IMAGE_ENGINE=nvidia + NVIDIA_API_KEY istifadə et)")
 MODEL = os.environ.get("OPENAI_IMAGE_MODEL", "gpt-image-2.5-sunburst-2026-09-08")
 OUT = os.environ.get("ASSET_DIR") or os.path.join("public", "assets")
 BOUNDS_PATH = os.environ.get("BOUNDS_PATH") or os.path.join("src", "assetBounds.json")
@@ -59,9 +71,79 @@ VISUAL = os.environ.get("VISUAL_NOTES", "").strip()
 REFS = [u for u in os.environ.get("IMAGE_REFS", "").split(",") if u]
 
 
+_last_nv = [0.0]
+
+
+def nv_generate(prompt: str, size: str, transparent: bool) -> bytes:
+    """NVIDIA NIM: şəffaf fon yoxdur → ağ fonda yaradıb flood-fill ilə şəffaf edirik (nv_cut_white)."""
+    if NV_MODEL not in NV_PATHS:
+        sys.exit(f"NVIDIA_IMAGE_MODEL={NV_MODEL} dəstəklənmir burada: {', '.join(NV_PATHS)}")
+    path, extra = NV_PATHS[NV_MODEL]
+    w, h = (1024, 1024) if size == "1024x1024" else (896, 1344)  # 2:3 fon
+    if transparent:
+        prompt = prompt.replace("fully TRANSPARENT background", "plain pure white (#FFFFFF) seamless background, no floor, no background shadow")
+    body = {"prompt": prompt[:9500], "width": w, "height": h, "seed": int.from_bytes(os.urandom(3), "big"), "samples": 1, **extra}
+    url = os.environ.get("NVIDIA_BASE_URL", "https://ai.api.nvidia.com/v1/genai") + "/" + path
+    for attempt in range(1, 6):
+        gap = float(os.environ.get("NVIDIA_MIN_GAP_MS", "1600")) / 1000 - (time.time() - _last_nv[0])
+        if gap > 0: time.sleep(gap)
+        _last_nv[0] = time.time()
+        req = urllib.request.Request(url, data=json.dumps(body).encode(), headers={
+            "Authorization": f"Bearer {NV_KEY}", "Accept": "application/json", "Content-Type": "application/json"})
+        try:
+            with urllib.request.urlopen(req, timeout=300) as r:
+                j = json.load(r)
+            break
+        except urllib.error.HTTPError as e:
+            txt = e.read().decode("utf-8", "replace")[:300]
+            if e.code == 422 and (w, h) != (1024, 1024):
+                print(f"  [nvidia] {w}x{h} qəbul olunmadı → 1024x1024"); w = h = 1024; body.update(width=1024, height=1024); continue
+            if (e.code == 429 or e.code >= 500) and attempt < 5:
+                wait = min(60, 3 * 2 ** (attempt - 1)); print(f"  [nvidia] HTTP {e.code}, {wait}s gözləyirəm"); time.sleep(wait); continue
+            raise RuntimeError(f"NVIDIA {e.code}: {txt}")
+        except urllib.error.URLError:
+            if attempt >= 5: raise
+            time.sleep(2 * attempt)
+    a = (j.get("artifacts") or [{}])[0]
+    if a.get("finishReason") not in (None, "SUCCESS"):
+        raise RuntimeError(f"NVIDIA finishReason={a.get('finishReason')}")
+    b64 = a.get("base64") or j.get("image") or (j.get("data") or [{}])[0].get("b64_json")
+    if not b64:
+        raise RuntimeError("NVIDIA cavabında şəkil yoxdur: " + json.dumps(j)[:200])
+    raw = base64.b64decode(b64.split(",", 1)[-1])
+    if not transparent:
+        return raw
+    out = io.BytesIO(); nv_cut_white(Image.open(io.BytesIO(raw)).convert("RGBA")).save(out, "PNG")
+    return out.getvalue()
+
+
+def nv_cut_white(im: Image.Image, tol: int = 38) -> Image.Image:
+    """Kənarlardan flood-fill: yalnız fona BİRLƏŞƏN ağ piksellər şəffaf olur, obyektin içindəki ağ qalır."""
+    px = im.load(); W, H = im.size
+    seen = bytearray(W * H)
+    stack = [(x, 0) for x in range(W)] + [(x, H - 1) for x in range(W)] + [(0, y) for y in range(H)] + [(W - 1, y) for y in range(H)]
+    while stack:
+        x, y = stack.pop()
+        i = y * W + x
+        if seen[i]: continue
+        seen[i] = 1
+        r, g, b, a = px[x, y]
+        d = 765 - (r + g + b)
+        if d > tol * 3: continue
+        px[x, y] = (r, g, b, 0 if d < tol else round(255 * (d - tol) / (tol * 2)))
+        if x > 0: stack.append((x - 1, y))
+        if x < W - 1: stack.append((x + 1, y))
+        if y > 0: stack.append((x, y - 1))
+        if y < H - 1: stack.append((x, y + 1))
+    return im
+
+
 def generate(prompt: str, size: str, transparent: bool) -> bytes:
     if VISUAL:
         prompt += f" Additional style guidance: {VISUAL}."
+    if ENGINE == "nvidia":
+        if REFS: print("  [nvidia] IMAGE_REFS istinad şəkli NVIDIA-da dəstəklənmir — yalnız prompt işlədilir")
+        return nv_generate(prompt, size, transparent)
     if REFS:
         # istinad şəkil → edits API (multipart)
         ref = urllib.request.urlopen(REFS[0], timeout=60).read()

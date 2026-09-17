@@ -16,13 +16,18 @@ Server yoxdur. Hər şey GitHub Actions-da işləyir.
 
 ## Xərc
 
+**Keyfiyyət birinci: OpenAI ƏSAS provayderdir**, pulsuzlar yalnız ehtiyat (`LLM_ENGINE=openai-first`, `TTS_ENGINE=openai-first`, `IMAGE_ENGINE=openai`).
+
 | Xidmət | Aylıq |
 |---|---|
-| OpenAI — ssenari + səs + Whisper | ~2–3 $ |
+| OpenAI — mətn/JSON (ssenari, konsept, caption, plan, analitika) | ~3–8 $ |
+| OpenAI — səs (`gpt-4o-mini-tts` + Whisper hizalaması) | ~1 sent/video |
+| OpenAI — şəkil (`gpt-image`, poster/karusel/Story assetləri) | ~0.2 $/şəkil |
+| NVIDIA, Gemini, Groq, Cerebras, GitHub Models, OpenRouter, edge-tts — **yalnız ehtiyat** | 0 $ |
 | Pexels, Audius, Iconify, GitHub, Meta | 0 $ |
-| **Cəmi** | **~2–3 $** |
+| **Cəmi** | **şəkil sayından asılı — hazırkı cədvəldə ~40–60 $** |
 
-Heç bir xidmət bank kartı tələb etmir (OpenAI istisna — o, artıq mövcuddur).
+Ehtiyat provayderlərin heç biri bank kartı tələb etmir; OpenAI ödənişlidir və əsas yoldur.
 
 ---
 
@@ -210,17 +215,17 @@ Workflow: `weekly.yml` — B.e. 06:00 UTC analitika + yaddaş + plan + hesabat I
 
 ## Səs
 
-**Default: OpenAI `gpt-4o-mini-tts`** ([pipeline/tts_openai.py](pipeline/tts_openai.py)) —
-`instructions` ilə təbii, canlı intonasiya. Söz vaxtı vermir, ona görə Whisper
-bizim mətni `prompt` kimi alıb audio ilə hizalayır; sözlər difflib ilə uyğunlaşdırılır.
-Xərc ≈ 1 sent/video.
+**Default: OpenAI `gpt-4o-mini-tts`** ([pipeline/tts_openai.py](pipeline/tts_openai.py)) — `instructions` ilə təbii, canlı intonasiya
+("Language: AZERBAIJANI … NOT Turkish"). Söz vaxtı vermir, ona görə Whisper bizim mətni `prompt` kimi alıb audio ilə hizalayır;
+sözlər difflib ilə uyğunlaşdırılır. Xərc ≈ 1 sent/video.
+**Ehtiyat:** səhnə OpenAI-də alınmasa (kvota/şəbəkə) həmin səhnə avtomatik pulsuz edge-tts az-AZ ilə səslənir ([pipeline/tts.py](pipeline/tts.py)).
 
 | Dəyişən | Default | Qeyd |
 |---|---|---|
-| `TTS_ENGINE` | `openai` | `edge` → pulsuz edge-tts (robotvari, amma 0 $) |
+| `TTS_ENGINE` | `openai-first` | OpenAI → xətada edge-tts · `openai` (ehtiyatsız) · `edge` (yalnız pulsuz) · `auto` (əvvəl edge) |
 | `OPENAI_TTS_VOICE` | `marin` | `coral`, `cedar`, `ash` da yoxlanıb |
 | `OPENAI_TTS_SPEED` | `1.1` | 1.0-da video 33 saniyə çıxırdı |
-| `TTS_VOICE` | `az-AZ-BanuNeural` | yalnız edge rejimi üçün |
+| `TTS_VOICE` | `rotate` | yalnız edge yolunda: `az-AZ-BanuNeural` / `az-AZ-BabekNeural` |
 
 GitHub-da `Variables` bölməsindən, lokal `.env`-dən dəyişilir.
 
@@ -244,6 +249,91 @@ Assetlər [pipeline/gen_assets.py](pipeline/gen_assets.py) ilə yaranır: OpenAI
 Yeni obyekt lazımdırsa: `OBJECTS`-ə bir sətir əlavə et, `python pipeline/gen_assets.py <ad>` (~0.2 $/şəkil).
 
 Explainer-in bütün assetləri [src/components/explainer/assets.tsx](src/components/explainer/assets.tsx)-də SVG/CSS ilə çəkilib — stok yoxdur, telif yoxdur, brendin kub loqosu birbaşa "qutu"dur.
+
+## OpenAI əsas, pulsuz provayderlər ehtiyat
+
+**Mətn/JSON işlərinin hamısı** (ssenari, konsept, caption, plan, analitika, şərh cavabı, dəyişiklik şərhi) [pipeline/llm.ts](pipeline/llm.ts) üzərindən gedir — **OpenAI yolu da**.
+Default `openai-first`: əvvəl OpenAI çağırılır — həmin faylın öz model sabiti (`gpt-5.4-mini` / `gpt-5.5`), **strict `json_schema`**, `temperature` göndərilmir (köhnə davranışın eyni).
+Pulsuza yalnız texniki xətada keçilir: **429 · 5xx · kvota bitib · şəbəkə xətası · açar yoxdur**. OpenAI **400** cavabı (sxem/prompt xətası) pulsuzla maskalanmır — xəta atılır.
+Ehtiyat yolda açarı olan provayderlər avtomatik qoşulur, model adları `/models` siyahısından seçilir; JSON sxemə uyğun deyilsə modeldən bir dəfə düzəliş istənir.
+
+| Dəyişən | Default | Qeyd |
+|---|---|---|
+| `LLM_ENGINE` | `openai-first` | OpenAI → texniki xətada pulsuz · `openai` (ehtiyatsız) · `auto` (əvvəl pulsuz) · `free` (yalnız pulsuz) |
+| `LLM_PROVIDERS` | `nvidia,gemini,groq,cerebras,github,openrouter,mistral,sambanova` | ehtiyat sırası |
+| `LLM_MODEL_<PROVAYDER>_<TASK>` | — | əl ilə model, məs. `LLM_MODEL_NVIDIA_CREATIVE=deepseek-ai/deepseek-v4-flash` |
+| `TTS_ENGINE` | `openai-first` | OpenAI səs+Whisper → səhnə xətasında edge-tts |
+| `IMAGE_ENGINE` | `openai` | `nvidia` · `auto` (NVIDIA, xəta olsa OpenAI) |
+| `NOVELTY` | `1` | `0` → "yenilik bloku" və ideya yaddaşı söndürülür |
+
+### Alternativləri özün yoxla — `pipeline/compare.ts`
+
+Eyni prompt və eyni JSON sxem əvvəl OpenAI, sonra hər pulsuz modellə işlədilir. **Heç nə yayımlanmır, asset/render yaranmır, ideya yaddaşına yazılmır.**
+
+```bash
+npx tsx pipeline/compare.ts carousel     # → out/compare-carousel-<tarix>.md
+npx tsx pipeline/compare.ts poster|story|script
+npx tsx pipeline/compare.ts tts "Köç günü dramına son"   # → out/compare-tts/openai.mp3, edge-banu.mp3, edge-babek.mp3
+```
+`COMPARE_LIMIT` (default 6) — neçə pulsuz model sınansın; `COMPARE_TIMEOUT_MS` (default 180000).
+
+**Ehtiyat açarları** (hamısı pulsuz səviyyə, istəyə bağlı; `.env` və GitHub Secrets — `npx tsx pipeline/_secrets.ts 166company/motion-design`):
+`NVIDIA_API_KEY`, `GEMINI_API_KEY`, `GROQ_API_KEY`, `CEREBRAS_API_KEY`, `OPENROUTER_API_KEY`, `GH_MODELS_TOKEN`, `MISTRAL_API_KEY`, `SAMBANOVA_API_KEY`.
+Ən azı 2-3 provayder olsun — limitlər ayrı-ayrıdır və fərqli modellər fərqli ideya verir.
+
+**Tapşırıqlar:** `creative` (Poster, Carousel, Story, Explainer, TipList — hər dəfə FƏRQLİ model başlayır), `smart` (caption, plan, analitika, dəyişiklik şərhi), `fast` (şərh cavabı), `vision` (şəkil varsa avtomatik).
+
+**Təkrarsız ideyalar** — [pipeline/ideas.ts](pipeline/ideas.ts):
+- `content/data/ideas-history.json` — son 120 ideya; hər kreativ promptа "bunları təkrarlama" siyahısı gedir
+- hər post üçün yeni **kreativ bucaq** (sənədli film diktoru, idman şərhçisi, gözlənti/reallıq, WhatsApp çatı…), **vizual istiqamət** (Swiss poster, izometrik, claymation, neon Bakı…), video üçün **motion ritmi** — son istifadə olunanlar seçilmir
+- qaydalar (qiymət yox, real sitat, brend adı) bucaqdan HƏMİŞƏ üstündür; fun poster yalnız vizual istiqamət alır
+
+**Trendlər:** əsas — OpenAI `web_search` (background rejim + sorğulama); alınmasa `GEMINI_API_KEY` varsa Gemini + Google Search.
+**Musiqi vokal yoxlaması:** əsas — OpenAI `whisper-1`; alınmasa Groq Whisper (`GROQ_API_KEY`).
+
+**Ehtiyat səs (azərbaycanca):** [pipeline/tts.py](pipeline/tts.py) — edge-tts söz vaxtlarını özü verir (Whisper lazım deyil), brend `Yük nöqtə az` və rəqəmlər (`az_numbers.py`) düzgün oxunur, 3 cəhd.
+Qeyd: NVIDIA, Gemini, Groq TTS modelləri azərbaycan dilini dəstəkləmir; ElevenLabs dəstəkləyir, amma pulsuz planı kommersiya istifadəsinə icazə vermir.
+
+```bash
+npx tsx pipeline/llm.ts status   # hansı provayder/model hansı tapşırığa düşür
+npx tsx pipeline/llm.ts test     # hər kreativ modeldən qısa azərbaycanca JSON cavab
+```
+
+## NVIDIA — pulsuz şəkil / motion / 3D (build.nvidia.com)
+
+OpenAI `gpt-image` (~0.2 $/şəkil) əvəzinə və ya yanında **pulsuz** NVIDIA NIM API. Modul: [pipeline/nvidia.ts](pipeline/nvidia.ts).
+
+**Quraşdırma:** build.nvidia.com → model (məs. FLUX.1-schnell) → *Get API Key* → `nvapi-...`
+`.env`-ə `NVIDIA_API_KEY=` yaz, GitHub-da Secret kimi əlavə et (`npx tsx pipeline/_secrets.ts 166company/motion-design` avtomatik yazır).
+
+| Dəyişən (Variables) | Default | Qeyd |
+|---|---|---|
+| `IMAGE_ENGINE` | `openai` | `nvidia` → yalnız NVIDIA · `auto` → NVIDIA, xəta olsa OpenAI |
+| `NVIDIA_IMAGE_MODEL` | `flux.1-schnell` | `sd3.5-large` — daha detallı, yavaş |
+| `NVIDIA_ALLOW_NONCOMMERCIAL` | — | `1` → `flux.1-dev` kimi qeyri-kommersiya modellər (**yalnız sınaq**) |
+| `NVIDIA_MIN_GAP_MS` | `1600` | pulsuz limit ~40 sorğu/dəq |
+
+**Harada işləyir:** `poster.ts` (səhnə), `carousel.ts` (foto), `gen_assets.py` (Story obyektləri + fonları).
+
+**Fərqlər (bil):**
+- **Loqo:** FLUX loqonu dəqiq çəkə bilmir → NVIDIA rejimində poster səhnəsi loqosuz yaranır (düz narıncı formalar). Loqolu forma vacibdirsə `IMAGE_ENGINE=openai` saxla və ya `auto`.
+- **İstinad şəkil (✏️ Dəyişiklik → şəkil):** NVIDIA-da dəstəklənmir. `auto`/`openai` rejimində OpenAI-yə gedir, `nvidia` rejimində yalnız mətn işlənir.
+- **Şəffaf obyekt:** NVIDIA şəffaf fon vermir → ağ fonda yaradılır, kənardan flood-fill ilə şəffaf edilir (obyektin içindəki ağ qalır).
+- **Lisenziya:** yuk.az kommersiyadır. ✅ `flux.1-schnell` (Apache 2.0), ✅ `sd3.5-large` (gəlir < 1 mln $). ⛔ `flux.1-dev`, `flux.1-kontext-dev` — kod bloklayır.
+
+**Əl ilə (CLI):**
+
+```bash
+npx tsx pipeline/nvidia_cli.ts test                                   # açarı yoxla
+npx tsx pipeline/nvidia_cli.ts models                                 # modellər, lisenziyalar, formatlar
+npx tsx pipeline/nvidia_cli.ts formats "movers loading a truck in Baku"   # BÜTÜN formatlar: post, square, story, carousel, landscape, blog, og, cover
+npx tsx pipeline/nvidia_cli.ts image "..." --format story             # tək format
+npx tsx pipeline/nvidia_cli.ts object "orange moving truck"           # şəffaf PNG asset
+npx tsx pipeline/nvidia_cli.ts video out/nvidia/x.jpg                 # şəkil → 2-4 san hərəkət (SVD, eksperimental, yalnız 16:9)
+npx tsx pipeline/nvidia_cli.ts 3d "cardboard moving box"              # .glb (TRELLIS)
+```
+
+Nəticələr `out/nvidia/`-də.
 
 ## Vizual sistem
 

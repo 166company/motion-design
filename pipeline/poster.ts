@@ -15,6 +15,9 @@ import path from "node:path";
 import { contact } from "../src/brand/contact.ts";
 import { listArticles } from "./wp.ts";
 import { getTrends, type Trends } from "./trends.ts";
+import { nvImageToFile, withNvidia } from "./nvidia.ts";
+import { chat, type ChatOpts } from "./llm.ts";
+import { novelty, remember, type Novelty } from "./ideas.ts";
 
 const MODEL = process.env.OPENAI_CREATIVE_MODEL ?? "gpt-5.5";
 const IMG_MODEL = process.env.OPENAI_IMAGE_MODEL ?? "gpt-image-2.5-sunburst-2026-09-08";
@@ -72,7 +75,8 @@ Nümunə: "I regret to inform you that the secret to a clean house is to clean t
 SALES post: yalnız verilən yuk.az faktlarından; zərbəli, sadə.
 YAZI MİNİMAL: kicker (maks 7 söz) + punchline (2-4 söz). İzahat cümləsi yox. Konkret qiymət/rəqəm yox. "Yük.az" yaz. Digər brend adları yox.`;
 
-const writeConcepts = async (facts: string, trends: Trends, feedback?: string): Promise<Concept[]> => {
+/** Sorğu qurucusu — eyni prompt/sxem compare.ts-də də istifadə olunur (təkrarlanmasın deyə ayrıca export) */
+export const posterRequest = (facts: string, trends: Trends, feedback: string | undefined, nv: Novelty): ChatOpts => {
   const mix = MIX.slice(0, COUNT); while (mix.length < COUNT) mix.push("fun");
   const exText = trends.examples.length
     ? trends.examples.map((e, i) => `${i + 1}. [${e.platform}] "${e.quote}" — ${e.context} (${e.whyFunny})\n   URL: ${e.url}`).join("\n")
@@ -80,32 +84,48 @@ const writeConcepts = async (facts: string, trends: Trends, feedback?: string): 
   // real meme şablonları — model şəkilləri görür (vision), strukturu sadiq saxlayır
   const tpl = trends.examples.length >= 4 ? [] : trends.templates.slice(0, 10);
   const tplText = tpl.map((t, i) => `T${i + 1}. ${t.name} — ${t.url}`).join("\n");
-  const res = await fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Authorization: `Bearer ${process.env.OPENAI_API_KEY}` },
-    body: JSON.stringify({
-      model: MODEL,
-      messages: [
-        { role: "system", content: SYSTEM + playbook(["viral-hook-writer", "cta-writer", "trend-spotter"]) + planFor("Poster", postCount()).text + memory() },
+  return { task: "creative", name: "posters", model: MODEL, schema: schema, seed: nv.seed, messages: [
+        { role: "system", content: SYSTEM + playbook(["viral-hook-writer", "cta-writer", "trend-spotter"]) + planFor("Poster", postCount()).text + memory() + nv.text },
         { role: "user", content: [
-          { type: "text", text:
+          { type: "text" as const, text:
             `REAL VİRAL NÜMUNƏLƏR (webdən, dəqiq sitat + URL):\n${exText}\n\n` +
             (tpl.length ? `REAL MEME ŞABLONLARI (şəkilləri aşağıda görürsən):\n${tplText}\n\n` : "") +
             `YUK.AZ FAKTLARI (sales üçün):\n${facts}\n\n` +
             `Bu gün üçün ${COUNT} post yaz, ardıcıllıq dəqiq belə: ${mix.map((k, i) => `${i + 1}=${k}`).join(", ")}.` +
             (feedback ? `\n\nİSTİFADƏÇİ QEYDİ, MÜTLƏQ nəzərə al:\n${feedback}` : "") },
-          ...tpl.map((t) => ({ type: "image_url", image_url: { url: t.url, detail: "low" } })),
+          ...tpl.map((t) => ({ type: "image_url" as const, image_url: { url: t.url, detail: "low" } })),
         ] },
-      ],
-      response_format: { type: "json_schema", json_schema: { name: "posters", strict: true, schema } },
-    }),
-  });
-  if (!res.ok) throw new Error(`OpenAI ${res.status}: ${(await res.text()).slice(0, 300)}`);
-  return (JSON.parse(((await res.json()) as any).choices[0].message.content) as { posts: Concept[] }).posts;
+      ] };
+};
+
+const writeConcepts = async (facts: string, trends: Trends, feedback?: string): Promise<Concept[]> => {
+  const nv = novelty("Poster", { idea: false });
+  const __r = await chat<any>(posterRequest(facts, trends, feedback, nv));
+  const posts = ((__r.data) as { posts: Concept[] }).posts;
+  remember("Poster", posts, nv);
+  return posts;
 };
 
 /** Loqolu səhnə — /images/edits, loqo PNG istinad kimi */
-const genScene = async (desc: string, dest: string, fun: boolean) => {
+const genScene = (desc: string, dest: string, fun: boolean) =>
+  withNvidia(
+    // NVIDIA (FLUX) loqonu dəqiq çəkə bilmir → loqosuz, düz narıncı formalar; loqo layout-da qalır
+    () =>
+      nvImageToFile(
+        `${desc.replace(/(with )?the logo[^,.;]*/gi, "")} ` +
+          (fun
+            ? "Photorealistic, candid, slightly exaggerated comedic advertising photo, vertical 4:5, natural light, expressive faces, the joke must be readable from the image alone. "
+            : "Photorealistic commercial advertising photo, vertical 4:5, editorial lighting, sharp, premium. ") +
+          "Brand colors: bright orange #FF6600 and dark graphite #1E2124. Plain orange t-shirts and plain graphite truck without any print. " +
+          "No text, letters, logos or signs anywhere. Keep the lower third relatively clean and slightly darker for typography." +
+          (process.env.VISUAL_NOTES ? ` Style guidance: ${process.env.VISUAL_NOTES}.` : ""),
+        dest,
+        { format: "post", output: "jpeg" },
+      ).then(() => undefined),
+    () => genSceneOpenAI(desc, dest, fun),
+  );
+
+const genSceneOpenAI = async (desc: string, dest: string, fun: boolean) => {
   const style =
     (fun
       ? "Photorealistic, candid, slightly exaggerated comedic advertising photo, vertical 4:5, natural light, expressive faces, the joke must be readable from the image alone. "
@@ -191,4 +211,4 @@ const main = async () => {
   console.log(`\n✓ Hazırdır: ${ids.join(", ")}\n`);
 };
 
-main().catch((e) => { console.error("XƏTA:", e.message); process.exit(1); });
+if (/[\\/]poster\.ts$/.test(process.argv[1] ?? "")) main().catch((e) => { console.error("XƏTA:", e.message); process.exit(1); });

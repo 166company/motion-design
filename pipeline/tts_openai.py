@@ -16,9 +16,12 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from mutagen.mp3 import MP3
 from az_numbers import normalize as az_normalize
 
-KEY = os.environ["OPENAI_API_KEY"]
+# Açar modul səviyyəsində məcburi deyil — yoxdursa tts() xəta atır və ehtiyat (edge-tts) işə düşür
+KEY = os.environ.get("OPENAI_API_KEY", "").strip()
 MODEL = os.environ.get("OPENAI_TTS_MODEL", "gpt-4o-mini-tts-2025-12-15")
-VOICE = os.environ.get("OPENAI_TTS_VOICE", "marin")
+# Boş dəyər də ola bilər (.env-də rotasiya üçün boş saxlanılır) — o halda default səs
+VOICE = (os.environ.get("OPENAI_TTS_VOICE") or "marin").strip()
+ENGINE = os.environ.get("TTS_ENGINE", "openai-first").lower()
 SPEED = float(os.environ.get("OPENAI_TTS_SPEED", "1.1"))  # reels ritmi — 1.0 çox yavaş idi (33 san)
 
 # İngiliscə göstəriş: model fonetik təlimatı ingiliscə daha dəqiq izləyir.
@@ -52,7 +55,18 @@ def tts_chat_audio(text: str, out_path: str):
     open(out_path, "wb").write(base64.b64decode(d["choices"][0]["message"]["audio"]["data"]))
 
 
+def _api_error(e: Exception) -> Exception:
+    """urllib HTTPError-un gövdəsini xəta mətninə əlavə et (400-ün səbəbi görünsün)"""
+    try:
+        body = e.read().decode("utf-8", "replace")[:300]  # type: ignore[attr-defined]
+        return RuntimeError(f"{e} — {body}")
+    except Exception:
+        return e
+
+
 def tts(text: str, out_path: str):
+    if not KEY:
+        raise RuntimeError("OPENAI_API_KEY yoxdur")
     if MODEL.startswith("gpt-audio"):
         return tts_chat_audio(text, out_path)
     body = json.dumps({
@@ -63,8 +77,11 @@ def tts(text: str, out_path: str):
         "https://api.openai.com/v1/audio/speech", data=body,
         headers={"Authorization": f"Bearer {KEY}", "Content-Type": "application/json"},
     )
-    with urllib.request.urlopen(req, timeout=120) as r:
-        open(out_path, "wb").write(r.read())
+    try:
+        with urllib.request.urlopen(req, timeout=120) as r:
+            open(out_path, "wb").write(r.read())
+    except Exception as e:
+        raise _api_error(e) from None
 
 
 def whisper_words(path: str, prompt: str):
@@ -130,6 +147,15 @@ def align(original: list[str], heard: list[dict], duration: float):
             for k in range(n)]
 
 
+def edge_fallback(job: dict, outdir: str, err: Exception):
+    """OpenAI TTS/Whisper alınmasa həmin səhnəni pulsuz edge-tts ilə səsləndir (TTS_ENGINE=openai deyilsə)."""
+    if ENGINE == "openai":
+        raise err
+    print(f"  OpenAI TTS alınmadı ({str(err)[:120]}) → ehtiyat: edge-tts az-AZ ({job['id']})", file=sys.stderr)
+    import tts as edge  # dövri import yoxdur: tts.py tts_openai-ni yalnız funksiya içində import edir
+    return edge.synth_sync(job, outdir)
+
+
 def main():
     jobs = json.load(sys.stdin)
     outdir = sys.argv[1]
@@ -141,10 +167,14 @@ def main():
         j["text"] = re.sub(r"Y[uü]k\.?az", "Yük nöqtə az", j["text"], flags=re.I)
         # rəqəmlər azərbaycanca oxunsun ("3" → "üç", "4-cü" → "dördüncü")
         j["text"] = az_normalize(j["text"])
-        tts(j["text"], path)
-        duration = MP3(path).info.length
-        heard = whisper_words(path, j["text"])
-        words = align(j["text"].split(), heard, duration)
+        try:
+            tts(j["text"], path)
+            duration = MP3(path).info.length
+            heard = whisper_words(path, j["text"])
+            words = align(j["text"].split(), heard, duration)
+        except Exception as e:
+            result[j["id"]] = edge_fallback(j, outdir, e)
+            continue
         result[j["id"]] = {"words": words, "duration": round(duration, 3), "file": path.replace("\\", "/")}
     sys.stdout.reconfigure(encoding="utf-8")
     sys.stdout.write(json.dumps(result, ensure_ascii=False))

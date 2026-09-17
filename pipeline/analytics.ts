@@ -10,6 +10,7 @@
 import "dotenv/config";
 import fs from "node:fs/promises";
 import { playbook } from "./skills.ts";
+import { chat } from "./llm.ts";
 
 const V = "v21.0";
 const TOKEN = process.env.META_ACCESS_TOKEN!;
@@ -79,20 +80,11 @@ const readoutSchema = {
 export const readout = async (metrics: Record<string, Metrics>) => {
   const t = await table(metrics);
   const prev = await fs.readFile("content/brain.md", "utf-8").catch(() => "");
-  const res = await fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Authorization: `Bearer ${process.env.OPENAI_API_KEY}` },
-    body: JSON.stringify({
-      model: MODEL,
-      messages: [
+  const __r = await chat<any>({ task: "smart", name: "readout", model: MODEL, schema: readoutSchema, messages: [
         { role: "system", content: "Sən Yük.az (ev/ofis köçü, Bakı) Instagram səhifəsinin analitikisən. Sadə, dürüst, azərbaycanca." + playbook(["analytics-readout", "hook-mining", "content-audit", "ai-brain"], 9000) },
         { role: "user", content: `POSTLAR VƏ RƏQƏMLƏR (Instagram, ömürlük):\n${t}\n\nƏVVƏLKİ YADDAŞ:\n${prev || "(boş)"}\n\nHəftəlik oxunuş və yenilənmiş yaddaş yaz.` },
-      ],
-      response_format: { type: "json_schema", json_schema: { name: "readout", strict: true, schema: readoutSchema } },
-    }),
-  });
-  if (!res.ok) throw new Error(`OpenAI ${res.status}: ${(await res.text()).slice(0, 300)}`);
-  const r = JSON.parse(((await res.json()) as any).choices[0].message.content) as { readout: string; brain: string };
+      ] });
+  const r = (__r.data) as { readout: string; brain: string };
   await fs.mkdir("out", { recursive: true });
   await fs.writeFile("out/readout.md", `${r.readout}\n\n---\n\n${t}\n`, "utf-8");
   await fs.writeFile("content/brain.md", r.brain.trim() + "\n", "utf-8");

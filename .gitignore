@@ -21,3 +21,5 @@ content/output/
 feedback-plan.json
 out/new-ids.txt
 public/render/**/*.png
+__pycache__/
+out/compare-*

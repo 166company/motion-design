@@ -11,6 +11,7 @@ import fs from "node:fs/promises";
 import { listArticles } from "./wp.ts";
 import { getTrends } from "./trends.ts";
 import { playbook, memory } from "./skills.ts";
+import { chat } from "./llm.ts";
 
 const MODEL = process.env.OPENAI_CREATIVE_MODEL ?? "gpt-5.5";
 
@@ -62,20 +63,11 @@ const main = async () => {
   const trendText = trends.examples.slice(0, 8).map((e) => `- "${e.quote.slice(0, 120)}"`).join("\n");
   const analytics = await fs.readFile("content/analytics.json", "utf-8").catch(() => "{}");
 
-  const res = await fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Authorization: `Bearer ${process.env.OPENAI_API_KEY}` },
-    body: JSON.stringify({
-      model: MODEL,
-      messages: [
+  const __r = await chat<any>({ task: "smart", name: "calendar", model: MODEL, schema: schema, messages: [
         { role: "system", content: `Sən Yük.az (Bakı; ev/ofis köçü, yükdaşıma, hədəf: yük sahibləri) Instagram/Facebook səhifəsinin kontent planlayıcısısan. Azərbaycanca. Qiymət rəqəmi yox. Səhifə FUN olmalıdır: əsas yer illüstrasiya (Story) və videoya (Explainer) — hər həftə ən azı 3 Story + 2 Explainer; TipList maks 1/həftə. Fun konseptlər verilən beynəlxalq real trend nümunələrindən (formatı saxla, mövzunu köçə çevir). Məqsəd (SAVE/SHARE/FOLLOW/LEAD) və bucaq slotdan slota rotasiya olunsun; eyni məqalə 2 həftədə 1 dəfə.` + playbook(["content-calendar", "content-pillar-builder", "series-planner", "best-time-scheduler", "going-viral"], 12000) + memory() },
         { role: "user", content: `BU GÜN: ${fmt(today)}\n\nSLOTLAR (hər sətir üçün 1 plan yaz, tarix və şablon dəqiq uyğun olsun):\n${schedule.join("\n")}\n\nMƏQALƏLƏR (TipList üçün ID ver):\n${articles}\n\nBU HƏFTƏNİN REAL TREND NÜMUNƏLƏRİ:\n${trendText || "(yoxdur)"}\n\nSON RƏQƏMLƏR:\n${analytics.slice(0, 3000)}` },
-      ],
-      response_format: { type: "json_schema", json_schema: { name: "calendar", strict: true, schema } },
-    }),
-  });
-  if (!res.ok) throw new Error(`OpenAI ${res.status}: ${(await res.text()).slice(0, 300)}`);
-  const plan = JSON.parse(((await res.json()) as any).choices[0].message.content) as { pillars: string[]; series: string[]; slots: Slot[] };
+      ] });
+  const plan = (__r.data) as { pillars: string[]; series: string[]; slots: Slot[] };
   await fs.writeFile("content/calendar.json", JSON.stringify({ generatedAt: new Date().toISOString(), from: days[0], to: days[13], ...plan }, null, 2), "utf-8");
   console.log(`  ✓ plan: ${plan.slots.length} slot, sütunlar: ${plan.pillars.join(" · ")}`);
   for (const s of plan.slots.slice(0, 8)) console.log(`   ${s.date} ${s.template.padEnd(9)} ${s.goal.padEnd(6)} ${s.hook}`);

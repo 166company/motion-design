@@ -13,6 +13,8 @@ import path from "node:path";
 import { listArticles } from "./wp.ts";
 import { runTts, normalizeVo, pickMusic } from "./audio.ts";
 import { pickVoice, contact } from "../src/brand/contact.ts";
+import { chat } from "./llm.ts";
+import { novelty, remember } from "./ideas.ts";
 
 const FPS = 30;
 const TAIL = 16;
@@ -71,20 +73,13 @@ QAYDALAR: yalnız verilən məqalə faktlarına söykən; KONKRET QİYMƏT YAZMA
 Caption formatı MƏCBURİ: emoji hook → boş sətir → 2-3 emojili qısa abzas → boş sətir → "📞 Zəng et: ${contact.phone}".`;
 
 const writeContent = async (facts: string, feedback?: string): Promise<Content> => {
-  const res = await fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Authorization: `Bearer ${process.env.OPENAI_API_KEY}` },
-    body: JSON.stringify({
-      model: MODEL,
-      messages: [
-        { role: "system", content: SYSTEM + playbook(["going-viral", "reel-builder", "on-screen-text-writer", "cta-writer"]) + planFor("Explainer", postCount()).text + memory() },
+  const nv = novelty("Explainer", { motion: true });
+  const __r = await chat<any>({ task: "creative", name: "explainer", model: MODEL, schema: schema, seed: nv.seed, messages: [
+        { role: "system", content: SYSTEM + playbook(["going-viral", "reel-builder", "on-screen-text-writer", "cta-writer"]) + planFor("Explainer", postCount()).text + memory() + nv.text },
         { role: "user", content: `MƏQALƏ FAKTLARI (yuk.az):\n${facts}\n\nBu faktlara əsaslanan 4 addımlı izahat yaz.${feedback ? `\n\nİSTİFADƏÇİ QEYDİ, MÜTLƏQ nəzərə al:\n${feedback}` : ""}` },
-      ],
-      response_format: { type: "json_schema", json_schema: { name: "explainer", strict: true, schema } },
-    }),
-  });
-  if (!res.ok) throw new Error(`OpenAI ${res.status}: ${(await res.text()).slice(0, 300)}`);
-  const c = JSON.parse(((await res.json()) as any).choices[0].message.content) as Content;
+      ] });
+  const c = (__r.data) as Content;
+  remember("Explainer", c, nv);
   if (!c.caption.includes(contact.phone)) c.caption = `${c.caption.trim()}\n\n📞 Zəng et: ${contact.phone}`;
   return c;
 };

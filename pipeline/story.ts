@@ -19,6 +19,8 @@ import { listArticles } from "./wp.ts";
 import { getTrends } from "./trends.ts";
 import { runTts, normalizeVo, pickMusic } from "./audio.ts";
 import { pickVoice, contact } from "../src/brand/contact.ts";
+import { chat, type ChatOpts } from "./llm.ts";
+import { novelty, remember, type Novelty } from "./ideas.ts";
 
 const FPS = 30;
 const TAIL = 16;
@@ -95,24 +97,22 @@ VİZUAL: bu post üçün siyahıdan bir üslub seç (əvvəlkiləri təkrar etm�
 QAYDALAR: KONKRET QİYMƏT YAZMA; sadə danışıq azərbaycan dili, "sən"; ekran mətni maks 7 söz, orfoqrafiya səhvsiz; "spoken"-də "Yük nöqtə az", ekranda "Yük.az".
 Caption: ilk sətir hook (sual/zarafat), 2-3 qısa emojili sətir, sonda sual; nömrə yazma (sistem əlavə edir).`;
 
-const writeContent = async (facts: string, trendText: string, usedStyles: string[], feedback?: string): Promise<Content> => {
-  const res = await fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Authorization: `Bearer ${process.env.OPENAI_API_KEY}` },
-    body: JSON.stringify({
-      model: MODEL,
-      messages: [
-        { role: "system", content: SYSTEM + playbook(["going-viral", "story-sequencer", "reel-builder", "on-screen-text-writer", "trend-spotter"]) + planFor("Story", postCount()).text + memory() },
+/** Sorğu qurucusu — eyni prompt/sxem compare.ts-də də istifadə olunur */
+export const storyRequest = (facts: string, trendText: string, usedStyles: string[], feedback: string | undefined, nv: Novelty): ChatOpts => ({
+  task: "creative", name: "story", model: MODEL, schema: schema, seed: nv.seed, messages: [
+        { role: "system", content: SYSTEM + playbook(["going-viral", "story-sequencer", "reel-builder", "on-screen-text-writer", "trend-spotter"]) + planFor("Story", postCount()).text + memory() + nv.text },
         { role: "user", content:
           `REAL TREND NÜMUNƏLƏRİ (webdən, bu həftə):\n${trendText || "(tapılmadı — ən məşhur relatable köç yumorunu istifadə et, amma sitat uydurma)"}\n\n` +
           `ÜSLUBLAR: ${Object.keys(STYLES).join(", ")}${usedStyles.length ? `\nƏVVƏLKİ POSTLARDA İSTİFADƏ OLUNUB (seçmə): ${usedStyles.join(", ")}` : ""}\n\n` +
           `YUK.AZ FAKTLARI (istinad üçün):\n${facts}\n\nBu post üçün konsept, 4 səhnə və vizual dəst yaz.${feedback ? `\n\nİSTİFADƏÇİ QEYDİ, MÜTLƏQ nəzərə al:\n${feedback}` : ""}` },
       ],
-      response_format: { type: "json_schema", json_schema: { name: "story", strict: true, schema } },
-    }),
-  });
-  if (!res.ok) throw new Error(`OpenAI ${res.status}: ${(await res.text()).slice(0, 300)}`);
-  const c = JSON.parse(((await res.json()) as any).choices[0].message.content) as Content;
+});
+
+const writeContent = async (facts: string, trendText: string, usedStyles: string[], feedback?: string): Promise<Content> => {
+  const nv = novelty("Story", { motion: true });
+  const __r = await chat<any>(storyRequest(facts, trendText, usedStyles, feedback, nv));
+  const c = (__r.data) as Content;
+  remember("Story", c, nv);
   if (!c.caption.includes(contact.phone)) c.caption = `${c.caption.trim()}\n\n📞 Zəng et: ${contact.phone}`;
   return c;
 };
@@ -222,4 +222,4 @@ const main = async () => {
   console.log(`  Render: npx remotion render src/index.ts Story out/${id}.mp4 --props=${dir}/props.json\n`);
 };
 
-main().catch((e) => { console.error("XƏTA:", e.message); process.exit(1); });
+if (/[\\/]story\.ts$/.test(process.argv[1] ?? "")) main().catch((e) => { console.error("XƏTA:", e.message); process.exit(1); });

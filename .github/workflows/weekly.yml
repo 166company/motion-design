@@ -27,6 +27,18 @@ jobs:
       META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
       META_IG_USER_ID: ${{ secrets.META_IG_USER_ID }}
       PYTHONUTF8: "1"
+      NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+      CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+      OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+      GH_MODELS_TOKEN: ${{ secrets.GH_MODELS_TOKEN }}
+      MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+      SAMBANOVA_API_KEY: ${{ secrets.SAMBANOVA_API_KEY }}
+      LLM_ENGINE: ${{ vars.LLM_ENGINE || 'openai-first' }}
+      TTS_ENGINE: ${{ vars.TTS_ENGINE || 'openai-first' }}
+      IMAGE_ENGINE: ${{ vars.IMAGE_ENGINE || 'openai' }}
+      NOVELTY: ${{ vars.NOVELTY || '1' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -63,6 +75,18 @@ jobs:
       META_IG_USER_ID: ${{ secrets.META_IG_USER_ID }}
       AUTO_REPLY: ${{ vars.AUTO_REPLY }}
       PYTHONUTF8: "1"
+      NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+      CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+      OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+      GH_MODELS_TOKEN: ${{ secrets.GH_MODELS_TOKEN }}
+      MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+      SAMBANOVA_API_KEY: ${{ secrets.SAMBANOVA_API_KEY }}
+      LLM_ENGINE: ${{ vars.LLM_ENGINE || 'openai-first' }}
+      TTS_ENGINE: ${{ vars.TTS_ENGINE || 'openai-first' }}
+      IMAGE_ENGINE: ${{ vars.IMAGE_ENGINE || 'openai' }}
+      NOVELTY: ${{ vars.NOVELTY || '1' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

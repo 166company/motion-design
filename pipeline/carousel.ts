@@ -13,6 +13,9 @@ import { playbook, planFor, memory, postCount } from "./skills.ts";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { contact } from "../src/brand/contact.ts";
+import { nvImageToFile, withNvidia } from "./nvidia.ts";
+import { chat, type ChatOpts } from "./llm.ts";
+import { novelty, remember, type Novelty } from "./ideas.ts";
 
 // Söz oyunu yaradıcı işdir — kiçik model mənasız ifadə yazır; burada güclü model (post başına ~1 sent)
 const MODEL = process.env.OPENAI_CREATIVE_MODEL ?? "gpt-5.5";
@@ -74,24 +77,39 @@ QAYDALAR:
 - Caption: 1 hazırcavab sətir + 1 fayda sətri, emojili, qısa. Nömrəni yazma — sistem əlavə edir.
 - "Dur burdan köçək." artıq istifadə olunub — TƏKRAR ETMƏ, təzəsini tap.`;
 
-const writeConcept = async (feedback?: string): Promise<Concept> => {
-  const res = await fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Authorization: `Bearer ${process.env.OPENAI_API_KEY}` },
-    body: JSON.stringify({
-      model: MODEL,
-      messages: [
-        { role: "system", content: SYSTEM + playbook(["carousel-builder", "viral-hook-writer", "going-viral"]) + planFor("Carousel", postCount()).text + memory() },
+/** Sorğu qurucusu — eyni prompt/sxem compare.ts-də də istifadə olunur */
+export const carouselRequest = (feedback: string | undefined, nv: Novelty): ChatOpts => ({
+  task: "creative", name: "carousel", model: MODEL, schema: schema, seed: nv.seed, messages: [
+        { role: "system", content: SYSTEM + playbook(["carousel-builder", "viral-hook-writer", "going-viral"]) + planFor("Carousel", postCount()).text + memory() + nv.text },
         { role: "user", content: `Yeni bir karusel konsepti yaz.${feedback ? `${NL}${NL}İSTİFADƏÇİ QEYDİ, MÜTLƏQ nəzərə al:${NL}${feedback}` : ""}` },
       ],
-      response_format: { type: "json_schema", json_schema: { name: "carousel", strict: true, schema } },
-    }),
-  });
-  if (!res.ok) throw new Error(`OpenAI ${res.status}: ${(await res.text()).slice(0, 300)}`);
-  return JSON.parse(((await res.json()) as any).choices[0].message.content) as Concept;
+});
+
+const writeConcept = async (feedback?: string): Promise<Concept> => {
+  const nv = novelty("Carousel");
+  const __r = await chat<any>(carouselRequest(feedback, nv));
+  const concept = (__r.data) as Concept;
+  remember("Carousel", concept, nv);
+  return concept;
 };
 
-const genPhoto = async (desc: string, dest: string) => {
+const genPhoto = (desc: string, dest: string) => {
+  const visual = process.env.VISUAL_NOTES ? ` Style/composition guidance: ${process.env.VISUAL_NOTES}.` : "";
+  const hasRefs = (process.env.IMAGE_REFS ?? "").split(",").some(Boolean);
+  // İstinad şəkil (IMAGE_REFS) NVIDIA-da dəstəklənmir → həmin halda OpenAI yolu
+  if (hasRefs && process.env.IMAGE_ENGINE !== "nvidia") return genPhotoOpenAI(desc, dest);
+  return withNvidia(
+    () =>
+      nvImageToFile(
+        `Photorealistic, vertical 4:5 framing, editorial photography, warm natural light, soft depth of field, no people, no text, no logos. Slightly darker lower third to hold large white typography. ${desc}${visual}`,
+        dest,
+        { format: "carousel", output: "jpeg" },
+      ).then(() => undefined),
+    () => genPhotoOpenAI(desc, dest),
+  );
+};
+
+const genPhotoOpenAI = async (desc: string, dest: string) => {
   const visual = process.env.VISUAL_NOTES ? ` Style/composition guidance: ${process.env.VISUAL_NOTES}.` : "";
   const prompt = `Photorealistic, vertical 4:5 framing, editorial photography, warm natural light, soft depth of field, no people, no text, no logos. Slightly darker lower third to hold large white typography. ${desc}${visual}`;
   const refs = (process.env.IMAGE_REFS ?? "").split(",").filter(Boolean);

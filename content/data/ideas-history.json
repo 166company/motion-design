@@ -1,0 +1,18 @@
+[
+ {
+  "at": "2026-09-17T10:06:30.100Z",
+  "template": "Poster",
+  "summary": "headline: Şəkil göndər Yük.az | kicker: Köç prosesi necə başlayır? | scene: phone | sceneDetail: Pastel soft 3D scene: a rounded smartphone floats in a calm beige-blue room, with a small ",
+  "lens": "ASMR sakitliyi: qablaşdırma lenti, qutu qatlanması",
+  "visual": "Pastel yumşaq 3D, yumru formalar, sakit ovqat",
+  "model": "openai/gpt-5.5"
+ },
+ {
+  "at": "2026-09-17T10:07:38.038Z",
+  "template": "Poster",
+  "summary": "headline: Bir mesaj kifayətdir | kicker: Şəkil göndər, prosesi başladaq | scene: phone | sceneDetail: A candid, slightly tilted phone photo shot with flash: a hand holds a smartphone showing a",
+  "lens": "Rəqəmsiz 'infoqrafika zarafatı': diaqramda 'dostlara zəng' vs 'Yük.az'",
+  "visual": "Flaşlı 'candid' telefon fotosu, bir az əyri kadr, real həyat hissi",
+  "model": "openrouter/z-ai/glm-5.2:free"
+ }
+]

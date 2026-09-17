@@ -11,6 +11,7 @@ import "dotenv/config";
 import fs from "node:fs/promises";
 import { contact } from "../src/brand/contact.ts";
 import { playbook } from "./skills.ts";
+import { chat } from "./llm.ts";
 
 const V = "v21.0";
 const TOKEN = process.env.META_ACCESS_TOKEN!;
@@ -38,20 +39,11 @@ const schema = {
 } as const;
 
 const draft = async (postHook: string, text: string, username: string): Promise<Reply> => {
-  const res = await fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Authorization: `Bearer ${process.env.OPENAI_API_KEY}` },
-    body: JSON.stringify({
-      model: MODEL,
-      messages: [
+  const __r = await chat<any>({ task: "fast", name: "reply", model: MODEL, schema: schema, messages: [
         { role: "system", content: `Sən Yük.az (Bakı, ev/ofis köçü, yükdaşıma) Instagram səhifəsinin şərh cavablayıcısısan. Nömrə: ${contact.phone}. Qiymət rəqəmi vermə (operator telefonda deyir). Şikayətə: üzr + nömrəyə dəvət. Spam/təhqirə cavab vermə (skip).` + playbook(["comment-responder", "dm-script-writer"], 6000) },
         { role: "user", content: `POST: "${postHook}"\n@${username}: "${text}"` },
-      ],
-      response_format: { type: "json_schema", json_schema: { name: "reply", strict: true, schema } },
-    }),
-  });
-  if (!res.ok) throw new Error(`OpenAI ${res.status}`);
-  return JSON.parse(((await res.json()) as any).choices[0].message.content);
+      ] });
+  return (__r.data);
 };
 
 const main = async () => {

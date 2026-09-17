@@ -6,6 +6,7 @@
  * Nəticə gündəlik content/trends.json-a keşlənir (eyni gün təkrar sorğu yoxdur).
  */
 import fs from "node:fs/promises";
+import { geminiWebSearchJSON } from "./llm.ts";
 
 const CACHE = "content/trends.json";
 const MODEL = process.env.OPENAI_CREATIVE_MODEL ?? "gpt-5.5";
@@ -50,6 +51,36 @@ const webScout = async (): Promise<RealExample[]> => {
 - Reddit r/memes, r/me_irl, r/mildlyinfuriating ONLY if the joke is in the title/text (skip image-only posts whose title is meaningless like "So many of them")
 Prefer relatable domestic/household/moving/renting/neighbours/traffic/adulting/work jokes and the 3-4 hottest general formats.
 STRICT: quote = the actual joke text VERBATIM (tweet text or meme caption), not a headline or post title; url = the page you copied it from; never invent or paraphrase. Skip offensive, political, or other-company content. Return 8-12 examples. Work fast: a few searches, open 3-4 pages, then answer.`;
+  const engine = (process.env.LLM_ENGINE ?? "openai-first").toLowerCase();
+  // Ehtiyat: Gemini + Google Search (GEMINI_API_KEY) — yalnız OpenAI alınmayanda və ya LLM_ENGINE=free/auto olanda
+  const gemini = async (): Promise<RealExample[]> => {
+    const g = await geminiWebSearchJSON<{ examples: RealExample[] }>(prompt, exampleSchema);
+    return (g?.examples ?? []).filter((e) => /^https?:\/\//.test(e.url) && e.quote.trim().length > 3);
+  };
+  // 1) ƏSAS: OpenAI web_search (keyfiyyət) — LLM_ENGINE=free/auto olanda əvvəl pulsuz sınanır
+  if (engine === "free" || engine === "auto") {
+    const ex = await gemini();
+    if (ex.length >= 3) return ex;
+    if (engine === "free" || !process.env.OPENAI_API_KEY) throw new Error("Gemini nümunə tapmadı və OpenAI açarı yoxdur");
+  }
+  if (!process.env.OPENAI_API_KEY) {
+    const ex = await gemini();
+    if (ex.length) return ex;
+    throw new Error("OPENAI_API_KEY yoxdur və Gemini nümunə tapmadı");
+  }
+  try {
+    return await openaiScout(prompt);
+  } catch (e) {
+    if (engine === "openai") throw e;
+    console.log(`  [trends] OpenAI web_search alınmadı (${(e as Error).message.slice(0, 90)}) → ehtiyat: Gemini Google Search`);
+    const ex = await gemini();
+    if (ex.length) return ex;
+    throw e;
+  }
+};
+
+/** OpenAI web_search — background rejim + sorğulama (əsas yol) */
+const openaiScout = async (prompt: string): Promise<RealExample[]> => {
   const headers = { "Content-Type": "application/json", Authorization: `Bearer ${process.env.OPENAI_API_KEY}` };
   // Axtarış bir neçə dəqiqə çəkə bilər — fetch-in 5 dəq başlıq limitinə düşməmək üçün background rejim + sorğulama
   let res!: Response;

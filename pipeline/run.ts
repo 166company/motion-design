@@ -10,6 +10,7 @@ import { todaySlot } from "./skills.ts";
 import { findMedia, normalizeVideo } from "./assets.ts";
 import { pickAndDownload } from "./audius.ts";
 import { pickVoice, contact } from "../src/brand/contact.ts";
+import { ttsScript } from "./audio.ts";
 
 const FPS = 30;
 const TAIL = 16;        // səhnə sonuna nəfəs payı (kadr) — keçid (12) bunun içində qalır
@@ -18,10 +19,10 @@ const CTA_FRAMES = 110; // 3.7 saniyə — loqo + düymə + klik + nömrənin ox
 const log = (m: string) => console.log(`  ${m}`);
 
 /**
- * Səsləndirmə mühərriki: TTS_ENGINE=openai (təbii, ~1 sent/video) və ya edge (pulsuz, robotvari).
- * İkisi də eyni formatda cavab verir: söz vaxtları + müddət.
+ * Səsləndirmə mühərriki: TTS_ENGINE=openai-first (default — OpenAI səs + Whisper, xətada edge-tts) · openai · edge · auto.
+ * Hamısı eyni formatda cavab verir: söz vaxtları + müddət.
  */
-const TTS_SCRIPT = process.env.TTS_ENGINE === "edge" ? "pipeline/tts.py" : "pipeline/tts_openai.py";
+const TTS_SCRIPT = ttsScript();
 const runTts = (jobs: { id: string; text: string }[], outDir: string, voice: string) =>
   new Promise<Record<string, { words: any[]; duration: number; file: string }>>((res, rej) => {
     const py = spawn("python", [TTS_SCRIPT, outDir], {
@@ -78,7 +79,7 @@ const main = async () => {
 
   // Hər video fərqli səslə — məqalə ID-sinə görə növbə. OPENAI_TTS_VOICE verilibsə, o üstündür.
   const voice = process.env.OPENAI_TTS_VOICE || pickVoice(`${article.id}-${article.title}`);
-  console.log(`3. Səsləndirilir (${process.env.TTS_ENGINE === "edge" ? "edge-tts" : "OpenAI " + voice})…`);
+  console.log(`3. Səsləndirilir (${TTS_SCRIPT.includes("openai") ? "OpenAI " + voice : "edge-tts az-AZ (pulsuz)"})…`);
   const jobs = [
     { id: "s0", text: s.hookSpoken },
     ...s.items.map((it, i) => ({ id: `s${i + 1}`, text: it.spoken })),

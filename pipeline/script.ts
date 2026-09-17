@@ -2,6 +2,8 @@
 import type { Article } from "./wp.ts";
 import { contact } from "../src/brand/contact.ts";
 import { playbook, planFor, memory, postCount, type Strategy } from "./skills.ts";
+import { chat, type ChatOpts } from "./llm.ts";
+import { novelty, remember, type Novelty } from "./ideas.ts";
 
 const MODEL = process.env.OPENAI_MODEL ?? "gpt-5.4-mini";
 
@@ -99,18 +101,15 @@ const schema = {
   },
 } as const;
 
-export const writeScript = async (article: Article, feedback?: string): Promise<ScriptOut> => {
-  const key = process.env.OPENAI_API_KEY;
-  if (!key) throw new Error("OPENAI_API_KEY yoxdur");
-
+/** Sorğu qurucusu — eyni prompt/sxem compare.ts-də də istifadə olunur */
+export const scriptRequest = (article: Article, feedback: string | undefined, nv: Novelty): ChatOpts => {
   const plan = planFor("TipList", postCount());
-  const strategy = plan.strategy;
   const body = {
     model: MODEL,
     messages: [
-      { role: "system", content: SYSTEM + plan.text + memory() },
+      { role: "system" as const, content: SYSTEM + plan.text + memory() + nv.text },
       {
-        role: "user",
+        role: "user" as const,
         content: `MƏQALƏ BAŞLIĞI: ${article.title}
 LİNK: ${article.link}
 
@@ -138,15 +137,15 @@ ${feedback.trim()}`
     },
   };
 
-  const res = await fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Authorization: `Bearer ${key}` },
-    body: JSON.stringify(body),
-  });
+  return { task: "creative", name: "reel_script", model: MODEL, schema, seed: nv.seed, messages: body.messages };
+};
 
-  if (!res.ok) throw new Error(`OpenAI ${res.status}: ${(await res.text()).slice(0, 400)}`);
-  const data = (await res.json()) as any;
-  return { ...normalize(JSON.parse(data.choices[0].message.content) as ScriptOut), strategy };
+export const writeScript = async (article: Article, feedback?: string): Promise<ScriptOut> => {
+  const nv = novelty("TipList");
+  const strategy = planFor("TipList", postCount()).strategy;
+  const __r = await chat<ScriptOut>(scriptRequest(article, feedback, nv));
+  remember("TipList", __r.data, nv);
+  return { ...normalize(__r.data), strategy };
 };
 
 /**
