@@ -1,6 +1,6 @@
 {
   "repo": "166company/motion-design",
-  "updatedAt": "2026-09-16T22:59:05.038Z",
+  "updatedAt": "2026-09-17T01:29:11.098Z",
   "plan": {
     "pillars": [
       "Qiymət sirri açılır",
@@ -15,28 +15,6 @@
       "Usta vs Divan #N"
     ],
     "slots": [
-      {
-        "date": "2026-09-16",
-        "template": "TipList",
-        "pillar": "Rahat köç sistemi",
-        "idea": "Bakıda köç planı üçün məqalə əsaslı qısa Reel/Carousel: bina girişi, lift, qablaşdırma, usta sayı və marşrut kimi addımlar bir kadrda yığılır. Dərin izah caption-da verilir; CTA: “saxla, köçdən əvvəl lazım olacaq.”",
-        "goal": "SAVE",
-        "angle": "necə",
-        "hook": "Bakıda köç planın belə qurulur",
-        "articleId": 10715,
-        "series": ""
-      },
-      {
-        "date": "2026-09-16",
-        "template": "Poster",
-        "pillar": "Bir mesajla sifariş",
-        "idea": "Satış statiki: “Yükün şəklini göndər — divan, şkaf, texnika, qutu həcminə görə plan quraq.” Vizualda telefondan gələn yük şəkilləri və cavab balonu.",
-        "goal": "LEAD",
-        "angle": "nəticə",
-        "hook": "Yükün şəkli bəs edir",
-        "articleId": null,
-        "series": ""
-      },
       {
         "date": "2026-09-17",
         "template": "Story",
@@ -168,6 +146,28 @@
         "hook": "Sumqayıt köçündə bunu unutma",
         "articleId": 10728,
         "series": ""
+      },
+      {
+        "date": "2026-09-23",
+        "template": "Poster",
+        "pillar": "Bir mesajla sifariş",
+        "idea": "Satış statiki: “Bakı–Sumqayıt istiqamətində yükün var? Əşyaların siyahısını göndər, uyğun maşın və komanda planını quraq.”",
+        "goal": "FOLLOW",
+        "angle": "nəticə",
+        "hook": "Şəhərlərarası yük də plan istəyir",
+        "articleId": null,
+        "series": ""
+      },
+      {
+        "date": "2026-09-24",
+        "template": "Story",
+        "pillar": "Köç dramı komediyası",
+        "idea": "Trend adaptasiyası: “terms of service email” — bina qaydaları, giriş saatı, lift istifadəsi haqqında heç kimin oxumadığı ‘köç şərtləri’. Komik animasiya: bina mühafizəsi ‘qaydalar yeniləndi’ deyir.",
+        "goal": "SHARE",
+        "angle": "əks-fikir",
+        "hook": "Köç qaydalarını heç kim oxumur",
+        "articleId": null,
+        "series": "Köç Günü Dramı #5"
       }
     ]
   },
