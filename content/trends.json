@@ -1,82 +1,75 @@
 {
-  "date": "2026-09-17",
+  "date": "2026-09-18",
   "examples": [
     {
       "url": "https://www.thepoke.com/2026/09/11/our-25-favourite-funny-tweets-of-the-week-133/",
       "quote": "I regret to inform you that the secret to a clean house is to clean the house",
-      "context": "The Poke — “Our 25 Favourite Funny Tweets of the Week,” updated September 11, 2026. ([thepoke.com](https://www.thepoke.com/2026/09/11/our-25-favourite-funny-tweets-of-the-week-133/))",
-      "platform": "x/twitter",
-      "whyFunny": "Domestic / adulting"
+      "context": "The Poke weekly funny tweets roundup, updated September 11, 2026. ([thepoke.com](https://www.thepoke.com/2026/09/11/our-25-favourite-funny-tweets-of-the-week-133/))",
+      "platform": "X / Twitter",
+      "whyFunny": "household/adulting"
     },
     {
       "url": "https://www.thepoke.com/2026/09/11/our-25-favourite-funny-tweets-of-the-week-133/",
       "quote": "i’m so over captcha pls stop making me select photos i’m not the editor of vogue",
-      "context": "The Poke — weekly funny-tweets roundup, tweet dated September 7, 2026. ([thepoke.com](https://www.thepoke.com/2026/09/11/our-25-favourite-funny-tweets-of-the-week-133/))",
-      "platform": "x/twitter",
-      "whyFunny": "Relatable tech annoyance"
+      "context": "The Poke weekly funny tweets roundup, updated September 11, 2026. ([thepoke.com](https://www.thepoke.com/2026/09/11/our-25-favourite-funny-tweets-of-the-week-133/))",
+      "platform": "X / Twitter",
+      "whyFunny": "internet annoyance"
     },
     {
-      "url": "https://www.thepoke.com/2026/09/11/our-25-favourite-funny-tweets-of-the-week-133/",
-      "quote": "Went to get a snack, and my watch congratulated me on standing up, so yes, I do take fitness very seriously",
-      "context": "The Poke — weekly funny-tweets roundup, tweet dated September 10, 2026. ([thepoke.com](https://www.thepoke.com/2026/09/11/our-25-favourite-funny-tweets-of-the-week-133/))",
-      "platform": "x/twitter",
-      "whyFunny": "Household / low-effort fitness"
+      "url": "https://www.thepoke.com/2026/09/16/25-of-the-funniest-posts-weve-seen-on-bluesky-this-week-86/",
+      "quote": "PESSIMIST: the glass is half empty\n\nOPTIMIST: the glass is half full\n\nOPTIMUS: the glass transforms into a cool robot",
+      "context": "The Poke Bluesky weekly roundup, updated September 16, 2026. ([thepoke.com](https://www.thepoke.com/2026/09/16/25-of-the-funniest-posts-weve-seen-on-bluesky-this-week-86/))",
+      "platform": "Bluesky",
+      "whyFunny": "general hot format / wordplay"
     },
     {
-      "url": "https://www.thepoke.com/2026/09/11/our-25-favourite-funny-tweets-of-the-week-133/",
-      "quote": "Dear companies, please stop emailing me that you updated your terms of service. I didn’t read them in the first place and I won’t read them now.",
-      "context": "The Poke — weekly funny-tweets roundup, tweet dated September 8, 2026. ([thepoke.com](https://www.thepoke.com/2026/09/11/our-25-favourite-funny-tweets-of-the-week-133/))",
-      "platform": "x/twitter",
-      "whyFunny": "Adult admin / inbox fatigue"
+      "url": "https://www.thepoke.com/2026/09/16/25-of-the-funniest-posts-weve-seen-on-bluesky-this-week-86/",
+      "quote": "Who called them marine biologists and not aquademics",
+      "context": "The Poke Bluesky weekly roundup, updated September 16, 2026. ([thepoke.com](https://www.thepoke.com/2026/09/16/25-of-the-funniest-posts-weve-seen-on-bluesky-this-week-86/))",
+      "platform": "Bluesky",
+      "whyFunny": "pun / general format"
     },
     {
-      "url": "https://www.buzzfeed.com/bellaarnold/hilarious-tweets-sept-3",
-      "quote": "'Stop by after work' Are you insane.",
-      "context": "BuzzFeed — “58 Hilarious Tweets From This Brutal Week,” posted September 4, 2026. ([buzzfeed.com](https://www.buzzfeed.com/bellaarnold/hilarious-tweets-sept-3?utm_source=openai))",
-      "platform": "x/twitter",
-      "whyFunny": "Workday exhaustion / adulting"
+      "url": "https://pleated-jeans.com/2026/09/14/funniest-tweets-of-the-day-9-14-26/",
+      "quote": "Addicted to saying 'not my circus, not my monkeys' about my own circus and monkeys.",
+      "context": "Pleated-Jeans daily funny tweets roundup, September 14, 2026. ([pleated-jeans.com](https://pleated-jeans.com/2026/09/14/funniest-tweets-of-the-day-9-14-26/))",
+      "platform": "X / Twitter",
+      "whyFunny": "adulting/self-awareness"
     },
     {
-      "url": "https://www.buzzfeed.com/bellaarnold/hilarious-tweets-sept-3",
-      "quote": "sorry i didn't text you back. i was pretending i didn't see it, and i ended up actually forgetting.",
-      "context": "BuzzFeed — “58 Hilarious Tweets From This Brutal Week,” posted September 4, 2026. ([buzzfeed.com](https://www.buzzfeed.com/bellaarnold/hilarious-tweets-sept-3?utm_source=openai))",
-      "platform": "x/twitter",
-      "whyFunny": "Relatable avoidance"
+      "url": "https://pleated-jeans.com/2026/09/14/funniest-tweets-of-the-day-9-14-26/",
+      "quote": "Visiting other people's homes makes you realize there are different kinds of groceries.",
+      "context": "Pleated-Jeans daily funny tweets roundup, September 14, 2026. ([pleated-jeans.com](https://pleated-jeans.com/2026/09/14/funniest-tweets-of-the-day-9-14-26/))",
+      "platform": "X / Twitter",
+      "whyFunny": "domestic/household"
     },
     {
-      "url": "https://www.buzzfeed.com/bellaarnold/hilarious-tweets-sept-3",
-      "quote": "We cannot all be trying to head home at 5:00PM. We have to start going home in groups.",
-      "context": "BuzzFeed — “58 Hilarious Tweets From This Brutal Week,” posted September 4, 2026. ([buzzfeed.com](https://www.buzzfeed.com/bellaarnold/hilarious-tweets-sept-3?utm_source=openai))",
-      "platform": "x/twitter",
-      "whyFunny": "Traffic / commuting"
+      "url": "https://pleated-jeans.com/2026/09/17/funniest-tweets-of-the-day-9-17-26/",
+      "quote": "Beautiful girl named credit card bill due keeps texting me.",
+      "context": "Pleated-Jeans daily funny tweets roundup, September 17, 2026. ([pleated-jeans.com](https://pleated-jeans.com/2026/09/17/funniest-tweets-of-the-day-9-17-26/))",
+      "platform": "X / Twitter",
+      "whyFunny": "adulting/bills"
     },
     {
-      "url": "https://www.buzzfeed.com/bellaarnold/hilarious-tweets-sept-3",
-      "quote": "why u text me 1 time a day like i'm a vitamin",
-      "context": "BuzzFeed — “58 Hilarious Tweets From This Brutal Week,” posted September 4, 2026. ([buzzfeed.com](https://www.buzzfeed.com/bellaarnold/hilarious-tweets-sept-3?utm_source=openai))",
-      "platform": "x/twitter",
-      "whyFunny": "Dating / texting"
+      "url": "https://pleated-jeans.com/2026/09/17/funniest-tweets-of-the-day-9-17-26/",
+      "quote": "When older people say, \"Enjoy them while they are young.\" They are talking about your knees and hips.",
+      "context": "Pleated-Jeans daily funny tweets roundup, September 17, 2026. ([pleated-jeans.com](https://pleated-jeans.com/2026/09/17/funniest-tweets-of-the-day-9-17-26/))",
+      "platform": "X / Twitter",
+      "whyFunny": "aging/adulting"
     },
     {
-      "url": "https://onedio.com/haber/son-24-saatin-viral-tweetleri-1379292",
-      "quote": "2 aydır nadasa bıraktığım beynimi pazartesi kullanmaya başlarken",
-      "context": "Onedio — “Son 24 Saatin Viral Tweetleri,” published September 6, 2026. ([onedio.com](https://onedio.com/haber/son-24-saatin-viral-tweetleri-1379292))",
-      "platform": "x/twitter",
-      "whyFunny": "School/work restart; Turkish"
+      "url": "https://pleated-jeans.com/2026/09/14/funny-self-checkout-tweets/",
+      "quote": "How to use the self-checkout: scan, bag, scream, take out, repeat.",
+      "context": "Pleated-Jeans self-checkout tweets roundup, September 14, 2026. ([pleated-jeans.com](https://pleated-jeans.com/2026/09/14/funny-self-checkout-tweets/))",
+      "platform": "X / Twitter",
+      "whyFunny": "errands/shopping"
     },
     {
-      "url": "https://onedio.com/haber/son-24-saatin-viral-tweetleri-1379292",
-      "quote": "Pantolon alışverişi yapmanın zorluk",
-      "context": "Onedio — “Son 24 Saatin Viral Tweetleri,” published September 6, 2026. ([onedio.com](https://onedio.com/haber/son-24-saatin-viral-tweetleri-1379292))",
-      "platform": "x/twitter",
-      "whyFunny": "Shopping / everyday frustration; Turkish"
-    },
-    {
-      "url": "https://onedio.com/haber/son-24-saatin-viral-tweetleri-1379292",
-      "quote": "araba yolculugunda babamın açtığı yapay zeka türküler yüzünden ben",
-      "context": "Onedio — “Son 24 Saatin Viral Tweetleri,” published September 6, 2026. ([onedio.com](https://onedio.com/haber/son-24-saatin-viral-tweetleri-1379292))",
-      "platform": "x/twitter",
-      "whyFunny": "Family car ride / AI trend; Turkish"
+      "url": "https://pleated-jeans.com/2026/09/14/funny-self-checkout-tweets/",
+      "quote": "A tweet about being yelled at by a self-checkout machine and feeling humiliated.",
+      "context": "Pleated-Jeans self-checkout tweets roundup, September 14, 2026; readable as image alt text on page. ([pleated-jeans.com](https://pleated-jeans.com/2026/09/14/funny-self-checkout-tweets/))",
+      "platform": "X / Twitter",
+      "whyFunny": "errands/shopping"
     }
   ],
   "templates": [
@@ -177,12 +170,12 @@
       "url": "https://i.imgflip.com/1b42wl.jpg"
     },
     {
-      "name": "One Does Not Simply",
-      "url": "https://i.imgflip.com/1bij.jpg"
-    },
-    {
       "name": "Woman Yelling At Cat",
       "url": "https://i.imgflip.com/345v97.jpg"
+    },
+    {
+      "name": "One Does Not Simply",
+      "url": "https://i.imgflip.com/1bij.jpg"
     },
     {
       "name": "Absolute Cinema",
@@ -209,12 +202,12 @@
       "url": "https://i.imgflip.com/46hhvr.jpg"
     },
     {
-      "name": "Expanding Brain",
-      "url": "https://i.imgflip.com/1jwhww.jpg"
-    },
-    {
       "name": "This Is Where I'd Put My Trophy If I Had One",
       "url": "https://i.imgflip.com/1wz1x.jpg"
+    },
+    {
+      "name": "Expanding Brain",
+      "url": "https://i.imgflip.com/1jwhww.jpg"
     },
     {
       "name": "Oprah You Get A",
