@@ -1,6 +1,6 @@
 {
   "repo": "166company/motion-design",
-  "updatedAt": "2026-09-18T16:28:57.647Z",
+  "updatedAt": "2026-09-18T17:54:36.460Z",
   "plan": {
     "pillars": [
       "Qiymət sirrini açırıq",
@@ -318,6 +318,46 @@
         "license": null,
         "vocal": false,
         "source": "synth"
+      }
+    },
+    {
+      "id": "2026-09-18-motion",
+      "hook": "2026-09-18-motion",
+      "caption": "Bu plan soyğun deyil — rahat köç fəndidir.\n\n🧤 Əvvəl plan, sonra yük.\n🗂️ Otaq adları qarışıqlığı azaldır.\n✅ Səliqəli köçün sirri elə burdadır.\n\nBunu köçən tanışına göndər, bir də o darıxdırıcı xaos təkrarlanmasın.\n\n📞 Zəng et: 050 209 62 99\n\n#YukAz #RahatKocRejimi #Yukdasima",
+      "hashtags": [
+        "#baki",
+        "#koc",
+        "#kocxidmeti",
+        "#yukdasima",
+        "#evkocu",
+        "#ofiskocu",
+        "#seliqliKoc",
+        "#rahatKoc",
+        "#kocplanı",
+        "#otaqotaqkoc",
+        "#kochazirligi",
+        "#yukaz",
+        "#YukAz",
+        "#RahatKocRejimi",
+        "#Yukdasima"
+      ],
+      "source": "https://yuk.az",
+      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-18-motion/2026-09-18-motion.mp4",
+      "duration": 18,
+      "scenes": 5,
+      "status": "təsdiq-gözləyir",
+      "kind": "fun",
+      "strategy": null,
+      "firstComment": "Sən köçdə ən çox nəyi qarışdırırsan?\n\n#baki #koc #kocxidmeti #yukdasima #evkocu #ofiskocu #seliqliKoc #rahatKoc #kocplanı #otaqotaqkoc #kochazirligi #yukaz #YukAz #RahatKocRejimi #Yukdasima",
+      "metrics": null,
+      "createdAt": "2026-09-18",
+      "template": "Motion",
+      "voice": null,
+      "music": {
+        "label": "Snowpack  — Enter Void ",
+        "license": "Attribution CC BY",
+        "vocal": false,
+        "source": "audius"
       }
     },
     {

@@ -1,0 +1,50 @@
+{
+ "moving_plan_map": {
+  "w": 900,
+  "h": 900,
+  "left": 0.044,
+  "top": 0.246,
+  "right": 0.959,
+  "bottom": 0.723
+ },
+ "grandma_advisor": {
+  "w": 900,
+  "h": 900,
+  "left": 0.318,
+  "top": 0.066,
+  "right": 0.711,
+  "bottom": 0.939
+ },
+ "gloved_planner": {
+  "w": 900,
+  "h": 900,
+  "left": 0.341,
+  "top": 0.023,
+  "right": 0.714,
+  "bottom": 0.972
+ },
+ "countdown_timer": {
+  "w": 900,
+  "h": 900,
+  "left": 0.16,
+  "top": 0.082,
+  "right": 0.84,
+  "bottom": 0.92
+ },
+ "labeled_moving_crates": {
+  "w": 900,
+  "h": 900,
+  "left": 0.218,
+  "top": 0.083,
+  "right": 0.782,
+  "bottom": 0.976
+ },
+ "legal_stamp": {
+  "w": 900,
+  "h": 900,
+  "left": 0.2,
+  "top": 0.08,
+  "right": 0.8,
+  "bottom": 0.912
+ }
+}

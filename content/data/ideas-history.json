@@ -78,5 +78,13 @@
   "lens": "POV: sən qonşusan və yuxarıdan pianino enir",
   "visual": "Gil animasiya (claymation) görünüşü, yumşaq işıq",
   "model": "openai/gpt-5.5"
+ },
+ {
+  "at": "2026-09-18T17:48:33.645Z",
+  "template": "Motion",
+  "summary": "styleKey: lowpoly | setting: A warm late-evening isometric miniature city with low-poly toy geometry, amber practical l",
+  "lens": "Nənə məsləhətləri vs Yük.az məsləhəti",
+  "visual": "İzometrik 3D səhnə, oyuncaq kimi miniatür şəhər",
+  "model": "openai/gpt-5.5"
  }
 ]
