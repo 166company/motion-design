@@ -1,6 +1,6 @@
 {
   "repo": "166company/motion-design",
-  "updatedAt": "2026-09-17T22:13:51.373Z",
+  "updatedAt": "2026-09-18T00:25:54.987Z",
   "plan": {
     "pillars": [
       "Qiymət sirrini açırıq",
@@ -15,30 +15,6 @@
       "Rahat Köç Rejimi"
     ],
     "slots": [
-      {
-        "date": "2026-09-17",
-        "template": "Motion",
-        "pillar": "Xüsusi yüklərə xüsusi qayğı",
-        "idea": "Sakit-gözəl üslub: akvarium şüşə planet kimi görünür, balıqlar mini astronavt yox, zərif sərnişin kimi hərəkət edir; su səviyyəsi, yumşaq dayaqlar və ehtiyatlı sürüş vizuallaşır. Finalda açıq dövrə: “akvarium üçün ayrı plan lazımdır” və CTA: DM-ə BALIQ yaz.",
-        "goal": "LEAD",
-        "angle": "sual",
-        "hook": "Balıqlar köçəndə nə dəyişir?",
-        "articleId": null,
-        "series": "Yükün Gizli Hekayəsi",
-        "topic": "aquarium"
-      },
-      {
-        "date": "2026-09-17",
-        "template": "Poster",
-        "pillar": "Planlı köç, rahat başlanğıc",
-        "idea": "Satış postu: böyük başlıq, altında üç vizual ikon — əşya siyahısı, ünvanlar, uyğun komanda. CTA: “DM-ə KÖÇ yaz, həcmi göndər, uyğun daşıma planını danışaq.”",
-        "goal": "LEAD",
-        "angle": "sual",
-        "hook": "Bu gün köç planın var?",
-        "articleId": null,
-        "series": "",
-        "topic": ""
-      },
       {
         "date": "2026-09-18",
         "template": "Motion",
@@ -182,6 +158,30 @@
         "articleId": null,
         "series": "Yükün Gizli Hekayəsi",
         "topic": "plants"
+      },
+      {
+        "date": "2026-09-24",
+        "template": "Poster",
+        "pillar": "Xüsusi yüklərə xüsusi qayğı",
+        "idea": "Satış postu: fərqli əşyalar personaj kimi — bitki, texnika, kitab, şüşə qab — hərəsinin yanında “ayrı yanaşma” etiketi. CTA: “Belə yüklər üçün səhifəni izlə və DM-ə yaz.”",
+        "goal": "FOLLOW",
+        "angle": "nəticə",
+        "hook": "Hər yükün öz xarakteri var",
+        "articleId": null,
+        "series": "",
+        "topic": ""
+      },
+      {
+        "date": "2026-09-25",
+        "template": "Carousel",
+        "pillar": "Planlı köç, rahat başlanğıc",
+        "idea": "Carousel: köhnə evdən çıxmısan, yeni ev hələ hazır deyil — əşyaları necə qarışdırmadan aralıq vəziyyətdə idarə etməli. Hər slaydda ayrı vizual: etiket, prioritet qutular, qorunan kövrək əşyalar, təhvil siyahısı.",
+        "goal": "SAVE",
+        "angle": "səhv",
+        "hook": "Evlər arasında boşluq qaldı?",
+        "articleId": null,
+        "series": "Köç Laboratoriyası",
+        "topic": "storage"
       }
     ]
   },
