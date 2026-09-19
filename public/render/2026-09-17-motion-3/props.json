@@ -2,264 +2,304 @@
   "id": "2026-09-17-motion-3",
   "assets": "render/2026-09-17-motion-3/assets",
   "bounds": {
-    "alarm_clock_0800": {
+    "yukaz_truck": {
       "w": 900,
       "h": 900,
-      "left": 0.267,
-      "top": 0.032,
-      "right": 0.757,
-      "bottom": 0.946
+      "left": 0.021,
+      "top": 0.249,
+      "right": 0.98,
+      "bottom": 0.76
     },
-    "mission_tablet": {
+    "orange_mover": {
       "w": 900,
       "h": 900,
-      "left": 0.27,
-      "top": 0.086,
-      "right": 0.734,
-      "bottom": 0.911
+      "left": 0.019,
+      "top": 0.027,
+      "right": 0.982,
+      "bottom": 0.933
     },
-    "cargo_capsule": {
+    "padded_monitor_cart": {
       "w": 900,
       "h": 900,
-      "left": 0.026,
-      "top": 0.174,
-      "right": 0.974,
-      "bottom": 0.792
+      "left": 0.032,
+      "top": 0.099,
+      "right": 0.962,
+      "bottom": 0.917
     },
-    "astronaut_mover": {
+    "cable_label_crate": {
       "w": 900,
       "h": 900,
-      "left": 0.222,
-      "top": 0.042,
-      "right": 0.789,
-      "bottom": 0.947
+      "left": 0.021,
+      "top": 0.109,
+      "right": 0.979,
+      "bottom": 0.746
     },
-    "tea_set_evening": {
+    "desk_stack": {
       "w": 900,
       "h": 900,
-      "left": 0.112,
-      "top": 0.089,
-      "right": 0.921,
-      "bottom": 0.888
+      "left": 0.04,
+      "top": 0.176,
+      "right": 0.959,
+      "bottom": 0.802
     },
-    "orbit_star_marker": {
+    "orange_arrow_burst": {
       "w": 900,
       "h": 900,
-      "left": 0.206,
-      "top": 0.1,
-      "right": 0.783,
-      "bottom": 0.887
+      "left": 0.087,
+      "top": 0.069,
+      "right": 0.913,
+      "bottom": 0.91
     }
   },
   "scenes": [
     {
-      "bg": "bg_old_home_pad",
-      "text": "08:00: missiya alınacaq?",
+      "bg": "bg_old_office_loading",
+      "text": "Bazar ertəsi işləyəcəkmi?",
       "textPos": "top",
       "camera": "push",
       "transition": "slide",
-      "sfx": "tick",
-      "items": [
-        {
-          "asset": "alarm_clock_0800",
-          "x": 0.5,
-          "y": 0.84,
-          "w": 0.78,
-          "anim": "shake",
-          "delay": 0,
-          "flip": false,
-          "z": 3
-        },
-        {
-          "asset": "mission_tablet",
-          "x": 0.78,
-          "y": 0.82,
-          "w": 0.28,
-          "anim": "rise",
-          "delay": 10,
-          "flip": false,
-          "z": 2
-        },
-        {
-          "asset": "orbit_star_marker",
-          "x": 0.22,
-          "y": 0.76,
-          "w": 0.22,
-          "anim": "spin",
-          "delay": 18,
-          "flip": false,
-          "z": 1
-        }
-      ],
-      "durationInFrames": 120
-    },
-    {
-      "bg": "bg_old_home_pad",
-      "text": "Son kadrı gözlə",
-      "textPos": "top",
-      "camera": "panRight",
-      "transition": "wipe",
       "sfx": "riser",
       "items": [
         {
-          "asset": "mission_tablet",
-          "x": 0.48,
-          "y": 0.84,
-          "w": 0.72,
-          "anim": "zoom",
+          "asset": "padded_monitor_cart",
+          "x": 0.37,
+          "y": 0.86,
+          "w": 0.46,
+          "anim": "slideRight",
           "delay": 0,
           "flip": false,
           "z": 3
         },
         {
-          "asset": "astronaut_mover",
+          "asset": "orange_mover",
           "x": 0.18,
-          "y": 0.86,
-          "w": 0.3,
+          "y": 0.87,
+          "w": 0.35,
           "anim": "walkIn",
-          "delay": 8,
+          "delay": 2,
           "flip": false,
           "z": 4
         },
         {
-          "asset": "cargo_capsule",
-          "x": 0.78,
+          "asset": "yukaz_truck",
+          "x": 0.72,
           "y": 0.88,
-          "w": 0.3,
-          "anim": "slideLeft",
-          "delay": 16,
-          "flip": true,
-          "z": 2
+          "w": 0.55,
+          "anim": "driveIn",
+          "delay": 4,
+          "flip": false,
+          "z": 1
+        },
+        {
+          "asset": "orange_arrow_burst",
+          "x": 0.5,
+          "y": 0.7,
+          "w": 0.25,
+          "anim": "pop",
+          "delay": 8,
+          "flip": false,
+          "z": 5
         }
       ],
       "durationInFrames": 120
     },
     {
-      "bg": "bg_soft_space_route",
-      "text": "Xaos orbit xəritəsinə dönür",
+      "bg": "bg_old_office_loading",
+      "text": "Kabellər indi qarışmır",
       "textPos": "top",
-      "camera": "pull",
-      "transition": "fade",
-      "sfx": "whoosh",
+      "camera": "panLeft",
+      "transition": "wipe",
+      "sfx": "tick",
       "items": [
         {
-          "asset": "cargo_capsule",
-          "x": 0.52,
-          "y": 0.8,
-          "w": 0.7,
-          "anim": "driveIn",
+          "asset": "cable_label_crate",
+          "x": 0.48,
+          "y": 0.84,
+          "w": 0.58,
+          "anim": "rise",
           "delay": 0,
           "flip": false,
           "z": 3
         },
         {
-          "asset": "orbit_star_marker",
-          "x": 0.22,
-          "y": 0.7,
-          "w": 0.24,
-          "anim": "float",
-          "delay": 8,
-          "flip": false,
-          "z": 2
+          "asset": "orange_mover",
+          "x": 0.78,
+          "y": 0.87,
+          "w": 0.36,
+          "anim": "swing",
+          "delay": 5,
+          "flip": true,
+          "z": 4
         },
         {
-          "asset": "mission_tablet",
-          "x": 0.8,
-          "y": 0.82,
+          "asset": "orange_arrow_burst",
+          "x": 0.22,
+          "y": 0.67,
+          "w": 0.3,
+          "anim": "float",
+          "delay": 10,
+          "flip": true,
+          "z": 5
+        }
+      ],
+      "durationInFrames": 120
+    },
+    {
+      "bg": "bg_truck_cargo_bay",
+      "text": "Monitorlar ayrı zolaqda",
+      "textPos": "top",
+      "camera": "shake",
+      "transition": "fade",
+      "sfx": "engine",
+      "items": [
+        {
+          "asset": "yukaz_truck",
+          "x": 0.58,
+          "y": 0.88,
+          "w": 0.76,
+          "anim": "driveIn",
+          "delay": 0,
+          "flip": false,
+          "z": 1
+        },
+        {
+          "asset": "padded_monitor_cart",
+          "x": 0.27,
+          "y": 0.86,
+          "w": 0.44,
+          "anim": "slideRight",
+          "delay": 5,
+          "flip": false,
+          "z": 3
+        },
+        {
+          "asset": "orange_mover",
+          "x": 0.14,
+          "y": 0.87,
+          "w": 0.34,
+          "anim": "walkIn",
+          "delay": 7,
+          "flip": false,
+          "z": 4
+        },
+        {
+          "asset": "orange_arrow_burst",
+          "x": 0.77,
+          "y": 0.63,
           "w": 0.24,
+          "anim": "spin",
+          "delay": 12,
+          "flip": false,
+          "z": 5
+        }
+      ],
+      "durationInFrames": 120
+    },
+    {
+      "bg": "bg_truck_cargo_bay",
+      "text": "Masa bloku finişə gedir",
+      "textPos": "top",
+      "camera": "pull",
+      "transition": "slide",
+      "sfx": "whoosh",
+      "items": [
+        {
+          "asset": "desk_stack",
+          "x": 0.43,
+          "y": 0.86,
+          "w": 0.6,
+          "anim": "slideRight",
+          "delay": 0,
+          "flip": false,
+          "z": 3
+        },
+        {
+          "asset": "orange_mover",
+          "x": 0.76,
+          "y": 0.87,
+          "w": 0.38,
+          "anim": "walkIn",
+          "delay": 4,
+          "flip": true,
+          "z": 4
+        },
+        {
+          "asset": "yukaz_truck",
+          "x": 0.42,
+          "y": 0.88,
+          "w": 0.68,
+          "anim": "driveOut",
+          "delay": 12,
+          "flip": false,
+          "z": 1
+        },
+        {
+          "asset": "orange_arrow_burst",
+          "x": 0.18,
+          "y": 0.62,
+          "w": 0.26,
+          "anim": "zoom",
+          "delay": 8,
+          "flip": false,
+          "z": 5
+        }
+      ],
+      "durationInFrames": 120
+    },
+    {
+      "bg": "bg_new_office_evening",
+      "text": "Bazar ertəsi start hazır",
+      "textPos": "top",
+      "camera": "none",
+      "transition": "none",
+      "sfx": "ring",
+      "items": [
+        {
+          "asset": "padded_monitor_cart",
+          "x": 0.34,
+          "y": 0.86,
+          "w": 0.48,
+          "anim": "rise",
+          "delay": 0,
+          "flip": false,
+          "z": 3
+        },
+        {
+          "asset": "cable_label_crate",
+          "x": 0.68,
+          "y": 0.86,
+          "w": 0.38,
+          "anim": "pop",
+          "delay": 5,
+          "flip": false,
+          "z": 3
+        },
+        {
+          "asset": "orange_mover",
+          "x": 0.52,
+          "y": 0.87,
+          "w": 0.4,
           "anim": "swing",
-          "delay": 18,
+          "delay": 8,
+          "flip": false,
+          "z": 4
+        },
+        {
+          "asset": "yukaz_truck",
+          "x": 0.78,
+          "y": 0.9,
+          "w": 0.62,
+          "anim": "driveOut",
+          "delay": 12,
           "flip": false,
           "z": 1
         }
       ],
-      "durationInFrames": 120
-    },
-    {
-      "bg": "bg_soft_space_route",
-      "text": "Kapsul yeni orbitə girir",
-      "textPos": "top",
-      "camera": "panLeft",
-      "transition": "none",
-      "sfx": "engine",
-      "items": [
-        {
-          "asset": "cargo_capsule",
-          "x": 0.46,
-          "y": 0.82,
-          "w": 0.76,
-          "anim": "float",
-          "delay": 0,
-          "flip": false,
-          "z": 3
-        },
-        {
-          "asset": "astronaut_mover",
-          "x": 0.78,
-          "y": 0.86,
-          "w": 0.28,
-          "anim": "slideRight",
-          "delay": 10,
-          "flip": true,
-          "z": 4
-        },
-        {
-          "asset": "orbit_star_marker",
-          "x": 0.2,
-          "y": 0.74,
-          "w": 0.25,
-          "anim": "rise",
-          "delay": 18,
-          "flip": false,
-          "z": 2
-        }
-      ],
-      "durationInFrames": 120
-    },
-    {
-      "bg": "bg_new_home_evening",
-      "text": "18:00: çay hazırdır",
-      "textPos": "top",
-      "camera": "shake",
-      "transition": "fade",
-      "sfx": "pop",
-      "items": [
-        {
-          "asset": "tea_set_evening",
-          "x": 0.5,
-          "y": 0.84,
-          "w": 0.82,
-          "anim": "rise",
-          "delay": 0,
-          "flip": false,
-          "z": 4
-        },
-        {
-          "asset": "cargo_capsule",
-          "x": 0.2,
-          "y": 0.88,
-          "w": 0.3,
-          "anim": "driveOut",
-          "delay": 8,
-          "flip": false,
-          "z": 2
-        },
-        {
-          "asset": "orbit_star_marker",
-          "x": 0.8,
-          "y": 0.72,
-          "w": 0.24,
-          "anim": "fall",
-          "delay": 18,
-          "flip": false,
-          "z": 3
-        }
-      ],
-      "durationInFrames": 120
+      "durationInFrames": 90
     }
   ],
   "cta": {
-    "line1": "İzlə, köç stresssiz olsun",
+    "line1": "Zəng et, ofis hazır olsun",
     "line2": "Zəng et"
   },
   "music": "render/2026-09-17-motion-3/music.norm.wav",

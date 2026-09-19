@@ -1,50 +1,50 @@
 {
- "cat_supervisor": {
+ "yuk_truck": {
   "w": 900,
   "h": 900,
-  "left": 0.114,
-  "top": 0.08,
-  "right": 0.941,
-  "bottom": 0.873
+  "left": 0.016,
+  "top": 0.227,
+  "right": 0.99,
+  "bottom": 0.768
  },
- "tape_tangle": {
+ "orange_mover": {
   "w": 900,
   "h": 900,
-  "left": 0.064,
-  "top": 0.154,
-  "right": 0.964,
-  "bottom": 0.82
+  "left": 0.21,
+  "top": 0.012,
+  "right": 0.844,
+  "bottom": 0.972
  },
- "folding_box": {
+ "aquarium_glass_planet": {
   "w": 900,
   "h": 900,
-  "left": 0.036,
-  "top": 0.209,
-  "right": 0.964,
-  "bottom": 0.782
+  "left": 0.022,
+  "top": 0.169,
+  "right": 0.978,
+  "bottom": 0.818
  },
- "familiar_blanket": {
+ "soft_support_pads": {
   "w": 900,
   "h": 900,
-  "left": 0.044,
-  "top": 0.272,
-  "right": 0.963,
-  "bottom": 0.731
+  "left": 0.043,
+  "top": 0.224,
+  "right": 0.957,
+  "bottom": 0.789
  },
- "bubble_wrap_roll": {
+ "strap_and_level": {
   "w": 900,
   "h": 900,
-  "left": 0.082,
-  "top": 0.186,
-  "right": 0.922,
-  "bottom": 0.823
+  "left": 0.008,
+  "top": 0.351,
+  "right": 0.992,
+  "bottom": 0.616
  },
- "approved_cat_in_box": {
+ "family_chat_phone": {
   "w": 900,
   "h": 900,
-  "left": 0.071,
-  "top": 0.04,
-  "right": 0.912,
-  "bottom": 0.938
+  "left": 0.294,
+  "top": 0.01,
+  "right": 0.706,
+  "bottom": 0.991
  }
 }

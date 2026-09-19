@@ -18,7 +18,7 @@ import { spawn } from "node:child_process";
 import { playbook, planFor, memory, postCount, todaySlot } from "./skills.ts";
 import { chat, type ChatOpts } from "./llm.ts";
 import { novelty, remember, type Novelty } from "./ideas.ts";
-import { freshTopics, TOPICS } from "./topics.ts";
+import { freshTopics, TOPICS, TONES } from "./topics.ts";
 import { pickMusic } from "./audio.ts";
 import { contact } from "../src/brand/contact.ts";
 import { ANIMS, CAMERAS, SFX, TRANSITIONS, TRANSITION } from "../src/compositions/Motion.tsx";
@@ -54,7 +54,7 @@ type Scene = { bg: string; text: string; textPos: string; camera: string; transi
 type Concept = {
   topicId: string; styleKey: string; setting: string; logline: string;
   backgrounds: { name: string; prompt: string }[];
-  objects: { name: string; prompt: string }[];
+  objects: { name: string; role: "truck" | "mover" | "cargo" | "prop"; prompt: string }[];
   scenes: Scene[];
   cta: string; caption: string; hashtags: string[];
 };
@@ -75,8 +75,9 @@ const schema = {
     },
     objects: {
       type: "array", minItems: 3, maxItems: 6,
-      items: { type: "object", additionalProperties: false, required: ["name", "prompt"], properties: {
+      items: { type: "object", additionalProperties: false, required: ["name", "role", "prompt"], properties: {
         name: { type: "string", description: "qısa ingilis ad (a-z, _), məs. grand_piano" },
+        role: { type: "string", enum: ["truck", "mover", "cargo", "prop"], description: "MƏCBURİ: siyahıda DƏQİQ 1 'truck' (Yük.az yük maşını) və ƏN AZI 1 'mover' (narıncı formalı işçi) olmalıdır; 'cargo' — daşınan əsas yük; 'prop' — köməkçi" },
         prompt: { type: "string", description: "İNGİLİSCƏ: TƏK obyekt/personaj, yan görünüş, kadr mərkəzində, şəffaf fon üçün — hekayəyə uyğun konkret detal, ifadəli" } } },
     },
     scenes: {
@@ -107,7 +108,7 @@ const schema = {
         },
       },
     },
-    cta: { type: "string", description: "Son ekran üçün 1 sətir, maks 28 simvol — hekayənin nəticəsi" },
+    cta: { type: "string", description: "Son ekran üçün 1 sətir, maks 28 simvol — hekayənin nəticəsi. DM/açar söz/şərh istəmə (bizim yeganə CTA-mız zəngdir; nömrəni sistem yazır)" },
     caption: { type: "string", description: "Instagram caption: 1 hook sətri, 2-3 qısa emojili sətir, sonda sual. Nömrə yazma." },
     hashtags: { type: "array", minItems: 5, maxItems: 8, items: { type: "string" } },
   },
@@ -116,7 +117,14 @@ const schema = {
 const SYSTEM = `Sən Yük.az (Bakı; ev/ofis köçü, yükdaşıma) üçün motion-design rejissoru və art-direktorusan.
 Səssiz illüstrasiya videosu qurursan: hekayəni YALNIZ görüntü + ekran mətni daşıyır.
 
-ƏN VACİB QAYDA — TƏKRAR YOXDUR:
+QAYDA #1 — BU BİR YÜKDAŞIMA REKLAMIDIR (pozmaq olmaz):
+- Video ilk saniyədən aydın göstərməlidir ki, söhbət YÜKÜN DAŞINMASINDAN gedir: narıncı formalı Yük.az işçiləri, qrafit kuzalı + narıncı kabinəli yük maşını, daşınan yük (mebel, qutu, texnika, xüsusi əşya).
+- Obyekt siyahısında MƏCBURİ: 1 "truck" (yük maşını) + ən azı 1 "mover" (işçi) + mövzunun "cargo" əşyası.
+- Səhnələrin ƏN AZI 3-də işçi və/və ya maşın kadrda olsun. BİRİNCİ səhnə: yük + işçi (götürmə anı). SONUNCU səhnə: maşın və ya işçi yükü yeni ünvana çatdırır.
+- Yalnız əşya/prop göstərən "abstrakt" video OLMAZ (məs. təkcə pianonun cizgisi, təkcə pişik, təkcə raket). Metafora istifadə etsən belə, kadrda real daşınma işi görünməlidir.
+- Ton/janr (aşağıda verilir) yalnız DANIŞIQ TƏRZİNİ dəyişir, səhnəni yox.
+
+QAYDA #2 — TƏKRAR YOXDUR:
 - Mövzu verilən siyahıdan seçilir; əvvəl işlənənlər siyahıda YOXDUR.
 - "lift", "az qutu var", "divan liftə sığmır", "Bakı tıxacı", "dostları çağırım" kimi bizim artıq istifadə etdiyimiz zarafatları TƏKRARLAMA.
 - Hər video başqa janr/ton olsun: bəzən gülməli, bəzən epik, bəzən nostalji, bəzən sakit-gözəl, bəzən sənədli.
@@ -128,7 +136,7 @@ REJİSSURA (hekayə, siyahı yox):
 
 KADR (ən vacib — kiçik obyektlər boş kadr deməkdir):
 - Hər səhnədə QƏHRƏMAN obyekt var: w 0.45–0.85, y 0.72–0.90, adətən mərkəzə yaxın. Kadrı O doldurur.
-- Dəstək obyektlər: w 0.15–0.35, qəhrəmanın yanında/arxasında (z ilə sırala).
+- Dəstək obyektlər: w 0.2–0.4, qəhrəmanın yanında/arxasında (z ilə sırala). İŞÇİ (mover) w 0.35–0.5, MAŞIN (truck) w 0.55–0.8 — kiçik "oyuncaq" kimi görünməsin.
 - Yaxın plan lazım olanda w 0.8–0.9 (obyekt kadrı doldurur), uzaq plan üçün 0.3.
 - Obyektlər üst-üstə düşməsin, kadrdan çıxmasın: x ± w/2 → 0.03..0.97.
 - Mətn obyektin üstünə düşməsin: obyekt aşağıdadırsa textPos "top", obyekt yuxarı/ortadadırsa "bottom".
@@ -144,17 +152,21 @@ MƏTN:
 ASSETLƏR:
 - Fonlar BOŞ səhnə plakasıdır: insan, maşın, əsas obyekt, yazı YOX.
 - Obyektlər ayrıca şəffaf PNG-dir: tək obyekt/personaj, yan görünüş, kadr mərkəzində.
+- "truck" təsviri: box truck, dark graphite cargo box + bright orange cab, facing right, no text/logo.
+- "mover" təsviri: friendly mover character in a bright orange t-shirt and dark graphite trousers, expressive, mid-action (carrying / lifting / strapping).
 - Hamısı eyni üslubda və eyni məkan/işıq əhvalında olsun.
 
-BREND: qiymət rəqəmi YOX; digər brend adları YOX; nömrə caption-a sistem əlavə edir.`;
+BREND: qiymət rəqəmi YOX; digər brend adları YOX; nömrə caption-a sistem əlavə edir.
+CTA: yeganə hərəkət ZƏNGDİR — "DM yaz", "açar söz yaz", "şərh yaz" kimi çağırış YAZMA (o kanal bizdə avtomatlaşdırılmayıb).`;
 
-export const motionRequest = (topics: { id: string; title: string; hint: string; audience: string }[], usedStyles: string[], feedback: string | undefined, nv: Novelty): ChatOpts => ({
+export const motionRequest = (topics: { id: string; title: string; hint: string; audience: string }[], usedStyles: string[], tone: string, feedback: string | undefined, nv: Novelty): ChatOpts => ({
   task: "creative", name: "motion", model: MODEL, schema, seed: nv.seed,
   messages: [
     { role: "system", content: SYSTEM + playbook(["going-viral", "reel-builder", "on-screen-text-writer", "story-sequencer", "cta-writer"]) + planFor("Motion", postCount()).text + memory() + nv.text },
     { role: "user", content:
       `MÖVZU SEÇİMİ (birini seç, id-ni yaz — hamısı təzədir):\n${topics.map((t) => `- ${t.id}: ${t.title} (kim üçün: ${t.audience}) — ${t.hint}`).join("\n")}\n\n` +
       `ÜSLUB SEÇİMİ:\n${Object.entries(STYLES).filter(([k]) => !usedStyles.includes(k)).map(([k, v]) => `- ${k}: ${v}`).join("\n")}\n\n` +
+      `BU VİDEONUN TONU (yalnız danışıq tərzi — səhnə hər halda real daşınma işidir): ${tone}\n\n` +
       `Bu video üçün tam rejissura yaz: mövzu, üslub, məkan, 2-3 fon, 3-6 obyekt, 4-6 səhnə (obyekt yerləri və hərəkətləri ilə), CTA, caption.${feedback ? `\n\nİSTİFADƏÇİ QEYDİ, MÜTLƏQ nəzərə al:\n${feedback}` : ""}` },
   ],
 });
@@ -196,18 +208,57 @@ const main = async () => {
 
   console.log(`2. Rejissura (${MODEL})…`);
   const nv = novelty("Motion", { motion: true });
-  const c = (await chat<Concept>(motionRequest(topics, usedStyles.slice(-8), feedback, nv))).data;
+  const tone = TONES[Math.floor(Math.random() * TONES.length)];
+  log(`ton: ${tone}`);
+  const c = (await chat<Concept>(motionRequest(topics, usedStyles.slice(-8), tone, feedback, nv))).data;
   remember("Motion", c, nv);
   log(`${c.topicId} · ${c.styleKey} — ${c.logline}`);
   log(`səhnələr: ${c.scenes.map((s) => s.text).join(" → ")}`);
 
-  // istinadları yoxla — model olmayan asset adı yazsa düzəlt
+  // ---- XİDMƏT ZƏMANƏTİ: maşın və işçi həm asset siyahısında, həm də kadrda olmalıdır
+  const style = STYLES[c.styleKey] ?? STYLES.claymation;
+  const has = (r: string) => c.objects.some((o) => o.role === r);
+  if (!has("truck")) {
+    c.objects.push({ name: "yukaz_truck", role: "truck",
+      prompt: "A box truck facing right: dark graphite cargo box, bright orange cab, chunky wheels with orange hubs, no text or logo." });
+    log("⚠ maşın yox idi — əlavə olundu");
+  }
+  if (!has("mover")) {
+    c.objects.push({ name: "yukaz_mover", role: "mover",
+      prompt: "A friendly mover character walking to the right carrying a wrapped item, bright orange t-shirt, dark graphite trousers and cap, expressive face." });
+    log("⚠ işçi yox idi — əlavə olundu");
+  }
+  const truck = c.objects.find((o) => o.role === "truck")!;
+  const mover = c.objects.find((o) => o.role === "mover")!;
+  void style;
   const bgNames = c.backgrounds.map((b) => b.name);
   const objNames = c.objects.map((o) => o.name);
   for (const s of c.scenes) {
     if (!bgNames.includes(s.bg)) s.bg = bgNames[0];
     s.items = s.items.filter((i) => objNames.includes(i.asset));
     if (!s.items.length) s.items = [{ asset: objNames[0], x: 0.5, y: 0.8, w: 0.45, anim: "pop", delay: 4, flip: false, z: 1 }];
+  }
+  // işçi/maşın kadrda: birinci səhnədə işçi, sonuncuda maşın və ya işçi, cəmi ən azı 3 səhnədə
+  const inScene = (sc: typeof c.scenes[number], name: string) => sc.items.some((i) => i.asset === name);
+  const addTo = (sc: typeof c.scenes[number], name: string, opts: { x: number; y: number; w: number; anim: string }) => {
+    if (!inScene(sc, name)) sc.items.push({ asset: name, x: opts.x, y: opts.y, w: opts.w, anim: opts.anim, delay: 6, flip: false, z: 2 });
+  };
+  addTo(c.scenes[0], mover.name, { x: 0.72, y: 0.88, w: 0.44, anim: "walkIn" });
+  const last = c.scenes[c.scenes.length - 1];
+  if (!inScene(last, truck.name) && !inScene(last, mover.name)) addTo(last, truck.name, { x: 0.5, y: 0.86, w: 0.72, anim: "driveIn" });
+  let withService = c.scenes.filter((sc) => inScene(sc, truck.name) || inScene(sc, mover.name)).length;
+  for (const sc of c.scenes) {
+    if (withService >= 3) break;
+    if (inScene(sc, truck.name) || inScene(sc, mover.name)) continue;
+    addTo(sc, truck.name, { x: 0.28, y: 0.86, w: 0.58, anim: "slideRight" });
+    withService++;
+  }
+  log(`xidmət kadrda: ${withService}/${c.scenes.length} səhnə (maşın: ${truck.name}, işçi: ${mover.name})`);
+
+  // CTA yalnız zəng ola bilər — DM/açar söz vədini sistem qəbul etmir
+  if (/DM|açar söz|şərh yaz|komment/i.test(c.cta)) {
+    log(`⚠ CTA DM istəyirdi ("${c.cta}") — zəngə çevrildi`);
+    c.cta = "Ağır yükü bizə burax";
   }
 
   const id = process.env.REEL_ID || `${new Date().toISOString().slice(0, 10)}-motion`;
@@ -226,6 +277,10 @@ const main = async () => {
   const CAM = ["push", "panRight", "pull", "shake", "panLeft"] as const;
   const TRS = ["slide", "wipe", "fade", "slide", "wipe"] as const;
   c.scenes.forEach((s, i) => {
+    for (const it of s.items) {
+      if (it.asset === mover.name && it.w < 0.34) it.w = 0.42;
+      if (it.asset === truck.name && it.w < 0.5) it.w = 0.62;
+    }
     const big = s.items.reduce((a, b) => (b.w > a.w ? b : a), s.items[0]);
     if (big && big.w < 0.45) { big.w = 0.55; big.y = Math.max(big.y, 0.78); }
     if (i > 0 && s.camera === c.scenes[i - 1].camera) s.camera = CAM[i % CAM.length];

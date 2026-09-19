@@ -1,50 +1,50 @@
 {
- "worried_piano": {
+ "graphite_orange_truck": {
   "w": 900,
   "h": 900,
-  "left": 0.057,
-  "top": 0.142,
-  "right": 0.943,
-  "bottom": 0.886
+  "left": 0.014,
+  "top": 0.243,
+  "right": 0.99,
+  "bottom": 0.799
  },
- "measuring_tape": {
+ "lead_mover": {
   "w": 900,
   "h": 900,
-  "left": 0.092,
-  "top": 0.099,
-  "right": 0.908,
-  "bottom": 0.854
+  "left": 0.251,
+  "top": 0.032,
+  "right": 0.818,
+  "bottom": 0.967
  },
- "padded_blanket": {
+ "spotter_mover": {
   "w": 900,
   "h": 900,
-  "left": 0.088,
-  "top": 0.077,
-  "right": 0.924,
-  "bottom": 0.889
+  "left": 0.223,
+  "top": 0.018,
+  "right": 0.823,
+  "bottom": 0.983
  },
- "corner_guard": {
+ "wrapped_fridge": {
   "w": 900,
   "h": 900,
-  "left": 0.166,
-  "top": 0.039,
-  "right": 0.92,
-  "bottom": 0.893
+  "left": 0.29,
+  "top": 0.021,
+  "right": 0.704,
+  "bottom": 0.973
  },
- "piano_dolly": {
+ "stair_dolly": {
   "w": 900,
   "h": 900,
-  "left": 0.023,
-  "top": 0.181,
-  "right": 0.978,
-  "bottom": 0.804
+  "left": 0.206,
+  "top": 0.052,
+  "right": 0.793,
+  "bottom": 0.898
  },
- "golden_chord": {
+ "orange_safety_straps": {
   "w": 900,
   "h": 900,
-  "left": 0.107,
-  "top": 0.138,
-  "right": 0.882,
-  "bottom": 0.892
+  "left": 0.05,
+  "top": 0.081,
+  "right": 0.951,
+  "bottom": 0.917
  }
 }

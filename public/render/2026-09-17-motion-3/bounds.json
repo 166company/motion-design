@@ -1,50 +1,50 @@
 {
- "alarm_clock_0800": {
+ "yukaz_truck": {
   "w": 900,
   "h": 900,
-  "left": 0.267,
-  "top": 0.032,
-  "right": 0.757,
-  "bottom": 0.946
+  "left": 0.021,
+  "top": 0.249,
+  "right": 0.98,
+  "bottom": 0.76
  },
- "mission_tablet": {
+ "orange_mover": {
   "w": 900,
   "h": 900,
-  "left": 0.27,
-  "top": 0.086,
-  "right": 0.734,
-  "bottom": 0.911
+  "left": 0.019,
+  "top": 0.027,
+  "right": 0.982,
+  "bottom": 0.933
  },
- "cargo_capsule": {
+ "padded_monitor_cart": {
   "w": 900,
   "h": 900,
-  "left": 0.026,
-  "top": 0.174,
-  "right": 0.974,
-  "bottom": 0.792
+  "left": 0.032,
+  "top": 0.099,
+  "right": 0.962,
+  "bottom": 0.917
  },
- "astronaut_mover": {
+ "cable_label_crate": {
   "w": 900,
   "h": 900,
-  "left": 0.222,
-  "top": 0.042,
-  "right": 0.789,
-  "bottom": 0.947
+  "left": 0.021,
+  "top": 0.109,
+  "right": 0.979,
+  "bottom": 0.746
  },
- "tea_set_evening": {
+ "desk_stack": {
   "w": 900,
   "h": 900,
-  "left": 0.112,
-  "top": 0.089,
-  "right": 0.921,
-  "bottom": 0.888
+  "left": 0.04,
+  "top": 0.176,
+  "right": 0.959,
+  "bottom": 0.802
  },
- "orbit_star_marker": {
+ "orange_arrow_burst": {
   "w": 900,
   "h": 900,
-  "left": 0.206,
-  "top": 0.1,
-  "right": 0.783,
-  "bottom": 0.887
+  "left": 0.087,
+  "top": 0.069,
+  "right": 0.913,
+  "bottom": 0.91
  }
 }

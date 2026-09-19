@@ -1,6 +1,6 @@
 {
   "repo": "166company/motion-design",
-  "updatedAt": "2026-09-19T01:13:50.863Z",
+  "updatedAt": "2026-09-19T05:35:48.869Z",
   "plan": {
     "pillars": [
       "Qiymət sirrini açırıq",
@@ -185,7 +185,7 @@
       }
     ]
   },
-  "brain": "## Qaliblər\n- “EV DAŞINMASI QİYMƏTİ NƏYƏ GÖRƏ DƏYİŞİR?” — **question / secret-gap**. 107 baxış, 56 əhatə. Median baxışdan **1.60x**, median əhatədən **7x** yuxarı. Real alıcı sualı açılır.\n- “Bir zəng bəsdir” — **plain-statement / low-friction promise**. 68 baxış, 2 paylaşım. Sadə addım vədi işləyir, amma daha konkret fayda lazımdır.\n- “SƏNİN GÖTÜRƏ BİLMƏDİYİN YÜKÜ BİZ GÖTÜRƏK.” — **plain-statement / relief promise**. 67 baxış; median səviyyə. Emosional yük götürmə mesajı var.\n\n## İşləməyənlər\n- “Yük.az Düyməsi” — **plain/fun poster**. 11 baxış, medianın **0.16x**-i. Fun poster üçün siqnal zəifdir.\n- “Zəng et Rahat köç” — **plain ad slogan**. 42 baxış, medianın **0.63x**-i. Çox ümumi reklam dilidir.\n- Saxlama və şərh hələ siqnal vermir: bütün postlarda saxlama 0, şərh 0.\n- Lead ölçümü yoxdur: zəng, DM, WhatsApp klikləri verilmir.\n\n## Qaydalar\n- Qiymət mövzusu əsas kontent xəttidir; həftədə minimum 2 dəfə test olunmalıdır.\n- Hook sual/secret-gap olarsa daha güclü işləyir: “nəyə görə dəyişir?”, “niyə baha çıxır?”\n- Ümumi şüarlar zəifdir; konkret səbəb və fayda yaz.\n- Qiymət izahında mütləq faktorlar: mərtəbə, lift, məsafə, yük həcmi, usta sayı, qablaşdırma.\n- Poster/fun formatını azalt; izahlı Reel və faydalı Carousel test et.\n- CTA ölçülə bilən olsun: “DM-ə QİYMƏT yaz”, “WhatsApp-a KÖÇ yaz”.\n- Data azdır; nəticələr ilkin hipotezdir, qəti qayda deyil.\n",
+  "brain": "## Qaliblər\r\n- “EV DAŞINMASI QİYMƏTİ NƏYƏ GÖRƏ DƏYİŞİR?” — **question / secret-gap**. 107 baxış, 56 əhatə. Median baxışdan **1.60x**, median əhatədən **7x** yuxarı. Real alıcı sualı açılır.\r\n- “Bir zəng bəsdir” — **plain-statement / low-friction promise**. 68 baxış, 2 paylaşım. Sadə addım vədi işləyir, amma daha konkret fayda lazımdır.\r\n- “SƏNİN GÖTÜRƏ BİLMƏDİYİN YÜKÜ BİZ GÖTÜRƏK.” — **plain-statement / relief promise**. 67 baxış; median səviyyə. Emosional yük götürmə mesajı var.\r\n\r\n## İşləməyənlər\r\n- “Yük.az Düyməsi” — **plain/fun poster**. 11 baxış, medianın **0.16x**-i. Fun poster üçün siqnal zəifdir.\r\n- “Zəng et Rahat köç” — **plain ad slogan**. 42 baxış, medianın **0.63x**-i. Çox ümumi reklam dilidir.\r\n- Saxlama və şərh hələ siqnal vermir: bütün postlarda saxlama 0, şərh 0.\r\n- Lead ölçümü yoxdur: zəng, DM, WhatsApp klikləri verilmir.\r\n\r\n## Qaydalar\r\n- Qiymət mövzusu əsas kontent xəttidir; həftədə minimum 2 dəfə test olunmalıdır.\r\n- Hook sual/secret-gap olarsa daha güclü işləyir: “nəyə görə dəyişir?”, “niyə baha çıxır?”\r\n- Ümumi şüarlar zəifdir; konkret səbəb və fayda yaz.\r\n- Qiymət izahında mütləq faktorlar: mərtəbə, lift, məsafə, yük həcmi, usta sayı, qablaşdırma.\r\n- Poster/fun formatını azalt; izahlı Reel və faydalı Carousel test et.\r\n- CTA ölçülə bilən olsun: “DM-ə QİYMƏT yaz”, “WhatsApp-a KÖÇ yaz”.\r\n- Data azdır; nəticələr ilkin hipotezdir, qəti qayda deyil.\r\n",
   "leads": 0,
   "entries": [
     {
@@ -318,46 +318,6 @@
         "license": null,
         "vocal": false,
         "source": "synth"
-      }
-    },
-    {
-      "id": "2026-09-18-motion",
-      "hook": "2026-09-18-motion",
-      "caption": "Bu plan soyğun deyil — rahat köç fəndidir.\n\n🧤 Əvvəl plan, sonra yük.\n🗂️ Otaq adları qarışıqlığı azaldır.\n✅ Səliqəli köçün sirri elə burdadır.\n\nBunu köçən tanışına göndər, bir də o darıxdırıcı xaos təkrarlanmasın.\n\n📞 Zəng et: 050 209 62 99\n\n#YukAz #RahatKocRejimi #Yukdasima",
-      "hashtags": [
-        "#baki",
-        "#koc",
-        "#kocxidmeti",
-        "#yukdasima",
-        "#evkocu",
-        "#ofiskocu",
-        "#seliqliKoc",
-        "#rahatKoc",
-        "#kocplanı",
-        "#otaqotaqkoc",
-        "#kochazirligi",
-        "#yukaz",
-        "#YukAz",
-        "#RahatKocRejimi",
-        "#Yukdasima"
-      ],
-      "source": "https://yuk.az",
-      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-18-motion/2026-09-18-motion.mp4",
-      "duration": 18,
-      "scenes": 5,
-      "status": "təsdiq-gözləyir",
-      "kind": "fun",
-      "strategy": null,
-      "firstComment": "Sən köçdə ən çox nəyi qarışdırırsan?\n\n#baki #koc #kocxidmeti #yukdasima #evkocu #ofiskocu #seliqliKoc #rahatKoc #kocplanı #otaqotaqkoc #kochazirligi #yukaz #YukAz #RahatKocRejimi #Yukdasima",
-      "metrics": null,
-      "createdAt": "2026-09-18",
-      "template": "Motion",
-      "voice": null,
-      "music": {
-        "label": "Snowpack  — Enter Void ",
-        "license": "Attribution CC BY",
-        "vocal": false,
-        "source": "audius"
       }
     },
     {
@@ -496,165 +456,6 @@
         "license": null,
         "vocal": false,
         "source": "synth"
-      }
-    },
-    {
-      "id": "2026-09-17-motion-3",
-      "hook": "2026-09-17-motion-3",
-      "caption": "Səhər xaos, axşam çay ola bilər.\n\n🚀 Köç günü planla axarına düşür.\n🍵 Son kadrda rahatlıq qalır.\n😌 Köçün stress yox, yüngül keçsin.\n\nSən də rahat köç istəyirsənsə, indi yaz.\n\n📞 Zəng et: 050 209 62 99\n\n#Yukaz #EvKocu #Yukdasima",
-      "hashtags": [
-        "#bakı",
-        "#köç",
-        "#yükdaşıma",
-        "#evköçü",
-        "#ofisköçü",
-        "#köçxidməti",
-        "#daşınma",
-        "#yükaz",
-        "#rahatköç",
-        "#sürətliköç",
-        "#planlıköç",
-        "#stresssizköç",
-        "#Yukaz",
-        "#EvKocu",
-        "#Yukdasima"
-      ],
-      "source": "https://yuk.az",
-      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-17-motion-3/2026-09-17-motion-3.mp4",
-      "duration": 20,
-      "scenes": 5,
-      "status": "təsdiq-gözləyir",
-      "kind": "fun",
-      "strategy": null,
-      "firstComment": "Sən köçü səhər başlamağı sevirsən, yoxsa axşam?\n\n#bakı #köç #yükdaşıma #evköçü #ofisköçü #köçxidməti #daşınma #yükaz #rahatköç #sürətliköç #planlıköç #stresssizköç #Yukaz #EvKocu #Yukdasima",
-      "metrics": null,
-      "createdAt": "2026-09-17",
-      "template": "Motion",
-      "voice": null,
-      "music": {
-        "label": "Bliss — middle child",
-        "license": "Attribution ShareAlike CC BY-SA",
-        "vocal": false,
-        "source": "audius"
-      }
-    },
-    {
-      "id": "2026-09-17-motion-2",
-      "hook": "2026-09-17-motion-2",
-      "caption": "Pişik üçün köç əşya deyil, qoxudur.\n\n🐾 Tanış qoxu qalanda panika azalır.\n🟧 Yük.az qablaşdırmanı sakit və səliqəli edir.\nBunu hansı pişik sahibinə göndərərdin?\n\nZəng edib köçü daha rahat elə.\n\n📞 Zəng et: 050 209 62 99\n\n#Yukaz #PisikSahibi #Qablasdirma",
-      "hashtags": [
-        "#Baki",
-        "#Koc",
-        "#YukDashima",
-        "#EvKocu",
-        "#OfisKocu",
-        "#BakiKoc",
-        "#PisikSahibi",
-        "#HeyvanSevər",
-        "#Qablasdirma",
-        "#KocHazirligi",
-        "#EvdəKöç",
-        "#YukAz",
-        "#Yukaz"
-      ],
-      "source": "https://yuk.az",
-      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-17-motion-2/2026-09-17-motion-2.mp4",
-      "duration": 20,
-      "scenes": 5,
-      "status": "təsdiq-gözləyir",
-      "kind": "fun",
-      "strategy": null,
-      "firstComment": "Səncə pişik köçdə ən çox nədən gərginləşir?\n\n#Baki #Koc #YukDashima #EvKocu #OfisKocu #BakiKoc #PisikSahibi #HeyvanSevər #Qablasdirma #KocHazirligi #EvdəKöç #YukAz #Yukaz",
-      "metrics": null,
-      "createdAt": "2026-09-17",
-      "template": "Motion",
-      "voice": null,
-      "music": {
-        "label": "Bliss — middle child",
-        "license": "Attribution ShareAlike CC BY-SA",
-        "vocal": false,
-        "source": "audius"
-      }
-    },
-    {
-      "id": "2026-09-17-motion-1",
-      "hook": "2026-09-17-motion-1",
-      "caption": "Piano köçü tək güc işi deyil.\n\n🎹 Əvvəl yol və döngə düşünülür.\n🛡️ Sonra kövrək künclər qorunur.\n📌 Saxla, gələcək köçdə lazım olacaq.\n\nSənin evində ən kövrək əşya hansıdır?\n\n📞 Zəng et: 050 209 62 99\n\n#Yukaz #PianoKocu #Yukdasima",
-      "hashtags": [
-        "#Bakı",
-        "#köç",
-        "#daşınma",
-        "#yüklərin-daşınması",
-        "#evköçü",
-        "#ofisköçü",
-        "#yükdaşıma",
-        "#pianoköçü",
-        "#kövrəkəşyalar",
-        "#köçməsləhətləri",
-        "#köçhazırlığı",
-        "#evdaşınması",
-        "#daşınmaməsləhəti",
-        "#Yukaz",
-        "#PianoKocu",
-        "#Yukdasima"
-      ],
-      "source": "https://yuk.az",
-      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-17-motion-1/2026-09-17-motion-1.mp4",
-      "duration": 20,
-      "scenes": 5,
-      "status": "təsdiq-gözləyir",
-      "kind": "fun",
-      "strategy": null,
-      "firstComment": "Sənin evində ən kövrək əşya hansıdır?\n\n#Bakı #köç #daşınma #yüklərin-daşınması #evköçü #ofisköçü #yükdaşıma #pianoköçü #kövrəkəşyalar #köçməsləhətləri #köçhazırlığı #evdaşınması #daşınmaməsləhəti #Yukaz #PianoKocu #Yukdasima",
-      "metrics": null,
-      "createdAt": "2026-09-17",
-      "template": "Motion",
-      "voice": null,
-      "music": {
-        "label": "Bliss — middle child",
-        "license": "Attribution ShareAlike CC BY-SA",
-        "vocal": false,
-        "source": "audius"
-      }
-    },
-    {
-      "id": "2026-09-17-motion",
-      "hook": "2026-09-17-motion",
-      "caption": "Balıqlar da köçü hiss edir.\n\n🐟 Su səviyyəsi, dayaq və yol ayrı düşünülür.\n🫧 Akvarium adi yük kimi daşınmır.\nAkvarium köçürürsənsə, DM-ə BALIQ yazırsan?\n\n📞 Zəng et: 050 209 62 99\n\n#AkvariumDasinmasi #XususiYuk #YukDasima",
-      "hashtags": [
-        "#Bakı",
-        "#köç",
-        "#yükdaşıma",
-        "#evköçü",
-        "#ofisköçü",
-        "#akvarium",
-        "#akvariumdaşınması",
-        "#xüsusiyük",
-        "#həssasyük",
-        "#daşınma",
-        "#balıqlar",
-        "#yükgötürmə",
-        "#AkvariumDasinmasi",
-        "#XususiYuk",
-        "#YukDasima"
-      ],
-      "source": "https://yuk.az",
-      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-17-motion/2026-09-17-motion.mp4",
-      "duration": 20,
-      "scenes": 5,
-      "status": "təsdiq-gözləyir",
-      "kind": "fun",
-      "strategy": null,
-      "firstComment": "Səncə akvarium köçündə ən çətin nə olur?\n\n#Bakı #köç #yükdaşıma #evköçü #ofisköçü #akvarium #akvariumdaşınması #xüsusiyük #həssasyük #daşınma #balıqlar #yükgötürmə #AkvariumDasinmasi #XususiYuk #YukDasima",
-      "metrics": null,
-      "createdAt": "2026-09-17",
-      "template": "Motion",
-      "voice": null,
-      "music": {
-        "label": "Bliss — middle child",
-        "license": "Attribution ShareAlike CC BY-SA",
-        "vocal": false,
-        "source": "audius"
       }
     },
     {

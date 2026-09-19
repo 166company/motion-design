@@ -1,13 +1,6 @@
 name: Reels yarat
 
 on:
-  schedule:
-    # Bazar ertəsi / Çərşənbə / Cümə — 14:30 UTC = 18:30 Bakı (video növbəsi, təqvimə görə)
-    - cron: "30 14 * * 1,3,5"
-    # Çərşənbə axşamı / Cümə axşamı / Şənbə — illüstrasiya/animasiya günü (Story | Explainer, təqvimə görə)
-    - cron: "30 14 * * 2,4,6"
-    # Hər gün 05:00 UTC = 09:00 Bakı — 3 statik satış postu
-    - cron: "0 5 * * *"
   workflow_dispatch:
     inputs:
       template:

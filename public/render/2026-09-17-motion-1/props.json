@@ -2,264 +2,294 @@
   "id": "2026-09-17-motion-1",
   "assets": "render/2026-09-17-motion-1/assets",
   "bounds": {
-    "worried_piano": {
+    "graphite_orange_truck": {
       "w": 900,
       "h": 900,
-      "left": 0.057,
-      "top": 0.142,
-      "right": 0.943,
-      "bottom": 0.886
+      "left": 0.014,
+      "top": 0.243,
+      "right": 0.99,
+      "bottom": 0.799
     },
-    "measuring_tape": {
+    "lead_mover": {
       "w": 900,
       "h": 900,
-      "left": 0.092,
-      "top": 0.099,
-      "right": 0.908,
-      "bottom": 0.854
+      "left": 0.251,
+      "top": 0.032,
+      "right": 0.818,
+      "bottom": 0.967
     },
-    "padded_blanket": {
+    "spotter_mover": {
       "w": 900,
       "h": 900,
-      "left": 0.088,
-      "top": 0.077,
-      "right": 0.924,
-      "bottom": 0.889
+      "left": 0.223,
+      "top": 0.018,
+      "right": 0.823,
+      "bottom": 0.983
     },
-    "corner_guard": {
+    "wrapped_fridge": {
       "w": 900,
       "h": 900,
-      "left": 0.166,
-      "top": 0.039,
-      "right": 0.92,
-      "bottom": 0.893
+      "left": 0.29,
+      "top": 0.021,
+      "right": 0.704,
+      "bottom": 0.973
     },
-    "piano_dolly": {
+    "stair_dolly": {
       "w": 900,
       "h": 900,
-      "left": 0.023,
-      "top": 0.181,
-      "right": 0.978,
-      "bottom": 0.804
+      "left": 0.206,
+      "top": 0.052,
+      "right": 0.793,
+      "bottom": 0.898
     },
-    "golden_chord": {
+    "orange_safety_straps": {
       "w": 900,
       "h": 900,
-      "left": 0.107,
-      "top": 0.138,
-      "right": 0.882,
-      "bottom": 0.892
+      "left": 0.05,
+      "top": 0.081,
+      "right": 0.951,
+      "bottom": 0.917
     }
   },
   "scenes": [
     {
-      "bg": "bg_music_floor",
-      "text": "Piano nədən qorxur?",
+      "bg": "bg_high_floor_landing",
+      "text": "Doqquzuncu mərtəbə çağırışdır?",
       "textPos": "top",
       "camera": "push",
-      "transition": "slide",
-      "sfx": "tick",
+      "transition": "wipe",
+      "sfx": "step",
       "items": [
         {
-          "asset": "worried_piano",
-          "x": 0.5,
-          "y": 0.84,
-          "w": 0.78,
-          "anim": "swing",
+          "asset": "lead_mover",
+          "x": 0.23,
+          "y": 0.88,
+          "w": 0.37,
+          "anim": "walkIn",
           "delay": 0,
           "flip": false,
           "z": 3
         },
         {
-          "asset": "measuring_tape",
-          "x": 0.22,
-          "y": 0.88,
-          "w": 0.24,
-          "anim": "float",
-          "delay": 8,
-          "flip": false,
-          "z": 1
-        },
-        {
-          "asset": "corner_guard",
-          "x": 0.78,
+          "asset": "wrapped_fridge",
+          "x": 0.65,
           "y": 0.86,
-          "w": 0.22,
-          "anim": "rise",
-          "delay": 14,
+          "w": 0.52,
+          "anim": "shake",
+          "delay": 4,
           "flip": false,
           "z": 2
+        },
+        {
+          "asset": "orange_safety_straps",
+          "x": 0.63,
+          "y": 0.74,
+          "w": 0.3,
+          "anim": "swing",
+          "delay": 8,
+          "flip": false,
+          "z": 4
         }
       ],
       "durationInFrames": 120
     },
     {
-      "bg": "bg_stair_turn",
-      "text": "Döngə əvvəl ölçülür",
+      "bg": "bg_high_floor_landing",
+      "text": "Kəmər oyuna girir",
       "textPos": "top",
-      "camera": "panRight",
-      "transition": "wipe",
-      "sfx": "whoosh",
+      "camera": "shake",
+      "transition": "slide",
+      "sfx": "tick",
       "items": [
         {
-          "asset": "worried_piano",
-          "x": 0.38,
-          "y": 0.83,
-          "w": 0.56,
+          "asset": "wrapped_fridge",
+          "x": 0.58,
+          "y": 0.84,
+          "w": 0.5,
           "anim": "slideRight",
           "delay": 0,
           "flip": false,
           "z": 3
         },
         {
-          "asset": "measuring_tape",
-          "x": 0.68,
-          "y": 0.85,
-          "w": 0.3,
+          "asset": "stair_dolly",
+          "x": 0.39,
+          "y": 0.88,
+          "w": 0.33,
           "anim": "rise",
+          "delay": 3,
+          "flip": false,
+          "z": 2
+        },
+        {
+          "asset": "lead_mover",
+          "x": 0.22,
+          "y": 0.9,
+          "w": 0.37,
+          "anim": "walkIn",
           "delay": 6,
-          "flip": true,
-          "z": 2
-        },
-        {
-          "asset": "corner_guard",
-          "x": 0.79,
-          "y": 0.74,
-          "w": 0.2,
-          "anim": "spin",
-          "delay": 15,
-          "flip": false,
-          "z": 1
-        }
-      ],
-      "durationInFrames": 120
-    },
-    {
-      "bg": "bg_music_floor",
-      "text": "Kövrək yerlər gizlənmir",
-      "textPos": "top",
-      "camera": "pull",
-      "transition": "fade",
-      "sfx": "pop",
-      "items": [
-        {
-          "asset": "worried_piano",
-          "x": 0.5,
-          "y": 0.86,
-          "w": 0.8,
-          "anim": "float",
-          "delay": 0,
-          "flip": false,
-          "z": 2
-        },
-        {
-          "asset": "padded_blanket",
-          "x": 0.5,
-          "y": 0.84,
-          "w": 0.35,
-          "anim": "fall",
-          "delay": 8,
           "flip": false,
           "z": 4
         },
         {
-          "asset": "corner_guard",
-          "x": 0.77,
-          "y": 0.86,
-          "w": 0.24,
-          "anim": "pop",
-          "delay": 16,
-          "flip": false,
-          "z": 5
+          "asset": "spotter_mover",
+          "x": 0.82,
+          "y": 0.89,
+          "w": 0.3,
+          "anim": "swing",
+          "delay": 10,
+          "flip": true,
+          "z": 4
         }
       ],
-      "durationInFrames": 120
+      "durationInFrames": 90
     },
     {
-      "bg": "bg_stair_turn",
-      "text": "Ağırlıq ritmlə keçir",
+      "bg": "bg_courtyard_loading",
+      "text": "Maşın meydanda hazırdır",
       "textPos": "top",
-      "camera": "panLeft",
-      "transition": "slide",
-      "sfx": "riser",
+      "camera": "panRight",
+      "transition": "fade",
+      "sfx": "engine",
       "items": [
         {
-          "asset": "worried_piano",
-          "x": 0.51,
-          "y": 0.84,
-          "w": 0.64,
+          "asset": "graphite_orange_truck",
+          "x": 0.6,
+          "y": 0.86,
+          "w": 0.7,
           "anim": "driveIn",
           "delay": 0,
           "flip": false,
+          "z": 1
+        },
+        {
+          "asset": "wrapped_fridge",
+          "x": 0.34,
+          "y": 0.86,
+          "w": 0.42,
+          "anim": "rise",
+          "delay": 6,
+          "flip": false,
+          "z": 3
+        },
+        {
+          "asset": "lead_mover",
+          "x": 0.16,
+          "y": 0.9,
+          "w": 0.35,
+          "anim": "walkIn",
+          "delay": 9,
+          "flip": false,
           "z": 4
         },
         {
-          "asset": "piano_dolly",
-          "x": 0.51,
-          "y": 0.89,
-          "w": 0.34,
+          "asset": "stair_dolly",
+          "x": 0.36,
+          "y": 0.9,
+          "w": 0.26,
           "anim": "slideLeft",
-          "delay": 6,
-          "flip": false,
-          "z": 2
-        },
-        {
-          "asset": "padded_blanket",
-          "x": 0.28,
-          "y": 0.86,
-          "w": 0.28,
-          "anim": "float",
           "delay": 12,
           "flip": false,
-          "z": 1
+          "z": 2
         }
       ],
       "durationInFrames": 120
     },
     {
-      "bg": "bg_new_room",
-      "text": "İlk akkord yeni evdə",
+      "bg": "bg_courtyard_loading",
+      "text": "Gizli hissə: yumşaq dayaq",
       "textPos": "top",
-      "camera": "shake",
-      "transition": "none",
-      "sfx": "ring",
+      "camera": "pull",
+      "transition": "wipe",
+      "sfx": "tick",
       "items": [
         {
-          "asset": "worried_piano",
-          "x": 0.5,
-          "y": 0.82,
-          "w": 0.76,
+          "asset": "wrapped_fridge",
+          "x": 0.47,
+          "y": 0.85,
+          "w": 0.68,
           "anim": "zoom",
           "delay": 0,
           "flip": false,
           "z": 3
         },
         {
-          "asset": "golden_chord",
-          "x": 0.5,
-          "y": 0.52,
-          "w": 0.3,
-          "anim": "rise",
-          "delay": 10,
+          "asset": "orange_safety_straps",
+          "x": 0.47,
+          "y": 0.73,
+          "w": 0.48,
+          "anim": "swing",
+          "delay": 5,
           "flip": false,
           "z": 4
         },
         {
-          "asset": "corner_guard",
-          "x": 0.2,
-          "y": 0.88,
-          "w": 0.2,
-          "anim": "driveOut",
-          "delay": 18,
+          "asset": "spotter_mover",
+          "x": 0.79,
+          "y": 0.9,
+          "w": 0.35,
+          "anim": "rise",
+          "delay": 10,
           "flip": true,
+          "z": 5
+        }
+      ],
+      "durationInFrames": 90
+    },
+    {
+      "bg": "bg_new_home_gate",
+      "text": "Soyuducu sakit çatır",
+      "textPos": "top",
+      "camera": "panLeft",
+      "transition": "none",
+      "sfx": "ring",
+      "items": [
+        {
+          "asset": "graphite_orange_truck",
+          "x": 0.68,
+          "y": 0.86,
+          "w": 0.58,
+          "anim": "driveOut",
+          "delay": 0,
+          "flip": false,
           "z": 1
+        },
+        {
+          "asset": "wrapped_fridge",
+          "x": 0.43,
+          "y": 0.86,
+          "w": 0.53,
+          "anim": "slideRight",
+          "delay": 5,
+          "flip": false,
+          "z": 3
+        },
+        {
+          "asset": "lead_mover",
+          "x": 0.2,
+          "y": 0.9,
+          "w": 0.35,
+          "anim": "walkIn",
+          "delay": 8,
+          "flip": false,
+          "z": 4
+        },
+        {
+          "asset": "orange_safety_straps",
+          "x": 0.43,
+          "y": 0.74,
+          "w": 0.3,
+          "anim": "float",
+          "delay": 14,
+          "flip": false,
+          "z": 5
         }
       ],
       "durationInFrames": 120
     }
   ],
   "cta": {
-    "line1": "Saxla, piano köçəndə lazım",
+    "line1": "Ağır yükü bizə burax",
     "line2": "Zəng et"
   },
   "music": "render/2026-09-17-motion-1/music.norm.wav",

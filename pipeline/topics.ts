@@ -40,16 +40,6 @@ export const TOPICS: Topic[] = [
   { id: "snow", title: "Qarlı gündə daşınma", audience: "ailə", hint: "sürüşkən yol, isti çay, planlı iş" },
   { id: "summer", title: "İyul istisində köç", audience: "ailə", hint: "kölgə, su, səhər tezdən başlamaq" },
   { id: "autumn", title: "Payızda kirayə dəyişmək", audience: "kirayənişin", hint: "mövsümi köç dalğası, yarpaq, yeni başlanğıc" },
-  // — janr / format oyunu
-  { id: "heist", title: "Soyğunçu filmi parodiyası", audience: "hamı", hint: "planlaşdırma səhnəsi, taymer, 'komanda toplanır' — amma bu qanuni köçdür" },
-  { id: "nature_doc", title: "Təbiət sənədli filmi", audience: "hamı", hint: "diktor tonu: 'burada nadir Bakı köçkününü müşahidə edirik'" },
-  { id: "sport", title: "Final matçı şərhi", audience: "hamı", hint: "idman şərhçisi, təkrar, 'qol!' anı" },
-  { id: "space", title: "Kosmik missiya", audience: "hamı", hint: "start geri sayımı, 'yük orbitə çıxdı'" },
-  { id: "cooking", title: "Yemək şousu resepti", audience: "hamı", hint: "'köçün resepti: 1 zəng, 0 əsəb'" },
-  { id: "weather", title: "Hava proqnozu buraxılışı", audience: "hamı", hint: "'sabah qutu yağışı, axşama doğru nizam'" },
-  { id: "news", title: "Təcili xəbər buraxılışı", audience: "hamı", hint: "ekran altı lent, müxbir, 'hadisə yerindən'" },
-  { id: "game", title: "Video oyun səviyyəsi", audience: "gənc", hint: "level 1-4, 'boss: divan', can göstəricisi" },
-  { id: "museum", title: "Muzey audio-bələdçisi", audience: "hamı", hint: "eksponat: 'köhnə divan, XXI əsr'" },
   // — faydalı / izahedici
   { id: "checklist", title: "Köçdən 3 gün əvvəl", audience: "planlaşdıran", hint: "addım-addım hazırlıq, saxlanılası siyahı" },
   { id: "packing", title: "Qablaşdırma sənəti", audience: "özü yığan", hint: "lent, köpük, nişanlama — peşəkar üsul" },
@@ -60,6 +50,21 @@ export const TOPICS: Topic[] = [
   { id: "storage", title: "Müvəqqəti saxlama", audience: "aralıq vəziyyət", hint: "köhnə ev bitdi, yeni hazır deyil" },
   { id: "disassembly", title: "Mebelin sökülüb yığılması", audience: "ailə", hint: "vintlər, çertyoj, 'artıq vint qalmadı'" },
 ];
+
+/**
+ * TON/janr — mövzunun ÜSTÜNDƏ işlənir, mövzunu ƏVƏZ ETMİR.
+ * Yəni kadrda həmişə yük maşını, işçilər və daşınan yük var; ton yalnız danışıq tərzini dəyişir.
+ */
+export const TONES = [
+  "sənədli film diktoru tonu (sakit, məlumatlı)",
+  "idman şərhçisi həyəcanı (sürətli, emosional)",
+  "nağıl/uşaq kitabı tonu (isti, sadə)",
+  "təcili xəbər buraxılışı tonu (qısa, dəqiq)",
+  "missiya/əməliyyat tonu (plan, addımlar, komanda)",
+  "nostalji xatirə tonu (yumşaq, düşüncəli)",
+  "özünə gülən yumor (relatable, isti)",
+  "sakit-gözəl ASMR tonu (detal, tempo)",
+] as const;
 
 /** Son postlarda işlənən mövzular (meta.topic) */
 export const usedTopics = (): string[] => {

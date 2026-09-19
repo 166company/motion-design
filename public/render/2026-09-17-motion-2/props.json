@@ -2,234 +2,294 @@
   "id": "2026-09-17-motion-2",
   "assets": "render/2026-09-17-motion-2/assets",
   "bounds": {
-    "cat_supervisor": {
+    "yuk_truck": {
       "w": 900,
       "h": 900,
-      "left": 0.114,
-      "top": 0.08,
-      "right": 0.941,
-      "bottom": 0.873
+      "left": 0.016,
+      "top": 0.227,
+      "right": 0.99,
+      "bottom": 0.768
     },
-    "tape_tangle": {
+    "orange_mover": {
       "w": 900,
       "h": 900,
-      "left": 0.064,
-      "top": 0.154,
-      "right": 0.964,
-      "bottom": 0.82
+      "left": 0.21,
+      "top": 0.012,
+      "right": 0.844,
+      "bottom": 0.972
     },
-    "folding_box": {
+    "aquarium_glass_planet": {
       "w": 900,
       "h": 900,
-      "left": 0.036,
-      "top": 0.209,
-      "right": 0.964,
-      "bottom": 0.782
+      "left": 0.022,
+      "top": 0.169,
+      "right": 0.978,
+      "bottom": 0.818
     },
-    "familiar_blanket": {
+    "soft_support_pads": {
       "w": 900,
       "h": 900,
-      "left": 0.044,
-      "top": 0.272,
-      "right": 0.963,
-      "bottom": 0.731
+      "left": 0.043,
+      "top": 0.224,
+      "right": 0.957,
+      "bottom": 0.789
     },
-    "bubble_wrap_roll": {
+    "strap_and_level": {
       "w": 900,
       "h": 900,
-      "left": 0.082,
-      "top": 0.186,
-      "right": 0.922,
-      "bottom": 0.823
+      "left": 0.008,
+      "top": 0.351,
+      "right": 0.992,
+      "bottom": 0.616
     },
-    "approved_cat_in_box": {
+    "family_chat_phone": {
       "w": 900,
       "h": 900,
-      "left": 0.071,
-      "top": 0.04,
-      "right": 0.912,
-      "bottom": 0.938
+      "left": 0.294,
+      "top": 0.01,
+      "right": 0.706,
+      "bottom": 0.991
     }
   },
   "scenes": [
     {
-      "bg": "bg_graphite_apartment",
-      "text": "Pişiyi yox, qoxunu köçür",
+      "bg": "bg_old_living_room",
+      "text": "Balıqlar köçəndə nə dəyişir?",
       "textPos": "top",
       "camera": "push",
       "transition": "wipe",
-      "sfx": "none",
+      "sfx": "tick",
       "items": [
         {
-          "asset": "cat_supervisor",
-          "x": 0.48,
-          "y": 0.86,
-          "w": 0.6,
-          "anim": "walkIn",
-          "delay": 0,
-          "flip": false,
-          "z": 3
-        },
-        {
-          "asset": "familiar_blanket",
-          "x": 0.76,
+          "asset": "yuk_truck",
+          "x": 0.7,
           "y": 0.88,
-          "w": 0.26,
-          "anim": "float",
-          "delay": 8,
-          "flip": false,
-          "z": 2
-        }
-      ],
-      "durationInFrames": 120
-    },
-    {
-      "bg": "bg_neon_floor",
-      "text": "Yeni qoxu panika yaradır",
-      "textPos": "top",
-      "camera": "shake",
-      "transition": "slide",
-      "sfx": "none",
-      "items": [
-        {
-          "asset": "tape_tangle",
-          "x": 0.56,
-          "y": 0.84,
-          "w": 0.66,
-          "anim": "spin",
-          "delay": 0,
-          "flip": false,
-          "z": 3
-        },
-        {
-          "asset": "cat_supervisor",
-          "x": 0.19,
-          "y": 0.89,
-          "w": 0.3,
-          "anim": "shake",
-          "delay": 6,
-          "flip": true,
-          "z": 4
-        }
-      ],
-      "durationInFrames": 120
-    },
-    {
-      "bg": "bg_graphite_apartment",
-      "text": "Öz yorğanı əvvəl getsin",
-      "textPos": "top",
-      "camera": "panRight",
-      "transition": "fade",
-      "sfx": "none",
-      "items": [
-        {
-          "asset": "folding_box",
-          "x": 0.47,
-          "y": 0.87,
-          "w": 0.62,
-          "anim": "rise",
-          "delay": 0,
-          "flip": false,
-          "z": 2
-        },
-        {
-          "asset": "familiar_blanket",
-          "x": 0.78,
-          "y": 0.82,
-          "w": 0.28,
-          "anim": "slideLeft",
-          "delay": 8,
-          "flip": false,
-          "z": 4
-        },
-        {
-          "asset": "cat_supervisor",
-          "x": 0.18,
-          "y": 0.89,
-          "w": 0.28,
-          "anim": "float",
-          "delay": 14,
-          "flip": false,
-          "z": 3
-        }
-      ],
-      "durationInFrames": 120
-    },
-    {
-      "bg": "bg_quiet_entry",
-      "text": "Lent sakit, nəzarət rahat",
-      "textPos": "top",
-      "camera": "pull",
-      "transition": "wipe",
-      "sfx": "none",
-      "items": [
-        {
-          "asset": "bubble_wrap_roll",
-          "x": 0.49,
-          "y": 0.85,
-          "w": 0.64,
-          "anim": "zoom",
-          "delay": 0,
-          "flip": false,
-          "z": 3
-        },
-        {
-          "asset": "tape_tangle",
-          "x": 0.2,
-          "y": 0.89,
-          "w": 0.25,
-          "anim": "swing",
-          "delay": 7,
-          "flip": false,
-          "z": 2
-        },
-        {
-          "asset": "cat_supervisor",
-          "x": 0.79,
-          "y": 0.89,
-          "w": 0.28,
-          "anim": "float",
-          "delay": 13,
-          "flip": true,
-          "z": 4
-        }
-      ],
-      "durationInFrames": 120
-    },
-    {
-      "bg": "bg_neon_floor",
-      "text": "Nəzarətçi artıq razıdır",
-      "textPos": "top",
-      "camera": "panLeft",
-      "transition": "none",
-      "sfx": "none",
-      "items": [
-        {
-          "asset": "approved_cat_in_box",
-          "x": 0.51,
-          "y": 0.87,
-          "w": 0.74,
+          "w": 0.5,
           "anim": "driveIn",
           "delay": 0,
           "flip": false,
+          "z": 1
+        },
+        {
+          "asset": "orange_mover",
+          "x": 0.22,
+          "y": 0.86,
+          "w": 0.34,
+          "anim": "walkIn",
+          "delay": 3,
+          "flip": false,
           "z": 4
         },
         {
-          "asset": "bubble_wrap_roll",
-          "x": 0.2,
-          "y": 0.9,
-          "w": 0.22,
-          "anim": "slideRight",
+          "asset": "aquarium_glass_planet",
+          "x": 0.61,
+          "y": 0.84,
+          "w": 0.46,
+          "anim": "float",
+          "delay": 6,
+          "flip": false,
+          "z": 3
+        },
+        {
+          "asset": "family_chat_phone",
+          "x": 0.5,
+          "y": 0.38,
+          "w": 0.28,
+          "anim": "shake",
           "delay": 10,
           "flip": false,
           "z": 2
         }
       ],
       "durationInFrames": 120
+    },
+    {
+      "bg": "bg_old_living_room",
+      "text": "Su səviyyəsi əvvəl yoxlanır",
+      "textPos": "top",
+      "camera": "panRight",
+      "transition": "slide",
+      "sfx": "pop",
+      "items": [
+        {
+          "asset": "aquarium_glass_planet",
+          "x": 0.5,
+          "y": 0.86,
+          "w": 0.72,
+          "anim": "zoom",
+          "delay": 0,
+          "flip": false,
+          "z": 3
+        },
+        {
+          "asset": "orange_mover",
+          "x": 0.18,
+          "y": 0.88,
+          "w": 0.36,
+          "anim": "rise",
+          "delay": 5,
+          "flip": false,
+          "z": 4
+        },
+        {
+          "asset": "strap_and_level",
+          "x": 0.8,
+          "y": 0.82,
+          "w": 0.28,
+          "anim": "swing",
+          "delay": 9,
+          "flip": false,
+          "z": 5
+        }
+      ],
+      "durationInFrames": 120
+    },
+    {
+      "bg": "bg_building_courtyard",
+      "text": "Şüşə yumşaq dayaqlanır",
+      "textPos": "top",
+      "camera": "pull",
+      "transition": "fade",
+      "sfx": "step",
+      "items": [
+        {
+          "asset": "yuk_truck",
+          "x": 0.5,
+          "y": 0.88,
+          "w": 0.76,
+          "anim": "driveIn",
+          "delay": 0,
+          "flip": false,
+          "z": 1
+        },
+        {
+          "asset": "soft_support_pads",
+          "x": 0.31,
+          "y": 0.86,
+          "w": 0.32,
+          "anim": "pop",
+          "delay": 4,
+          "flip": false,
+          "z": 3
+        },
+        {
+          "asset": "aquarium_glass_planet",
+          "x": 0.63,
+          "y": 0.84,
+          "w": 0.52,
+          "anim": "slideRight",
+          "delay": 8,
+          "flip": false,
+          "z": 4
+        },
+        {
+          "asset": "orange_mover",
+          "x": 0.2,
+          "y": 0.88,
+          "w": 0.35,
+          "anim": "walkIn",
+          "delay": 12,
+          "flip": false,
+          "z": 5
+        }
+      ],
+      "durationInFrames": 120
+    },
+    {
+      "bg": "bg_building_courtyard",
+      "text": "Tarazlıq yolda qorunur",
+      "textPos": "top",
+      "camera": "shake",
+      "transition": "wipe",
+      "sfx": "engine",
+      "items": [
+        {
+          "asset": "yuk_truck",
+          "x": 0.5,
+          "y": 0.86,
+          "w": 0.8,
+          "anim": "driveIn",
+          "delay": 0,
+          "flip": false,
+          "z": 1
+        },
+        {
+          "asset": "aquarium_glass_planet",
+          "x": 0.52,
+          "y": 0.72,
+          "w": 0.48,
+          "anim": "float",
+          "delay": 4,
+          "flip": false,
+          "z": 3
+        },
+        {
+          "asset": "strap_and_level",
+          "x": 0.53,
+          "y": 0.78,
+          "w": 0.36,
+          "anim": "swing",
+          "delay": 8,
+          "flip": false,
+          "z": 4
+        }
+      ],
+      "durationInFrames": 120
+    },
+    {
+      "bg": "bg_new_home_room",
+      "text": "Yeni ünvanda sakit açılır",
+      "textPos": "top",
+      "camera": "panLeft",
+      "transition": "none",
+      "sfx": "ring",
+      "items": [
+        {
+          "asset": "yuk_truck",
+          "x": 0.7,
+          "y": 0.88,
+          "w": 0.54,
+          "anim": "driveOut",
+          "delay": 0,
+          "flip": false,
+          "z": 1
+        },
+        {
+          "asset": "orange_mover",
+          "x": 0.25,
+          "y": 0.88,
+          "w": 0.38,
+          "anim": "walkIn",
+          "delay": 4,
+          "flip": false,
+          "z": 5
+        },
+        {
+          "asset": "aquarium_glass_planet",
+          "x": 0.6,
+          "y": 0.84,
+          "w": 0.58,
+          "anim": "rise",
+          "delay": 8,
+          "flip": false,
+          "z": 4
+        },
+        {
+          "asset": "soft_support_pads",
+          "x": 0.26,
+          "y": 0.84,
+          "w": 0.24,
+          "anim": "fall",
+          "delay": 12,
+          "flip": false,
+          "z": 3
+        }
+      ],
+      "durationInFrames": 120
     }
   ],
   "cta": {
-    "line1": "Heyvan sahibinə göndər",
+    "line1": "Akvarium üçün zəng et",
     "line2": "Zəng et"
   },
   "music": "render/2026-09-17-motion-2/music.norm.wav",

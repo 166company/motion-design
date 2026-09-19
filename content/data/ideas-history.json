@@ -16,35 +16,35 @@
   "model": "openrouter/z-ai/glm-5.2:free"
  },
  {
-  "at": "2026-09-17T10:25:58.421Z",
+  "at": "2026-09-17T11:27:00.926Z",
   "template": "Motion",
-  "summary": "styleKey: papercut | setting: Bright late-afternoon indoor light with calm museum-like mood, soft side shadows, and cons",
-  "lens": "İdman şərhçisi: divanın liftə girməsi final matçı kimi",
-  "visual": "Kağız-kəsmə (paper-cut) qatlı illüstrasiya",
+  "summary": "styleKey: blueprint | setting: A calm early morning in Baku with cool graphite shadows, precise orange highlights, and a ",
+  "lens": "Təbiət sənədli filmi diktoru kimi: 'Burada biz nadir Bakı köçkününü görürük…'",
+  "visual": "Makro detal: qablaşdırma lenti, qutu küncü, açar",
   "model": "openai/gpt-5.5"
  },
  {
-  "at": "2026-09-17T10:35:31.529Z",
+  "at": "2026-09-17T11:35:46.683Z",
   "template": "Motion",
-  "summary": "styleKey: blueprint | setting: A quiet evening top-down schematic world on deep graphite paper, warm amber accent light, ",
-  "lens": "Əşyanın gözü ilə (divan / soyuducu / pişik danışır)",
-  "visual": "Yuxarıdan (top-down / flat-lay) kompozisiya, qutular həndəsi düzülüb",
+  "summary": "styleKey: claymation | setting: Warm evening in Baku, stop-motion claymation with visible fingerprints, fisheye wide-angle",
+  "lens": "Bakı lokal detalı: lift işləmir, 9-cu mərtəbə, həyət maşını",
+  "visual": "Balıqgözü / geniş bucaq, komik perspektiv",
   "model": "openai/gpt-5.5"
  },
  {
-  "at": "2026-09-17T10:44:40.603Z",
+  "at": "2026-09-17T11:45:07.949Z",
   "template": "Motion",
-  "summary": "styleKey: neon_synth | setting: Neon midnight Baku with orange light streaks over graphite interiors, quiet ASMR-like calm",
-  "lens": "ASMR sakitliyi: qablaşdırma lenti, qutu qatlanması",
-  "visual": "Neon gecə Bakı, narıncı işıq zolaqları, tünd qrafit fon",
+  "summary": "styleKey: retro_cartoon | setting: A nostalgic 1990s Baku home-move morning with warm orange TV-commercial colors, dark graph",
+  "lens": "Dialoq çatı (WhatsApp ekranı kimi): ailə qrupunda köç planı",
+  "visual": "Retro VHS / 90-lar reklam rəngləri və dənəvərlik",
   "model": "openai/gpt-5.5"
  },
  {
-  "at": "2026-09-17T10:50:37.058Z",
+  "at": "2026-09-17T11:51:36.624Z",
   "template": "Motion",
-  "summary": "styleKey: claytoon | setting: Warm pastel glossy 3D toy-render miniature sets with soft studio light, rounded shapes, an",
+  "summary": "styleKey: papercut | setting: A fast weekend time-lapse in Baku, from crisp 08:00 morning to warm 18:00 golden light, la",
   "lens": "Zaman atlaması: səhər 08:00 xaos → axşam 18:00 yeni evdə çay",
-  "visual": "Pastel yumşaq 3D, yumru formalar, sakit ovqat",
+  "visual": "Kollaj: kəsilmiş foto + əl ilə cızılmış oxlar",
   "model": "openai/gpt-5.5"
  },
  {
