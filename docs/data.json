@@ -1,6 +1,6 @@
 {
   "repo": "166company/motion-design",
-  "updatedAt": "2026-09-18T22:37:32.036Z",
+  "updatedAt": "2026-09-19T01:13:50.863Z",
   "plan": {
     "pillars": [
       "Qiymət sirrini açırıq",
@@ -15,30 +15,6 @@
       "Rahat Köç Rejimi"
     ],
     "slots": [
-      {
-        "date": "2026-09-18",
-        "template": "Motion",
-        "pillar": "Köç stressini azaldırıq",
-        "idea": "Gülməli soyğun filmi parodiyası: qara-qızılı blueprint, taymer, əlcəkli personajlar, amma hədəf seyf yox — səliqəli köç planıdır. Son kadrda xəritə “tam qanuni köç əməliyyatı” möhürü alır.",
-        "goal": "SHARE",
-        "angle": "nəticə",
-        "hook": "Bu plan soyğun deyil, köçdür",
-        "articleId": null,
-        "series": "Rahat Köç Rejimi",
-        "topic": "heist"
-      },
-      {
-        "date": "2026-09-18",
-        "template": "Poster",
-        "pillar": "Qiymət sirrini açırıq",
-        "idea": "Satış postu: “Qiymət niyə dəyişir?” başlığı ilə həcm, mərtəbə, məsafə, usta sayı, qablaşdırma ikonları. CTA: “DM-ə QİYMƏT yaz, bu məlumatları göndər.”",
-        "goal": "SAVE",
-        "angle": "secret-gap",
-        "hook": "Qiyməti dəyişən gizli detallar",
-        "articleId": null,
-        "series": "",
-        "topic": ""
-      },
       {
         "date": "2026-09-19",
         "template": "Story",
@@ -182,6 +158,30 @@
         "articleId": null,
         "series": "Köç Laboratoriyası",
         "topic": "storage"
+      },
+      {
+        "date": "2026-09-25",
+        "template": "Poster",
+        "pillar": "Planlı köç, rahat başlanğıc",
+        "idea": "Satış postu: iki qapı arasında qalan qutular və ortada “aralıq plan” xətti. CTA: “Yeni ünvan hazır deyilsə, DM-ə ARALIQ yaz.”",
+        "goal": "LEAD",
+        "angle": "sual",
+        "hook": "Anbarla ev arasında qaldın?",
+        "articleId": null,
+        "series": "",
+        "topic": ""
+      },
+      {
+        "date": "2026-09-26",
+        "template": "Motion",
+        "pillar": "Biznes köçü dayanmasın",
+        "idea": "Sənədli mini-film: qəhvə maşını “ürək döyüntüsü” kimi səslənir, soyuducu vitrin və stullar sakit kadrlarla köçürülür; məqsəd kafenin ritminin qırılmamasıdır. Final: fincana ilk qəhvə tökülür.",
+        "goal": "LEAD",
+        "angle": "nəticə",
+        "hook": "Qəhvə maşını susmamalıdır",
+        "articleId": null,
+        "series": "Rahat Köç Rejimi",
+        "topic": "cafe"
       }
     ]
   },
