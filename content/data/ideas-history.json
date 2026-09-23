@@ -86,5 +86,29 @@
   "lens": "Nənə məsləhətləri vs Yük.az məsləhəti",
   "visual": "İzometrik 3D səhnə, oyuncaq kimi miniatür şəhər",
   "model": "openai/gpt-5.5"
+ },
+ {
+  "at": "2026-09-23T05:58:17.899Z",
+  "template": "Showcase",
+  "summary": "title: Bakı Köçü – Hava Dostu",
+  "lens": "POV: sən qonşusan və yuxarıdan pianino enir",
+  "visual": "Kinematik geniş kadr, qızıl saat işığı, dayaz sahə dərinliyi",
+  "model": "groq/openai/gpt-oss-120b"
+ },
+ {
+  "at": "2026-09-23T06:06:28.509Z",
+  "template": "Showcase",
+  "summary": "title: Havaya bax, köçə güvən",
+  "lens": "Mini seriya / epizod: 'Köç günlükləri, 3-cü bölüm'",
+  "visual": "Gil animasiya (claymation) görünüşü, yumşaq işıq",
+  "model": "groq/qwen/qwen3.8-27b"
+ },
+ {
+  "at": "2026-09-23T06:08:31.687Z",
+  "template": "Showcase",
+  "summary": "title: Bakı Köçü – Hava Dostu",
+  "lens": "Gözlənti vs reallıq (köçdən əvvəl / köç günü)",
+  "visual": "Makro detal: qablaşdırma lenti, qutu küncü, açar",
+  "model": "groq/openai/gpt-oss-120b"
  }
 ]

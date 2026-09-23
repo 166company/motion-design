@@ -1,6 +1,6 @@
 {
   "repo": "166company/motion-design",
-  "updatedAt": "2026-09-19T05:35:48.869Z",
+  "updatedAt": "2026-09-23T06:13:43.127Z",
   "plan": {
     "pillars": [
       "Qiymət sirrini açırıq",
@@ -15,90 +15,6 @@
       "Rahat Köç Rejimi"
     ],
     "slots": [
-      {
-        "date": "2026-09-19",
-        "template": "Story",
-        "pillar": "Xüsusi yüklərə xüsusi qayğı",
-        "idea": "Nostalji hekayə: nənənin xalçaları sepia rəngdə canlanır, hər rulonun üstündə kiçik xatirə etiketi görünür; səs tonu hörmətli və yumşaqdır. Payoff: bəzi yüklər kilo ilə yox, xatirə ilə ölçülür.",
-        "goal": "FOLLOW",
-        "angle": "POV",
-        "hook": "Bu xalça sadəcə xalça deyil",
-        "articleId": null,
-        "series": "Yükün Gizli Hekayəsi",
-        "topic": "grandma"
-      },
-      {
-        "date": "2026-09-19",
-        "template": "Poster",
-        "pillar": "Xüsusi yüklərə xüsusi qayğı",
-        "idea": "Satış postu: kövrək əşya silueti köpük qablaşdırmanın içində qalxan kimi göstərilir. CTA: “Güzgü, rəsm, şüşə əşya üçün DM-ə QORU yaz.”",
-        "goal": "LEAD",
-        "angle": "səhv",
-        "hook": "Kövrək əşyaya ayrı qayğı lazımdır",
-        "articleId": null,
-        "series": "",
-        "topic": ""
-      },
-      {
-        "date": "2026-09-20",
-        "template": "Poster",
-        "pillar": "Planlı köç, rahat başlanğıc",
-        "idea": "Satış postu: bazar günü masa üzərində köç siyahısı, marker və telefon ekranında DM pəncərəsi. CTA: “Sabahı qarışdırma, bu gün DM-ə KÖÇ yaz.”",
-        "goal": "LEAD",
-        "angle": "necә",
-        "hook": "Bazar günü köçü planla",
-        "articleId": null,
-        "series": "",
-        "topic": ""
-      },
-      {
-        "date": "2026-09-21",
-        "template": "Explainer",
-        "pillar": "Qiymət sirrini açırıq",
-        "idea": "Sənədli-izahlı motion: qiymət panelində hər faktor ayrıca sürüşən detal kimi görünür — yük həcmi, mərtəbə, məsafə, bina şəraiti, usta sayı, qablaşdırma. Rəqəm göstərilmir; məqsəd alıcının niyə əvvəlcə məlumat verməli olduğunu başa salmaqdır.",
-        "goal": "LEAD",
-        "angle": "sual",
-        "hook": "Qiymət niyə birdən dəyişir?",
-        "articleId": null,
-        "series": "Köç Laboratoriyası",
-        "topic": "price"
-      },
-      {
-        "date": "2026-09-21",
-        "template": "Poster",
-        "pillar": "Biznes köçü dayanmasın",
-        "idea": "Satış postu: ofis masası üstündə monitor, kabel və qutu ikonları; mesaj admin və sahibkarlara yönəlir. CTA: “Ofis köçü üçün DM-ə OFİS yaz, siyahını göndər.”",
-        "goal": "SHARE",
-        "angle": "əks-fikir",
-        "hook": "Ofis köçünü işçiyə yükləmə",
-        "articleId": null,
-        "series": "",
-        "topic": ""
-      },
-      {
-        "date": "2026-09-22",
-        "template": "Motion",
-        "pillar": "Biznes köçü dayanmasın",
-        "idea": "Epik neon üslub: kabellər şəhər metro xətləri kimi açılır, monitorlar yuxudan oyanır, həftəsonu köçü bazar ertəsi iş ritminə çevrilir. Finalda “iş masası hazırdır” vizual payoff gəlir.",
-        "goal": "SHARE",
-        "angle": "POV",
-        "hook": "Bazar ertəsi ofis oyanmalıdır",
-        "articleId": null,
-        "series": "Rahat Köç Rejimi",
-        "topic": "office"
-      },
-      {
-        "date": "2026-09-22",
-        "template": "Poster",
-        "pillar": "Köç stressini azaldırıq",
-        "idea": "Satış postu: yağış damcısı fonunda brezentlə örtülmüş qutu və quru qalan əşyalar. CTA: “Hava dəyişirsə, DM-ə QURU yaz, köç planını əvvəlcədən danışaq.”",
-        "goal": "LEAD",
-        "angle": "səhv",
-        "hook": "Yağış varsa, plan da olsun",
-        "articleId": null,
-        "series": "",
-        "topic": ""
-      },
       {
         "date": "2026-09-23",
         "template": "TipList",
@@ -182,12 +98,126 @@
         "articleId": null,
         "series": "Rahat Köç Rejimi",
         "topic": "cafe"
+      },
+      {
+        "date": "2026-09-26",
+        "template": "Poster",
+        "pillar": "Biznes köçü dayanmasın",
+        "idea": "Satış postu: kafe avadanlıqları sıra ilə ikonlaşdırılır — qəhvə maşını, vitrin, masa, stul. CTA: “Kafe köçü üçün DM-ə KAFE yaz, siyahını göndər.”",
+        "goal": "SHARE",
+        "angle": "POV",
+        "hook": "Kafenin köçü fasilə sevmir",
+        "articleId": null,
+        "series": "",
+        "topic": ""
+      },
+      {
+        "date": "2026-09-27",
+        "template": "Poster",
+        "pillar": "Planlı köç, rahat başlanğıc",
+        "idea": "Satış postu: həftəsonu checklist fonu, böyük DM düyməsi və əşya siyahısı kartları. CTA: “Siyahını indi göndər, uyğun maşın və komanda barədə danışaq.”",
+        "goal": "LEAD",
+        "angle": "necә",
+        "hook": "Həftəsonu siyahını göndər",
+        "articleId": null,
+        "series": "",
+        "topic": ""
+      },
+      {
+        "date": "2026-09-28",
+        "template": "Motion",
+        "pillar": "Köç stressini azaldırıq",
+        "idea": "Gülməli gənc üslub: tələbənin ilk mənzili video oyun achievement-ləri kimi açılır — açar tapıldı, çanta yerləşdi, masa quruldu. Enerji yüksəkdir, amma mesaj realdır: sürətli və büdcəyə uyğun plan üçün əvvəlcə əşya siyahısı lazımdır.",
+        "goal": "SHARE",
+        "angle": "POV",
+        "hook": "İlk mənzil belə başlayır",
+        "articleId": null,
+        "series": "Rahat Köç Rejimi",
+        "topic": "student"
+      },
+      {
+        "date": "2026-09-28",
+        "template": "Poster",
+        "pillar": "Köç stressini azaldırıq",
+        "idea": "Satış postu: tələbə çantası, stolüstü lampa və qutu ikonları ilə yığcam vizual. CTA: “Tələbə köçü üçün DM-ə TƏLƏBƏ yaz.”",
+        "goal": "SAVE",
+        "angle": "nəticə",
+        "hook": "Tələbə köçü üçün rahat yol",
+        "articleId": null,
+        "series": "",
+        "topic": ""
+      },
+      {
+        "date": "2026-09-29",
+        "template": "Explainer",
+        "pillar": "Planlı köç, rahat başlanğıc",
+        "idea": "Sakit-gözəl explainer: qablaşdırma origami kimi açılır — köpük, lent, etiket, ağır-yüngül bölgüsü, kövrək əşya qoruması. Hər xəttin öz vizualı var, statik mətn kartı yoxdur.",
+        "goal": "SAVE",
+        "angle": "necә",
+        "hook": "Qablaşdırma əşyanın zirehidir",
+        "articleId": null,
+        "series": "Köç Laboratoriyası",
+        "topic": "packing"
+      },
+      {
+        "date": "2026-09-29",
+        "template": "Poster",
+        "pillar": "Planlı köç, rahat başlanğıc",
+        "idea": "Satış postu: lent, köpük və etiketlərdən hazırlanmış qalxan vizualı. CTA: “Özün yığmaq istəmirsənsə, DM-ə QABLA yaz.”",
+        "goal": "LEAD",
+        "angle": "əks-fikir",
+        "hook": "Qablaşdırma ayrı xidmətdir",
+        "articleId": null,
+        "series": "",
+        "topic": ""
+      },
+      {
+        "date": "2026-09-30",
+        "template": "Motion",
+        "pillar": "Köç stressini azaldırıq",
+        "idea": "Stop-motion komediya: mebel vintləri ulduz xəritəsi kimi düzülür, hər detal etiketlənir, sonra mebel yeni ünvanda yenidən yığılır. Final payoff: “artıq detal panikası yoxdur” hissi, CTA isə izləməyə yönəlir.",
+        "goal": "FOLLOW",
+        "angle": "sual",
+        "hook": "Vintlər niyə həmişə qalır?",
+        "articleId": null,
+        "series": "Yükün Gizli Hekayəsi",
+        "topic": "disassembly"
       }
     ]
   },
   "brain": "## Qaliblər\r\n- “EV DAŞINMASI QİYMƏTİ NƏYƏ GÖRƏ DƏYİŞİR?” — **question / secret-gap**. 107 baxış, 56 əhatə. Median baxışdan **1.60x**, median əhatədən **7x** yuxarı. Real alıcı sualı açılır.\r\n- “Bir zəng bəsdir” — **plain-statement / low-friction promise**. 68 baxış, 2 paylaşım. Sadə addım vədi işləyir, amma daha konkret fayda lazımdır.\r\n- “SƏNİN GÖTÜRƏ BİLMƏDİYİN YÜKÜ BİZ GÖTÜRƏK.” — **plain-statement / relief promise**. 67 baxış; median səviyyə. Emosional yük götürmə mesajı var.\r\n\r\n## İşləməyənlər\r\n- “Yük.az Düyməsi” — **plain/fun poster**. 11 baxış, medianın **0.16x**-i. Fun poster üçün siqnal zəifdir.\r\n- “Zəng et Rahat köç” — **plain ad slogan**. 42 baxış, medianın **0.63x**-i. Çox ümumi reklam dilidir.\r\n- Saxlama və şərh hələ siqnal vermir: bütün postlarda saxlama 0, şərh 0.\r\n- Lead ölçümü yoxdur: zəng, DM, WhatsApp klikləri verilmir.\r\n\r\n## Qaydalar\r\n- Qiymət mövzusu əsas kontent xəttidir; həftədə minimum 2 dəfə test olunmalıdır.\r\n- Hook sual/secret-gap olarsa daha güclü işləyir: “nəyə görə dəyişir?”, “niyə baha çıxır?”\r\n- Ümumi şüarlar zəifdir; konkret səbəb və fayda yaz.\r\n- Qiymət izahında mütləq faktorlar: mərtəbə, lift, məsafə, yük həcmi, usta sayı, qablaşdırma.\r\n- Poster/fun formatını azalt; izahlı Reel və faydalı Carousel test et.\r\n- CTA ölçülə bilən olsun: “DM-ə QİYMƏT yaz”, “WhatsApp-a KÖÇ yaz”.\r\n- Data azdır; nəticələr ilkin hipotezdir, qəti qayda deyil.\r\n",
   "leads": 0,
   "entries": [
+    {
+      "id": "2026-09-23-showcase",
+      "hook": "2026-09-23-showcase",
+      "caption": "Hava gözəl, köçə hazırsınız? 🌞🚚✨\nYük.az ilə stressiz köç!\nSizcə ən yaxşı köç zamanı nədir?\n\n📞 Zəng et: 050 209 62 99",
+      "hashtags": [
+        "#Yükaz",
+        "#BakıKöç",
+        "#Logistika",
+        "#RahatKöç",
+        "#TəhlükəsizDaşınma"
+      ],
+      "source": "https://yuk.az",
+      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-23-showcase/2026-09-23-showcase.mp4",
+      "duration": 16,
+      "scenes": 4,
+      "status": "təsdiq-gözləyir",
+      "kind": "data",
+      "strategy": null,
+      "metrics": null,
+      "createdAt": "2026-09-23",
+      "createdIso": "2026-09-23T06:09:14.733Z",
+      "template": "Showcase",
+      "voice": null,
+      "music": {
+        "label": "Upbeat Corporate — Soundrider/Dope",
+        "license": "BY",
+        "vocal": null,
+        "source": "audius"
+      }
+    },
     {
       "id": "2026-09-18-poster-3",
       "images": [

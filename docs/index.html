@@ -72,6 +72,13 @@
   .btn.primary{background:var(--orange);border-color:var(--orange);color:var(--graphite)}
   .btn.danger{border-color:rgba(255,80,80,.35);color:#FF8A8A}
   .btn.ghost{flex:0 0 auto;min-width:0;padding:10px 14px}
+  .datebar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:10px 0 4px;padding:10px 12px;border:1px solid var(--line,#2a2d31);border-radius:12px;background:rgba(255,255,255,.03)}
+  .datebar .dlabel{font-size:13px;font-weight:700;opacity:.85;margin-right:4px}
+  .datebar .chip{background:rgba(255,255,255,.06);color:inherit;border:1px solid transparent;border-radius:999px;padding:6px 12px;font:inherit;font-size:12px;font-weight:600;cursor:pointer}
+  .datebar .chip[aria-selected="true"]{background:#FF6600;color:#1E2124;border-color:#FF6600}
+  .datebar input[type=date]{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:8px;color:inherit;font:inherit;font-size:12px;padding:5px 8px}
+  .datebar .dsep{opacity:.5;font-size:12px}
+  .datebar .dcount{margin-left:auto;font-size:12px;opacity:.7}
   .plan{margin:14px 0 18px;padding:14px 16px;border:1px solid var(--line,#2a2d31);border-radius:14px;background:rgba(255,255,255,.03);font-size:13px}
   .plan h2{margin:0 0 8px;font-size:15px}
   .plan .row{display:flex;gap:10px;flex-wrap:wrap;padding:6px 0;border-top:1px solid rgba(255,255,255,.06)}
@@ -196,6 +203,19 @@
     <button class="tab" data-f="yayımlanıb" aria-selected="false">Yayımlanıb</button>
   </div>
 
+  <div class="datebar" id="datebar">
+    <span class="dlabel">📅 Tarix</span>
+    <button class="chip" data-range="all" aria-selected="true">Hamısı</button>
+    <button class="chip" data-range="today">Bu gün</button>
+    <button class="chip" data-range="7">7 gün</button>
+    <button class="chip" data-range="30">30 gün</button>
+    <span class="dsep"></span>
+    <input type="date" id="dFrom" aria-label="Başlanğıc tarix">
+    <span class="dsep">–</span>
+    <input type="date" id="dTo" aria-label="Son tarix">
+    <button class="chip" id="dClear">Təmizlə</button>
+    <span class="dcount" id="dCount"></span>
+  </div>
   <div class="runs" id="runs"></div>
   <section class="plan" id="plan" hidden></section>
   <div class="grid" id="grid"></div>
@@ -305,9 +325,36 @@ function renderPlan() {
   el.hidden = false;
 }
 
+let dateFrom = "", dateTo = "";
+
+function inDateRange(e) {
+  const d = e.createdAt || "";
+  if (dateFrom && d < dateFrom) return false;
+  if (dateTo && d > dateTo) return false;
+  return true;
+}
+
+function setRange(kind) {
+  const today = new Date().toISOString().slice(0, 10);
+  if (kind === "all") { dateFrom = ""; dateTo = ""; }
+  else if (kind === "today") { dateFrom = today; dateTo = today; }
+  else {
+    const d = new Date(); d.setDate(d.getDate() - Number(kind) + 1);
+    dateFrom = d.toISOString().slice(0, 10); dateTo = today;
+  }
+  document.getElementById("dFrom").value = dateFrom;
+  document.getElementById("dTo").value = dateTo;
+  document.querySelectorAll("#datebar .chip[data-range]").forEach((b) => b.setAttribute("aria-selected", String(b.dataset.range === kind)));
+  render();
+}
+
 function render() {
   renderPlan();
-  const list = DATA.entries.filter((e) => filter === "all" || e.status === filter);
+  const list = DATA.entries.filter((e) => (filter === "all" || e.status === filter) && inDateRange(e));
+  const dc = document.getElementById("dCount");
+  if (dc) dc.textContent = (dateFrom || dateTo)
+    ? list.length + " / " + DATA.entries.length + " post · " + (dateFrom || "…") + " – " + (dateTo || "…")
+    : DATA.entries.length + " post (hamısı)";
   const grid = document.getElementById("grid");
   document.getElementById("empty").hidden = list.length > 0;
 
@@ -344,7 +391,7 @@ function render() {
           '<span class="pill status ' + badgeClass(e.status) + '">' + esc(e.status) + '</span>' +
           (e.images ? (e.images.length > 1 ? '<span class="pill">' + e.images.length + ' slayd</span>' : '<span class="pill">şəkil</span>') : '<span class="pill">' + esc(e.duration) + ' san</span><span class="pill">' + esc(e.scenes) + ' səhnə</span>') +
           '<span class="pill">' + esc(e.createdAt) + '</span>' +
-          '<span class="pill">' + (e.template === "Motion" ? "🎞 Motion" : e.template === "Explainer" ? "🎬 Animasiya" : e.template === "Story" ? "🎨 İllüstrasiya" : e.template === "Carousel" ? "🃏 Karusel" : e.template === "Poster" ? (e.kind === "fun" ? "😂 Fun post" : "🖼 Satış postu") : "📰 Məqalə") + '</span>' +
+          '<span class="pill">' + (e.template === "Showcase" ? "📡 Data + stok" : e.template === "Motion" ? "🎞 Motion" : e.template === "Explainer" ? "🎬 Animasiya" : e.template === "Story" ? "🎨 İllüstrasiya" : e.template === "Carousel" ? "🃏 Karusel" : e.template === "Poster" ? (e.kind === "fun" ? "😂 Fun post" : "🖼 Satış postu") : "📰 Məqalə") + '</span>' +
           (e.voice ? '<span class="pill">🎙 ' + esc(e.voice) + '</span>' : "") +
           (e.strategy ? '<span class="pill" title="going-viral strategiyası">🎯 ' + esc(e.strategy.goal) + ' · ' + esc(e.strategy.angle) + '</span>' : "") +
         '</div>' +
@@ -552,6 +599,24 @@ document.getElementById("tabs").onclick = (e) => {
   if (!b) return;
   filter = b.dataset.f;
   document.querySelectorAll(".tab").forEach((t) => t.setAttribute("aria-selected", String(t === b)));
+  render();
+};
+
+// ---- tarix filtri: sürətli aralıqlar + əl ilə tarix seçimi
+document.getElementById("datebar").onclick = (e) => {
+  const b = e.target.closest(".chip");
+  if (!b) return;
+  if (b.id === "dClear") return setRange("all");
+  if (b.dataset.range) setRange(b.dataset.range);
+};
+document.getElementById("dFrom").onchange = (e) => {
+  dateFrom = e.target.value;
+  document.querySelectorAll("#datebar .chip[data-range]").forEach((b) => b.setAttribute("aria-selected", "false"));
+  render();
+};
+document.getElementById("dTo").onchange = (e) => {
+  dateTo = e.target.value;
+  document.querySelectorAll("#datebar .chip[data-range]").forEach((b) => b.setAttribute("aria-selected", "false"));
   render();
 };
 

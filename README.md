@@ -213,6 +213,38 @@ aşağı 440px (ad + caption), yanlar 140px (hündür ekranlarda kəsilmə), alt
 
 Workflow: `weekly.yml` — B.e. 06:00 UTC analitika + yaddaş + plan + hesabat Issue; hər saat `:17` şərhlər.
 
+## Pulsuz API qatı — public-apis kataloqu, Instagram-təhlükəsiz musiqi, "Showcase" videosu
+
+**Kataloq** — [pipeline/apis.ts](pipeline/apis.ts): `github.com/public-apis/public-apis` README-si oxunur, süzülür və rollara bölünür.
+`npx tsx pipeline/apis.ts --check` → `content/free-apis.json` (1888 API, 684-ü bizim rollara uyğun) + `out/free-apis.md` + açarsız API-lərin canlı yoxlanışı.
+
+| Rol | İşlətdiyimiz |
+|---|---|
+| video + foto (premium stok) | **Pexels** (pulsuz açar) |
+| musiqi (lisenziyası təmiz) | **Openverse** (CC0/BY), **ccMixter**, **Audius** — hamısı açarsız oxuma |
+| trend siqnalı | **iTunes Search**, **Deezer chart** — açarsız (yalnız siqnal, audio istifadə olunmur) |
+| real data | **Open-Meteo** (Bakı 7 gün), **Nager.Date** (AZ bayramları) — açarsız |
+| ikon / şrift | **Iconify**, **Google Fonts** |
+| məzmun | **yuk.az WordPress REST** |
+
+**Musiqi** — [pipeline/music_web.ts](pipeline/music_web.ts). Dürüst qayda: Instagram çartındakı hit mahnı biznes hesabında
+API ilə yüklənən videoya qoşula bilməz (Meta hüquq sistemi susdurur). Ona görə: **trend janr** webdən oxunur
+(`npx tsx pipeline/music_web.ts trends` — iTunes buraxılış tezliyi + Deezer chart), sonra həmin janrda **CC0/BY**
+lisenziyalı, **instrumental** trek axtarılır (`find`), Groq Whisper ilə vokal yoxlanır. NC/ND lisenziyalar bloklanır.
+
+**Showcase şablonu** — [pipeline/showcase.ts](pipeline/showcase.ts) + [src/compositions/Showcase.tsx](src/compositions/Showcase.tsx):
+**OpenAI istifadə etmir**. Ssenari pulsuz LLM-lərdən (`LLM_ENGINE=free`), kadrlar Pexels-dən (hər səhnəyə fərqli sorğu),
+musiqi yuxarıdakı axtarışdan, rəqəmlər canlı API-dən (ekranda "Mənbə: Open-Meteo · Bakı, 7 gün" krediti ilə).
+Vizual: brend çərçivəsi, maska ilə açılan kinetik tipoqrafiya, data rozetkaları, kamera hərəkətləri.
+
+```bash
+npx tsx pipeline/showcase.ts                     # SHOWCASE_ANGLE=hava|bayram
+npx remotion render src/index.ts Showcase out/<id>.mp4 --props=public/render/<id>/props.json
+```
+
+**Tarix sıralaması və filtr:** panel girişləri `createdAt`-a görə (ən yenisi yuxarıda) sıralanır; paneldə
+📅 tarix zolağı var — Hamısı / Bu gün / 7 gün / 30 gün + əl ilə tarix aralığı.
+
 ## Səs
 
 **Default: OpenAI `gpt-4o-mini-tts`** ([pipeline/tts_openai.py](pipeline/tts_openai.py)) — `instructions` ilə təbii, canlı intonasiya

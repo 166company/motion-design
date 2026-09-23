@@ -1,0 +1,60 @@
+{
+  "id": "2026-09-23-showcase",
+  "scenes": [
+    {
+      "media": "render/2026-09-23-showcase/m0.mp4",
+      "kind": "video",
+      "move": "panRight",
+      "text": "Bu həftə yağışsız",
+      "sub": "",
+      "badge": "0 yağışlı gün",
+      "reveal": "typeLine",
+      "align": "top",
+      "transition": "slide",
+      "durationInFrames": 120
+    },
+    {
+      "media": "render/2026-09-23-showcase/m1.mp4",
+      "kind": "video",
+      "move": "pushIn",
+      "text": "Külək 41 km/saat",
+      "sub": "Sürətli daşınma üçün ideal",
+      "badge": "41 km/s külək",
+      "reveal": "wordPop",
+      "align": "center",
+      "transition": "fade",
+      "durationInFrames": 120
+    },
+    {
+      "media": "render/2026-09-23-showcase/m2.mp4",
+      "kind": "video",
+      "move": "tiltUp",
+      "text": "Quru günlər: Çərşənbə",
+      "sub": "Planlı köç üçün",
+      "badge": "7 quru gün",
+      "reveal": "maskUp",
+      "align": "bottom",
+      "transition": "wipe",
+      "durationInFrames": 120
+    },
+    {
+      "media": "render/2026-09-23-showcase/m3.mp4",
+      "kind": "video",
+      "move": "pullOut",
+      "text": "Yük.az ilə rahatlıq",
+      "sub": "Peşəkar köç, stress yoxdur",
+      "badge": "",
+      "reveal": "slideIn",
+      "align": "center",
+      "transition": "slide",
+      "durationInFrames": 120
+    }
+  ],
+  "cta": {
+    "line1": "Zəng edin, köçünüz hazır!",
+    "line2": "Zəng et"
+  },
+  "music": "render/2026-09-23-showcase/music.mp3",
+  "musicVolume": 0.7,
+  "source": "Mənbə: Open-Meteo · Bakı, 7 gün"
+}

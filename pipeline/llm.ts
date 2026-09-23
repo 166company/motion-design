@@ -62,7 +62,7 @@ const pref = (creative: RegExp[], smart = creative, fast = FAST, vision = VISION
 
 export const PROVIDERS: Provider[] = [
   { id: "nvidia", base: "https://integrate.api.nvidia.com/v1", key: () => env("NVIDIA_API_KEY"), prefer: pref([...STRONG, ...MID], [...STRONG, ...MID], [...FAST, ...MID]) },
-  { id: "gemini", base: "https://generativelanguage.googleapis.com/v1beta/openai", key: () => env("GEMINI_API_KEY"), prefer: pref([/gemini-[\d.]+-pro/i, /gemini-[\d.]+-flash(?!-lite)/i], [/gemini-[\d.]+-pro/i, /gemini-[\d.]+-flash/i], [/gemini-[\d.]+-flash-lite/i, /gemini-[\d.]+-flash/i]), avoid: /tts|image|live|embedding|aqa|preview-\d\d-\d\d-exp|learnlm/i },
+  { id: "gemini", base: "https://generativelanguage.googleapis.com/v1beta/openai", key: () => env("GEMINI_API_KEY"), prefer: pref([/gemini-[\d.]+-pro/i, /gemini-[\d.]+-flash(?!-lite)/i], [/gemini-[\d.]+-pro/i, /gemini-[\d.]+-flash/i], [/gemini-[\d.]+-flash-lite/i, /gemini-[\d.]+-flash/i]), avoid: /tts|image|live|embedding|aqa|preview-\d\d-\d\d-exp|learnlm|native-audio|audio-dialog|robotics|thinking-exp/i },
   { id: "groq", base: "https://api.groq.com/openai/v1", key: () => env("GROQ_API_KEY"), prefer: pref([/kimi-k/i, /gpt-oss-120b/i, /llama-4-maverick/i, /qwen3/i, /llama-3\.3-70b/i]) },
   { id: "cerebras", base: "https://api.cerebras.ai/v1", key: () => env("CEREBRAS_API_KEY"), prefer: pref([/qwen-?3.*(235|480)/i, /gpt-oss-120b/i, /glm/i, /llama-4/i, /llama-3\.3-70b/i]) },
   { id: "openrouter", base: "https://openrouter.ai/api/v1", key: () => env("OPENROUTER_API_KEY"), list: openaiList("https://openrouter.ai/api/v1", (id) => id.endsWith(":free")), prefer: pref([/deepseek/i, /kimi/i, /glm/i, /qwen3/i, /llama-4/i, /gemma/i]) },

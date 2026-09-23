@@ -23,7 +23,8 @@ type Entry = {
   /** karusel üçün slayd şəkilləri */
   images?: string[];
   voice?: string | null;
-  createdAt: string;
+  createdAt: string;     // YYYY-MM-DD — panel tarix filtri bununla işləyir
+  createdIso?: string;   // dəqiq vaxt (meta.createdAt varsa)
   instagram?: string;
   facebook?: string;
   music: { label: string; license: string | null; vocal: boolean | null; source: "audius" | "local" | "synth" };
@@ -87,7 +88,8 @@ export const buildPanel = async (repo: string) => {
       hookAlternatives: meta.hookAlternatives ?? undefined,
       firstComment: meta.firstComment ?? undefined,
       metrics: analytics[meta.id] ? { views: analytics[meta.id].views, reach: analytics[meta.id].reach, saved: analytics[meta.id].saved, shares: analytics[meta.id].shares, likes: analytics[meta.id].likes, comments: analytics[meta.id].comments } : null,
-      createdAt: meta.id.slice(0, 10),
+      createdAt: (meta.createdAt ?? meta.id).slice(0, 10),
+      createdIso: meta.createdAt ?? undefined,
       instagram: st.instagram,
       facebook: st.facebook,
       note: st.note,
@@ -97,7 +99,8 @@ export const buildPanel = async (repo: string) => {
     });
   }
 
-  entries.sort((a, b) => (a.id < b.id ? 1 : -1));
+  // TARİX SIRALAMASI: ən yenisi yuxarıda (eyni gündə id-yə görə)
+  entries.sort((a, b) => (b.createdIso ?? b.createdAt).localeCompare(a.createdIso ?? a.createdAt) || (a.id < b.id ? 1 : -1));
   // kontent təqvimi (növbəti 10 gün) + yaddaş — panelin yuxarısında
   const cal = JSON.parse(await fs.readFile("content/calendar.json", "utf-8").catch(() => "null"));
   const today = new Date().toISOString().slice(0, 10);

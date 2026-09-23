@@ -2,6 +2,8 @@ import { Composition } from "remotion";
 import { TipList, totalDuration } from "./compositions/TipList";
 import { Explainer, explainerSchema, explainerTotal, type ExplainerProps } from "./compositions/Explainer";
 import explainerDefault from "./explainerDefault.json";
+import { Showcase, showcaseSchema, showcaseTotal, type ShowcaseProps } from "./compositions/Showcase";
+import showcaseDefault from "./showcaseDefault.json";
 import { Motion, motionSchema, motionTotal, type MotionProps } from "./compositions/Motion";
 import motionDefault from "./motionDefault.json";
 import { Story, storySchema, storyTotal, type StoryProps } from "./compositions/Story";
@@ -37,6 +39,17 @@ export const RemotionRoot: React.FC = () => {
       fps={1}
       durationInFrames={3}
       calculateMetadata={({ props }) => ({ durationInFrames: props.lines.length + 1 })}
+    />
+    <Composition
+      id="Showcase"
+      component={Showcase}
+      schema={showcaseSchema}
+      defaultProps={showcaseDefault as unknown as ShowcaseProps}
+      width={canvas.width}
+      height={canvas.height}
+      fps={canvas.fps}
+      durationInFrames={600}
+      calculateMetadata={({ props }) => ({ durationInFrames: showcaseTotal(props.scenes) })}
     />
     <Composition
       id="Motion"

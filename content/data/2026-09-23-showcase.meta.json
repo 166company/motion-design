@@ -1,0 +1,36 @@
+{
+  "id": "2026-09-23-showcase",
+  "template": "Showcase",
+  "articleId": null,
+  "link": "https://yuk.az",
+  "caption": "Hava gözəl, köçə hazırsınız? 🌞🚚✨\nYük.az ilə stressiz köç!\nSizcə ən yaxşı köç zamanı nədir?\n\n📞 Zəng et: 050 209 62 99",
+  "hashtags": [
+    "#Yükaz",
+    "#BakıKöç",
+    "#Logistika",
+    "#RahatKöç",
+    "#TəhlükəsizDaşınma"
+  ],
+  "music": "render/2026-09-23-showcase/music.mp3",
+  "attribution": "🎵 Upbeat Corporate — Soundrider/Dope (CC BY) · openverse.org",
+  "musicTrack": {
+    "id": "ov-3b4580e1-1454-4b4c-a03a-e03bf4af0849",
+    "title": "Upbeat Corporate",
+    "artist": "Soundrider/Dope",
+    "license": "BY",
+    "source": "openverse",
+    "url": "https://www.jamendo.com/track/1670486"
+  },
+  "musicSafe": {
+    "license": "BY",
+    "instrumental": null,
+    "note": "CC0/BY + instrumental → Instagram-da bloklanmır"
+  },
+  "voice": null,
+  "silent": true,
+  "kind": "data",
+  "topic": "data-hava",
+  "dataSource": "Mənbə: Open-Meteo · Bakı, 7 gün",
+  "model": "groq/openai/gpt-oss-120b",
+  "createdAt": "2026-09-23T06:09:14.733Z"
+}

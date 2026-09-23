@@ -1,0 +1,24 @@
+{
+ "id": "showcase-demo",
+ "scenes": [
+  {
+   "media": "assets/bg_street.jpg",
+   "kind": "photo",
+   "move": "pushIn",
+   "text": "Bu həftə iki yağışlı gün",
+   "sub": "Quru günə planla",
+   "badge": "2 yağışlı gün",
+   "reveal": "maskUp",
+   "align": "bottom",
+   "transition": "slide",
+   "durationInFrames": 120
+  }
+ ],
+ "cta": {
+  "line1": "Quru gündə köç",
+  "line2": "Zəng et"
+ },
+ "music": null,
+ "musicVolume": 0.7,
+ "source": "Mənbə: Open-Meteo"
+}

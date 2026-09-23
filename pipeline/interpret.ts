@@ -16,7 +16,7 @@ const MODEL = process.env.OPENAI_CREATIVE_MODEL ?? "gpt-5.5";
 export type Plan = {
   silent: boolean | null;                 // null = dəyişmə
   voice: "marin" | "coral" | "cedar" | "ash" | null;
-  template: "TipList" | "Explainer" | "Story" | "Carousel" | "Poster" | "Motion" | null;
+  template: "TipList" | "Explainer" | "Story" | "Carousel" | "Poster" | "Motion" | "Showcase" | null;
   musicMood: "energetic" | "calm" | "none" | null;
   contentNotes: string;                   // ssenari/mətn modelinə gedən qeyd
   visualNotes: string;                    // foto/illüstrasiya/asset promptlarına gedən qeyd (İNGİLİSCƏ)
@@ -34,7 +34,7 @@ const schema = {
   properties: {
     silent: { type: ["boolean", "null"], description: "səsləndirmə olmasın → true; səs olsun → false; qeyd yoxdursa null" },
     voice: { type: ["string", "null"], enum: ["marin", "coral", "cedar", "ash", null], description: "qadın: marin/coral, kişi: cedar/ash; qeyd yoxdursa null" },
-    template: { type: ["string", "null"], enum: ["TipList", "Explainer", "Story", "Carousel", "Poster", "Motion", null], description: "şablon dəyişməli olduqda; yoxsa null" },
+    template: { type: ["string", "null"], enum: ["TipList", "Explainer", "Story", "Carousel", "Poster", "Motion", "Showcase", null], description: "şablon dəyişməli olduqda; yoxsa null" },
     musicMood: { type: ["string", "null"], enum: ["energetic", "calm", "none", null] },
     contentNotes: { type: "string", description: "mətn/ssenari üçün konkret göstərişlər, azərbaycanca; yoxdursa boş" },
     visualNotes: { type: "string", description: "vizual üçün konkret göstərişlər İNGİLİSCƏ (foto/illüstrasiya promptuna əlavə olunur): üslub, rəng, səhnə, istiqamət; yoxdursa boş" },

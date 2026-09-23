@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       template:
-        description: "Şablon: auto (növbə), motion, tiplist, explainer, explainer-silent, story, story-silent, carousel, poster"
+        description: "Şablon: auto (növbə), showcase, motion, tiplist, explainer, explainer-silent, story, story-silent, carousel, poster"
         default: "auto"
 
 permissions:
@@ -89,6 +89,7 @@ jobs:
             explainer|explainer-silent) npx tsx pipeline/explainer.ts ;;
             story|story-silent) npx tsx pipeline/story.ts ;;
             motion) npx tsx pipeline/motion.ts ;;
+            showcase) npx tsx pipeline/showcase.ts ;;
             carousel) npx tsx pipeline/carousel.ts ;;
             poster) npx tsx pipeline/poster.ts ;;
             *) npx tsx pipeline/run.ts ;;
