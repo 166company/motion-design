@@ -1,0 +1,167 @@
+{
+  "fetchedAt": "2026-09-23T00:00:00.000Z",
+  "source": "Web araşdırması: socialmon.ai (65 moving-company IG post ideas), smartmoving.com, supermove.com, marketersformovers.com + U-Haul / PODS / Two Men and a Truck / Allied / Mayflower hesabları",
+  "brands": [
+    {
+      "name": "U-Haul",
+      "country": "ABŞ",
+      "whatTheyPost": "DIY köç məsləhətləri, yükləmə texnikası, müştəri hekayələri",
+      "strongestFormat": "yükləmə 'tetris' + qablaşdırma hack reels"
+    },
+    {
+      "name": "PODS",
+      "country": "ABŞ",
+      "whatTheyPost": "konteyner/saxlama prosesi, addım-addım izah, mövsümi planlama",
+      "strongestFormat": "time-lapse yükləmə + 'nə gözləmək lazımdır' izahı"
+    },
+    {
+      "name": "Two Men and a Truck",
+      "country": "ABŞ",
+      "whatTheyPost": "komanda təqdimatı, müştəri reaksiyası, xeyriyyə köçləri",
+      "strongestFormat": "crew spotlight + müştəri təşəkkürü"
+    },
+    {
+      "name": "Allied Van Lines",
+      "country": "ABŞ/qlobal",
+      "whatTheyPost": "uzun məsafə, qiymət/təxmin izahı, sənəd və vaxt cədvəli",
+      "strongestFormat": "checklist karusel + qiymətə təsir edən amillər"
+    },
+    {
+      "name": "Mayflower",
+      "country": "ABŞ",
+      "whatTheyPost": "ailə köçü hekayələri, ilk ev emosiyası, mövsümi pik",
+      "strongestFormat": "before/after + emosional çatdırılma anı"
+    },
+    {
+      "name": "Gentle Giant Moving",
+      "country": "ABŞ",
+      "whatTheyPost": "ağır/kövrək əşya texnikası (piano, seyf, antikvar), komanda gücü",
+      "strongestFormat": "xüsusi əşya daşıma texnikası"
+    },
+    {
+      "name": "Sirelo / AGS Movers",
+      "country": "Avropa/qlobal",
+      "whatTheyPost": "beynəlxalq köç, sənədləşmə, ölkə bələdçiləri",
+      "strongestFormat": "izahedici karusel + xərcə təsir edən amillər"
+    }
+  ],
+  "pillars": [
+    {
+      "pillar": "Qablaşdırma texnikası",
+      "why": "ən çox saxlanılan (save) format — insan bunu köç günü açıb baxır",
+      "examples": [
+        "Mətbəxi 2 saata necə yığmaq olar",
+        "Qutunu düzgün nişanlamağın 3 qaydası",
+        "Ən çox unudulan 5 əşya"
+      ]
+    },
+    {
+      "pillar": "Yükləmə 'tetris'i",
+      "why": "prosesin özü hipnotikdir, peşəkarlığı sübut edir",
+      "examples": [
+        "Maşın belə yüklənir: ağır alt, yüngül üst",
+        "Mebel örtüyü niyə ilk gedir",
+        "Kuzada boşluq qalmasın"
+      ]
+    },
+    {
+      "pillar": "Kövrək və ağır əşya",
+      "why": "ən böyük qorxunu (sınar/cızılar) birbaşa həll edir",
+      "examples": [
+        "Güzgü və rəsm belə sarınır",
+        "Pianonu 4 nəfər necə endirir",
+        "Soyuducu daşınmadan əvvəl nə edilir"
+      ]
+    },
+    {
+      "pillar": "Qiymət və vaxt şəffaflığı",
+      "why": "ən çox soruşulan sual; rəqəm demədən amilləri izah etmək güvən yaradır",
+      "examples": [
+        "Qiymətə təsir edən 5 amil",
+        "Niyə pik mövsümdə maşın tapılmır",
+        "Köçdən 8 həftə əvvəl nə etməli"
+      ]
+    },
+    {
+      "pillar": "Komanda və proses",
+      "why": "insan insana güvənir — kimin evinə girdiyini görmək istəyir",
+      "examples": [
+        "Səhər 07:00 — komandanın günü belə başlayır",
+        "Ustadan sual-cavab",
+        "Formanın arxasında kim var"
+      ]
+    },
+    {
+      "pillar": "Müştəri anı",
+      "why": "emosional payoff, paylaşılır",
+      "examples": [
+        "Son qutu düşəndə üzdəki ifadə",
+        "İlk ev — açar təhvil anı",
+        "30 ildən sonra kiçik evə köçən cütlük"
+      ]
+    },
+    {
+      "pillar": "Saxlama və aralıq həllər",
+      "why": "köhnə ev bitib, yeni hazır deyil — real problem",
+      "examples": [
+        "Əşyalar 2 həftə harada qalır",
+        "Saxlama otağı nə vaxt sərfəlidir",
+        "Nə saxlamaq, nə atmaq"
+      ]
+    }
+  ],
+  "formats": [
+    {
+      "format": "Time-lapse yükləmə",
+      "howItLooks": "boş otaq → dolu maşın, sürətləndirilmiş",
+      "goodFor": "peşəkarlıq sübutu"
+    },
+    {
+      "format": "Hack / 3 qayda",
+      "howItLooks": "nömrələnmiş qısa addımlar, ekran mətni ilə",
+      "goodFor": "saxlama (save)"
+    },
+    {
+      "format": "Before / after",
+      "howItLooks": "xaos → nizam, eyni kadr bucağı",
+      "goodFor": "paylaşım"
+    },
+    {
+      "format": "Yaxın plan texnika",
+      "howItLooks": "əl işi detalı: künc qoruyucu, örtük, kəmər",
+      "goodFor": "güvən"
+    },
+    {
+      "format": "Crew spotlight",
+      "howItLooks": "işçi kadrda, adı və təcrübəsi",
+      "goodFor": "izləyici bağlılığı"
+    },
+    {
+      "format": "Checklist karusel",
+      "howItLooks": "həftə-həftə plan",
+      "goodFor": "saxlama + lead"
+    },
+    {
+      "format": "Müştəri reaksiyası",
+      "howItLooks": "çatdırılma anı, təbii emosiya",
+      "goodFor": "sosial sübut"
+    }
+  ],
+  "hooks": [
+    "Mətbəxi 2 saata yığmaq — belə olur",
+    "Bu 5 əşyanı hamı unudur",
+    "Maşın belə yüklənir ki, heç nə sürüşməsin",
+    "Qiymətini dəyişən 5 amil",
+    "Güzgünü belə sarısan, sınmaz",
+    "Köçə 8 həftə qalıb: bu gün nə etməli",
+    "Pik mövsümdə maşın niyə tapılmır",
+    "Son qutu düşəndə..."
+  ],
+  "avoid": [
+    "Xidmətlə əlaqəsi olmayan janr oyunları (kosmos, heyvan POV, meme parodiyası)",
+    "Konkret qiymət/endirim vədi",
+    "Rəqibin adını çəkmək və müqayisə",
+    "Yalnız loqo/şüar olan, faydasız 'brend' postu",
+    "Uzun, mətnlə dolu slaydlar"
+  ]
+}

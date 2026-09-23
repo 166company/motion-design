@@ -3,52 +3,48 @@
  *
  * Hər postun mövzusu buradan seçilir: son postlarda işlənənlər ÇIXARILIR (content/data/ideas-history.json),
  * qalanlardan təsadüfi 6-sı modelə verilir və o birini seçir. Mövzu meta-da saxlanılır → növbəti dəfə bloklanır.
- * Bank təkcə "köç dramı" deyil: müxtəlif auditoriya, mövsüm, əşya növü, emosiya və janr.
+ * Mövzular beynəlxalq top köç brendlərinin kontent sütunlarına uyğundur (bax: pipeline/movers.ts, content/movers-playbook.json).
  */
 import fs from "node:fs";
 
 export type Topic = { id: string; title: string; audience: string; hint: string };
 
 export const TOPICS: Topic[] = [
-  // — qeyri-adi yüklər
-  { id: "piano", title: "Pianonun köçü", audience: "musiqi ailəsi", hint: "ağır, kövrək, dar pilləkən — amma sonda yeni evdə ilk akkord" },
-  { id: "aquarium", title: "Akvarium daşınması", audience: "ev sahibi", hint: "balıqlar da köçür; su, tarazlıq, ehtiyatlı sürücülük" },
-  { id: "cat", title: "Pişik köçə necə baxır", audience: "heyvan sahibi", hint: "pişik qutunun içində 'nəzarətçi' kimi; əşyanın gözü ilə yumor" },
-  { id: "plants", title: "Ev bitkiləri karvanı", audience: "bitki həvəskarı", hint: "nəhəng monstera, kaktus, yaşıl otaq — hər biri ayrı 'sərnişin'" },
-  { id: "gym", title: "Ev idman avadanlığı", audience: "idmançı", hint: "ştanq, qaçış yolu — 'ən ağır çəki bizdə'" },
-  { id: "vinyl", title: "Vinil və kitab kolleksiyası", audience: "kolleksiyaçı", hint: "qutular ağır, dəyər böyük; nizam və nömrələmə" },
-  { id: "art", title: "Rəsm və güzgü daşınması", audience: "sənət sahibi", hint: "kövrək, bahalı; köpüklü qablaşdırma və sığorta" },
-  { id: "fridge", title: "Soyuducu 9-cu mərtəbədən", audience: "ailə", hint: "texnika, kəmər, ehtiyatlı enmə" },
-  // — insan hekayələri
-  { id: "student", title: "Tələbənin ilk mənzili", audience: "tələbə", hint: "az əşya, çox həyəcan; büdcə və sürət" },
-  { id: "newlyweds", title: "Yeni ailə, yeni ev", audience: "cavan ailə", hint: "hədiyyələr, çay dəsti, iki evdən bir ev" },
-  { id: "grandma", title: "Nənənin xalçaları", audience: "böyük ailə", hint: "xatirə əşyaları, hörmət, ehtiyat" },
-  { id: "baby", title: "Körpə otağı köçür", audience: "yeni valideyn", hint: "səssiz, təmiz, sürətli — uşaq yatır" },
-  { id: "student_back", title: "Semestr sonu: yataqxanadan evə", audience: "tələbə", hint: "mövsümi axın, çantalar, avtobus əvəzinə maşın" },
-  // — biznes
-  { id: "office", title: "Ofis köçü həftəsonu", audience: "şirkət", hint: "kabellər, monitorlar, bazar ertəsi işləməlidir" },
-  { id: "cafe", title: "Kafe avadanlığı", audience: "kiçik biznes", hint: "qəhvə maşını, soyuducu vitrin, iş dayanmasın" },
-  { id: "shop", title: "Mağaza anbarı", audience: "satıcı", hint: "rəf, qutu, inventar; sayım və nizam" },
-  { id: "startup", title: "Coworking-dən öz ofisə", audience: "startap", hint: "böyümə hekayəsi, 5 stul → 20 stul" },
-  // — marşrut / coğrafiya
-  { id: "regions", title: "Bakıdan rayona", audience: "rayona köçən", hint: "uzun yol, dağ yolu, çatdırılma vaxtı" },
-  { id: "village", title: "Kənddən şəhərə", audience: "yeni bakılı", hint: "tərs istiqamət: kənddən şəhərə ilk gün" },
-  { id: "abroad", title: "Konteyner: ölkədən ölkəyə", audience: "xaricə köçən", hint: "sənəd, siyahı, uzun səfər" },
-  { id: "intercity", title: "Gecə marşrutu", audience: "yük sahibi", hint: "gecə yolu, sakit şəhər, səhər çatır" },
-  // — mövsüm və hava
-  { id: "rain", title: "Yağışda köç", audience: "ailə", hint: "brezent, ehtiyat, quru qalan əşyalar" },
-  { id: "snow", title: "Qarlı gündə daşınma", audience: "ailə", hint: "sürüşkən yol, isti çay, planlı iş" },
-  { id: "summer", title: "İyul istisində köç", audience: "ailə", hint: "kölgə, su, səhər tezdən başlamaq" },
-  { id: "autumn", title: "Payızda kirayə dəyişmək", audience: "kirayənişin", hint: "mövsümi köç dalğası, yarpaq, yeni başlanğıc" },
-  // — faydalı / izahedici
-  { id: "checklist", title: "Köçdən 3 gün əvvəl", audience: "planlaşdıran", hint: "addım-addım hazırlıq, saxlanılası siyahı" },
-  { id: "packing", title: "Qablaşdırma sənəti", audience: "özü yığan", hint: "lent, köpük, nişanlama — peşəkar üsul" },
-  { id: "insurance", title: "Sığorta necə işləyir", audience: "ehtiyatlı müştəri", hint: "nə əhatə olunur, niyə rahatdır" },
-  { id: "price", title: "Qiymət nədən asılıdır", audience: "qiymət soruşan", hint: "həcm, mərtəbə, məsafə, lift — rəqəmsiz izah" },
-  { id: "timing", title: "Ən yaxşı köç saatı", audience: "planlaşdıran", hint: "tıxac, qonşu, lift növbəsi" },
-  { id: "elevator", title: "Liftsiz bina taktikası", audience: "köhnə bina sakini", hint: "kəmər, növbə, komanda işi" },
+  // — qablaşdırma texnikası (U-Haul/PODS tipli "hack" kontenti)
+  { id: "kitchen_pack", title: "Mətbəxi 2 saata yığmaq", audience: "özü yığan ailə", hint: "boşqab şaquli, kağız aralıq, qutu ağırlığı" },
+  { id: "labeling", title: "Qutuları düzgün nişanlamaq", audience: "planlaşdıran", hint: "otaq + nömrə + 'əvvəl aç' qutusu" },
+  { id: "forgotten", title: "Ən çox unudulan əşyalar", audience: "hamı", hint: "açar, sənəd, şarj, dərman, pərdə qarmaqları" },
+  { id: "packing", title: "Qablaşdırma materialı necə seçilir", audience: "özü yığan", hint: "köpük, lent, künc qoruyucu — nə vaxt hansı" },
+  // — yükləmə texnikası ("tetris", peşəkarlıq sübutu)
+  { id: "load_tetris", title: "Maşın necə yüklənir", audience: "yük sahibi", hint: "ağır alt, yüngül üst, boşluq qalmasın, kəmər" },
+  { id: "blankets", title: "Mebel örtüyü niyə ilk gedir", audience: "mebel sahibi", hint: "cızıq, künc, örtük və streç" },
+  { id: "elevator", title: "Liftsiz binada taktika", audience: "köhnə bina sakini", hint: "kəmər, növbə, komanda işi" },
+  // — kövrək və ağır əşya
+  { id: "fragile_art", title: "Güzgü və rəsm necə sarınır", audience: "sənət sahibi", hint: "künc qoruyucu, köpük, şaquli daşıma" },
+  { id: "piano", title: "Pianonun köçü", audience: "musiqi ailəsi", hint: "4 nəfər, dolly, pilləkən döngəsi" },
+  { id: "fridge", title: "Soyuducu daşınmadan əvvəl", audience: "ailə", hint: "buz açma, 24 saat dik durma, kəmər" },
+  { id: "tv_glass", title: "Televizor və şüşə səthlər", audience: "ev sahibi", hint: "orijinal qutu, şaquli, təzyiq nöqtəsi" },
+  { id: "gym", title: "İdman avadanlığı", audience: "idmançı", hint: "sökülmə, ağırlıq bölgüsü, yer qoruyucu" },
+  // — qiymət və vaxt şəffaflığı
+  { id: "price", title: "Qiymətə təsir edən amillər", audience: "qiymət soruşan", hint: "həcm, mərtəbə, lift, məsafə, tarix — rəqəmsiz" },
+  { id: "peak", title: "Pik mövsümdə maşın niyə tapılmır", audience: "planlaşdıran", hint: "ay sonu, həftəsonu, bayram ərəfəsi" },
+  { id: "checklist", title: "Köçə 8 həftə qalıb", audience: "planlaşdıran", hint: "həftə-həftə plan, saxlanılası siyahı" },
+  { id: "timing", title: "Ən yaxşı köç saatı", audience: "planlaşdıran", hint: "səhər başlama, tıxac, qonşu, lift növbəsi" },
+  // — komanda və proses
+  { id: "crew_day", title: "Komandanın günü 07:00-da başlayır", audience: "hamı", hint: "brifinq, avadanlıq yoxlaması, marşrut" },
+  { id: "crew_qa", title: "Ustadan sual-cavab", audience: "hamı", hint: "ən çox verilən 3 sual, qısa cavab" },
+  { id: "disassembly", title: "Mebelin sökülüb yığılması", audience: "ailə", hint: "vint torbası, foto, eyni ustanın yığması" },
+  // — müştəri anı
+  { id: "last_box", title: "Son qutu düşəndə", audience: "köçən ailə", hint: "emosional payoff, yeni evdə ilk nəfəs" },
+  { id: "first_home", title: "İlk ev", audience: "cavan ailə", hint: "açar, boş otaq, ilk qutu" },
+  { id: "downsizing", title: "30 ildən sonra kiçik evə", audience: "yaşlı cütlük", hint: "xatirə əşyaları, hörmət, ehtiyat" },
+  { id: "office", title: "Ofis köçü həftəsonu", audience: "şirkət", hint: "kabel nişanlama, monitor qutusu, bazar ertəsi start" },
+  { id: "cafe", title: "Kafe avadanlığı", audience: "kiçik biznes", hint: "qəhvə maşını, vitrin, iş dayanmasın" },
+  // — saxlama və marşrut
   { id: "storage", title: "Müvəqqəti saxlama", audience: "aralıq vəziyyət", hint: "köhnə ev bitdi, yeni hazır deyil" },
-  { id: "disassembly", title: "Mebelin sökülüb yığılması", audience: "ailə", hint: "vintlər, çertyoj, 'artıq vint qalmadı'" },
+  { id: "regions", title: "Bakıdan rayona", audience: "rayona köçən", hint: "uzun yol, kəmər, çatdırılma vaxtı" },
+  { id: "rain", title: "Yağışda köç", audience: "ailə", hint: "brezent, quru qalan əşya, döşəmə qoruyucu" },
+  { id: "plants", title: "Bitkilər və akvarium", audience: "ev sahibi", hint: "su səviyyəsi, işıq, son yüklənən" },
 ];
 
 /**

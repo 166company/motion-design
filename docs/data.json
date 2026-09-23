@@ -1,6 +1,6 @@
 {
   "repo": "166company/motion-design",
-  "updatedAt": "2026-09-23T06:13:43.127Z",
+  "updatedAt": "2026-09-23T07:00:32.644Z",
   "plan": {
     "pillars": [
       "Qiymət sirrini açırıq",
@@ -188,6 +188,46 @@
   "brain": "## Qaliblər\r\n- “EV DAŞINMASI QİYMƏTİ NƏYƏ GÖRƏ DƏYİŞİR?” — **question / secret-gap**. 107 baxış, 56 əhatə. Median baxışdan **1.60x**, median əhatədən **7x** yuxarı. Real alıcı sualı açılır.\r\n- “Bir zəng bəsdir” — **plain-statement / low-friction promise**. 68 baxış, 2 paylaşım. Sadə addım vədi işləyir, amma daha konkret fayda lazımdır.\r\n- “SƏNİN GÖTÜRƏ BİLMƏDİYİN YÜKÜ BİZ GÖTÜRƏK.” — **plain-statement / relief promise**. 67 baxış; median səviyyə. Emosional yük götürmə mesajı var.\r\n\r\n## İşləməyənlər\r\n- “Yük.az Düyməsi” — **plain/fun poster**. 11 baxış, medianın **0.16x**-i. Fun poster üçün siqnal zəifdir.\r\n- “Zəng et Rahat köç” — **plain ad slogan**. 42 baxış, medianın **0.63x**-i. Çox ümumi reklam dilidir.\r\n- Saxlama və şərh hələ siqnal vermir: bütün postlarda saxlama 0, şərh 0.\r\n- Lead ölçümü yoxdur: zəng, DM, WhatsApp klikləri verilmir.\r\n\r\n## Qaydalar\r\n- Qiymət mövzusu əsas kontent xəttidir; həftədə minimum 2 dəfə test olunmalıdır.\r\n- Hook sual/secret-gap olarsa daha güclü işləyir: “nəyə görə dəyişir?”, “niyə baha çıxır?”\r\n- Ümumi şüarlar zəifdir; konkret səbəb və fayda yaz.\r\n- Qiymət izahında mütləq faktorlar: mərtəbə, lift, məsafə, yük həcmi, usta sayı, qablaşdırma.\r\n- Poster/fun formatını azalt; izahlı Reel və faydalı Carousel test et.\r\n- CTA ölçülə bilən olsun: “DM-ə QİYMƏT yaz”, “WhatsApp-a KÖÇ yaz”.\r\n- Data azdır; nəticələr ilkin hipotezdir, qəti qayda deyil.\r\n",
   "leads": 0,
   "entries": [
+    {
+      "id": "2026-09-23-showcase-2",
+      "hook": "2026-09-23-showcase-2",
+      "caption": "Köç zamanı stressə son ver!\n\n📦 Yük.az ilə bütün əşyaların bir yerdə, sürətli və təhlükəsiz.\n🚚 Peşəkar komandamız sənin üçün hər addımı planlayır.\n💙 Evini, ofisini rahatlıqla yeni yerə daşı.\n\nDM at, pulsuz məsləhət al və köçünü rahatlaşdır.\n\n📞 Zəng et: 050 209 62 99\n\n#Köç #YükAz #Bakı",
+      "hashtags": [
+        "#Bakı",
+        "#Köç",
+        "#Logistika",
+        "#Daşınma",
+        "#YükAz",
+        "#PeşəkarKöç",
+        "#EvKöçürmə",
+        "#OfisKöçürmə",
+        "#TəhlükəsizDaşınma",
+        "#SürətliKöç",
+        "#YükAzBakı",
+        "#KöçMütəxəssisi",
+        "#YükDaşıma",
+        "#KöçXidməti"
+      ],
+      "source": "https://yuk.az",
+      "video": "https://github.com/166company/motion-design/releases/download/reel-2026-09-23-showcase-2/2026-09-23-showcase-2.mp4",
+      "duration": 18.4,
+      "scenes": 4,
+      "status": "təsdiq-gözləyir",
+      "kind": "data",
+      "strategy": null,
+      "firstComment": "Sən köç edərkən ən çox nəyi narahat edirsən?\n\n#Bakı #Köç #Logistika #Daşınma #YükAz #PeşəkarKöç #EvKöçürmə #OfisKöçürmə #TəhlükəsizDaşınma #SürətliKöç #YükAzBakı #KöçMütəxəssisi #YükDaşıma #KöçXidməti",
+      "metrics": null,
+      "createdAt": "2026-09-23",
+      "createdIso": "2026-09-23T06:52:52.227Z",
+      "template": "Showcase",
+      "voice": null,
+      "music": {
+        "label": "Jazzy Vibes #89 - Melancholic Jazz Piano — Tri-Tachyon",
+        "license": "BY",
+        "vocal": null,
+        "source": "audius"
+      }
+    },
     {
       "id": "2026-09-23-showcase",
       "hook": "2026-09-23-showcase",

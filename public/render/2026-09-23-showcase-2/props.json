@@ -1,0 +1,60 @@
+{
+  "id": "2026-09-23-showcase-2",
+  "scenes": [
+    {
+      "media": "render/2026-09-23-showcase-2/m0.mp4",
+      "kind": "video",
+      "move": "pushIn",
+      "text": "Qırılmaz paketlərlə",
+      "sub": "Güzgü və rəsm təhlükəsiz",
+      "badge": "Güzgü və rəsm belə sarınır",
+      "reveal": "maskUp",
+      "align": "top",
+      "transition": "slide",
+      "durationInFrames": 138
+    },
+    {
+      "media": "render/2026-09-23-showcase-2/m1.mp4",
+      "kind": "video",
+      "move": "panRight",
+      "text": "Ağır yükləri asanlıqla",
+      "sub": "4 nəfərlə sürətli",
+      "badge": "Pianonu 4 nəfər necə endirir",
+      "reveal": "wordPop",
+      "align": "center",
+      "transition": "fade",
+      "durationInFrames": 138
+    },
+    {
+      "media": "render/2026-09-23-showcase-2/m2.mp4",
+      "kind": "video",
+      "move": "tiltUp",
+      "text": "Qabarit yüklər təhlükəsiz",
+      "sub": "Mütləq qaydalara uyğun",
+      "badge": "",
+      "reveal": "slideIn",
+      "align": "bottom",
+      "transition": "wipe",
+      "durationInFrames": 138
+    },
+    {
+      "media": "render/2026-09-23-showcase-2/m3.mp4",
+      "kind": "video",
+      "move": "pullOut",
+      "text": "Yük.az ilə rahat köç",
+      "sub": "Operativ, təhlükəsiz, sürətli",
+      "badge": "",
+      "reveal": "typeLine",
+      "align": "center",
+      "transition": "slide",
+      "durationInFrames": 138
+    }
+  ],
+  "cta": {
+    "line1": "Zəng et, köçə başla!",
+    "line2": "Zəng et"
+  },
+  "music": "render/2026-09-23-showcase-2/music.mp3",
+  "musicVolume": 0.7,
+  "source": "Mənbə: U-Haul, PODS, Two Men and a Truck kontent sütunları"
+}

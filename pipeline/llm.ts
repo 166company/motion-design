@@ -361,7 +361,7 @@ export const chatJSON = async <T>(o: ChatOpts & { schema: object }): Promise<T> 
 export const geminiWebSearchJSON = async <T>(prompt: string, schema: object): Promise<T | null> => {
   const key = env("GEMINI_API_KEY");
   if (!key) return null;
-  const models = (env("GEMINI_SEARCH_MODELS") ?? "gemini-2.5-flash,gemini-2.5-pro,gemini-flash-latest").split(",").map((s) => s.trim());
+  const models = (env("GEMINI_SEARCH_MODELS") ?? "gemini-3.7-flash,gemini-3.6-flash,gemini-3.5-flash,gemini-3-flash-preview,gemini-flash-latest").split(",").map((s) => s.trim());
   for (const model of models) {
     try {
       const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {

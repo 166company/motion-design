@@ -15,11 +15,13 @@ import "./plan.ts";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { spawn } from "node:child_process";
-import { playbook, planFor, memory, postCount, todaySlot } from "./skills.ts";
+import { playbook as skillPlaybook, planFor, memory, postCount, todaySlot } from "./skills.ts";
 import { chat, type ChatOpts } from "./llm.ts";
 import { novelty, remember, type Novelty } from "./ideas.ts";
 import { freshTopics, TOPICS, TONES } from "./topics.ts";
 import { pickMusic } from "./audio.ts";
+import { pickTrendMusic } from "./music_web.ts";
+import { getPlaybook, playbookBlock } from "./movers.ts";
 import { contact } from "../src/brand/contact.ts";
 import { ANIMS, CAMERAS, SFX, TRANSITIONS, TRANSITION } from "../src/compositions/Motion.tsx";
 
@@ -157,12 +159,15 @@ ASSETLƏR:
 - Hamısı eyni üslubda və eyni məkan/işıq əhvalında olsun.
 
 BREND: qiymət rəqəmi YOX; digər brend adları YOX; nömrə caption-a sistem əlavə edir.
+MÖVZU MƏNBƏYİ: aşağıdakı BEYNƏLXALQ NÜMUNƏ blokundakı sütunlardan birini seç (top köç brendlərinin real kontenti) —
+qablaşdırma texnikası, yükləmə tetrisi, kövrək/ağır əşya, qiymət-vaxt şəffaflığı, komanda/proses, müştəri anı, saxlama.
+Janr oyunu (kosmos, heyvan POV, meme parodiyası) QADAĞANDIR; mövzu köçlə birbaşa bağlı olmalıdır.
 CTA: yeganə hərəkət ZƏNGDİR — "DM yaz", "açar söz yaz", "şərh yaz" kimi çağırış YAZMA (o kanal bizdə avtomatlaşdırılmayıb).`;
 
-export const motionRequest = (topics: { id: string; title: string; hint: string; audience: string }[], usedStyles: string[], tone: string, feedback: string | undefined, nv: Novelty): ChatOpts => ({
+export const motionRequest = (topics: { id: string; title: string; hint: string; audience: string }[], usedStyles: string[], tone: string, pbText: string, feedback: string | undefined, nv: Novelty): ChatOpts => ({
   task: "creative", name: "motion", model: MODEL, schema, seed: nv.seed,
   messages: [
-    { role: "system", content: SYSTEM + playbook(["going-viral", "reel-builder", "on-screen-text-writer", "story-sequencer", "cta-writer"]) + planFor("Motion", postCount()).text + memory() + nv.text },
+    { role: "system", content: SYSTEM + pbText + skillPlaybook(["going-viral", "reel-builder", "on-screen-text-writer", "story-sequencer", "cta-writer"]) + planFor("Motion", postCount()).text + memory() + nv.text },
     { role: "user", content:
       `MÖVZU SEÇİMİ (birini seç, id-ni yaz — hamısı təzədir):\n${topics.map((t) => `- ${t.id}: ${t.title} (kim üçün: ${t.audience}) — ${t.hint}`).join("\n")}\n\n` +
       `ÜSLUB SEÇİMİ:\n${Object.entries(STYLES).filter(([k]) => !usedStyles.includes(k)).map(([k, v]) => `- ${k}: ${v}`).join("\n")}\n\n` +
@@ -210,7 +215,10 @@ const main = async () => {
   const nv = novelty("Motion", { motion: true });
   const tone = TONES[Math.floor(Math.random() * TONES.length)];
   log(`ton: ${tone}`);
-  const c = (await chat<Concept>(motionRequest(topics, usedStyles.slice(-8), tone, feedback, nv))).data;
+  const pb = await getPlaybook();
+  const pbText = playbookBlock(pb);
+  if (pb) log(`beynəlxalq nümunə: ${pb.pillars.length} sütun (${pb.brands.slice(0, 3).map((b) => b.name).join(", ")}…)`);
+  const c = (await chat<Concept>(motionRequest(topics, usedStyles.slice(-8), tone, pbText, feedback, nv))).data;
   remember("Motion", c, nv);
   log(`${c.topicId} · ${c.styleKey} — ${c.logline}`);
   log(`səhnələr: ${c.scenes.map((s) => s.text).join(" → ")}`);
@@ -294,8 +302,11 @@ const main = async () => {
   }));
   const secs = (scenes.reduce((a, b) => a + b.durationInFrames, 0) + 110 - scenes.length * TRANSITION) / FPS;
 
-  console.log("4. Musiqi…");
-  const music = await pickMusic(Math.floor(Date.now() / 86400_000), secs, dir, id, log);
+  console.log("4. Musiqi — Instagram/TikTok trend ovqatı + telif təmiz…");
+  const trend = await pickTrendMusic(secs, dir, id);
+  const music = trend
+    ? { track: trend.file, attribution: trend.attribution, musicTrack: trend.track as any }
+    : await pickMusic(Math.floor(Date.now() / 86400_000), secs, dir, id, log);
 
   const props = { id, assets: assetsBase, bounds, scenes, cta: { line1: c.cta, line2: "Zəng et" }, music: music.track || null, musicVolume: 0.75 };
   await fs.writeFile(path.join(dir, "props.json"), JSON.stringify(props, null, 2), "utf-8");
@@ -307,6 +318,9 @@ const main = async () => {
       music: music.track || null, attribution: music.attribution, musicTrack: music.musicTrack,
       voice: null, silent: true, kind: "fun",
       topic: c.topicId, style: c.styleKey, logline: c.logline, setting: c.setting,
+      trendMusic: trend ? { ref: trend.trendRef, license: trend.track.license, source: trend.track.source, note: trend.note } : null,
+      pillarSource: pb ? pb.brands.map((b) => b.name).join(", ") : null,
+      createdAt: new Date().toISOString(),
     }, null, 2),
     "utf-8"
   );

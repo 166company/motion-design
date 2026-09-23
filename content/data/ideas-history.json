@@ -110,5 +110,37 @@
   "lens": "Gözlənti vs reallıq (köçdən əvvəl / köç günü)",
   "visual": "Makro detal: qablaşdırma lenti, qutu küncü, açar",
   "model": "groq/openai/gpt-oss-120b"
+ },
+ {
+  "at": "2026-09-23T06:45:30.354Z",
+  "template": "Motion",
+  "summary": "styleKey: pixel | setting: Bright morning in Baku with a clear blue pixel sky, warm sunlight hitting graphite and ora",
+  "lens": "Hava proqnozu: 'Sabah Bakıda qutu yağışı gözlənilir'",
+  "visual": "Dron kadrı: Bakı küçəsi, narıncı maşın kiçik nöqtə kimi",
+  "model": "gemini/gemini-3-flash-preview"
+ },
+ {
+  "at": "2026-09-23T06:46:27.748Z",
+  "template": "Motion",
+  "summary": "styleKey: ligne_claire | setting: A bright morning in a minimalist Baku street with sharp ink outlines, flat vibrant colors,",
+  "lens": "Reseptlər formatı: 'Stressiz köçün resepti — 1 zəng, 0 əsəb'",
+  "visual": "Minimalist Swiss poster: böyük boş sahə, bir obyekt, güclü tipoqrafiya yeri",
+  "model": "gemini/gemini-3-flash-preview"
+ },
+ {
+  "at": "2026-09-23T06:50:42.090Z",
+  "template": "Showcase",
+  "summary": "title: Köçdə Saqlama Həlləri",
+  "lens": "Reseptlər formatı: 'Stressiz köçün resepti — 1 zəng, 0 əsəb'",
+  "visual": "Yuxarıdan (top-down / flat-lay) kompozisiya, qutular həndəsi düzülüb",
+  "model": "groq/openai/gpt-oss-120b"
+ },
+ {
+  "at": "2026-09-23T06:51:54.192Z",
+  "template": "Showcase",
+  "summary": "title: Yük.az: Stressiz Köç Həlli",
+  "lens": "Nənə məsləhətləri vs Yük.az məsləhəti",
+  "visual": "Flaşlı 'candid' telefon fotosu, bir az əyri kadr, real həyat hissi",
+  "model": "groq/openai/gpt-oss-120b"
  }
 ]

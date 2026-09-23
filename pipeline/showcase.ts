@@ -21,7 +21,8 @@ import { novelty, remember } from "./ideas.ts";
 import { playbook } from "./skills.ts";
 import { listArticles } from "./wp.ts";
 import { findMedia, normalizeVideo } from "./assets.ts";
-import { pickWebMusic } from "./music_web.ts";
+import { pickWebMusic, pickTrendMusic } from "./music_web.ts";
+import { getPlaybook, playbookBlock } from "./movers.ts";
 import { contact } from "../src/brand/contact.ts";
 import { MOVES, REVEALS, TRANSITION } from "../src/compositions/Showcase.tsx";
 
@@ -76,6 +77,18 @@ const holiday = async (): Promise<Facts> => {
   };
 };
 
+/** Beynəlxalq köç brendlərinin sütunu — mövzu "dəxlisiz" olmasın deyə */
+const pillarFacts = async (): Promise<Facts> => {
+  const pb = await getPlaybook();
+  const p = pb?.pillars[Math.floor(Math.random() * pb.pillars.length)];
+  return {
+    angle: "sənaye",
+    source: pb ? `Mənbə: ${pb.brands.slice(0, 3).map((b) => b.name).join(", ")} kontent sütunları` : "",
+    lines: p ? [p.pillar, p.why, ...p.examples] : ["Qablaşdırma texnikası"],
+    badges: p ? p.examples.slice(0, 3) : [],
+  };
+};
+
 /* ---------------------------------------------------------------- 2) SSENARİ (pulsuz LLM) */
 type SceneSpec = { media: string; query: string; move: string; reveal: string; text: string; sub: string; badge: string; align: string; transition: string; beats: number };
 type Concept = { title: string; scenes: SceneSpec[]; cta: string; caption: string; hashtags: string[] };
@@ -116,11 +129,11 @@ kamera və keçid növbələşsin; qiymət rəqəmi YOX; "ucuz/sərfəli/endirim
 KADR SORĞULARI: yalnız peşəkar köç/logistika dünyası (movers, moving boxes, van loading, furniture delivery, warehouse, courier, family in new apartment, city skyline).
 Fəlakət, sel, etiraz, müharibə, kasıblıq kadrları QADAĞANDIR — brend təhlükəsizliyi.`;
 
-const writeConcept = async (facts: Facts, articles: string, nv: ReturnType<typeof novelty>) => {
+const writeConcept = async (facts: Facts, articles: string, pb: string, nv: ReturnType<typeof novelty>) => {
   const r = await chat<Concept>({
     task: "creative", name: "showcase", schema, seed: nv.seed,
     messages: [
-      { role: "system", content: SYSTEM + playbook(["going-viral", "on-screen-text-writer", "cta-writer"], 6000) + nv.text },
+      { role: "system", content: SYSTEM + pb + playbook(["going-viral", "on-screen-text-writer", "cta-writer"], 5000) + nv.text },
       { role: "user", content:
         `REAL DATA (${facts.angle}) — ${facts.source}:\n${facts.lines.map((l) => `- ${l}`).join("\n")}\n` +
         `Hazır rozetkalar: ${facts.badges.join(" · ")}\n\nYUK.AZ FAKTLARI:\n${articles}\n\n` +
@@ -134,7 +147,7 @@ const writeConcept = async (facts: Facts, articles: string, nv: ReturnType<typeo
 const main = async () => {
   const angle = (process.env.SHOWCASE_ANGLE ?? (Math.random() < 0.5 ? "hava" : "bayram")).toLowerCase();
   console.log(`\n1. Real data (${angle}) — açarsız API…`);
-  const facts = angle === "bayram" ? await holiday() : await weather();
+  const facts = angle === "bayram" ? await holiday() : angle === "sənaye" || angle === "pillar" ? await pillarFacts() : await weather();
   for (const l of facts.lines) log(l);
 
   console.log("2. Faktlar (yuk.az)…");
@@ -145,10 +158,11 @@ const main = async () => {
   const nv = novelty("Showcase", { motion: true });
   // türkcə/yad yazılış sızsa bir dəfə yenidən yaz (pulsuz modellər bəzən qarışdırır)
   const TR = /(kutu|kutular|değil|iyi|şehir|araba|taşınma|ev taşıma|güzel)/i;
-  let res = await writeConcept(facts, articles, nv);
+  const pbText = playbookBlock(await getPlaybook());
+  let res = await writeConcept(facts, articles, pbText, nv);
   if (res.data.scenes.some((s) => TR.test(s.text) || TR.test(s.sub ?? ""))) {
     log("⚠ türkcə yazılış aşkarlandı — yenidən yazılır");
-    res = await writeConcept(facts, articles, nv);
+    res = await writeConcept(facts, articles, pbText, nv);
   }
   const c = res.data;
   log(`model: ${res.provider}/${res.model}`);
@@ -205,7 +219,8 @@ const main = async () => {
 
   const secs = (scenes.reduce((a, b) => a + b.durationInFrames, 0) + 110 - scenes.length * TRANSITION) / FPS;
   console.log("5. Musiqi — webdən trend janr + CC0/BY, instrumental…");
-  const music = await pickWebMusic(angle === "bayram" ? "uplifting cinematic" : "upbeat corporate", secs, dir, id);
+  const trend = await pickTrendMusic(secs, dir, id);
+  const music = trend ?? await pickWebMusic("upbeat corporate", secs, dir, id);
 
   const props = {
     id, scenes, cta: { line1: c.cta.slice(0, 28), line2: "Zəng et" },
@@ -219,7 +234,8 @@ const main = async () => {
       id, template: "Showcase", articleId: null, link: "https://yuk.az", caption, hashtags: c.hashtags,
       music: music?.file ?? null, attribution: music?.attribution ?? null,
       musicTrack: music ? { id: music.track.id, title: music.track.title, artist: music.track.artist, license: music.track.license, source: music.track.source, url: music.track.url } : null,
-      musicSafe: music ? { license: music.track.license, instrumental: music.instrumental, note: "CC0/BY + instrumental → Instagram-da bloklanmır" } : null,
+      musicSafe: music ? { license: music.track.license, instrumental: music.instrumental, note: (trend as any)?.note ?? "CC0/BY + instrumental → Instagram-da bloklanmır" } : null,
+      trendMusic: trend ? { ref: (trend as any).trendRef, license: trend.track.license } : null,
       voice: null, silent: true, kind: "data", topic: `data-${angle}`, dataSource: facts.source, model: `${res.provider}/${res.model}`,
       createdAt: new Date().toISOString(),
     }, null, 2),

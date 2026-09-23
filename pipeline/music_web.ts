@@ -53,6 +53,28 @@ export const trendSignals = async (): Promise<Trend[]> => {
   return out;
 };
 
+/**
+ * TREND REFERANSLARI — Instagram/TikTok-da bu həftə qaynayan mahnılar.
+ * Bu mahnıların ÖZÜ API ilə yüklənən videoya qoşula bilməz (telif → Meta susdurur/bloklayır).
+ * Ona görə hər referansın "descriptor"-u var: eyni janr/tempo/ovqat. Biz həmin ovqatda
+ * CC0/BY lisenziyalı instrumental axtarırıq — səs trendə uyğun, telif təmiz.
+ * Yenilə: content/trend-refs.json (eyni formatda) — kod onu üstün tutur.
+ */
+export const TREND_REFS: { song: string; artist: string; where: string; descriptor: string }[] = [
+  { song: "Petal", artist: "Ariana Grande", where: "Instagram Reels", descriptor: "dreamy synth pop instrumental, airy pads, soft beat" },
+  { song: "Nicole Kidman", artist: "ADELA", where: "Instagram Reels", descriptor: "confident attitude pop instrumental, punchy drums, bold bass" },
+  { song: "Velvety Captor", artist: "DJ BAI", where: "TikTok", descriptor: "smooth cinematic piano instrumental, calm, elegant" },
+  { song: "u + me = <3", artist: "Olivia Rodrigo", where: "TikTok carousels", descriptor: "warm indie pop instrumental, nostalgic guitar, gentle" },
+];
+
+export const trendRefs = async () => {
+  try {
+    const j = JSON.parse(await fs.readFile("content/trend-refs.json", "utf-8"));
+    if (Array.isArray(j) && j.length) return j as typeof TREND_REFS;
+  } catch { /* default */ }
+  return TREND_REFS;
+};
+
 export type Track = { id: string; title: string; artist: string; license: string; url: string; download: string; duration: number; source: "openverse" | "ccmixter" | "audius"; attribution: string };
 
 /** Kommersiya istifadəsinə icazə verənlər: CC0 / public domain / BY / BY-SA. NC və ND QADAĞANDIR (biznes hesabı) */
@@ -114,11 +136,16 @@ const fromAudius = async (q: string, minSec: number): Promise<Track[]> => {
 };
 
 /** Trend janrına uyğun, lisenziyası təmiz namizədlər */
-export const findTracks = async (mood: string, minSec: number): Promise<Track[]> => {
+/** strict=true → yalnız verilən ovqat sorğusu (trend janrları qarışdırılmır) */
+export const findTracks = async (mood: string, minSec: number, strict = false): Promise<Track[]> => {
   const trends = JSON.parse(await fs.readFile("content/music-trends.json", "utf-8").catch(() => "null"))?.genres as Trend[] | undefined
     ?? await trendSignals();
   const top = trends.slice(0, 5).map((t) => t.genre);
-  const queries = [...new Set([mood, ...top.map((g) => `${g} instrumental`)])].slice(0, 6);
+  // strict: uzun təsviri qısa açar sorğulara böl (axtarış motorları uzun ifadədə şumlayır)
+  const chunks = mood.split(",").map((x) => x.trim()).filter(Boolean);
+  const queries = strict
+    ? [...new Set([chunks[0], chunks[1], `${chunks[0]} instrumental`].filter(Boolean))]
+    : [...new Set([mood, ...top.map((g) => `${g} instrumental`)])].slice(0, 6);
   const all: Track[] = [];
   for (const q of queries) {
     for (const fn of [fromOpenverse, fromCcMixter, fromAudius]) {
@@ -127,7 +154,15 @@ export const findTracks = async (mood: string, minSec: number): Promise<Track[]>
     if (all.length > 25) break;
   }
   const seen = new Set<string>();
-  const uniq = all.filter((t) => !seen.has(t.title.toLowerCase()) && seen.add(t.title.toLowerCase()));
+  let uniq = all.filter((t) => !seen.has(t.title.toLowerCase()) && seen.add(t.title.toLowerCase()));
+  // ovqata uyğunluq: təsvirdəki sözlərin trek adında/ifaçısında rastlanması + uyğunsuz janr cəzası
+  const words = mood.toLowerCase().split(/[^a-zçğıöşü]+/).filter((w) => w.length > 3);
+  const CLASH = /phonk|gym|drill|trap|metal|hardstyle|dubstep|aggress/i;
+  const score = (t: Track) => {
+    const hay = `${t.title} ${t.artist}`.toLowerCase();
+    return words.reduce((n, w) => n + (hay.includes(w) ? 1 : 0), 0) - (CLASH.test(hay) && !CLASH.test(mood) ? 3 : 0);
+  };
+  uniq = uniq.map((t) => ({ t, s: score(t) })).sort((a, b) => b.s - a.s).map((x) => x.t);
   await fs.writeFile("content/music-pool.json", JSON.stringify({ mood, trendGenres: top, fetchedAt: new Date().toISOString(), tracks: uniq }, null, 2), "utf-8");
   return uniq;
 };
@@ -162,9 +197,28 @@ const download = async (url: string, dest: string) => {
   await fs.writeFile(dest, Buffer.from(await r.arrayBuffer()));
 };
 
+/**
+ * "Sound-alike": trend mahnının ovqatına uyğun, telif təmiz trek.
+ * Qaytarır: seçilmiş trek + hansı trendə uyğunlaşdırıldığı (meta-ya yazılır, panel göstərir).
+ */
+export const pickTrendMusic = async (seconds: number, dir: string, id: string) => {
+  const refs = await trendRefs();
+  const ref = refs[Math.floor(Math.random() * refs.length)];
+  log(`trend referansı: "${ref.song}" — ${ref.artist} (${ref.where}) → uyğun ovqat: ${ref.descriptor}`);
+  // ovqat dəqiq uyğun gəlsin deyə yalnız descriptor ilə axtarılır (trend janrları qarışmır)
+  const picked = (await pickWebMusic(ref.descriptor, seconds, dir, id, true)) ?? (await pickWebMusic(ref.descriptor, seconds, dir, id));
+  if (!picked) return null;
+  return {
+    ...picked,
+    trendRef: ref,
+    note: `Trend "${ref.song} — ${ref.artist}" ovqatına uyğun, telif təmiz (${picked.track.license}) instrumental. ` +
+          `Orijinal mahnını yalnız Instagram tətbiqindəki musiqi kitabxanasından əlavə etmək olar — API ilə yüklənəndə bloklanır.`,
+  };
+};
+
 /** Pipeline üçün: uyğun treki tap, yüklə, vokal yoxla → { file, attribution, track } */
-export const pickWebMusic = async (mood: string, seconds: number, dir: string, id: string) => {
-  const pool = await findTracks(mood, Math.max(20, Math.round(seconds)));
+export const pickWebMusic = async (mood: string, seconds: number, dir: string, id: string, strict = false) => {
+  const pool = await findTracks(mood, Math.max(20, Math.round(seconds)), strict);
   log(`${pool.length} namizəd (lisenziya təmiz)`);
   for (const t of pool.slice(0, 8)) {
     const dest = path.join(dir, "music.mp3");
@@ -192,6 +246,9 @@ if (/[\\/]music_web\.ts$/.test(process.argv[1] ?? "")) {
     const list = await findTracks(process.argv[3] ?? "energetic", Number(process.argv[4] ?? 25));
     for (const t of list.slice(0, 15)) console.log(`  ${t.source.padEnd(9)} ${t.license.padEnd(22)} ${t.duration}s  ${t.title} — ${t.artist}`);
     console.log(`\n${list.length} trek → content/music-pool.json\n`);
+  } else if (cmd === "trendmusic") {
+    const r = await pickTrendMusic(Number(process.argv[3] ?? 25), process.argv[4] ?? "out", process.argv[5] ?? "test");
+    console.log(r ? `${r.track.title} — ${r.track.artist} (${r.track.license})\n${r.note}` : "tapılmadı");
   } else if (cmd === "get") {
     const [, , , sec, dir, id] = process.argv;
     console.log(await pickWebMusic("upbeat", Number(sec), dir, id));

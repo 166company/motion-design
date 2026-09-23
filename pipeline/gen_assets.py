@@ -167,8 +167,7 @@ def generate(prompt: str, size: str, transparent: bool) -> bytes:
         body += (f"--{b}\r\nContent-Disposition: form-data; name=\"image\"; filename=\"ref.png\"\r\nContent-Type: image/png\r\n\r\n").encode() + ref + f"\r\n--{b}--\r\n".encode()
         req = urllib.request.Request("https://api.openai.com/v1/images/edits", data=body,
                                      headers={"Authorization": f"Bearer {KEY}", "Content-Type": f"multipart/form-data; boundary={b}"})
-        with urllib.request.urlopen(req, timeout=300) as r:
-            return base64.b64decode(json.load(r)["data"][0]["b64_json"])
+        return _open_b64(req)
     body = {"model": MODEL, "prompt": prompt, "size": size, "output_format": "png", "quality": "high", "n": 1}
     if transparent:
         body["background"] = "transparent"
@@ -176,8 +175,26 @@ def generate(prompt: str, size: str, transparent: bool) -> bytes:
         "https://api.openai.com/v1/images/generations", data=json.dumps(body).encode(),
         headers={"Authorization": f"Bearer {KEY}", "Content-Type": "application/json"},
     )
-    with urllib.request.urlopen(req, timeout=300) as r:
-        return base64.b64decode(json.load(r)["data"][0]["b64_json"])
+    return _open_b64(req)
+
+
+def _open_b64(req, tries: int = 4):
+    """429 / 5xx → gözlə və yenidən cəhd et (şəkil API-si tez-tez limitə düşür)"""
+    delay = 20
+    for i in range(tries):
+        try:
+            with urllib.request.urlopen(req, timeout=300) as r:
+                return base64.b64decode(json.load(r)["data"][0]["b64_json"])
+        except urllib.error.HTTPError as e:
+            if e.code not in (429, 500, 502, 503, 504) or i == tries - 1:
+                raise
+            print(f"  şəkil API {e.code} — {delay} san gözlənilir ({i + 1}/{tries - 1})", flush=True)
+            time.sleep(delay); delay = int(delay * 2.2)
+        except Exception as e:
+            if i == tries - 1:
+                raise
+            print(f"  şəkil xətası ({e}) — {delay} san", flush=True)
+            time.sleep(delay); delay = int(delay * 2.2)
 
 
 def clean_transparent(im: Image.Image) -> Image.Image:
