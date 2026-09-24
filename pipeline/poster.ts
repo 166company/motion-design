@@ -18,6 +18,7 @@ import { getTrends, type Trends } from "./trends.ts";
 import { nvImageToFile, withNvidia } from "./nvidia.ts";
 import { chat, type ChatOpts } from "./llm.ts";
 import { novelty, remember, type Novelty } from "./ideas.ts";
+import { assertPhotos } from "./photos.ts";
 
 const MODEL = process.env.OPENAI_CREATIVE_MODEL ?? "gpt-5.5";
 const IMG_MODEL = process.env.OPENAI_IMAGE_MODEL ?? "gpt-image-2.5-sunburst-2026-09-08";
@@ -108,7 +109,7 @@ const writeConcepts = async (facts: string, trends: Trends, feedback?: string): 
 
 /** Loqolu səhnə — /images/edits, loqo PNG istinad kimi */
 const genScene = (desc: string, dest: string, fun: boolean) =>
-  withNvidia(
+  (assertPhotos("poster səhnəsi"), withNvidia)(
     // NVIDIA (FLUX) loqonu dəqiq çəkə bilmir → loqosuz, düz narıncı formalar; loqo layout-da qalır
     () =>
       nvImageToFile(

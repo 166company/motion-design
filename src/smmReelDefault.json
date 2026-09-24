@@ -1,0 +1,14 @@
+{
+  "id": "smm-sample",
+  "plates": [{ "src": "assets/photo_baku_room.jpg", "aspect": 0.8 }],
+  "final": null,
+  "header": "",
+  "lettered": false,
+  "scenes": [
+    { "plate": 0, "text": "Köçə hazıram dedim", "label": "", "punch": false, "frames": 75, "camera": "panRight", "focus": { "x": 0.5, "y": 0.5 }, "textAt": 8, "sfx": "whoosh" },
+    { "plate": 0, "text": "Qutular başqa fikirdədir", "label": "", "punch": true, "frames": 100, "camera": "pushIn", "focus": { "x": 0.5, "y": 0.45 }, "textAt": 15, "sfx": "pop" }
+  ],
+  "cta": { "line1": "Köçü bizə tapşır", "line2": "Zəng et" },
+  "music": null,
+  "musicVolume": 0.6
+}

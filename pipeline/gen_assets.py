@@ -215,6 +215,9 @@ def bbox(im: Image.Image):
 
 
 def main():
+    # Fotoları SMM agent hazırlayır; bu agent yalnız motion edir (pipeline/photos.ts ilə eyni açar)
+    if os.environ.get("PHOTOS", "off").strip().lower() != "on":
+        sys.exit("⏸ gen_assets: foto istehsalı söndürülüb (PHOTOS=off). Açmaq üçün repo Variables → PHOTOS=on.")
     os.makedirs(OUT, exist_ok=True)
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
     force = "--all" in sys.argv

@@ -38,6 +38,9 @@ jobs:
       TTS_ENGINE: ${{ vars.TTS_ENGINE || 'openai-first' }}
       IMAGE_ENGINE: ${{ vars.IMAGE_ENGINE || 'openai' }}
       NOVELTY: ${{ vars.NOVELTY || '1' }}
+      # Fotoları SMM agent hazırlayır — bu agentin öz foto/illüstrasiya istehsalı söndürülüb (kod yerindədir).
+      # Açmaq üçün repo Variables → PHOTOS=on
+      PHOTOS: ${{ vars.PHOTOS || 'off' }}
 
     steps:
       - uses: actions/checkout@v4
@@ -78,6 +81,10 @@ jobs:
           elif [ "$REQ" = "auto" ]; then
             case $((N % 5)) in 0) T=motion ;; 1) T=story ;; 2) T=explainer ;; 3) T=carousel ;; *) T=tiplist ;; esac
           else T="$REQ"; fi
+          # PHOTOS=off: şəkil yaradan şablonlar (motion, story, carousel, poster) avtomatik növbədə işlənmir
+          if [ "$PHOTOS" != "on" ] && [ "$REQ" = "auto" ]; then
+            case "$T" in motion|story|story-silent|carousel|poster) T=explainer; echo "PHOTOS=off → explainer" ;; esac
+          fi
           echo "template=$T" >> "$GITHUB_OUTPUT"
           echo "şablon: $T (mövcud: $N)"
 

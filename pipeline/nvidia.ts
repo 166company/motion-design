@@ -18,6 +18,7 @@
  */
 import fs from "node:fs/promises";
 import sharp from "sharp";
+import { assertPhotos } from "./photos.ts";
 
 const BASE = "https://ai.api.nvidia.com/v1/genai";
 const log = (m: string) => console.log(`  [nvidia] ${m}`);
@@ -163,6 +164,7 @@ const resolveModel = (name?: string) => {
 
 /** Mətn → şəkil. Buffer qaytarır (dəqiq hədəf ölçüdə). */
 export const nvImage = async (prompt: string, o: ImageOpts = {}): Promise<Buffer> => {
+  assertPhotos("NVIDIA şəkli");
   const { id, m } = resolveModel(o.model);
   const fmt = FORMATS[o.format ?? "post"];
   const W = o.width ?? fmt.w, H = o.height ?? fmt.h;

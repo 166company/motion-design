@@ -39,7 +39,9 @@ await sodium.ready;
 const keyRes = await gh("actions/secrets/public-key");
 const { key, key_id } = (await keyRes.json()) as { key: string; key_id: string };
 
-for (const name of NAMES) {
+// Əlavə adlar verilibsə yalnız onlar yazılır: npx tsx pipeline/_secrets.ts <repo> SMM_URL SMM_TOKEN
+const only = process.argv.slice(3);
+for (const name of (only.length ? only : NAMES) as readonly string[]) {
   const value = process.env[name];
   if (!value) {
     console.log(`✗ ${name.padEnd(20)} .env-də yoxdur`);

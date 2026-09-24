@@ -1,0 +1,101 @@
+name: SMM agentdən reel
+
+# SMM agent (yukaz-smm-agent) fotonu və yazını özü hazırlayır; bura yalnız HƏRƏKƏT üçün tapşırıq verir.
+# Hər 30 dəqiqədən bir soruşulur. Tapşırıq yoxdursa iş heç nə quraşdırmadan ~10 saniyədə bitir.
+# Hazır reel SMM agentə qayıdır → onun təsdiq panelinə düşür → dərci yalnız SMM agent edir.
+#
+# Secrets: SMM_URL (https://yukaz-smm-agent.onrender.com), SMM_TOKEN (SMM agentdəki MOTION_AGENT_TOKEN ilə eyni)
+# Söndürmək: repo Variables → SMM_LINK=off
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: smm-reel
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  reel:
+    if: vars.SMM_LINK != 'off'
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      SMM_URL: ${{ secrets.SMM_URL }}
+      SMM_TOKEN: ${{ secrets.SMM_TOKEN }}
+      PYTHONUTF8: "1"
+      PYTHONIOENCODING: utf-8
+      # bu yol heç vaxt şəkil yaratmır
+      PHOTOS: "off"
+      AUDIUS_API_TOKEN: ${{ secrets.AUDIUS_API_TOKEN }}
+      # musiqinin vokal yoxlaması: OpenAI Whisper, alınmasa Groq Whisper
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+
+    steps:
+      - name: Tapşırıq var?
+        id: brief
+        run: |
+          if [ -z "$SMM_URL" ] || [ -z "$SMM_TOKEN" ]; then
+            echo "SMM_URL / SMM_TOKEN secret-ləri yoxdur — əlaqə qurulmayıb"; echo "has=0" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          F="$RUNNER_TEMP/brief.json"; code=000
+          # Render pulsuz planda yatır — ilk sorğu onu oyadır (30-60 san)
+          for i in 1 2 3 4; do
+            code=$(curl -s -o "$F" -w '%{http_code}' --max-time 90 -H "Authorization: Bearer $SMM_TOKEN" "$SMM_URL/api/motion/brief" || echo 000)
+            [ "$code" = "200" ] && break
+            echo "cəhd $i: HTTP $code — SMM agent oyanır…"; sleep 20
+          done
+          if [ "$code" != "200" ]; then echo "SMM agent cavab vermədi (HTTP $code)"; echo "has=0" >> "$GITHUB_OUTPUT"; exit 0; fi
+          ID=$(python3 -c "import json;b=json.load(open('$F',encoding='utf-8')).get('brief');print(b['id'] if b else '')")
+          if [ -z "$ID" ]; then echo "Açıq tapşırıq yoxdur."; echo "has=0" >> "$GITHUB_OUTPUT"; exit 0; fi
+          echo "Tapşırıq #$ID götürüldü"
+          echo "has=1" >> "$GITHUB_OUTPUT"; echo "id=$ID" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/checkout@v4
+        if: steps.brief.outputs.has == '1'
+
+      - uses: actions/setup-node@v4
+        if: steps.brief.outputs.has == '1'
+        with: { node-version: "24", cache: "npm" }
+
+      - uses: actions/setup-python@v5
+        if: steps.brief.outputs.has == '1'
+        with: { python-version: "3.12" }
+
+      - name: Chrome üçün sistem kitabxanaları
+        if: steps.brief.outputs.has == '1'
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq libnss3 libatk-bridge2.0-0 libgtk-3-0 libasound2t64 libgbm1 fonts-liberation || true
+
+      - name: Asılılıqlar
+        if: steps.brief.outputs.has == '1'
+        run: |
+          npm ci
+          pip install --quiet mutagen numpy
+
+      - name: Reel (foto SMM agentdən → hərəkət → təhvil)
+        if: steps.brief.outputs.has == '1'
+        run: npx tsx pipeline/smm.ts "$RUNNER_TEMP/brief.json"
+
+      - name: Videonu saxla (7 gün, yoxlama üçün)
+        if: always() && steps.brief.outputs.has == '1'
+        uses: actions/upload-artifact@v4
+        with:
+          name: smm-reel-${{ steps.brief.outputs.id }}
+          path: out/smm-*.mp4
+          retention-days: 7
+          if-no-files-found: ignore
+
+      # smm.ts özü xətanı bildirir; bu addım quraşdırma mərhələsində yıxılanda işə düşür
+      - name: Alınmadısa SMM agentə bildir
+        if: failure() && steps.brief.outputs.has == '1'
+        run: |
+          curl -s --max-time 60 -X POST -H "Authorization: Bearer $SMM_TOKEN" -H "Content-Type: application/json" \
+            -d "{\"reason\":\"GitHub Actions addımı yıxıldı: run ${{ github.run_id }}\"}" \
+            "$SMM_URL/api/motion/brief/${{ steps.brief.outputs.id }}/fail" || true

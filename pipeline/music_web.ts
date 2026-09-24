@@ -228,6 +228,8 @@ export const pickWebMusic = async (mood: string, seconds: number, dir: string, i
       if (stat.size < 100_000) throw new Error("fayl kiçikdir");
       const instr = await isInstrumental(dest);
       if (instr === false) { log(`✗ vokal: ${t.title}`); continue; }
+      // Whisper əlçatan deyilsə (null) heç olmasa adında vokal olduğunu deyən trekləri keç
+      if (instr === null && /\b(vox|vocals?|lyrics?|sing(s|ing)?|acapella|a cappella|feat\.?|ft\.)(?=\W|$)/i.test(`${t.title} ${t.artist}`)) { log(`✗ adına görə vokal: ${t.title}`); continue; }
       log(`✓ ${t.title} — ${t.artist} (${t.license}${instr === null ? ", vokal yoxlanmadı" : ", instrumental"})`);
       return { file: `render/${id}/music.mp3`, track: t, attribution: t.attribution, instrumental: instr };
     } catch (e) { log(`✗ ${t.title}: ${(e as Error).message.slice(0, 50)}`); }

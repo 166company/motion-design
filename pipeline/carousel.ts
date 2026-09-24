@@ -16,6 +16,7 @@ import { contact } from "../src/brand/contact.ts";
 import { nvImageToFile, withNvidia } from "./nvidia.ts";
 import { chat, type ChatOpts } from "./llm.ts";
 import { novelty, remember, type Novelty } from "./ideas.ts";
+import { assertPhotos } from "./photos.ts";
 
 // Söz oyunu yaradıcı işdir — kiçik model mənasız ifadə yazır; burada güclü model (post başına ~1 sent)
 const MODEL = process.env.OPENAI_CREATIVE_MODEL ?? "gpt-5.5";
@@ -94,6 +95,7 @@ const writeConcept = async (feedback?: string): Promise<Concept> => {
 };
 
 const genPhoto = (desc: string, dest: string) => {
+  assertPhotos("karusel fotosu");
   const visual = process.env.VISUAL_NOTES ? ` Style/composition guidance: ${process.env.VISUAL_NOTES}.` : "";
   const hasRefs = (process.env.IMAGE_REFS ?? "").split(",").some(Boolean);
   // İstinad şəkil (IMAGE_REFS) NVIDIA-da dəstəklənmir → həmin halda OpenAI yolu

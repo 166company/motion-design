@@ -6,6 +6,8 @@ import { Showcase, showcaseSchema, showcaseTotal, type ShowcaseProps } from "./c
 import showcaseDefault from "./showcaseDefault.json";
 import { Motion, motionSchema, motionTotal, type MotionProps } from "./compositions/Motion";
 import motionDefault from "./motionDefault.json";
+import { SmmReel, smmReelSchema, smmReelTotal, type SmmReelProps } from "./compositions/SmmReel";
+import smmReelDefault from "./smmReelDefault.json";
 import { Story, storySchema, storyTotal, type StoryProps } from "./compositions/Story";
 import storyDefault from "./storyDefault.json";
 import { Carousel, carouselSchema, type CarouselProps } from "./compositions/Carousel";
@@ -50,6 +52,17 @@ export const RemotionRoot: React.FC = () => {
       fps={canvas.fps}
       durationInFrames={600}
       calculateMetadata={({ props }) => ({ durationInFrames: showcaseTotal(props.scenes) })}
+    />
+    <Composition
+      id="SmmReel"
+      component={SmmReel}
+      schema={smmReelSchema}
+      defaultProps={smmReelDefault as unknown as SmmReelProps}
+      width={canvas.width}
+      height={canvas.height}
+      fps={canvas.fps}
+      durationInFrames={600}
+      calculateMetadata={({ props }) => ({ durationInFrames: smmReelTotal(props) })}
     />
     <Composition
       id="Motion"
