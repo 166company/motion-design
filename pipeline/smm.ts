@@ -16,6 +16,7 @@ import path from "node:path";
 import { spawn } from "node:child_process";
 import sharp from "sharp";
 import { SMM_TRANSITION, smmReelTotal, SMM_CAMERAS, SMM_SFX, type SmmReelProps } from "../src/compositions/SmmReel.tsx";
+import { boxDropTotal } from "../src/compositions/BoxDrop.tsx";
 import { pickWebMusic } from "./music_web.ts";
 import { pickMusic } from "./audio.ts";
 
@@ -30,6 +31,7 @@ type Spec = {
   header?: string; plates: { url: string; scene?: string }[]; finalUrl: string; lettered: boolean;
   scenes: { plate: number; text?: string; label?: string; punch?: boolean; seconds: number; camera: string; focus: { x: number; y: number }; textAt: number; sfx: string }[];
   cta: { line1: string; line2: string }; mood: "upbeat" | "calm"; notes?: string;
+  composition?: "SmmReel" | "BoxDrop"; assets?: Record<string, string>; texts?: Record<string, string>; lessons?: string[];
 };
 type Brief = { id: number; attempt: number; spec: Spec };
 
@@ -65,14 +67,17 @@ const loadBrief = async (): Promise<Brief | null> => {
   return body?.brief ?? null;
 };
 
-const download = async (url: string, dest: string) => {
+const download = async (url: string, dest: string, format: "jpeg" | "png" = "jpeg") => {
   const res = await smmFetch(url, {}, 3);
   if (!res.ok) throw new Error(`şəkil yüklənmədi (${res.status}): ${url}`);
   const buf = Buffer.from(await res.arrayBuffer());
   const meta = await sharp(buf).metadata();
   if (!meta.width || !meta.height) throw new Error(`şəkil oxunmadı: ${url}`);
-  // Remotion-a hər zaman JPEG — formatdan asılı olmasın
-  await sharp(buf).jpeg({ quality: 93 }).toFile(dest);
+  // Fotolar JPEG; şəffaf obyekt (qutu) PNG qalır
+  // Kətan 1080×1920-dir; daha böyük foto yalnız yaddaş yeyir (zoom blur 5 nüsxə render edir)
+  const fit = sharp(buf).resize({ width: 1440, height: 2560, fit: "inside", withoutEnlargement: true });
+  if (format === "png") await fit.png().toFile(dest);
+  else await fit.jpeg({ quality: 92 }).toFile(dest);
   return meta.width / meta.height;
 };
 
@@ -119,17 +124,39 @@ const main = async () => {
   try {
     const dir = path.join("public", "render", id);
     await fs.mkdir(dir, { recursive: true });
-    const plates: { src: string; aspect: number }[] = [];
-    for (let i = 0; i < spec.plates.length; i++) {
-      const aspect = await download(spec.plates[i].url, path.join(dir, `p${i + 1}.jpg`));
-      plates.push({ src: `render/${id}/p${i + 1}.jpg`, aspect });
+    // Hazır şablon (məs. BoxDrop) — fotolar/qutu SMM agentdən, burada yalnız hərəkət
+    let compId = "SmmReel";
+    let props: { music: string | null; [k: string]: unknown };
+    let secs: number;
+    if (spec.composition === "BoxDrop") {
+      const a = spec.assets ?? {};
+      if (!a.aerial || !a.room || !a.box) throw new Error("BoxDrop: aerial/room/box faylları çatışmır");
+      await download(a.aerial, path.join(dir, "aerial.jpg"));
+      await download(a.room, path.join(dir, "room.jpg"));
+      const boxAspect = await download(a.box, path.join(dir, "box.png"), "png");
+      const t = spec.texts ?? {};
+      props = {
+        dir: `render/${id}`, aerial: "aerial.jpg", room: "room.jpg", box: "box.png", boxAspect: 1 / boxAspect,
+        pinLabel: t.pinLabel || "Yeni ev", hook: t.hook || "Köç günü", landLine: t.landLine || "Yük ünvanına çatdı",
+        cta: spec.cta, music: null,
+      };
+      compId = "BoxDrop";
+      secs = boxDropTotal() / FPS;
+      log("BoxDrop: şəhər + mənzil (real foto) + qutu yükləndi");
+    } else {
+      const plates: { src: string; aspect: number }[] = [];
+      for (let i = 0; i < spec.plates.length; i++) {
+        const aspect = await download(spec.plates[i].url, path.join(dir, `p${i + 1}.jpg`));
+        plates.push({ src: `render/${id}/p${i + 1}.jpg`, aspect });
+      }
+      const finalAspect = await download(spec.finalUrl, path.join(dir, "final.jpg"));
+      const final = { src: `render/${id}/final.jpg`, aspect: finalAspect };
+      log(`${plates.length} foto + bütöv post yükləndi`);
+      const reelProps = toProps(id, spec, plates, final);
+      secs = smmReelTotal(reelProps) / FPS;
+      props = reelProps;
     }
-    const finalAspect = await download(spec.finalUrl, path.join(dir, "final.jpg"));
-    const final = { src: `render/${id}/final.jpg`, aspect: finalAspect };
-    log(`${plates.length} foto + bütöv post yükləndi`);
-
-    const props = toProps(id, spec, plates, final);
-    const secs = smmReelTotal(props) / FPS;
+    if (spec.lessons?.length) log(`komandanın qaydaları: ${spec.lessons.length}`);
 
     // Musiqi: telif təmiz instrumental (Instagram-da susdurulmur) → Audius/lokal/sintez → musiqisiz
     let attribution: string | null = null;
@@ -147,7 +174,7 @@ const main = async () => {
     await fs.mkdir("out", { recursive: true });
     const out = path.join("out", `${id}.mp4`);
     log(`render: ${secs.toFixed(1)} san`);
-    await run("npx", ["remotion", "render", "src/index.ts", "SmmReel", out, `--props=${propsPath}`]);
+    await run("npx", ["remotion", "render", "src/index.ts", compId, out, `--props=${propsPath}`, "--concurrency=2"]);
 
     const stat = await fs.stat(out);
     const mb = stat.size / 1024 / 1024;
