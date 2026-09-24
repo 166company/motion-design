@@ -142,10 +142,15 @@ const Header: React.FC<{ text: string }> = ({ text }) => {
   const op = interpolate(frame, [0, 8], [0, 1], { extrapolateRight: "clamp" });
   return (
     <div style={{ position: "absolute", top: safeArea.top - 70, left: 60, width: W - 120, opacity: op, display: "flex", justifyContent: "center" }}>
+      {/* Başlıq olan reeldə loqo nişanı ayrıca durmur (başlığın üstünə düşürdü) — loqo başlığın içindədir */}
       <div style={{
         background: colors.white, color: "#111", fontFamily: font, fontWeight: 900, fontSize: 50, lineHeight: 1.1,
-        padding: "18px 30px", borderRadius: 22, textAlign: "center", boxShadow: "0 12px 34px rgba(0,0,0,0.35)",
-      }}>{text.toLocaleUpperCase("az-AZ")}</div>
+        padding: "18px 26px 18px 30px", borderRadius: 22, textAlign: "center", boxShadow: "0 12px 34px rgba(0,0,0,0.35)",
+        display: "flex", alignItems: "center", gap: 18,
+      }}>
+        <span>{text.toLocaleUpperCase("az-AZ")}</span>
+        <Img src={staticFile("logo/logo-icon.svg")} style={{ height: 52, width: 52, flexShrink: 0 }} />
+      </div>
     </div>
   );
 };
@@ -215,7 +220,7 @@ export const SmmReel: React.FC<SmmReelProps> = ({ plates, final, header, lettere
   const total = smmReelTotal({ scenes, final });
   const ctaFrom = total - SMM_CTA;
   // Bütöv postun öz loqosu var — son vuruşda nişan gizlənir ki, iki loqo olmasın və postun yazısını örtməsin
-  const bugUntil = final ? ctaFrom - SMM_FINAL + SMM_TRANSITION : ctaFrom;
+  const bugUntil = header ? 0 : final ? ctaFrom - SMM_FINAL + SMM_TRANSITION : ctaFrom;
   const beats = [
     ...scenes.map((s, i) => ({ key: `s${i}`, frames: s.frames, punch: s.punch, el: <SceneView s={s} plate={plates[s.plate] ?? plates[0]} header={header} lettered={lettered} /> })),
     ...(final ? [{ key: "final", frames: SMM_FINAL, punch: false, el: <FinalView plate={final} /> }] : []),
