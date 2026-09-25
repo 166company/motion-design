@@ -130,19 +130,22 @@ const main = async () => {
     let secs: number;
     if (spec.composition === "BoxDrop") {
       const a = spec.assets ?? {};
-      if (!a.aerial || !a.room || !a.box) throw new Error("BoxDrop: aerial/room/box faylları çatışmır");
+      if (!a.clouds || !a.aerial || !a.room || !a.boxTop || !a.boxFront) throw new Error("BoxDrop: clouds/aerial/room/boxTop/boxFront faylları çatışmır");
+      await download(a.clouds, path.join(dir, "clouds.jpg"));
       await download(a.aerial, path.join(dir, "aerial.jpg"));
       await download(a.room, path.join(dir, "room.jpg"));
-      const boxAspect = await download(a.box, path.join(dir, "box.png"), "png");
+      const topRatio = await download(a.boxTop, path.join(dir, "box-top.png"), "png");
+      const frontRatio = await download(a.boxFront, path.join(dir, "box-front.png"), "png");
       const t = spec.texts ?? {};
       props = {
-        dir: `render/${id}`, aerial: "aerial.jpg", room: "room.jpg", box: "box.png", boxAspect: 1 / boxAspect,
+        dir: `render/${id}`, clouds: "clouds.jpg", aerial: "aerial.jpg", room: "room.jpg",
+        boxTop: "box-top.png", boxFront: "box-front.png", topAspect: 1 / topRatio, frontAspect: 1 / frontRatio,
         pinLabel: t.pinLabel || "Yeni ev", hook: t.hook || "Köç günü", landLine: t.landLine || "Yük ünvanına çatdı",
         cta: spec.cta, music: null,
       };
       compId = "BoxDrop";
       secs = boxDropTotal() / FPS;
-      log("BoxDrop: şəhər + mənzil (real foto) + qutu yükləndi");
+      log("BoxDrop: buludlar + şəhər + mənzil (real foto) + qutu (yuxarıdan və qarşıdan) yükləndi");
     } else {
       const plates: { src: string; aspect: number }[] = [];
       for (let i = 0; i < spec.plates.length; i++) {
