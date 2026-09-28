@@ -1,0 +1,34 @@
+name: SMM agenti oyaq saxla
+
+# SMM agent Render-in pulsuz planındadır: 15 dəqiqə müraciət olmasa yatır və yatarkən
+# heç bir planlı işi (postlar, reel tapşırıqları, araşdırma) icra etmir.
+# Bu iş hər 10 dəqiqədən bir /health-ə müraciət edir. Açıq repo-da GitHub Actions pulsuzdur;
+# Render-in pulsuz 750 saatı bir servisin 24/7 işləməsinə çatır.
+# Söndürmək: repo Variables → SMM_LINK=off
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ping:
+    if: vars.SMM_LINK != 'off'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Ping
+        env:
+          SMM_URL: ${{ secrets.SMM_URL }}
+        run: |
+          [ -n "$SMM_URL" ] || { echo "SMM_URL yoxdur"; exit 0; }
+          for i in 1 2 3; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 90 "$SMM_URL/health" || echo 000)
+            echo "cəhd $i: HTTP $code"
+            [ "$code" = "200" ] && exit 0
+            sleep 20
+          done
+          echo "SMM agent cavab vermədi"
