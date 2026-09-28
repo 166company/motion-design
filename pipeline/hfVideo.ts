@@ -37,9 +37,10 @@ export async function imageToVideo(imagePath: string, prompt: string, seconds: n
       const r = await c.predict("/generate_video", {
         input_image: image,
         prompt,
-        steps: 6,
+        // Lightning LoRA 4 addım üçündür; Space GPU vaxtını addım × kadr ilə ayırır — 4 addım + ≤3.5 san ≈ 50 san
+        steps: 4,
         negative_prompt: NEGATIVE,
-        duration_seconds: Math.min(5, Math.max(1, seconds)),
+        duration_seconds: Math.min(3.5, Math.max(1, seconds)),
       });
       const data = (r.data ?? []) as { url?: string; video?: { url?: string } }[];
       const url = data.map((d) => d?.url ?? d?.video?.url).find(Boolean);
