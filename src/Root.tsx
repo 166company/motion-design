@@ -8,6 +8,7 @@ import { Motion, motionSchema, motionTotal, type MotionProps } from "./compositi
 import motionDefault from "./motionDefault.json";
 import { SmmReel, smmReelSchema, smmReelTotal, type SmmReelProps } from "./compositions/SmmReel";
 import smmReelDefault from "./smmReelDefault.json";
+import { StoryReel, storyReelSchema, storyReelTotal, type StoryReelProps } from "./compositions/StoryReel";
 import { BoxDrop, boxDropSchema, boxDropTotal, type BoxDropProps } from "./compositions/BoxDrop";
 import { Story, storySchema, storyTotal, type StoryProps } from "./compositions/Story";
 import storyDefault from "./storyDefault.json";
@@ -63,6 +64,17 @@ export const RemotionRoot: React.FC = () => {
       height={canvas.height}
       fps={canvas.fps}
       durationInFrames={boxDropTotal()}
+    />
+    <Composition
+      id="StoryReel"
+      component={StoryReel}
+      schema={storyReelSchema}
+      defaultProps={{ clips: [{ src: "assets/photo_baku_room.jpg", aspect: 0.8, frames: 90, text: "", punch: false, continues: false }], cta: { line1: "Köçü bizə tapşır", line2: "Zəng et" }, music: null, musicVolume: 0.5 } as StoryReelProps}
+      width={canvas.width}
+      height={canvas.height}
+      fps={canvas.fps}
+      durationInFrames={300}
+      calculateMetadata={({ props }) => ({ durationInFrames: storyReelTotal(props) })}
     />
     <Composition
       id="SmmReel"

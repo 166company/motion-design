@@ -17,6 +17,8 @@ import { spawn } from "node:child_process";
 import sharp from "sharp";
 import { SMM_TRANSITION, smmReelTotal, SMM_CAMERAS, SMM_SFX, type SmmReelProps } from "../src/compositions/SmmReel.tsx";
 import { boxDropTotal } from "../src/compositions/BoxDrop.tsx";
+import { storyReelTotal } from "../src/compositions/StoryReel.tsx";
+import { imageToVideo, QuotaError } from "./hfVideo.ts";
 import { pickWebMusic } from "./music_web.ts";
 import { pickMusic } from "./audio.ts";
 
@@ -31,7 +33,8 @@ type Spec = {
   header?: string; plates: { url: string; scene?: string }[]; finalUrl: string; lettered: boolean;
   scenes: { plate: number; text?: string; label?: string; punch?: boolean; seconds: number; camera: string; focus: { x: number; y: number }; textAt: number; sfx: string }[];
   cta: { line1: string; line2: string }; mood: "upbeat" | "calm"; notes?: string;
-  composition?: "SmmReel" | "BoxDrop"; assets?: Record<string, string>; texts?: Record<string, string>; lessons?: string[];
+  composition?: "SmmReel" | "BoxDrop" | "StoryReel"; assets?: Record<string, string>; texts?: Record<string, string>; lessons?: string[];
+  shots?: { from: "plate" | "previous"; plate?: number; prompt: string; seconds: number; text?: string; punch?: boolean }[];
 };
 type Brief = { id: number; attempt: number; spec: Spec };
 
@@ -86,6 +89,36 @@ const run = (cmd: string, args: string[]) =>
     const p = spawn(cmd, args, { stdio: "inherit", shell: process.platform === "win32" });
     p.on("close", (code) => (code === 0 ? resolve() : reject(new Error(`${cmd} ${args[0]} → kod ${code}`))));
   });
+
+/** Klipin son kadrı → növbəti klipin başlanğıcı (zəncir). Remotion-un öz ffmpeg-i. */
+const lastFrame = (clip: string, dest: string) => run("npx", ["remotion", "ffmpeg", "-y", "-loglevel", "error", "-sseof", "-0.1", "-i", clip, "-frames:v", "1", "-q:v", "2", dest]);
+
+/** Klipin eni/hündürlüyü/müddəti. */
+const probe = async (clip: string): Promise<{ w: number; h: number; sec: number }> => {
+  const out = await new Promise<string>((resolve, reject) => {
+    const p = spawn("npx", ["remotion", "ffprobe", "-v", "error", "-show_entries", "stream=width,height:format=duration", "-of", "json", clip], { shell: process.platform === "win32" });
+    let buf = "";
+    p.stdout.on("data", (d) => (buf += d));
+    p.on("close", (code) => (code === 0 ? resolve(buf) : reject(new Error("ffprobe"))));
+  });
+  const j = JSON.parse(out);
+  const st = (j.streams ?? []).find((x: { width?: number }) => x.width) ?? { width: 672, height: 832 };
+  return { w: st.width, h: st.height, sec: Number(j.format?.duration ?? 3.5) };
+};
+
+/**
+ * 16 kadr/san → 30 kadr/san hərəkət interpolyasiyası (minterpolate) — sistemdə tam ffmpeg varsa
+ * (GitHub runner-də quraşdırılır). Yoxdursa klip olduğu kimi qalır.
+ */
+const smoothClip = async (clip: string, dest: string): Promise<string> => {
+  try {
+    await run("ffmpeg", ["-y", "-loglevel", "error", "-i", clip, "-vf", "minterpolate=fps=30:mi_mode=mci:mc_mode=aobmc:me_mode=bidir:vsbmc=1", "-c:v", "libx264", "-crf", "16", "-preset", "medium", "-pix_fmt", "yuv420p", "-an", dest]);
+    return dest;
+  } catch {
+    log("⚠ ffmpeg (minterpolate) yoxdur — klip 16 kadr/san qalır");
+    return clip;
+  }
+};
 
 const clampN = (v: unknown, lo: number, hi: number, d: number) => {
   const n = Number(v);
@@ -146,6 +179,38 @@ const main = async () => {
       compId = "BoxDrop";
       secs = boxDropTotal() / FPS;
       log("BoxDrop: buludlar + şəhər + mənzil (real foto) + qutu (yuxarıdan və qarşıdan) yükləndi");
+    } else if (spec.composition === "StoryReel" && spec.shots?.length) {
+      // Əsl hərəkət: hər kadr şəkildən-videoya klipdir; "previous" əvvəlki klipin son kadrından davam edir.
+      const plateFiles: string[] = [];
+      for (let i = 0; i < spec.plates.length; i++) {
+        const p = path.join(dir, `p${i + 1}.jpg`);
+        await download(spec.plates[i].url, p);
+        plateFiles.push(p);
+      }
+      const clips: { src: string; aspect: number; frames: number; text: string; punch: boolean; continues: boolean }[] = [];
+      let lastClip: string | null = null;
+      for (let i = 0; i < spec.shots.length; i++) {
+        const shot = spec.shots[i];
+        let start = plateFiles[Math.min(plateFiles.length - 1, Math.max(0, shot.plate ?? 0))];
+        if (shot.from === "previous" && lastClip) {
+          start = path.join(dir, `last${i}.jpg`);
+          await lastFrame(lastClip, start);
+        }
+        const out = path.join(dir, `clip${i + 1}.mp4`);
+        log(`klip ${i + 1}/${spec.shots.length}: ${shot.prompt.slice(0, 90)}`);
+        await imageToVideo(start, shot.prompt, shot.seconds, out);
+        const smooth = await smoothClip(out, path.join(dir, `clip${i + 1}-30.mp4`));
+        const meta = await probe(smooth);
+        clips.push({
+          src: `render/${id}/${path.basename(smooth)}`, aspect: meta.w / meta.h, frames: Math.max(30, Math.round(meta.sec * FPS)),
+          text: shot.text ?? "", punch: Boolean(shot.punch), continues: shot.from === "previous",
+        });
+        lastClip = out;
+      }
+      props = { clips, cta: spec.cta, music: null, musicVolume: 0.5 };
+      compId = "StoryReel";
+      secs = storyReelTotal({ clips }) / FPS;
+      log(`StoryReel: ${clips.length} klip hazırdır`);
     } else {
       const plates: { src: string; aspect: number }[] = [];
       for (let i = 0; i < spec.plates.length; i++) {
@@ -195,7 +260,7 @@ const main = async () => {
     if (!res.ok) throw new Error(`SMM agent qəbul etmədi (${res.status}): ${JSON.stringify(answer).slice(0, 300)}`);
     console.log(`\n✓ SMM agentə təhvil verildi: ${JSON.stringify(answer)}`);
   } catch (e) {
-    const reason = (e as Error).message;
+    const reason = e instanceof QuotaError ? `quota: ${(e as Error).message}` : (e as Error).message;
     console.error(`\n✗ ${reason}`);
     // 422-də SMM agent tapşırığı özü yenidən açıb — ikinci dəfə bildirmə
     if (!/qəbul etmədi \(422\)/.test(reason)) await reportFail(brief.id, reason);

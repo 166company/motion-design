@@ -35,6 +35,8 @@ jobs:
       # musiqinin vokal yoxlaması: OpenAI Whisper, alınmasa Groq Whisper
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+      # şəkildən video (Wan 2.2, Hugging Face ZeroGPU — pulsuz)
+      HF_TOKEN: ${{ secrets.HF_TOKEN }}
 
     steps:
       - name: Tapşırıq var?
@@ -71,7 +73,7 @@ jobs:
         if: steps.brief.outputs.has == '1'
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y -qq libnss3 libatk-bridge2.0-0 libgtk-3-0 libasound2t64 libgbm1 fonts-liberation || true
+          sudo apt-get install -y -qq libnss3 libatk-bridge2.0-0 libgtk-3-0 libasound2t64 libgbm1 fonts-liberation ffmpeg || true
 
       - name: Asılılıqlar
         if: steps.brief.outputs.has == '1'
