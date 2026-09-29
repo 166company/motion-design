@@ -151,6 +151,12 @@ const main = async () => {
   if (!brief) { console.log("Açıq tapşırıq yoxdur."); return; }
   const { spec } = brief;
   const id = `smm-${brief.id}-${brief.attempt ?? 1}`;
+  // Boş/yarımçıq tapşırıq (spec "{}") — çökmək əvəzinə SMM agentə bildir ki, bağlasın.
+  if (!spec?.topic || !Array.isArray(spec.scenes)) {
+    console.log(`⚠ Tapşırıq #${brief.id} boşdur (spec yoxdur) — geri qaytarılır.`);
+    await reportFail(brief.id, "tapşırıq boşdur: spec yoxdur");
+    return;
+  }
   console.log(`\n🎬 Tapşırıq #${brief.id} (cəhd ${brief.attempt}): ${spec.topic} — ${spec.layout}, ${spec.scenes.length} səhnə`);
   if (spec.notes) log(`əvvəlki cəhdin qeydi: ${spec.notes}`);
 
