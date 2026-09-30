@@ -23,7 +23,8 @@ jobs:
   reel:
     if: vars.SMM_LINK != 'off'
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    # GPU kvotası bitəndə iş yenilənməni gözləyir (≤5 saat, public repoda dəqiqələr pulsuzdur)
+    timeout-minutes: 350
     env:
       SMM_URL: ${{ secrets.SMM_URL }}
       SMM_TOKEN: ${{ secrets.SMM_TOKEN }}
@@ -81,9 +82,25 @@ jobs:
           npm ci
           pip install --quiet mutagen numpy
 
+      # Əvvəlki run-larda çəkilmiş kliplər — kvota ortada bitsə itməsin
+      - name: Klip keşi (bərpa)
+        if: steps.brief.outputs.has == '1'
+        uses: actions/cache/restore@v4
+        with:
+          path: .clipcache
+          key: clips-${{ github.run_id }}
+          restore-keys: clips-
+
       - name: Reel (foto SMM agentdən → hərəkət → təhvil)
         if: steps.brief.outputs.has == '1'
         run: npx tsx pipeline/smm.ts "$RUNNER_TEMP/brief.json"
+
+      - name: Klip keşi (saxla)
+        if: always() && steps.brief.outputs.has == '1'
+        uses: actions/cache/save@v4
+        with:
+          path: .clipcache
+          key: clips-${{ github.run_id }}
 
       - name: Videonu saxla (7 gün, yoxlama üçün)
         if: always() && steps.brief.outputs.has == '1'

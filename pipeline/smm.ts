@@ -14,6 +14,7 @@ import "dotenv/config";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { spawn } from "node:child_process";
+import { createHash } from "node:crypto";
 import sharp from "sharp";
 import { SMM_TRANSITION, smmReelTotal, SMM_CAMERAS, SMM_SFX, type SmmReelProps } from "../src/compositions/SmmReel.tsx";
 import { boxDropTotal } from "../src/compositions/BoxDrop.tsx";
@@ -23,6 +24,7 @@ import { pickWebMusic } from "./music_web.ts";
 import { pickMusic } from "./audio.ts";
 
 const FPS = 30;
+const CLIP_CACHE = ".clipcache";
 const SMM_URL = (process.env.SMM_URL ?? "").replace(/\/+$/, "");
 const SMM_TOKEN = process.env.SMM_TOKEN ?? "";
 const DELIVER = process.env.SMM_DELIVER !== "0";
@@ -195,16 +197,35 @@ const main = async () => {
       }
       const clips: { src: string; aspect: number; frames: number; text: string; punch: boolean; continues: boolean }[] = [];
       let lastClip: string | null = null;
+      // Hazır kliplər run-lar arasında saxlanır (smm.yml → actions/cache): kvota ortada bitsə, növbəti
+      // run yalnız çatışmayanları çəkir. Açar: başlanğıc kadr + prompt + müddət.
+      await fs.mkdir(CLIP_CACHE, { recursive: true });
+      // keş böyüməsin: 5 gündən köhnə kliplər atılır
+      for (const f of await fs.readdir(CLIP_CACHE)) {
+        const p = path.join(CLIP_CACHE, f);
+        if (Date.now() - (await fs.stat(p)).mtimeMs > 5 * 86_400_000) await fs.rm(p, { force: true });
+      }
+      let prevKey = "";
       for (let i = 0; i < spec.shots.length; i++) {
         const shot = spec.shots[i];
         let start = plateFiles[Math.min(plateFiles.length - 1, Math.max(0, shot.plate ?? 0))];
-        if (shot.from === "previous" && lastClip) {
-          start = path.join(dir, `last${i}.jpg`);
-          await lastFrame(lastClip, start);
-        }
+        const base = shot.from === "previous" && lastClip ? `prev:${prevKey}` : createHash("sha1").update(await fs.readFile(start)).digest("hex");
+        const key = createHash("sha1").update(`${base}|${shot.prompt}|${shot.seconds}`).digest("hex").slice(0, 20);
+        prevKey = key;
+        const cached = path.join(CLIP_CACHE, `${key}.mp4`);
         const out = path.join(dir, `clip${i + 1}.mp4`);
-        log(`klip ${i + 1}/${spec.shots.length}: ${shot.prompt.slice(0, 90)}`);
-        await imageToVideo(start, shot.prompt, shot.seconds, out);
+        if (await fs.stat(cached).then(() => true, () => false)) {
+          await fs.copyFile(cached, out);
+          log(`klip ${i + 1}/${spec.shots.length}: keşdən (əvvəlki run-da çəkilib)`);
+        } else {
+          if (shot.from === "previous" && lastClip) {
+            start = path.join(dir, `last${i}.jpg`);
+            await lastFrame(lastClip, start);
+          }
+          log(`klip ${i + 1}/${spec.shots.length}: ${shot.prompt.slice(0, 90)}`);
+          await imageToVideo(start, shot.prompt, shot.seconds, out);
+          await fs.copyFile(out, cached);
+        }
         const smooth = await smoothClip(out, path.join(dir, `clip${i + 1}-30.mp4`));
         const meta = await probe(smooth);
         clips.push({

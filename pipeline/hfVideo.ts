@@ -12,6 +12,21 @@ const SPACE = process.env.HF_VIDEO_SPACE ?? "zerogpu-aoti/wan2-2-fp8da-aoti-fast
 
 export class QuotaError extends Error {}
 
+/**
+ * Kvota bitəndə nə qədər gözləmək olar (san). Actions dəqiqələri public repoda pulsuzdur — kvota
+ * yenilənənə qədər iş dayanmır, gözləyib davam edir (29 Sep: 3 klip hazır idi, run yıxılıb onları itirdi,
+ * növbəti planlı run isə 5 saat sonra gəldi). Job-un timeout-u bundan böyük olmalıdır (smm.yml).
+ */
+const MAX_WAIT_SEC = Number(process.env.HF_MAX_WAIT_SEC ?? 5 * 3600);
+let waitedSec = 0;
+
+/** "Try again in 4:42:24" → saniyə */
+function retryAfterSec(msg: string): number | null {
+  const m = /try again in (?:(\d+):)?(\d+):(\d+)/i.exec(msg);
+  if (!m) return null;
+  return Number(m[1] ?? 0) * 3600 + Number(m[2]) * 60 + Number(m[3]);
+}
+
 const NEGATIVE =
   "static, frozen frame, blurry, low quality, jpeg artifacts, deformed, disfigured, extra limbs, fused fingers, " +
   "mutated paws, melting, morphing objects, flickering, text, subtitles, watermark, extra logos, crowd";
@@ -54,6 +69,15 @@ export async function imageToVideo(imagePath: string, prompt: string, seconds: n
     } catch (e) {
       const msg = String((e as Error)?.message ?? e);
       if (/quota|exceeded|ZeroGPU.*(limit|minutes)|GPU task aborted.*quota/i.test(msg)) {
+        const wait = retryAfterSec(msg);
+        if (wait !== null && waitedSec + wait + 60 <= MAX_WAIT_SEC) {
+          console.log(`  ⏳ GPU kvotası bitdi — ${Math.ceil(wait / 60)} dəq gözləyib davam edirəm (klip itmir)`);
+          waitedSec += wait + 60;
+          await new Promise((r) => setTimeout(r, (wait + 60) * 1000));
+          client = null;
+          attempt--; // gözləmə cəhd sayılmır
+          continue;
+        }
         throw new QuotaError(`Hugging Face gündəlik GPU kvotası bitdi: ${msg.slice(0, 200)}`);
       }
       last = e;
