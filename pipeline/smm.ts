@@ -121,9 +121,12 @@ const stockClip = async (url: string, start: number, seconds: number, dest: stri
   const res = await fetch(url, { signal: AbortSignal.timeout(180_000) });
   if (!res.ok) throw new Error(`stok klip yüklənmədi: ${res.status}`);
   await fs.writeFile(raw, Buffer.from(await res.arrayBuffer()));
+  // Üfüqi klip 9:16 kadrda kiçik kart olurdu — mərkəzdən 4:5 kəsilir ki, ekranı doldursun.
+  const src = await probe(raw);
+  const vf = src.w > src.h ? "crop=ih*4/5:ih,scale=1080:-2" : "scale=1080:-2";
   await run("npx", [
     "remotion", "ffmpeg", "-y", "-loglevel", "error", "-ss", String(start), "-t", String(seconds), "-i", raw,
-    "-vf", "scale=1080:-2", "-r", "30", "-c:v", "libx264", "-crf", "18", "-preset", "veryfast", "-pix_fmt", "yuv420p", "-an", dest,
+    "-vf", vf, "-r", "30", "-c:v", "libx264", "-crf", "18", "-preset", "veryfast", "-pix_fmt", "yuv420p", "-an", dest,
   ]);
   await fs.rm(raw, { force: true });
 };
