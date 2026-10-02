@@ -36,7 +36,7 @@ type Spec = {
   scenes: { plate: number; text?: string; label?: string; punch?: boolean; seconds: number; camera: string; focus: { x: number; y: number }; textAt: number; sfx: string }[];
   cta: { line1: string; line2: string }; mood: "upbeat" | "calm"; notes?: string;
   composition?: "SmmReel" | "BoxDrop" | "StoryReel"; assets?: Record<string, string>; texts?: Record<string, string>; lessons?: string[];
-  shots?: { from: "plate" | "previous"; plate?: number; prompt: string; seconds: number; text?: string; punch?: boolean }[];
+  shots?: { from: "plate" | "previous"; plate?: number; prompt: string; seconds: number; text?: string; punch?: boolean; video?: { url: string; start: number; page?: string } }[];
 };
 type Brief = { id: number; attempt: number; spec: Spec };
 
@@ -112,6 +112,22 @@ const probe = async (clip: string): Promise<{ w: number; h: number; sec: number 
  * 16 kadr/san → 30 kadr/san hərəkət interpolyasiyası (minterpolate) — sistemdə tam ffmpeg varsa
  * (GitHub runner-də quraşdırılır). Yoxdursa klip olduğu kimi qalır.
  */
+/**
+ * Real stock klip (Pexels): yüklə → lazım olan hissəni kəs → ≤1080 enə, 30 kadr/san, səssiz.
+ * SMM agent 2 Okt-dan reel-ləri əsasən real videodan qurur — Wan şəkli "əridirdi" (loqo, tüstü).
+ */
+const stockClip = async (url: string, start: number, seconds: number, dest: string): Promise<void> => {
+  const raw = dest.replace(/\.mp4$/, "-src.mp4");
+  const res = await fetch(url, { signal: AbortSignal.timeout(180_000) });
+  if (!res.ok) throw new Error(`stok klip yüklənmədi: ${res.status}`);
+  await fs.writeFile(raw, Buffer.from(await res.arrayBuffer()));
+  await run("npx", [
+    "remotion", "ffmpeg", "-y", "-loglevel", "error", "-ss", String(start), "-t", String(seconds), "-i", raw,
+    "-vf", "scale='min(1080,iw)':-2,fps=30", "-c:v", "libx264", "-crf", "18", "-preset", "veryfast", "-pix_fmt", "yuv420p", "-an", dest,
+  ]);
+  await fs.rm(raw, { force: true });
+};
+
 const smoothClip = async (clip: string, dest: string): Promise<string> => {
   try {
     await run("ffmpeg", ["-y", "-loglevel", "error", "-i", clip, "-vf", "minterpolate=fps=30:mi_mode=mci:mc_mode=aobmc:me_mode=bidir:vsbmc=1", "-c:v", "libx264", "-crf", "16", "-preset", "medium", "-pix_fmt", "yuv420p", "-an", dest]);
@@ -208,6 +224,19 @@ const main = async () => {
       let prevKey = "";
       for (let i = 0; i < spec.shots.length; i++) {
         const shot = spec.shots[i];
+        // Real stock video: no GPU, no quota — trim it and move on.
+        if (shot.video?.url) {
+          const real = path.join(dir, `clip${i + 1}-30.mp4`);
+          log(`klip ${i + 1}/${spec.shots.length}: real video — ${shot.video.page ?? shot.video.url}`);
+          await stockClip(shot.video.url, shot.video.start ?? 0, shot.seconds, real);
+          const meta = await probe(real);
+          clips.push({
+            src: `render/${id}/${path.basename(real)}`, aspect: meta.w / meta.h, frames: Math.max(30, Math.round(meta.sec * FPS)),
+            text: shot.text ?? "", punch: Boolean(shot.punch), continues: false,
+          });
+          lastClip = real;
+          continue;
+        }
         let start = plateFiles[Math.min(plateFiles.length - 1, Math.max(0, shot.plate ?? 0))];
         const base = shot.from === "previous" && lastClip ? `prev:${prevKey}` : createHash("sha1").update(await fs.readFile(start)).digest("hex");
         const key = createHash("sha1").update(`${base}|${shot.prompt}|${shot.seconds}`).digest("hex").slice(0, 20);
