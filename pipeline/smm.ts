@@ -123,7 +123,7 @@ const stockClip = async (url: string, start: number, seconds: number, dest: stri
   await fs.writeFile(raw, Buffer.from(await res.arrayBuffer()));
   await run("npx", [
     "remotion", "ffmpeg", "-y", "-loglevel", "error", "-ss", String(start), "-t", String(seconds), "-i", raw,
-    "-vf", "scale='min(1080,iw)':-2,fps=30", "-c:v", "libx264", "-crf", "18", "-preset", "veryfast", "-pix_fmt", "yuv420p", "-an", dest,
+    "-vf", "scale=1080:-2", "-r", "30", "-c:v", "libx264", "-crf", "18", "-preset", "veryfast", "-pix_fmt", "yuv420p", "-an", dest,
   ]);
   await fs.rm(raw, { force: true });
 };
