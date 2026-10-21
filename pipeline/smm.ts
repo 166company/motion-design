@@ -36,7 +36,7 @@ type Spec = {
   scenes: { plate: number; text?: string; label?: string; punch?: boolean; seconds: number; camera: string; focus: { x: number; y: number }; textAt: number; sfx: string }[];
   cta: { line1: string; line2: string }; mood: "upbeat" | "calm"; notes?: string;
   composition?: "SmmReel" | "BoxDrop" | "StoryReel"; assets?: Record<string, string>; texts?: Record<string, string>; lessons?: string[];
-  shots?: { from: "plate" | "previous"; plate?: number; prompt: string; seconds: number; text?: string; punch?: boolean; video?: { url: string; start: number; page?: string } }[];
+  shots?: { from: "plate" | "previous"; plate?: number; prompt: string; seconds: number; text?: string; punch?: boolean; video?: { url: string; start: number; page?: string }; still?: boolean }[];
 };
 type Brief = { id: number; attempt: number; spec: Spec };
 
@@ -214,7 +214,7 @@ const main = async () => {
         await download(spec.plates[i].url, p);
         plateFiles.push(p);
       }
-      const clips: { src: string; aspect: number; frames: number; text: string; punch: boolean; continues: boolean }[] = [];
+      const clips: { src: string; aspect: number; frames: number; text: string; punch: boolean; continues: boolean; still: boolean }[] = [];
       let lastClip: string | null = null;
       // Hazır kliplər run-lar arasında saxlanır (smm.yml → actions/cache): kvota ortada bitsə, növbəti
       // run yalnız çatışmayanları çəkir. Açar: başlanğıc kadr + prompt + müddət.
@@ -227,6 +227,17 @@ const main = async () => {
       let prevKey = "";
       for (let i = 0; i < spec.shots.length; i++) {
         const shot = spec.shots[i];
+        // Brend kadrı: postun öz loqolu fotosu, Remotion yumşaq hərəkətlə — model ona toxunmur.
+        if (shot.still) {
+          const plateIdx = Math.min(plateFiles.length - 1, Math.max(0, shot.plate ?? 0));
+          const meta = await sharp(plateFiles[plateIdx]).metadata();
+          log(`klip ${i + 1}/${spec.shots.length}: brend kadrı (postun fotosu)`);
+          clips.push({
+            src: `render/${id}/p${plateIdx + 1}.jpg`, aspect: (meta.width ?? 4) / (meta.height ?? 5), frames: Math.round(shot.seconds * FPS),
+            text: shot.text ?? "", punch: Boolean(shot.punch), continues: false, still: true,
+          });
+          continue;
+        }
         // Real stock video: no GPU, no quota — trim it and move on.
         if (shot.video?.url) {
           const real = path.join(dir, `clip${i + 1}-30.mp4`);
@@ -234,8 +245,8 @@ const main = async () => {
           await stockClip(shot.video.url, shot.video.start ?? 0, shot.seconds, real);
           const meta = await probe(real);
           clips.push({
-            src: `render/${id}/${path.basename(real)}`, aspect: meta.w / meta.h, frames: Math.max(30, Math.round(meta.sec * FPS)),
-            text: shot.text ?? "", punch: Boolean(shot.punch), continues: false,
+            src: `render/${id}/${path.basename(real)}`, aspect: meta.w / meta.h, frames: Math.max(30, Math.floor(meta.sec * FPS) - 2),
+            text: shot.text ?? "", punch: Boolean(shot.punch), continues: false, still: false,
           });
           lastClip = real;
           continue;
@@ -262,7 +273,7 @@ const main = async () => {
         const meta = await probe(smooth);
         clips.push({
           src: `render/${id}/${path.basename(smooth)}`, aspect: meta.w / meta.h, frames: Math.max(30, Math.round(meta.sec * FPS)),
-          text: shot.text ?? "", punch: Boolean(shot.punch), continues: shot.from === "previous",
+          text: shot.text ?? "", punch: Boolean(shot.punch), continues: shot.from === "previous", still: false,
         });
         lastClip = out;
       }

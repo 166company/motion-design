@@ -4,7 +4,7 @@
  * bir fasiləsiz səhnə kimi; ayrı fotolardan gələnlər yumşaq keçidlə. Yazı brend şrifti ilə üstdə,
  * punchline aşağıda zərbə ilə, sonda CTA.
  */
-import { AbsoluteFill, Audio, OffthreadVideo, Sequence, staticFile, interpolate, useCurrentFrame } from "remotion";
+import { AbsoluteFill, Audio, Img, OffthreadVideo, Sequence, staticFile, interpolate, useCurrentFrame } from "remotion";
 import { z } from "zod";
 import { colors, safeArea, canvas } from "../brand/theme";
 import { font } from "../brand/fonts";
@@ -23,6 +23,8 @@ const clipSchema = z.object({
   punch: z.boolean().default(false),
   /** true — əvvəlki klipin son kadrından davam edir: kəsiksiz birləşir */
   continues: z.boolean().default(false),
+  /** true — src şəkildir (postun loqolu fotosu): Remotion yumşaq hərəkətlə göstərir */
+  still: z.boolean().default(false),
 });
 export const storyReelSchema = z.object({
   clips: z.array(clipSchema).min(1),
@@ -53,10 +55,19 @@ const ClipView: React.FC<{ c: Clip }> = ({ c }) => {
     <AbsoluteFill style={{ backgroundColor: colors.graphite, opacity: fadeIn }}>
       {/* bulanıq fon — eyni klip, kart kəsilmir */}
       <AbsoluteFill style={{ overflow: "hidden" }}>
-        <OffthreadVideo src={staticFile(c.src)} muted style={{ position: "absolute", inset: -80, width: W + 160, height: H + 160, objectFit: "cover", filter: "blur(36px) brightness(0.5)" }} />
+        {c.still ? (
+          <Img src={staticFile(c.src)} style={{ position: "absolute", inset: -80, width: W + 160, height: H + 160, objectFit: "cover", filter: "blur(36px) brightness(0.5)" }} />
+        ) : (
+          <OffthreadVideo src={staticFile(c.src)} muted style={{ position: "absolute", inset: -80, width: W + 160, height: H + 160, objectFit: "cover", filter: "blur(36px) brightness(0.5)" }} />
+        )}
       </AbsoluteFill>
       <div style={{ position: "absolute", left: b.left, top: b.top, width: b.w, height: b.h, overflow: "hidden", borderRadius: b.w < W ? 24 : 0, boxShadow: "0 30px 60px rgba(0,0,0,0.5)" }}>
-        <OffthreadVideo src={staticFile(c.src)} muted style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+        {c.still ? (
+          // Brend kadrı: kart özü yumşaq "nəfəs alır" (yüngül yaxınlaşma + yuxarı sürüşmə), loqo kəskin qalır
+          <Img src={staticFile(c.src)} style={{ width: "100%", height: "100%", objectFit: "cover", transform: `scale(${interpolate(frame, [0, c.frames], [1.0, 1.07])}) translateY(${interpolate(frame, [0, c.frames], [10, -10])}px)` }} />
+        ) : (
+          <OffthreadVideo src={staticFile(c.src)} muted style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+        )}
       </div>
       {c.text && (
         <>
