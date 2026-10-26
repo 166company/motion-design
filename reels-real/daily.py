@@ -32,7 +32,12 @@ def load_json(p, default):
 
 def library():
     try:
-        cat = json.load(urllib.request.urlopen(RAW + "catalog.json", timeout=60))
+        cat = None
+        for i in range(4):
+            try:
+                cat = json.load(urllib.request.urlopen(RAW + "catalog.json", timeout=60)); break
+            except Exception as e:
+                if i == 3: raise
     except Exception as e:
         print("kataloq alınmadı, lokal kliplər:", e); cat = []
     review = load_json(A("clip_review.json"), {})
@@ -46,8 +51,13 @@ def library():
 def fetch(c):
     cache = A(".lib"); os.makedirs(cache, exist_ok=True)
     p = os.path.join(cache, os.path.basename(c["file"]))
-    if not os.path.exists(p):
-        urllib.request.urlretrieve(RAW + c["file"], p)
+    for i in range(4):
+        if os.path.exists(p) and os.path.getsize(p) > 10000: break
+        try:
+            urllib.request.urlretrieve(RAW + c["file"], p + ".part"); os.replace(p + ".part", p)
+        except Exception as e:
+            print("yükləmə təkrarı", c["file"], e)
+            if i == 3: raise
     return p
 
 def plan(day, hist):
