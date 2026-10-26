@@ -25,5 +25,43 @@
    "Biz daşıyaq"
   ],
   "caption_first_line": "Köçmək stress deyil! 📦🚚"
+ },
+ {
+  "style": "card",
+  "music": "assets/music/mixkit-443.mp3",
+  "clips": [
+   7210981,
+   7464134,
+   7463923,
+   7464106,
+   5054452,
+   6169105,
+   7347874
+  ],
+  "date": "2026-10-27",
+  "hook": "Qutu dağı?",
+  "lines": [
+   [
+    "Paketləmə",
+    "bizim işimiz."
+   ],
+   [
+    "Hər əşya",
+    "diqqətlə qorunur."
+   ],
+   [
+    "Qiymət",
+    "əvvəlcədən bəlli"
+   ]
+  ],
+  "final": [
+   "Siz dincəlin",
+   "biz yığaq"
+  ],
+  "cover": [
+   "Qutulamağa vaxt yox?",
+   "Biz paketləyək"
+  ],
+  "caption_first_line": "Qutulamaq yorucudur — bizə həvalə edin! 📦✂️"
  }
 ]
