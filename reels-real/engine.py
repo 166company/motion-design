@@ -69,6 +69,9 @@ def font(spec, size):
         _fc[k] = f
     return _fc[k]
 
+def az_upper(s):
+    return s.replace('i', 'İ').replace('ı', 'I').upper()
+
 def white_logo(logo):
     a = np.asarray(logo).copy()
     r, g, b = a[..., 0].astype(int), a[..., 1].astype(int), a[..., 2].astype(int)
@@ -164,10 +167,10 @@ def draw_caption(layer, shadow, style, t, t_in, t_out, lines):
     for txt, role in lines:
         if role == "sub":
             spec, size = st["font_sub"], int(base * 0.46)
-            txt = txt.upper() if st.get("sub_upper") or st["upper"] else txt
+            txt = az_upper(txt) if st.get("sub_upper") or st["upper"] else txt
         else:
             spec, size = st["font_main"], base
-            txt = txt.upper() if st["upper"] else txt
+            txt = az_upper(txt) if st["upper"] else txt
         f = font(spec, size)
         track = st.get("sub_track", 0) if role == "sub" else (4 if st["upper"] else 0)
         maxw = 940 if st["align"] == "center" else 900
@@ -213,7 +216,7 @@ def draw_caption(layer, shadow, style, t, t_in, t_out, lines):
             elif anim == "words":
                 wi = txt[:i + 1].count(" "); t0 = t_in + 0.1 + (wi + ci // 40) * 0.16; p = ss(seg(t, t0, t0 + 0.3)); dy = (1 - p) * size * 0.3
             else:
-                p = 1.0 if (cx - x + widths[i]) <= tw * reveal + 1 else 0.0; dy = 0
+                p = 1.0 if (cx - x + widths[i]) <= tw * reveal + track + 1 else 0.0; dy = 0
             qo = ss(seg(t, t_out + ci * 0.008, t_out + ci * 0.008 + 0.3))
             a = p * (1 - qo); dy -= qo * size * 0.2
             if a > 0.01 and c != " ":

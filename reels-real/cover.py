@@ -6,7 +6,7 @@ python3 cover.py <style> <clip.mp4> <saniyə> "<sətir1>" "<sətir2 (vurğulu)>"
 import subprocess, sys
 import numpy as np
 from PIL import Image, ImageDraw, ImageFilter
-from engine import A, STYLES, GRADES, font, ORANGE, INK, CREAM, W, H, round_mask
+from engine import az_upper, A, STYLES, GRADES, font, ORANGE, INK, CREAM, W, H, round_mask
 
 def grab(clip, t, grade):
     vf = f"scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,{GRADES[grade]}"
@@ -35,7 +35,7 @@ def make(style, clip, t, line1, line2, out):
     cw, ch = lw + 64, lh + 40; cx = (W - cw) // 2; cy = 330 if st["frame"] != "card" else 150
     d.rounded_rectangle([cx, cy, cx + cw, cy + ch], ch // 2, fill=(255, 255, 255, 240)); img.alpha_composite(lg, (cx + 32, cy + 20))
     up = st["upper"]
-    l1 = line1.upper() if up else line1; l2 = line2.upper() if up else line2
+    l1 = az_upper(line1) if up else line1; l2 = az_upper(line2) if up else line2
     spec = st["font_main"]; base = 128 if not up else 112
     if style == "condensed": base = 150
     if style == "card": base = 74

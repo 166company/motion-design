@@ -18,7 +18,7 @@ permissions:
 jobs:
   grow:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
         with:
@@ -28,7 +28,7 @@ jobs:
         run: |
           git clone --depth 1 -b reels-library "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" lib || mkdir -p lib
       - name: ffmpeg
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+        run: sudo apt-get install -y -qq --no-install-recommends ffmpeg || (sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends ffmpeg)
       - name: Yeni kliplər
         env:
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}

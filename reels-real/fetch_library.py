@@ -32,8 +32,18 @@ def best_file(v):
     files = [f for f in v.get("video_files", []) if f.get("height") and f.get("width") and f["height"] > f["width"]]
     exact = [f for f in files if f["width"] == 1080 and f["height"] == 1920]
     if exact: return exact[0]
-    big = sorted([f for f in files if f["height"] >= 1920], key=lambda f: f["height"])
-    return big[0] if big else None
+    ok = sorted([f for f in files if 1280 <= f["height"] <= 2560], key=lambda f: -f["height"])
+    return ok[0] if ok else None
+
+def download(url, path, limit=80_000_000):
+    req = urllib.request.Request(url, headers={"User-Agent": "yukaz-reels"})
+    with urllib.request.urlopen(req, timeout=60) as r, open(path, "wb") as f:
+        n = 0
+        while True:
+            b = r.read(1 << 20)
+            if not b: break
+            n += len(b); f.write(b)
+            if n > limit: raise RuntimeError("fayl çox böyükdür")
 
 def main():
     cat_path = os.path.join(LIB, "catalog.json")
@@ -67,9 +77,9 @@ def main():
             out = os.path.join(LIB, "clips", f"p{v['id']}.mp4")
             tmp = out + ".src.mp4"
             try:
-                urllib.request.urlretrieve(f["link"], tmp)
+                download(f["link"], tmp)
                 ss = 0.5 if v["duration"] > 9 else 0.0
-                subprocess.run(["ffmpeg", "-y", "-v", "error", "-ss", str(ss), "-i", tmp, "-t", "10", "-an",
+                subprocess.run(["timeout", "180", "ffmpeg", "-y", "-v", "error", "-ss", str(ss), "-i", tmp, "-t", "10", "-an",
                                 "-vf", "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30",
                                 "-c:v", "libx264", "-crf", "24", "-preset", "medium", "-pix_fmt", "yuv420p", out], check=True)
             except Exception as e:
@@ -80,7 +90,7 @@ def main():
                                        capture_output=True, text=True).stdout.strip() or 0)
             cat.append({"id": v["id"], "file": f"clips/p{v['id']}.mp4", "role": role, "query": q, "dur": round(dur, 2),
                         "author": (v.get("user") or {}).get("name", ""), "url": v.get("url", ""), "added": today, "review": "pending"})
-            have.add(v["id"]); added.append(v["id"]); print("added", v["id"], role, q)
+            have.add(v["id"]); added.append(v["id"]); print("added", v["id"], role, q, flush=True)
     # limit: ən köhnə (orijinal olmayan) klipləri çıxar
     while len(cat) > MAX_CLIPS:
         old = next((c for c in cat if not c.get("keep")), None)
