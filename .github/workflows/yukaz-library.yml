@@ -1,0 +1,45 @@
+name: Yük.az Reels kitabxanası
+
+# Yalnız yukaz-reels-real branch-ində yaşayır; main sisteminə toxunmur.
+# Gündəlik tapşırıq history.json-u push edəndə işə düşür və kitabxanaya yeni Pexels klipləri əlavə edir.
+on:
+  push:
+    branches: [yukaz-reels-real]
+    paths: ["reels-real/history.json", "reels-real/fetch_library.py", ".github/workflows/yukaz-library.yml"]
+  workflow_dispatch:
+
+concurrency:
+  group: yukaz-library
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  grow:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: yukaz-reels-real
+          path: src
+      - name: Kitabxananı götür
+        run: |
+          git clone --depth 1 -b reels-library "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" lib || mkdir -p lib
+      - name: ffmpeg
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - name: Yeni kliplər
+        env:
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+        run: python3 src/reels-real/fetch_library.py lib 6
+      - name: reels-library branch-ini yenilə (tək commit)
+        run: |
+          cd lib
+          rm -rf .git
+          git init -q -b reels-library
+          git config user.name "yukaz-library-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Kitabxana $(date -u +%F): $(python3 -c 'import json;print(len(json.load(open("catalog.json"))))') klip"
+          git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" reels-library
