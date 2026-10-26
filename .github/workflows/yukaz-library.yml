@@ -10,7 +10,7 @@ on:
 
 concurrency:
   group: yukaz-library
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 permissions:
   contents: write
@@ -19,21 +19,33 @@ jobs:
   grow:
     runs-on: ubuntu-latest
     timeout-minutes: 25
+    env:
+      REPO_URL: https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}
     steps:
       - uses: actions/checkout@v4
         with:
           ref: yukaz-reels-real
           path: src
       - name: Kitabxananı götür
+        timeout-minutes: 4
         run: |
-          git clone --depth 1 -b reels-library "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" lib || mkdir -p lib
+          echo "start $(date -u)" | tee -a $GITHUB_WORKSPACE/run.log
+          git clone --depth 1 -b reels-library "$REPO_URL" lib 2>&1 | tee -a $GITHUB_WORKSPACE/run.log || mkdir -p lib
+          echo "clone done $(date -u) $(ls lib | head)" | tee -a $GITHUB_WORKSPACE/run.log
       - name: ffmpeg
-        run: sudo apt-get install -y -qq --no-install-recommends ffmpeg || (sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends ffmpeg)
+        timeout-minutes: 6
+        run: |
+          (which ffmpeg || (sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends ffmpeg)) 2>&1 | tail -3 | tee -a $GITHUB_WORKSPACE/run.log
+          echo "ffmpeg $(date -u) $(ffmpeg -version | head -1)" | tee -a $GITHUB_WORKSPACE/run.log
       - name: Yeni kliplər
+        timeout-minutes: 12
         env:
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
-        run: python3 src/reels-real/fetch_library.py lib 6
+        run: |
+          echo "key length: ${#PEXELS_API_KEY}" | tee -a $GITHUB_WORKSPACE/run.log
+          python3 -u src/reels-real/fetch_library.py lib 6 2>&1 | tee -a $GITHUB_WORKSPACE/run.log
       - name: reels-library branch-ini yenilə (tək commit)
+        timeout-minutes: 4
         run: |
           cd lib
           rm -rf .git
@@ -42,4 +54,13 @@ jobs:
           git config user.email "actions@users.noreply.github.com"
           git add -A
           git commit -q -m "Kitabxana $(date -u +%F): $(python3 -c 'import json;print(len(json.load(open("catalog.json"))))') klip"
-          git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" reels-library
+          git push -q -f "$REPO_URL" reels-library 2>&1 | tee -a $GITHUB_WORKSPACE/run.log
+          echo "pushed $(date -u)" | tee -a $GITHUB_WORKSPACE/run.log
+      - name: Log
+        if: always()
+        timeout-minutes: 2
+        run: |
+          mkdir -p logrepo && cd logrepo && git init -q -b reels-library-log
+          cp $GITHUB_WORKSPACE/run.log . 2>/dev/null || echo "no log" > run.log
+          git config user.name "yukaz-library-bot"; git config user.email "actions@users.noreply.github.com"
+          git add -A && git commit -q -m "log $(date -u +%FT%T)" && git push -q -f "$REPO_URL" reels-library-log
