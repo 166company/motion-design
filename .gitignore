@@ -25,3 +25,6 @@ __pycache__/
 out/compare-*
 .clipcache/
 reels-real/out/
+reels-real/.lib/
+reels-real/review_sheet.png
+reels-real/__pycache__/

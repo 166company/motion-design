@@ -1,0 +1,189 @@
+[
+ {
+  "file": "assets/music/mixkit-1141.mp3",
+  "genre": "funk",
+  "bpm": 99.4,
+  "beat": 0.6037,
+  "starts": [
+   81.64,
+   56.73,
+   4.83
+  ]
+ },
+ {
+  "file": "assets/music/mixkit-1167.mp3",
+  "genre": "corporate",
+  "bpm": 103.4,
+  "beat": 0.5805,
+  "starts": [
+   16.11,
+   68.68,
+   32.11
+  ]
+ },
+ {
+  "file": "assets/music/mixkit-1183.mp3",
+  "genre": "dance-pop",
+  "bpm": 129.2,
+  "beat": 0.4644,
+  "starts": [
+   80.43,
+   12.93,
+   95.67
+  ]
+ },
+ {
+  "file": "assets/music/mixkit-443.mp3",
+  "genre": "chill",
+  "bpm": 117.5,
+  "beat": 0.5108,
+  "starts": [
+   16.3,
+   44.77,
+   69.17
+  ]
+ },
+ {
+  "file": "assets/music/mixkit-474.mp3",
+  "genre": "dance-pop",
+  "bpm": 123.0,
+  "beat": 0.4876,
+  "starts": [
+   63.27,
+   15.72,
+   82.59
+  ]
+ },
+ {
+  "file": "assets/music/mixkit-695.mp3",
+  "genre": "chill",
+  "bpm": 95.7,
+  "beat": 0.6269,
+  "starts": [
+   25.29,
+   109.92,
+   85.91
+  ]
+ },
+ {
+  "file": "assets/music/mixkit-744.mp3",
+  "genre": "deep-house",
+  "bpm": 123.0,
+  "beat": 0.4876,
+  "starts": [
+   14.47,
+   33.02,
+   70.57
+  ]
+ },
+ {
+  "file": "assets/music/mixkit-749.mp3",
+  "genre": "corporate",
+  "bpm": 107.7,
+  "beat": 0.5573,
+  "starts": [
+   92.09,
+   47.6,
+   6.59
+  ]
+ },
+ {
+  "file": "assets/music/mixkit-770.mp3",
+  "genre": "deep-house",
+  "bpm": 117.5,
+  "beat": 0.5108,
+  "starts": [
+   204.47,
+   240.88,
+   216.78
+  ]
+ },
+ {
+  "file": "assets/music/mixkit-837.mp3",
+  "genre": "disco",
+  "bpm": 117.5,
+  "beat": 0.5108,
+  "starts": [
+   7.64,
+   39.15,
+   64.13
+  ]
+ },
+ {
+  "file": "assets/music/mixkit-868.mp3",
+  "genre": "funk",
+  "bpm": 117.5,
+  "beat": 0.5108,
+  "starts": [
+   63.53,
+   4.02,
+   35.53
+  ]
+ },
+ {
+  "file": "assets/music/mixkit-872.mp3",
+  "genre": "funk",
+  "bpm": 112.3,
+  "beat": 0.5341,
+  "starts": [
+   53.08,
+   18.78,
+   6.46
+  ]
+ },
+ {
+  "file": "assets/music/mixkit-927.mp3",
+  "genre": "disco",
+  "bpm": 117.5,
+  "beat": 0.5108,
+  "starts": [
+   103.56,
+   89.58,
+   117.56
+  ]
+ },
+ {
+  "file": "assets/music/mixkit-935.mp3",
+  "genre": "disco",
+  "bpm": 123.0,
+  "beat": 0.4876,
+  "starts": [
+   22.59,
+   37.94,
+   49.95
+  ]
+ },
+ {
+  "file": "assets/music/mixkit-989.mp3",
+  "genre": "funk",
+  "bpm": 117.5,
+  "beat": 0.5108,
+  "starts": [
+   38.03,
+   66.06,
+   50.04
+  ]
+ },
+ {
+  "file": "assets/music/mixkit-dance-like-theres-no-tomorrow-1095.mp3",
+  "genre": "dance-pop",
+  "bpm": 123.0,
+  "beat": 0.4876,
+  "starts": [
+   14.33,
+   45.28,
+   75.74
+  ]
+ },
+ {
+  "file": "assets/music/mixkit-sounds-good-1077.mp3",
+  "genre": "funk",
+  "bpm": 117.5,
+  "beat": 0.5108,
+  "starts": [
+   43.56,
+   71.05,
+   56.05
+  ]
+ }
+]
