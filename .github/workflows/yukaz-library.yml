@@ -32,11 +32,6 @@ jobs:
           echo "start $(date -u)" | tee -a $GITHUB_WORKSPACE/run.log
           git clone --depth 1 -b reels-library "$REPO_URL" lib 2>&1 | tee -a $GITHUB_WORKSPACE/run.log || mkdir -p lib
           echo "clone done $(date -u) $(ls lib | head)" | tee -a $GITHUB_WORKSPACE/run.log
-      - name: ffmpeg
-        timeout-minutes: 6
-        run: |
-          (which ffmpeg || (sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends ffmpeg)) 2>&1 | tail -3 | tee -a $GITHUB_WORKSPACE/run.log
-          echo "ffmpeg $(date -u) $(ffmpeg -version | head -1)" | tee -a $GITHUB_WORKSPACE/run.log
       - name: Yeni kliplər
         timeout-minutes: 12
         env:
