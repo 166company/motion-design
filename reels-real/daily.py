@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Gündəlik Yük.az Reels: video + cover + caption → GitHub Release `daily-YYYY-MM-DD`.
+"""Gündəlik Yük.az Reels: video + cover + caption → GitHub `reels-drop` branch-i (YYYY-MM-DD/).
 
 python3 daily.py day.json [--no-release]
 
@@ -80,12 +80,17 @@ def main():
     size = os.path.getsize(video) / 1e6
     print(f"video {size:.1f} MB, cover, caption -> {out}")
     if "--no-release" in sys.argv: return
-    tag = f"daily-{date}"
-    subprocess.run(["gh", "release", "delete", tag, "-R", REPO, "-y", "--cleanup-tag"], capture_output=True)
-    subprocess.run(["gh", "release", "create", tag, video, cover, capt, "-R", REPO,
-                    "--target", "yukaz-reels-real", "--title", f"Yük.az Reels {date}",
-                    "--notes", f"Gündəlik Yük.az Reels — {date}. Google Drive-a Apps Script köçürür."], check=True)
-    print("release:", tag)
+    # GitHub-da "reels-drop" branch-i: hər gün yalnız son günün faylları (tək commit, force-push)
+    import shutil, tempfile
+    tmp = tempfile.mkdtemp()
+    g = lambda *a: subprocess.run(["git", "-C", tmp, *a], check=True)
+    g("init", "-q", "-b", "reels-drop"); g("remote", "add", "origin", f"https://github.com/{REPO}")
+    os.makedirs(os.path.join(tmp, date))
+    for f in (video, cover, capt): shutil.copy(f, os.path.join(tmp, date))
+    open(os.path.join(tmp, "README.md"), "w").write("# Yük.az gündəlik Reels çıxışı\nHər gün yenidən yazılır. Drive-a Apps Script köçürür.\n")
+    g("add", "."); g("-c", "user.name=Claude", "-c", "user.email=noreply@anthropic.com", "commit", "-q", "-m", f"Reels {date}")
+    g("push", "-f", "origin", "reels-drop")
+    print("pushed: reels-drop/" + date)
 
 if __name__ == "__main__":
     main()
