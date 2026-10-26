@@ -57,7 +57,7 @@ def main():
     tries = 0
     while len(added) < WANT and tries < 12:
         tries += 1
-        role = plan[(tries - 1) % len(plan)] if tries <= 3 else rnd.choice(list(QUERIES))
+        role = plan[(tries - 1) % len(plan)] if tries <= 3 else rnd.choice(["action", "action", "hook", "ending"])
         q = rnd.choice(QUERIES[role])
         page = rnd.randint(1, 4)
         try:
@@ -65,8 +65,9 @@ def main():
         except Exception as e:
             print("api error", q, e); continue
         vids = res.get("videos", []); rnd.shuffle(vids)
+        per_q = 0
         for v in vids:
-            if len(added) >= WANT: break
+            if len(added) >= WANT or per_q >= 2: break
             if v["id"] in have or not (5 <= v.get("duration", 0) <= 20): continue
             url = (v.get("url") or "").lower()
             if any(b in url for b in BAD_WORDS): continue
@@ -82,7 +83,7 @@ def main():
             dur = float(v["duration"])
             cat.append({"id": v["id"], "file": f"clips/p{v['id']}.mp4", "role": role, "query": q, "dur": round(dur, 2),
                         "author": (v.get("user") or {}).get("name", ""), "url": v.get("url", ""), "added": today, "review": "pending"})
-            have.add(v["id"]); added.append(v["id"]); print("added", v["id"], role, q, flush=True)
+            have.add(v["id"]); added.append(v["id"]); per_q += 1; print("added", v["id"], role, q, flush=True)
     # limit: ən köhnə (orijinal olmayan) klipləri çıxar
     while len(cat) > MAX_CLIPS:
         old = next((c for c in cat if not c.get("keep")), None)
