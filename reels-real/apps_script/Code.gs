@@ -21,8 +21,13 @@ function gh_(path) {
 }
 
 function rootFolder_() {
-  const it = DriveApp.getRootFolder().getFoldersByName(ROOT_NAME);
-  return it.hasNext() ? it.next() : DriveApp.getRootFolder().createFolder(ROOT_NAME);
+  // drive.file icazəsi: yalnız bu skriptin yaratdığı qovluqlarla işləyir
+  const p = PropertiesService.getScriptProperties();
+  const id = p.getProperty('ROOT_ID');
+  if (id) { try { return DriveApp.getFolderById(id); } catch (e) {} }
+  const f = DriveApp.createFolder(ROOT_NAME);
+  p.setProperty('ROOT_ID', f.getId());
+  return f;
 }
 
 function syncReels() {
