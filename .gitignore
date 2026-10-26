@@ -24,3 +24,4 @@ public/render/**/*.png
 __pycache__/
 out/compare-*
 .clipcache/
+reels-real/out/
