@@ -100,7 +100,9 @@ def main():
         for v in vids:
             if len(added) >= WANT or per_q >= 2: break
             if v["id"] in have or not (5 <= v.get("duration", 0) <= 20): continue
-            url = ((v.get("url") or "") + " " + v.get("tags", "")).lower()
+            tags = v.get("tags") or ""
+            tags = " ".join(map(str, tags)) if isinstance(tags, list) else str(tags)
+            url = ((v.get("url") or "") + " " + tags).lower()
             if re.search(r"\b(" + "|".join(BAD_WORDS) + r")\b", url): continue
             f = v.get("_file") or best_file(v)
             if not f: continue
