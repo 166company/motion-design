@@ -22,9 +22,10 @@ A = lambda *p: os.path.join(HERE, *p)
 REPO = "166company/motion-design"
 RAW = f"https://raw.githubusercontent.com/{REPO}/reels-library/"
 STYLES = ["bold_bar", "editorial", "condensed", "card", "mono", "split"]
-MOODS = {"bold_bar": ["funk", "disco", "dance-pop"], "editorial": ["chill", "corporate", "deep-house"],
-         "condensed": ["dance-pop", "funk", "deep-house"], "card": ["corporate", "chill", "deep-house"],
-         "mono": ["deep-house", "funk", "disco"], "split": ["disco", "dance-pop", "funk"]}
+MOODS = {"bold_bar": ["funk", "disco", "dance-pop", "upbeat"], "editorial": ["chill", "corporate", "deep-house", "cinematic"],
+         "condensed": ["dance-pop", "funk", "deep-house", "hip-hop"], "card": ["corporate", "chill", "deep-house", "upbeat"],
+         "mono": ["deep-house", "funk", "disco", "hip-hop"], "split": ["disco", "dance-pop", "funk", "upbeat"]}
+CLIP_DAYS, MUSIC_DAYS = 10, 14   # bu qədər gün ərzində işlənmiş klip/musiqi təkrar seçilmir (çatmasa ehtiyat)
 
 def load_json(p, default):
     try: return json.load(open(p))
@@ -48,6 +49,14 @@ def library():
         c["review"] = r; out.append(c)
     return out
 
+def lib_music():
+    """reels-library/music.json — GitHub Actions hər gün yeni Mixkit trekləri əlavə edir."""
+    try:
+        cat = json.load(urllib.request.urlopen(RAW + "music.json", timeout=60))
+    except Exception as e:
+        print("musiqi kataloqu yoxdur:", e); return []
+    return [dict(m, lib=True) for m in cat if m.get("starts")]
+
 def fetch(c):
     cache = A(".lib"); os.makedirs(cache, exist_ok=True)
     p = os.path.join(cache, os.path.basename(c["file"]))
@@ -64,11 +73,13 @@ def plan(day, hist):
     rnd = random.Random(day["date"] + "x")
     recent = hist[-5:]
     style = day.get("style") or rnd.choice([s for s in STYLES if s not in [h.get("style") for h in recent[-4:]]] or STYLES)
-    used = set(i for h in hist[-3:] for i in h.get("clips", []))
+    used = set(i for h in hist[-CLIP_DAYS:] for i in h.get("clips", []))
+    used_short = set(i for h in hist[-3:] for i in h.get("clips", []))
     lib = library()
     def pick(role, n):
         pool = [c for c in lib if c["role"] == role and c["id"] not in used and c["review"] == "ok"]
         pool += [c for c in lib if c["role"] == role and c["id"] not in used and c["review"] != "ok"]
+        if len(pool) < n: pool += [c for c in lib if c["role"] == role and c not in pool and c["id"] not in used_short]
         if len(pool) < n: pool += [c for c in lib if c["role"] == role and c not in pool]
         rnd.shuffle(pool); return pool[:n]
     hook = pick("hook", 1); acts = pick("action", 10 if style == "split" else 5); end = pick("ending", 1)
@@ -89,11 +100,15 @@ def plan(day, hist):
         caps.append([starts[a] + 0.3, starts[b] + segs[b][2] - 0.4, rows])
     fi = len(segs) - 1
     caps.append([starts[fi] + 0.4, starts[fi] + segs[fi][2] - 0.4, [[day["final"][0], "main"], [day["final"][1], "accent"]]])
-    music = load_json(A("music.json"), [])
-    used_m = [h.get("music") for h in hist[-4:]]
-    cand = [m for m in music if m["genre"] in MOODS[style] and m["file"] not in used_m] or [m for m in music if m["file"] not in used_m] or music
-    m = rnd.choice(cand)
-    cfg = {"style": style, "music": {"file": m["file"], "start": rnd.choice(m["starts"]), "beat": m["beat"]},
+    music = load_json(A("music.json"), []) + lib_music()
+    used_m = [h.get("music") for h in hist[-MUSIC_DAYS:]]
+    cand = ([m for m in music if m["genre"] in MOODS[style] and m["file"] not in used_m]
+            or [m for m in music if m["file"] not in used_m]
+            or [m for m in music if m["file"] not in used_m[-4:]] or music)
+    fresh = [m for m in cand if m.get("lib")]
+    m = rnd.choice(fresh if fresh and rnd.random() < 0.6 else cand)   # yeni treklərə bir az üstünlük
+    mfile = fetch(m) if m.get("lib") else m["file"]
+    cfg = {"style": style, "music": {"file": mfile, "start": rnd.choice(m["starts"]), "beat": m["beat"]},
            "segments": segs, "captions": caps, "end_beats": 8, "phone": "050 209 62 99", "site": "yuk.az",
            "price_line": "Bakı daxili 20 AZN-dən", "tagline": "Yükdaşıma xidməti"}
     cov = rnd.choice(hook + acts[:5])

@@ -1,32 +1,56 @@
 #!/usr/bin/env python3
-"""Pexels-dən yeni şaquli kliplər yükləyib kitabxananı genişləndirir (GitHub Actions-da işləyir).
+"""Pexels + Pixabay-dən yeni şaquli kliplər yükləyib kitabxananı genişləndirir (GitHub Actions-da işləyir).
 
 Kitabxana `reels-library` branch-indədir: clips/*.mp4 + catalog.json.
-İstifadə:  PEXELS_API_KEY=... python3 fetch_library.py <library_dir> [neçə_klip]
+İstifadə:  PEXELS_API_KEY=... PIXABAY_API_KEY=... python3 fetch_library.py <library_dir> [neçə_klip]
+Pixabay klipləri "x<id>" id ilə saxlanır (Pexels id-ləri ilə toqquşmasın).
 """
-import datetime, json, os, random, sys, urllib.parse, urllib.request
+import datetime, json, os, random, re, sys, urllib.parse, urllib.request
 
 LIB = sys.argv[1]
 WANT = int(sys.argv[2]) if len(sys.argv) > 2 else 6
-MAX_CLIPS = 150
-KEY = os.environ["PEXELS_API_KEY"]
+MAX_CLIPS = 220
+KEY = os.environ.get("PEXELS_API_KEY", "")
+PXB = os.environ.get("PIXABAY_API_KEY", "")
 
 # sorğu → rol (hook = açılış/qutulama, action = daşıma/yükləmə, ending = yeni ev)
 QUERIES = {
     "hook": ["packing boxes", "taping cardboard box", "moving boxes stack", "wrapping furniture",
-             "bubble wrap packing", "labeling moving boxes", "man holding cardboard box", "packing dishes box"],
+             "bubble wrap packing", "labeling moving boxes", "man holding cardboard box", "packing dishes box",
+             "stretch film wrapping", "packing books box", "folding clothes box", "tape dispenser box",
+             "messy room boxes", "woman packing boxes", "packing kitchen", "closing cardboard box"],
     "action": ["movers carrying boxes", "carrying sofa", "moving furniture", "loading van boxes",
                "delivery van boxes", "hand truck boxes", "moving truck loading", "men carrying couch",
                "carrying boxes stairs", "furniture delivery", "van driving city", "moving day",
-               "office moving boxes", "carrying mattress", "loading truck", "workers carrying furniture"],
+               "office moving boxes", "carrying mattress", "loading truck", "workers carrying furniture",
+               "carrying piano", "carrying wardrobe", "disassembling furniture", "assembling furniture",
+               "truck highway", "cargo van road", "office chairs carrying", "carrying monitor office",
+               "elevator boxes", "warehouse boxes worker", "city traffic night", "truck driving night",
+               "carrying table", "dolly cart boxes"],
     "ending": ["family new home", "couple moving into new apartment", "unpacking boxes new home",
-               "keys new house", "happy couple boxes", "new apartment empty room", "family carrying boxes home"],
+               "keys new house", "happy couple boxes", "new apartment empty room", "family carrying boxes home",
+               "new office team", "couple relaxing new home", "opening door apartment", "family sofa new home"],
 }
-BAD_WORDS = ["fedex", "ups", "dhl", "amazon", "usps", "christmas", "halloween"]
+BAD_WORDS = ["fedex", "ups", "dhl", "amazon", "usps", "christmas", "halloween", "santa", "covid", "mask", "coronavirus"]
 
 def api(url):
     req = urllib.request.Request(url, headers={"Authorization": KEY, "User-Agent": "yukaz-reels"})
     return json.load(urllib.request.urlopen(req, timeout=60))
+
+def pixabay(q, page):
+    """Pixabay video axtarışı → Pexels-ə bənzər sadə siyahı (yalnız şaquli fayllar)."""
+    url = (f"https://pixabay.com/api/videos/?key={PXB}&q={urllib.parse.quote(q)}&per_page=50&page={page}"
+           f"&safesearch=true&video_type=film")
+    req = urllib.request.Request(url, headers={"User-Agent": "yukaz-reels"})
+    res = json.load(urllib.request.urlopen(req, timeout=60))
+    out = []
+    for h in res.get("hits", []):
+        fs = [f for f in (h.get("videos") or {}).values() if f.get("url") and f.get("height", 0) > f.get("width", 0) >= 720]
+        if not fs: continue
+        f = min(fs, key=lambda f: abs(f["width"] - 1080))
+        out.append({"id": f"x{h['id']}", "duration": h.get("duration", 0), "url": h.get("pageURL", ""),
+                    "tags": h.get("tags", ""), "user": {"name": h.get("user", "")}, "_file": f})
+    return out
 
 def best_file(v):
     files = [f for f in v.get("video_files", []) if f.get("height") and f.get("width") and f["height"] > f["width"]]
@@ -55,35 +79,43 @@ def main():
     plan = sorted(QUERIES, key=lambda r: counts[r] / {"hook": 0.25, "action": 0.55, "ending": 0.2}[r])
     added = []
     tries = 0
-    while len(added) < WANT and tries < 12:
+    sources = [s for s, k in (("pexels", KEY), ("pixabay", PXB)) if k]
+    if not sources: sys.exit("API açarı yoxdur (PEXELS_API_KEY / PIXABAY_API_KEY)")
+    while len(added) < WANT and tries < 30:
         tries += 1
         role = plan[(tries - 1) % len(plan)] if tries <= 3 else rnd.choice(["action", "action", "hook", "ending"])
         q = rnd.choice(QUERIES[role])
-        page = rnd.randint(1, 4)
+        src = sources[tries % len(sources)]
         try:
-            res = api(f"https://api.pexels.com/videos/search?query={urllib.parse.quote(q)}&orientation=portrait&size=large&per_page=20&page={page}")
+            if src == "pexels":
+                res = api(f"https://api.pexels.com/videos/search?query={urllib.parse.quote(q)}&orientation=portrait&size=large&per_page=20&page={rnd.randint(1, 5)}")
+                vids = res.get("videos", [])
+            else:
+                vids = pixabay(q, rnd.randint(1, 2))
         except Exception as e:
-            print("api error", q, e); continue
-        vids = res.get("videos", []); rnd.shuffle(vids)
+            print("api error", src, q, e); continue
+        print(src, q, len(vids), "nəticə", flush=True)
+        rnd.shuffle(vids)
         per_q = 0
         for v in vids:
             if len(added) >= WANT or per_q >= 2: break
             if v["id"] in have or not (5 <= v.get("duration", 0) <= 20): continue
-            url = (v.get("url") or "").lower()
-            if any(b in url for b in BAD_WORDS): continue
-            f = best_file(v)
+            url = ((v.get("url") or "") + " " + v.get("tags", "")).lower()
+            if re.search(r"\b(" + "|".join(BAD_WORDS) + r")\b", url): continue
+            f = v.get("_file") or best_file(v)
             if not f: continue
-            out = os.path.join(LIB, "clips", f"p{v['id']}.mp4")
+            fname = f"{v['id']}.mp4" if str(v["id"]).startswith("x") else f"p{v['id']}.mp4"
+            out = os.path.join(LIB, "clips", fname)
             try:
-                download(f["link"], out, limit=18_000_000)   # ffmpeg-siz: 1080x1920 orijinal fayl
+                download(f.get("link") or f["url"], out, limit=18_000_000)
             except Exception as e:
                 print("skip", v["id"], e, flush=True)
                 if os.path.exists(out): os.remove(out)
                 continue
             dur = float(v["duration"])
-            cat.append({"id": v["id"], "file": f"clips/p{v['id']}.mp4", "role": role, "query": q, "dur": round(dur, 2),
+            cat.append({"id": v["id"], "file": f"clips/{fname}", "src": src, "role": role, "query": q, "dur": round(dur, 2),
                         "author": (v.get("user") or {}).get("name", ""), "url": v.get("url", ""), "added": today, "review": "pending"})
-            have.add(v["id"]); added.append(v["id"]); per_q += 1; print("added", v["id"], role, q, flush=True)
+            have.add(v["id"]); added.append(v["id"]); per_q += 1; print("added", src, v["id"], role, q, flush=True)
     # limit: ən köhnə (orijinal olmayan) klipləri çıxar
     while len(cat) > MAX_CLIPS:
         old = next((c for c in cat if not c.get("keep")), None)

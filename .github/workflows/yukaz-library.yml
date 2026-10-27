@@ -5,7 +5,7 @@ name: Yük.az Reels kitabxanası
 on:
   push:
     branches: [yukaz-reels-real]
-    paths: ["reels-real/history.json", "reels-real/fetch_library.py", ".github/workflows/yukaz-library.yml"]
+    paths: ["reels-real/history.json", "reels-real/fetch_library.py", "reels-real/fetch_music.py", ".github/workflows/yukaz-library.yml"]
   workflow_dispatch:
 
 concurrency:
@@ -18,7 +18,7 @@ permissions:
 jobs:
   grow:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 40
     env:
       REPO_URL: https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}
     steps:
@@ -27,7 +27,7 @@ jobs:
           ref: yukaz-reels-real
           path: src
       - name: Kitabxananı götür
-        timeout-minutes: 4
+        timeout-minutes: 8
         run: |
           echo "start $(date -u)" | tee -a $GITHUB_WORKSPACE/run.log
           git clone --depth 1 -b reels-library "$REPO_URL" lib 2>&1 | tee -a $GITHUB_WORKSPACE/run.log || mkdir -p lib
@@ -36,9 +36,17 @@ jobs:
         timeout-minutes: 12
         env:
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
         run: |
-          echo "key length: ${#PEXELS_API_KEY}" | tee -a $GITHUB_WORKSPACE/run.log
-          python3 -u src/reels-real/fetch_library.py lib 6 2>&1 | tee -a $GITHUB_WORKSPACE/run.log
+          echo "pexels key: ${#PEXELS_API_KEY}, pixabay key: ${#PIXABAY_API_KEY}" | tee -a $GITHUB_WORKSPACE/run.log
+          python3 -u src/reels-real/fetch_library.py lib 12 2>&1 | tee -a $GITHUB_WORKSPACE/run.log
+      - name: Yeni musiqi (Mixkit)
+        timeout-minutes: 10
+        continue-on-error: true
+        run: |
+          pip install -q librosa 2>&1 | tail -1
+          python3 -c "import json;print(json.dumps([m['file'].split('-')[-1].split('.')[0] for m in json.load(open('src/reels-real/music.json'))]))" > local_music.json
+          python3 -u src/reels-real/fetch_music.py lib 4 local_music.json 2>&1 | tee -a $GITHUB_WORKSPACE/run.log
       - name: reels-library branch-ini yenilə (tək commit)
         timeout-minutes: 4
         run: |
@@ -48,7 +56,7 @@ jobs:
           git config user.name "yukaz-library-bot"
           git config user.email "actions@users.noreply.github.com"
           git add -A
-          git commit -q -m "Kitabxana $(date -u +%F): $(python3 -c 'import json;print(len(json.load(open("catalog.json"))))') klip"
+          git commit -q -m "Kitabxana $(date -u +%F): $(python3 -c 'import json,os;print(len(json.load(open("catalog.json"))), "klip,", len(json.load(open("music.json"))) if os.path.exists("music.json") else 0, "trek")')"
           git push -q -f "$REPO_URL" reels-library 2>&1 | tee -a $GITHUB_WORKSPACE/run.log
           echo "pushed $(date -u)" | tee -a $GITHUB_WORKSPACE/run.log
       - name: Log
