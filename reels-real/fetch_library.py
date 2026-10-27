@@ -54,6 +54,10 @@ def pixabay(q, page):
                     "tags": h.get("tags", ""), "user": {"name": h.get("user", "")}, "_file": f})
     return out
 
+COVERR_Q = {"hook": ["boxes", "packing", "cardboard", "moving", "tape"],
+            "action": ["moving", "truck", "van", "delivery", "furniture", "carrying", "warehouse", "highway", "city night"],
+            "ending": ["new home", "family home", "couple apartment", "keys", "living room", "office team"]}
+
 def coverr_req(path, method="GET"):
     """Coverr API (api.coverr.co). Auth üsulu sənəddə dəqiq deyil — Bearer header, sonra api_key query yoxlanır."""
     modes = CVR_AUTH or ["bearer", "query"]
@@ -75,8 +79,11 @@ def coverr_req(path, method="GET"):
 
 def coverr(q, page):
     res = coverr_req(f"/videos?query={urllib.parse.quote(q)}&page={page}&page_size=40&urls=true")
-    out = []
-    for h in res.get("hits", []):
+    out = []; hits = res.get("hits", [])
+    print(f"  coverr '{q}': {len(hits)} hit, {sum(1 for h in hits if h.get('is_vertical'))} şaquli, nümunə:",
+          {k: hits[0].get(k) for k in ("is_vertical", "aspect_ratio", "max_width", "max_height")} if hits else None,
+          "urls:", list((hits[0].get("urls") or {}).keys()) if hits else None, flush=True)
+    for h in hits:
         u = (h.get("urls") or {})
         link = u.get("mp4_download") or u.get("mp4")
         if not h.get("is_vertical") or not link or (h.get("max_width") or 0) < 720: continue
@@ -124,8 +131,8 @@ def main():
                 vids = res.get("videos", [])
             elif src == "pixabay":
                 vids = pixabay(q, rnd.randint(1, 2))
-            else:
-                vids = coverr(q, rnd.randint(0, 1))
+            else:   # Coverr kitabxanası kiçikdir — sadə sözlər daha çox nəticə verir
+                q = rnd.choice(COVERR_Q[role]); vids = coverr(q, 0)
         except Exception as e:
             print("api error", src, q, e); continue
         print(src, q, len(vids), "nəticə", flush=True)
