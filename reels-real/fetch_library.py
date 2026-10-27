@@ -96,6 +96,17 @@ def best_file(v):
     exact = [f for f in files if f["width"] == 1080 and f["height"] == 1920]
     return exact[0] if exact else None
 
+def too_small(path, min_w=1000):
+    """ffprobe varsa, faktiki eni yoxla (Coverr kimi mənbələr aşağı keyfiyyətli fayl verə bilir)."""
+    import shutil, subprocess
+    if not shutil.which("ffprobe"): return False
+    try:
+        w = subprocess.run(["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries", "stream=width",
+                            "-of", "csv=p=0", path], capture_output=True, text=True, timeout=30).stdout.strip()
+        return int(w.split()[0]) < min_w
+    except Exception:
+        return False
+
 def download(url, path, limit=80_000_000):
     req = urllib.request.Request(url, headers={"User-Agent": "yukaz-reels"})
     with urllib.request.urlopen(req, timeout=60) as r, open(path, "wb") as f:
@@ -155,9 +166,13 @@ def main():
                 print("skip", v["id"], e, flush=True)
                 if os.path.exists(out): os.remove(out)
                 continue
+            if too_small(out):
+                print("skip (aşağı keyfiyyət)", src, v["id"], flush=True); os.remove(out); have.add(v["id"]); continue
             if v.get("_cid"):   # Coverr qaydası: hər yükləmə qeyd olunmalıdır
-                try: coverr_req(f"/videos/{v['_cid']}/stats/downloads", method="PATCH")
-                except Exception as e: print("coverr stats", e, flush=True)
+                for meth, path in (("PATCH", f"/videos/{v['_cid']}/stats/downloads"), ("POST", f"/videos/{v['_cid']}/stats/downloads"),
+                                   ("PATCH", f"/videos/{v['_cid']}/stats/download")):
+                    try: coverr_req(path, method=meth); print("coverr stats ok", meth, path, flush=True); break
+                    except Exception as e: print("coverr stats", meth, path, e, flush=True)
             dur = float(v["duration"])
             cat.append({"id": v["id"], "file": f"clips/{fname}", "src": src, "role": role, "query": q, "dur": round(dur, 2),
                         "author": (v.get("user") or {}).get("name", ""), "url": v.get("url", ""), "added": today, "review": "pending"})
