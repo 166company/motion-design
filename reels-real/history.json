@@ -63,5 +63,43 @@
    "Biz paketləyək"
   ],
   "caption_first_line": "Qutulamaq yorucudur — bizə həvalə edin! 📦✂️"
+ },
+ {
+  "style": "condensed",
+  "music": "music/mixkit-1140.mp3",
+  "clips": [
+   7463914,
+   "x180970",
+   9141890,
+   "x223892",
+   5054375,
+   12433195,
+   7652267
+  ],
+  "date": "2026-10-28",
+  "hook": "Ofis köçür?",
+  "lines": [
+   [
+    "Ofis köçü",
+    "iş dayanmadan."
+   ],
+   [
+    "Kompyuter",
+    "qorunaraq daşınır"
+   ],
+   [
+    "Saatı siz",
+    "seçirsiniz"
+   ]
+  ],
+  "final": [
+   "Sabah",
+   "yeni ofis"
+  ],
+  "cover": [
+   "Ofis köçü planda?",
+   "İş dayanmasın"
+  ],
+  "caption_first_line": "Ofis köçü işinizi dayandırmasın! 🏢🚚"
  }
 ]
