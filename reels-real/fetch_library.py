@@ -5,13 +5,15 @@ Kitabxana `reels-library` branch-indədir: clips/*.mp4 + catalog.json.
 İstifadə:  PEXELS_API_KEY=... PIXABAY_API_KEY=... python3 fetch_library.py <library_dir> [neçə_klip]
 Pixabay klipləri "x<id>" id ilə saxlanır (Pexels id-ləri ilə toqquşmasın).
 """
-import datetime, json, os, random, re, sys, urllib.parse, urllib.request
+import datetime, json, os, random, re, sys, urllib.error, urllib.parse, urllib.request
 
 LIB = sys.argv[1]
 WANT = int(sys.argv[2]) if len(sys.argv) > 2 else 6
 MAX_CLIPS = 220
 KEY = os.environ.get("PEXELS_API_KEY", "")
 PXB = os.environ.get("PIXABAY_API_KEY", "")
+CVR = os.environ.get("COVERR_API_KEY", "")
+CVR_AUTH = []   # işləyən auth üsulu (header və ya query) yadda saxlanılır
 
 # sorğu → rol (hook = açılış/qutulama, action = daşıma/yükləmə, ending = yeni ev)
 QUERIES = {
@@ -52,6 +54,36 @@ def pixabay(q, page):
                     "tags": h.get("tags", ""), "user": {"name": h.get("user", "")}, "_file": f})
     return out
 
+def coverr_req(path, method="GET"):
+    """Coverr API (api.coverr.co). Auth üsulu sənəddə dəqiq deyil — Bearer header, sonra api_key query yoxlanır."""
+    modes = CVR_AUTH or ["bearer", "query"]
+    err = None
+    for m in modes:
+        url = f"https://api.coverr.co{path}"
+        h = {"User-Agent": "yukaz-reels", "Accept": "application/json"}
+        if m == "bearer": h["Authorization"] = f"Bearer {CVR}"
+        else: url += ("&" if "?" in url else "?") + f"api_key={CVR}"
+        try:
+            r = urllib.request.urlopen(urllib.request.Request(url, headers=h, method=method), timeout=60)
+            if not CVR_AUTH: CVR_AUTH.append(m); print("coverr auth:", m, flush=True)
+            body = r.read()
+            return json.loads(body) if body else None
+        except urllib.error.HTTPError as e:
+            err = e
+            if e.code not in (401, 403): raise
+    raise err
+
+def coverr(q, page):
+    res = coverr_req(f"/videos?query={urllib.parse.quote(q)}&page={page}&page_size=40&urls=true")
+    out = []
+    for h in res.get("hits", []):
+        u = (h.get("urls") or {})
+        link = u.get("mp4_download") or u.get("mp4")
+        if not h.get("is_vertical") or not link or (h.get("max_width") or 0) < 720: continue
+        out.append({"id": f"c{h['id']}", "duration": float(h.get("duration") or 0), "url": f"https://coverr.co/videos/{h['id']}",
+                    "tags": h.get("tags") or "", "user": {"name": "Coverr"}, "_file": {"url": link}, "_cid": h["id"]})
+    return out
+
 def best_file(v):
     files = [f for f in v.get("video_files", []) if f.get("height") and f.get("width") and f["height"] > f["width"]]
     exact = [f for f in files if f["width"] == 1080 and f["height"] == 1920]
@@ -79,8 +111,8 @@ def main():
     plan = sorted(QUERIES, key=lambda r: counts[r] / {"hook": 0.25, "action": 0.55, "ending": 0.2}[r])
     added = []
     tries = 0
-    sources = [s for s, k in (("pexels", KEY), ("pixabay", PXB)) if k]
-    if not sources: sys.exit("API açarı yoxdur (PEXELS_API_KEY / PIXABAY_API_KEY)")
+    sources = [s for s, k in (("pexels", KEY), ("pixabay", PXB), ("coverr", CVR)) if k]
+    if not sources: sys.exit("API açarı yoxdur (PEXELS_API_KEY / PIXABAY_API_KEY / COVERR_API_KEY)")
     while len(added) < WANT and tries < 30:
         tries += 1
         role = plan[(tries - 1) % len(plan)] if tries <= 3 else rnd.choice(["action", "action", "hook", "ending"])
@@ -90,8 +122,10 @@ def main():
             if src == "pexels":
                 res = api(f"https://api.pexels.com/videos/search?query={urllib.parse.quote(q)}&orientation=portrait&size=large&per_page=20&page={rnd.randint(1, 5)}")
                 vids = res.get("videos", [])
-            else:
+            elif src == "pixabay":
                 vids = pixabay(q, rnd.randint(1, 2))
+            else:
+                vids = coverr(q, rnd.randint(0, 1))
         except Exception as e:
             print("api error", src, q, e); continue
         print(src, q, len(vids), "nəticə", flush=True)
@@ -106,14 +140,17 @@ def main():
             if re.search(r"\b(" + "|".join(BAD_WORDS) + r")\b", url): continue
             f = v.get("_file") or best_file(v)
             if not f: continue
-            fname = f"{v['id']}.mp4" if str(v["id"]).startswith("x") else f"p{v['id']}.mp4"
+            fname = f"{v['id']}.mp4" if str(v["id"])[0] in "xc" else f"p{v['id']}.mp4"
             out = os.path.join(LIB, "clips", fname)
             try:
-                download(f.get("link") or f["url"], out, limit=18_000_000)
+                download(f.get("link") or f["url"], out, limit=30_000_000 if v.get("_cid") else 18_000_000)
             except Exception as e:
                 print("skip", v["id"], e, flush=True)
                 if os.path.exists(out): os.remove(out)
                 continue
+            if v.get("_cid"):   # Coverr qaydası: hər yükləmə qeyd olunmalıdır
+                try: coverr_req(f"/videos/{v['_cid']}/stats/downloads", method="PATCH")
+                except Exception as e: print("coverr stats", e, flush=True)
             dur = float(v["duration"])
             cat.append({"id": v["id"], "file": f"clips/{fname}", "src": src, "role": role, "query": q, "dur": round(dur, 2),
                         "author": (v.get("user") or {}).get("name", ""), "url": v.get("url", ""), "added": today, "review": "pending"})
