@@ -12,7 +12,9 @@ WANT = int(sys.argv[2]) if len(sys.argv) > 2 else 6
 MAX_CLIPS = 220
 KEY = os.environ.get("PEXELS_API_KEY", "")
 PXB = os.environ.get("PIXABAY_API_KEY", "")
-CVR = os.environ.get("COVERR_API_KEY", "")
+# Coverr: pulsuz (Demo) açar yalnız ~606x1080 fayl verir və şaquli nəticələr azdır/uyğunsuzdur → söndürülüb.
+# Production açar (Pro abunə) alınsa, COVERR_ENABLE=1 ilə yandırmaq olar.
+CVR = os.environ.get("COVERR_API_KEY", "") if os.environ.get("COVERR_ENABLE") == "1" else ""
 CVR_AUTH = []   # işləyən auth üsulu (header və ya query) yadda saxlanılır
 
 # sorğu → rol (hook = açılış/qutulama, action = daşıma/yükləmə, ending = yeni ev)
