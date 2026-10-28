@@ -101,5 +101,43 @@
    "İş dayanmasın"
   ],
   "caption_first_line": "Ofis köçü işinizi dayandırmasın! 🏢🚚"
+ },
+ {
+  "date": "2026-10-29",
+  "style": "editorial",
+  "music": "music/mixkit-16.mp3",
+  "clips": [
+   13441324,
+   7210955,
+   7647436,
+   7210978,
+   6342201,
+   7217138,
+   7217133
+  ],
+  "hook": "Qab-qacaq?",
+  "lines": [
+   [
+    "Kövrək əşya",
+    "ayrıca bükülür."
+   ],
+   [
+    "Hər qutu",
+    "ehtiyatla yüklənir"
+   ],
+   [
+    "Hər daşınma",
+    "sığortalıdır"
+   ]
+  ],
+  "final": [
+   "Hamısı",
+   "salamat!"
+  ],
+  "cover": [
+   "Kövrək əşyanız var?",
+   "Biz qoruyaq"
+  ],
+  "caption_first_line": "Qab-qacağınız salamat çatsın! 🍽️📦"
  }
 ]
