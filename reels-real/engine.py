@@ -8,7 +8,7 @@ rol: "main" | "accent" (vurğulu) | "sub" (kiçik)
 """
 import json, math, os, subprocess, sys
 import numpy as np
-from PIL import Image, ImageDraw, ImageFilter, ImageFont
+from PIL import Image, ImageChops, ImageDraw, ImageFilter, ImageFont
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 A = lambda *p: p[0] if os.path.isabs(p[0]) else os.path.join(HERE, *p)
@@ -26,8 +26,8 @@ STYLES = {
                       upper=False, sub_upper=True, sub_track=10, size=124, align="center", y=1340, highlight="underline", anim="fade",
                       grade="film", transition="dissolve", frame="letterbox", end="dark", grain=7.0, flash_drop=False),
     # dar böyük hərflər, sol tərəfdə, narıncı qutu, teal-orange ton, whip keçidlər
-    "condensed": dict(font_main=("Oswald[wght].ttf", "Bold"), font_sub=("Oswald[wght].ttf", "Medium"), upper=True,
-                      size=170, align="left", y=560, highlight="box", anim="wipe",
+    "condensed": dict(font_main=("Oswald[wght].ttf", "SemiBold"), font_sub=("Oswald[wght].ttf", "Regular"), upper=True,
+                      sub_track=4, size=156, align="left", y=560, highlight="box", anim="wipe",
                       grade="teal", transition="whip", frame="full", end="orange", grain=4.0, flash_drop=True),
     # geniş display şrift, kadr kart içində (krem fon), slide keçid
     "card": dict(font_main=("Unbounded[wght].ttf", "Black"), font_sub=("Unbounded[wght].ttf", "Medium"), upper=True,
@@ -114,7 +114,7 @@ def compose_frame(style, a, b, t, lt, dur, logo_chip):
     """a, b: RGB numpy kadrlar (b yalnız split üçün)."""
     st = STYLES[style]; fr = st["frame"]
     zbase = 1.0 + 0.045 * (lt / dur)
-    if st["transition"] in ("punch", "flash"): zbase += 0.10 * (1 - ss(clamp(lt / 0.28)))
+    if st["transition"] in ("punch", "flash"): zbase += 0.05 * (1 - ss(clamp(lt / 0.4)))
     img = zoom(Image.fromarray(a), zbase)
     if fr == "full":
         return img
@@ -141,21 +141,27 @@ def transition(style, prev, cur, lt):
     tr = STYLES[style]["transition"]
     if prev is None: return cur
     if tr == "dissolve":
-        p = ss(seg(lt, 0, 0.32)); return cur if p >= 1 else (prev * (1 - p) + cur * p)
+        p = ss(seg(lt, 0, 0.45)); return cur if p >= 1 else (prev * (1 - p) + cur * p)
+    if tr in ("punch", "flash"):
+        # qısa yumşaq keçid (kəskin "atlama" əvəzinə)
+        p = ss(seg(lt, 0, 0.16)); return cur if p >= 1 else (prev * (1 - p) + cur * p)
     if tr == "whip":
-        p = eio(seg(lt, 0, 0.22))
+        # yumşaq "push": hərəkət bulanıqlığı az, ortada qısa qarışdırma — tikiş görünmür
+        p = eio(seg(lt, 0, 0.34))
         if p >= 1: return cur
         sh = int(W * p); out = np.empty_like(cur, dtype=np.float32)
         out[:, :W - sh] = prev[:, sh:]; out[:, W - sh:] = cur[:, :sh]
-        return hblur(out, int(70 * math.sin(p * math.pi)) + 1)
+        out = hblur(out, int(34 * math.sin(p * math.pi)) + 1)
+        m = 0.45 * math.sin(p * math.pi)
+        return out * (1 - m) + (prev * (1 - p) + cur * p) * m
     if tr in ("slide", "slide_h"):
-        p = eio(seg(lt, 0, 0.3))
+        p = eio(seg(lt, 0, 0.4))
         if p >= 1: return cur
         out = np.empty_like(cur, dtype=np.float32)
         if tr == "slide":
-            s = int(H * p); out[:H - s] = prev[s:]; out[H - s:] = cur[:s]
+            s = int(H * p); out[:H - s] = prev[s:] * (1 - 0.35 * p); out[H - s:] = cur[:s]
         else:
-            s = int(W * p); out[:, :W - s] = prev[:, s:]; out[:, W - s:] = cur[:, :s]
+            s = int(W * p); out[:, :W - s] = prev[:, s:] * (1 - 0.35 * p); out[:, W - s:] = cur[:, :s]
         return out
     return cur
 
@@ -206,8 +212,13 @@ def draw_caption(layer, shadow, style, t, t_in, t_out, lines):
         if st["frame"] == "card" and not accent: col = INK
         cx = x
         anim = st["anim"]
-        # wipe: sətir soldan sağa açılır
-        reveal = eio(seg(t, t_in + 0.08 + ci * 0.012, t_in + 0.55 + ci * 0.012)) if anim == "wipe" else 1.0
+        # wipe: sətir soldan sağa yumşaq kənarla açılır (hərflər "atılmır")
+        reveal = eio(seg(t, t_in + 0.08 + ci * 0.012, t_in + 0.7 + ci * 0.012)) if anim == "wipe" else 1.0
+        if anim == "wipe" and reveal < 1:
+            rl = Image.new("RGBA", layer.size); rs = Image.new("RGBA", layer.size)
+            d_main, ds_main = d, ds; d, ds = ImageDraw.Draw(rl), ImageDraw.Draw(rs)
+        else:
+            rl = None
         for i, c in enumerate(txt):
             if anim == "rise":
                 t0 = t_in + 0.1 + ci * 0.022; p = ss(seg(t, t0, t0 + 0.42)); dy = (1 - p) * size * 0.45
@@ -216,7 +227,7 @@ def draw_caption(layer, shadow, style, t, t_in, t_out, lines):
             elif anim == "words":
                 wi = txt[:i + 1].count(" "); t0 = t_in + 0.1 + (wi + ci // 40) * 0.16; p = ss(seg(t, t0, t0 + 0.3)); dy = (1 - p) * size * 0.3
             else:
-                p = 1.0 if (cx - x + widths[i]) <= tw * reveal + track + 1 else 0.0; dy = 0
+                p = 1.0; dy = 0
             qo = ss(seg(t, t_out + ci * 0.008, t_out + ci * 0.008 + 0.3))
             a = p * (1 - qo); dy -= qo * size * 0.2
             if a > 0.01 and c != " ":
@@ -224,6 +235,13 @@ def draw_caption(layer, shadow, style, t, t_in, t_out, lines):
                 if hl not in ("band",) and st["frame"] != "card" and not (accent and hl in ("bar", "box")):
                     ds.text((cx, y + dy + 4), c, font=f, fill=(0, 0, 0, int(160 * a)))
             cx += widths[i]; ci += 1
+        if rl is not None:
+            feather = 140; edge = x - feather + (tw + 2 * feather) * reveal
+            ramp = np.clip((edge - np.arange(W, dtype=np.float32)) / feather, 0, 1)
+            m = Image.fromarray((np.repeat(ramp[None, :], H, 0) * 255).astype(np.uint8), "L")
+            for src, dst in ((rl, layer), (rs, shadow)):
+                src.putalpha(ImageChops.multiply(src.getchannel("A"), m)); dst.alpha_composite(src)
+            d, ds = d_main, ds_main
         if hl == "underline" and accent:
             pu = eo(seg(t, t_in + 0.45, t_in + 0.95)) * (1 - q)
             if pu > 0: d.rectangle([x + tw / 2 - tw / 2 * pu, y + lh + 6, x + tw / 2 + tw / 2 * pu, y + lh + 12], fill=ORANGE + (255,))
@@ -336,9 +354,9 @@ def main():
                 if yoff < H: img.alpha_composite(card.crop((0, 0, W, H - yoff)), (0, yoff))
             arr = np.asarray(img.convert("RGB")).astype(np.float32)
             if st["transition"] == "flash" and si > 0 and t < T_END:
-                arr += (255 - arr) * (0.35 * math.exp(-lt / 0.05))
+                arr += (255 - arr) * (0.16 * math.exp(-lt / 0.06))
             if st.get("flash_drop") and si == 1:
-                arr += (255 - arr) * (0.26 * math.exp(-lt / 0.07))
+                arr += (255 - arr) * (0.12 * math.exp(-lt / 0.08))
             if t < T_END + 0.5: arr *= vig
             arr += grains[f_idx % len(grains)]
             if t < 0.2: arr *= ss(seg(t, 0, 0.2))

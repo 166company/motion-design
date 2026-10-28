@@ -21,19 +21,19 @@ CVR_AUTH = []   # işləyən auth üsulu (header və ya query) yadda saxlanılı
 QUERIES = {
     "hook": ["packing boxes", "taping cardboard box", "moving boxes stack", "wrapping furniture",
              "bubble wrap packing", "labeling moving boxes", "man holding cardboard box", "packing dishes box",
-             "stretch film wrapping", "packing books box", "folding clothes box", "tape dispenser box",
+             "furniture wrapping movers", "packing books box", "folding clothes box", "tape dispenser box",
              "messy room boxes", "woman packing boxes", "packing kitchen", "closing cardboard box"],
     "action": ["movers carrying boxes", "carrying sofa", "moving furniture", "loading van boxes",
                "delivery van boxes", "hand truck boxes", "moving truck loading", "men carrying couch",
-               "carrying boxes stairs", "furniture delivery", "van driving city", "moving day",
+               "carrying boxes stairs", "furniture delivery", "moving day",
                "office moving boxes", "carrying mattress", "loading truck", "workers carrying furniture",
-               "carrying piano", "carrying wardrobe", "disassembling furniture", "assembling furniture",
-               "truck highway", "cargo van road", "office chairs carrying", "carrying monitor office",
-               "elevator boxes", "warehouse boxes worker", "city traffic night", "truck driving night",
-               "carrying table", "dolly cart boxes"],
+               "carrying piano", "movers carrying cabinet", "disassembling furniture", "assembling furniture",
+               "loading boxes into van", "movers unloading truck", "office chairs carrying", "carrying monitor office",
+               "elevator boxes", "warehouse boxes worker", "movers carrying boxes apartment",
+               "men carrying table moving", "dolly cart boxes"],
     "ending": ["family new home", "couple moving into new apartment", "unpacking boxes new home",
-               "keys new house", "happy couple boxes", "new apartment empty room", "family carrying boxes home",
-               "new office team", "couple relaxing new home", "opening door apartment", "family sofa new home"],
+               "keys new house", "happy couple boxes", "unpacking boxes living room", "family carrying boxes home",
+               "office moving boxes desk", "couple relaxing new home", "couple entering new apartment boxes", "family sofa new home"],
 }
 BAD_WORDS = ["fedex", "ups", "dhl", "amazon", "usps", "christmas", "halloween", "santa", "covid", "mask", "coronavirus"]
 

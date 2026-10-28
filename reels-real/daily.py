@@ -11,7 +11,8 @@ day.json (gündəlik Claude yazır):
   "lines": [["Ağır yükü", "bizə burax."], ["Ehtiyatla yükləyir,", "vaxtında çatdırırıq."], ["Sığortalı daşıma", "7/24 xidmət"]],
   "final": ["Yeni evin", "mübarək!"],
   "cover": ["Köçmək stress deyil!", "Biz daşıyaq"],
-  "caption": "..."
+  "caption": "...",
+  "prefer": ["office", "desk"]                # (istəyə görə) mövzuya uyğun klip sorğusu açar sözləri
 }
 Çıxış: out/<tarix>/ + out/<tarix>/meta.json (style, music, clips — history.json üçün).
 """
@@ -69,20 +70,46 @@ def fetch(c):
             if i == 3: raise
     return p
 
+def best_cover(clips):
+    """Cover üçün ən kəskin və yaxşı işıqlı kadrı seçir (klip başına 4 nöqtə)."""
+    import numpy as np
+    best = (-1, clips[0], 1.0)
+    for c in clips:
+        p = fetch(c)
+        for f in (0.2, 0.4, 0.6, 0.8):
+            t = round(c["dur"] * f, 2)
+            raw = subprocess.run(["ffmpeg", "-v", "error", "-ss", str(t), "-i", p, "-frames:v", "1", "-vf", "scale=270:480,format=gray",
+                                  "-f", "rawvideo", "-"], capture_output=True).stdout
+            if len(raw) < 270 * 480: continue
+            g = np.frombuffer(raw[:270 * 480], np.uint8).reshape(480, 270).astype(np.float32)
+            lap = np.abs(4 * g[1:-1, 1:-1] - g[:-2, 1:-1] - g[2:, 1:-1] - g[1:-1, :-2] - g[1:-1, 2:]).var()
+            light = 1.0 - abs(g.mean() - 120) / 160
+            sc = lap * max(light, 0.2)
+            if sc > best[0]: best = (sc, c, t)
+    return best[1], best[2]
+
 def plan(day, hist):
     rnd = random.Random(day["date"] + "x")
     recent = hist[-5:]
     style = day.get("style") or rnd.choice([s for s in STYLES if s not in [h.get("style") for h in recent[-4:]]] or STYLES)
     used = set(i for h in hist[-CLIP_DAYS:] for i in h.get("clips", []))
     used_short = set(i for h in hist[-3:] for i in h.get("clips", []))
-    lib = library()
-    def pick(role, n):
-        pool = [c for c in lib if c["role"] == role and c["id"] not in used and c["review"] == "ok"]
-        pool += [c for c in lib if c["role"] == role and c["id"] not in used and c["review"] != "ok"]
-        if len(pool) < n: pool += [c for c in lib if c["role"] == role and c not in pool and c["id"] not in used_short]
-        if len(pool) < n: pool += [c for c in lib if c["role"] == role and c not in pool]
-        rnd.shuffle(pool); return pool[:n]
-    hook = pick("hook", 1); acts = pick("action", 10 if style == "split" else 5); end = pick("ending", 1)
+    # YALNIZ əl ilə yoxlanmış ("ok") kliplər istifadə olunur — "pending" kliplər heç vaxt videoya düşmür.
+    lib = [c for c in library() if c["review"] == "ok"]
+    prefer = [w.lower() for w in day.get("prefer", [])]   # günün mövzusuna uyğun klip sorğusu açar sözləri
+    taken = set()
+    def pick(roles, n):
+        cand = [c for c in lib if c["role"] in roles and c["id"] not in taken]
+        def score(c):
+            q = c.get("query", "").lower()
+            return (0 if c["id"] not in used_short else 1,                 # son 3 gündə işlənməyənlər
+                    0 if any(w in q for w in prefer) else 1,             # mövzuya uyğun olanlar əvvəl
+                    0 if c["id"] not in used else 1, rnd.random())
+        cand.sort(key=score); out = cand[:n]
+        if len(out) < n: raise SystemExit(f"'ok' klip çatmır ({roles}): review.py ilə yeni klipləri yoxla")
+        taken.update(c["id"] for c in out); return out
+    hook = pick(("hook",), 1); acts = pick(("action", "hook"), 10 if style == "split" else 5); end = pick(("ending",), 1)
+    rnd.shuffle(acts)
     beats = [4] + [rnd.choice([3, 4]) for _ in range(5)] + [5]
     clips = hook + acts[:5] + end
     segs = []
@@ -111,13 +138,13 @@ def plan(day, hist):
     cfg = {"style": style, "music": {"file": mfile, "start": rnd.choice(m["starts"]), "beat": m["beat"]},
            "segments": segs, "captions": caps, "end_beats": 8, "phone": "050 209 62 99", "site": "yuk.az",
            "price_line": "Bakı daxili 20 AZN-dən", "tagline": "Yükdaşıma xidməti"}
-    cov = rnd.choice(hook + acts[:5])
-    return cfg, (fetch(cov), min(1.5, cov["dur"] / 2)), {"style": style, "music": m["file"], "clips": [c["id"] for c in clips]}
+    cov, ct = best_cover(hook + acts[:5])
+    return cfg, (fetch(cov), ct), {"style": style, "music": m["file"], "clips": [c["id"] for c in clips]}
 
 def main():
     day = json.load(open(sys.argv[1]))
     date = day.get("date") or datetime.date.today().isoformat()
-    hist = load_json(A("history.json"), [])
+    hist = [h for h in load_json(A("history.json"), []) if h.get("date") != date]   # eyni günün təkrar renderi özünü saymasın
     out = A("out", date); os.makedirs(out, exist_ok=True)
     cfg, cov, meta = plan(day, hist)
     cfgp = os.path.join(out, "plan.json"); json.dump(cfg, open(cfgp, "w"), ensure_ascii=False, indent=1)
