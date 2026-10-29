@@ -139,5 +139,43 @@
    "Biz qoruyaq"
   ],
   "caption_first_line": "Qab-qacağınız salamat çatsın! 🍽️📦"
+ },
+ {
+  "style": "bold_bar",
+  "music": "music/mixkit-1127.mp3",
+  "clips": [
+   6170604,
+   7205554,
+   7217132,
+   7217127,
+   7210951,
+   7288133,
+   7217131
+  ],
+  "date": "2026-10-30",
+  "hook": "Qarışıq köç?",
+  "lines": [
+   [
+    "Hər qutu",
+    "nizamla yığılır."
+   ],
+   [
+    "Peşəkar əllər",
+    "diqqətlə daşıyır."
+   ],
+   [
+    "Yeni ünvanda",
+    "hər şey hazır"
+   ]
+  ],
+  "final": [
+   "Rahat köç,",
+   "rahat ev!"
+  ],
+  "cover": [
+   "Köçdə qarışıqlıq yox!",
+   "Hər qutu yerində"
+  ],
+  "caption_first_line": "Köçdə qarışıqlıq olmasın! 🏷️📦"
  }
 ]
