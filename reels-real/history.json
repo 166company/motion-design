@@ -177,5 +177,43 @@
    "Hər qutu yerində"
   ],
   "caption_first_line": "Köçdə qarışıqlıq olmasın! 🏷️📦"
+ },
+ {
+  "style": "split",
+  "music": "assets/music/mixkit-989.mp3",
+  "clips": [
+   7205560,
+   7464134,
+   7464106,
+   7646529,
+   7210983,
+   4170834,
+   7647329
+  ],
+  "date": "2026-10-31",
+  "hook": "Köç günü?",
+  "lines": [
+   [
+    "Ağır mebel",
+    "peşəkar əllərdə."
+   ],
+   [
+    "Hər künc",
+    "ehtiyatla bükülür."
+   ],
+   [
+    "Paketdən yükə",
+    "hamısı bizdə"
+   ]
+  ],
+  "final": [
+   "Ağırı bizdə,",
+   "rahatı sizdə"
+  ],
+  "cover": [
+   "Ağır yükünüz var?",
+   "Biz qaldıraq"
+  ],
+  "caption_first_line": "Ağır mebel? Daşımaq bizdən! 🛋️💪"
  }
 ]
