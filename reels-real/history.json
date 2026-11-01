@@ -215,5 +215,43 @@
    "Biz qaldıraq"
   ],
   "caption_first_line": "Ağır mebel? Daşımaq bizdən! 🛋️💪"
+ },
+ {
+  "style": "mono",
+  "music": "music/mixkit-611.mp3",
+  "clips": [
+   6342195,
+   7216702,
+   5054864,
+   5054378,
+   5054454,
+   5054372,
+   7647447
+  ],
+  "date": "2026-11-02",
+  "hook": "Gecə köçü?",
+  "lines": [
+   [
+    "Gecə də",
+    "gündüz də gəlirik."
+   ],
+   [
+    "Furqon hazır,",
+    "komanda hazır."
+   ],
+   [
+    "Bir zəng",
+    "kifayətdir"
+   ]
+  ],
+  "final": [
+   "Saat neçə",
+   "olur-olsun!"
+  ],
+  "cover": [
+   "İstənilən gün, saat",
+   "7/24 yanınızda"
+  ],
+  "caption_first_line": "Gecə də, həftəsonu da köçə hazırıq! 🌙🚚"
  }
 ]
