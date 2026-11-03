@@ -1,24 +1,19 @@
 /**
- * Yük.az Reels → Google Drive köçürücü (156evakuasiyayt@gmail.com hesabında quraşdırılıb).
- * Hər saat GitHub-dakı "reels-drop" branch-ini yoxlayır; YYYY-MM-DD qovluğundakı
- * video + cover + caption fayllarını Drive-da "Yük.az Reels/YYYY-MM-DD" qovluğuna yazır.
- * Yalnız drive.file icazəsi (Drive API v3 qabaqcıl xidməti). Quraşdırma: setup() bir dəfə.
+ * Yük.az Reels → Google Drive köçürücü.
+ * Hər saat GitHub "reels-drop" branch-indən son günlərin video + cover + caption fayllarını
+ * Drive-da "Yük.az Reels/YYYY-MM-DD" qovluğuna yazır.
+ * GitHub API istifadə etmir (anonim API limiti Apps Script-də tez dolur) — birbaşa raw.githubusercontent.com.
+ * Quraşdırma: bu kodu skript redaktoruna yapışdır, Services → Drive API (v3) əlavə et, setup() funksiyasını BİR DƏFƏ işə sal və icazə ver.
  */
-const REPO = '166company/motion-design';
-const BRANCH = 'reels-drop';
+const RAW = 'https://raw.githubusercontent.com/166company/motion-design/reels-drop/';
 const ROOT_NAME = 'Yük.az Reels';
 const FOLDER = 'application/vnd.google-apps.folder';
+const DAYS_BACK = 3;   // bugün + son 3 gün yoxlanır
 
 function setup() {
   ScriptApp.getProjectTriggers().forEach(t => ScriptApp.deleteTrigger(t));
   ScriptApp.newTrigger('syncReels').timeBased().everyHours(1).create();
   syncReels();
-}
-
-function gh_(path) {
-  const r = UrlFetchApp.fetch('https://api.github.com/repos/' + REPO + '/contents/' + path + '?ref=' + BRANCH,
-    {headers: {Accept: 'application/vnd.github+json'}, muteHttpExceptions: true});
-  return r.getResponseCode() === 200 ? JSON.parse(r.getContentText()) : [];
 }
 
 function children_(parentId, extraQ) {
@@ -29,7 +24,7 @@ function children_(parentId, extraQ) {
 function rootId_() {
   const p = PropertiesService.getScriptProperties();
   const id = p.getProperty('ROOT_ID');
-  if (id) { try { Drive.Files.get(id, {fields: 'id,trashed'}); return id; } catch (e) {} }
+  if (id) { try { const f = Drive.Files.get(id, {fields: 'id,trashed'}); if (!f.trashed) return id; } catch (e) {} }
   const f = Drive.Files.create({name: ROOT_NAME, mimeType: FOLDER});
   p.setProperty('ROOT_ID', f.id);
   return f.id;
@@ -37,15 +32,22 @@ function rootId_() {
 
 function syncReels() {
   const root = rootId_();
-  gh_('').filter(e => e.type === 'dir' && /^\d{4}-\d{2}-\d{2}$/.test(e.name)).forEach(dir => {
-    const found = children_(root, "mimeType = '" + FOLDER + "' and name = '" + dir.name + "'");
-    const folderId = found.length ? found[0].id : Drive.Files.create({name: dir.name, mimeType: FOLDER, parents: [root]}).id;
+  for (let k = 0; k <= DAYS_BACK; k++) {
+    const d = Utilities.formatDate(new Date(Date.now() - k * 86400000), 'Asia/Baku', 'yyyy-MM-dd');
+    const names = ['yukaz_reel_' + d + '.mp4', 'yukaz_cover_' + d + '.jpg', 'yukaz_caption_' + d + '.txt'];
+    const blobs = [];
+    names.forEach(n => {
+      const r = UrlFetchApp.fetch(RAW + d + '/' + encodeURIComponent(n), {muteHttpExceptions: true});
+      if (r.getResponseCode() === 200) blobs.push(r.getBlob().setName(n));
+    });
+    if (!blobs.length) continue;
+    const found = children_(root, "mimeType = '" + FOLDER + "' and name = '" + d + "'");
+    const folderId = found.length ? found[0].id : Drive.Files.create({name: d, mimeType: FOLDER, parents: [root]}).id;
     const have = {};
     children_(folderId).forEach(f => have[f.name] = true);
-    gh_(dir.name).filter(f => f.type === 'file' && !have[f.name]).forEach(f => {
-      const blob = UrlFetchApp.fetch(f.download_url).getBlob().setName(f.name);
-      Drive.Files.create({name: f.name, parents: [folderId]}, blob);
-      console.log('Drive: ' + dir.name + '/' + f.name);
+    blobs.filter(b => !have[b.getName()]).forEach(b => {
+      Drive.Files.create({name: b.getName(), parents: [folderId]}, b);
+      console.log('Drive: ' + d + '/' + b.getName());
     });
-  });
+  }
 }
