@@ -1,0 +1,93 @@
+name: Yük.az Reels render
+
+# Yalnız yukaz-reels-real branch-ində yaşayır; main sisteminə toxunmur.
+# Gündəlik Claude tapşırığı day.json / clip_review.json push edir, render burada gedir:
+#   1) review.py → yoxlanmamış kliplərin vərəqləri
+#   2) day.json "release": false → yalnız ön baxış (video + cover + 2 fps kontakt vərəqi)
+#      day.json "release": true  → daily.py ilə reels-drop/<tarix>/ push + history.json + kitabxana workflow-u
+# Nəticələr həmişə "reels-review" branch-inə yazılır (status.json, review_sheet*.png, preview/).
+on:
+  push:
+    branches: [yukaz-reels-real]
+    paths: ["reels-real/day.json", "reels-real/clip_review.json", ".github/workflows/yukaz-render.yml"]
+  workflow_dispatch:
+
+concurrency:
+  group: yukaz-render
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      REPO_URL: https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: yukaz-reels-real
+          path: src
+      - name: Alətlər
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-dejavu-core > /dev/null
+          pip install -q pillow numpy
+          git config --global url."https://x-access-token:${{ github.token }}@github.com/".insteadOf "https://github.com/"
+          git config --global user.name "yukaz-render-bot"
+          git config --global user.email "actions@users.noreply.github.com"
+          mkdir -p $GITHUB_WORKSPACE/rv/preview
+      - name: Klip yoxlama vərəqləri (review.py)
+        working-directory: src/reels-real
+        continue-on-error: true
+        run: |
+          python3 -u review.py 2>&1 | tee $GITHUB_WORKSPACE/rv/review.log
+          cp review_sheet*.png $GITHUB_WORKSPACE/rv/ 2>/dev/null || true
+      - name: Render
+        id: render
+        working-directory: src/reels-real
+        run: |
+          set -o pipefail
+          D=$(python3 -c "import json;print(json.load(open('day.json'))['date'])")
+          R=$(python3 -c "import json;print('1' if json.load(open('day.json')).get('release') else '')")
+          echo "date=$D" >> $GITHUB_OUTPUT; echo "release=$R" >> $GITHUB_OUTPUT
+          if [ -n "$R" ]; then python3 -u daily.py day.json 2>&1 | tee $GITHUB_WORKSPACE/rv/render.log
+          else python3 -u daily.py day.json --no-release 2>&1 | tee $GITHUB_WORKSPACE/rv/render.log; fi
+          O=out/$D
+          cp $O/*.jpg $O/*.mp4 $O/*.txt $O/meta.json $GITHUB_WORKSPACE/rv/preview/
+          V=$(ls $O/*.mp4)
+          ffmpeg -v error -y -i "$V" -vf "fps=2,scale=180:320,tile=10x8" -frames:v 1 $GITHUB_WORKSPACE/rv/preview/contact.png
+          ffprobe -v error -show_entries stream=codec_type,duration -of json "$V" > $GITHUB_WORKSPACE/rv/preview/probe.json
+      - name: Tarixçə (yalnız release)
+        if: steps.render.outputs.release == '1'
+        working-directory: src
+        run: |
+          python3 - <<'EOF'
+          import json
+          day = json.load(open("reels-real/day.json")); d = day["date"]
+          meta = json.load(open(f"reels-real/out/{d}/meta.json"))
+          e = dict(meta, date=d, hook=day["hook"], lines=day["lines"], final=day["final"], cover=day["cover"],
+                   caption_first_line=day["caption"].strip().split("\n")[0])
+          h = [x for x in json.load(open("reels-real/history.json")) if x.get("date") != d] + [e]
+          json.dump(h, open("reels-real/history.json", "w"), ensure_ascii=False, indent=1)
+          EOF
+          git add reels-real/history.json
+          git commit -q -m "Reels ${{ steps.render.outputs.date }} tarixçə" || exit 0
+          for i in 1 2 3; do git pull -q --rebase origin yukaz-reels-real && git push -q origin HEAD:yukaz-reels-real && break; sleep 5; done
+          # GITHUB_TOKEN push-u başqa workflow-u işə salmır — kitabxananı əl ilə başladırıq
+          gh workflow run yukaz-library.yml --ref yukaz-reels-real -R ${{ github.repository }} || true
+      - name: Nəticəni reels-review branch-inə yaz
+        if: always()
+        run: |
+          cd $GITHUB_WORKSPACE/rv
+          python3 - <<EOF
+          import json, glob
+          json.dump({"run": "${{ github.run_id }}", "sha": "${{ github.sha }}", "date": "${{ steps.render.outputs.date }}",
+                     "release": "${{ steps.render.outputs.release }}" == "1", "render": "${{ steps.render.outcome }}",
+                     "sheets": sorted(glob.glob("review_sheet*.png"))}, open("status.json", "w"), indent=1)
+          EOF
+          git init -q -b reels-review && git add -A && git commit -q -m "review ${{ github.run_id }}"
+          git push -q -f "$REPO_URL" reels-review
