@@ -291,5 +291,43 @@
    "Əvvəlcədən bilin"
   ],
   "caption_first_line": "Köçün qiyməti sürpriz olmasın! 💰📦"
+ },
+ {
+  "style": "condensed",
+  "music": "music/mixkit-124.mp3",
+  "clips": [
+   7217137,
+   7217394,
+   7205554,
+   6347120,
+   7210961,
+   7210978,
+   7647439
+  ],
+  "date": "2026-11-04",
+  "hook": "Kiçik köç?",
+  "lines": [
+   [
+    "Kiçik köç də",
+    "böyük qayğı ilə."
+   ],
+   [
+    "Bir neçə qutu?",
+    "gəlib aparırıq."
+   ],
+   [
+    "Bakı daxili",
+    "20 AZN-dən"
+   ]
+  ],
+  "final": [
+   "Yeni mənzil,",
+   "xoş gəldin!"
+  ],
+  "cover": [
+   "Kirayə ev dəyişirsən?",
+   "Asan və sərfəli"
+  ],
+  "caption_first_line": "Kirayə ev dəyişirsiniz? Kiçik köçü də biz edirik! 🏠📦"
  }
 ]
