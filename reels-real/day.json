@@ -1,7 +1,7 @@
 {
  "date": "2026-11-04",
  "style": "condensed",
- "release": false,
+ "release": true,
  "hook": "Kiçik köç?",
  "lines": [
   ["Kiçik köç də", "böyük qayğı ilə."],
