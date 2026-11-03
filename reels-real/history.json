@@ -253,5 +253,43 @@
    "7/24 yanınızda"
   ],
   "caption_first_line": "Gecə də, həftəsonu da köçə hazırıq! 🌙🚚"
+ },
+ {
+  "style": "card",
+  "music": "music/mixkit-440.mp3",
+  "clips": [
+   7217134,
+   7217128,
+   7210946,
+   7205557,
+   7647341,
+   6169410,
+   7217135
+  ],
+  "date": "2026-11-03",
+  "hook": "Qiymət sirr?",
+  "lines": [
+   [
+    "Sürpriz yox",
+    "son hesabda."
+   ],
+   [
+    "Əlavə ödəniş",
+    "heç vaxt yoxdur."
+   ],
+   [
+    "Pulsuz təklif",
+    "bir zəngə"
+   ]
+  ],
+  "final": [
+   "Aydın qiymət",
+   "rahat köç"
+  ],
+  "cover": [
+   "Köç neçəyə başa gəlir?",
+   "Əvvəlcədən bilin"
+  ],
+  "caption_first_line": "Köçün qiyməti sürpriz olmasın! 💰📦"
  }
 ]
