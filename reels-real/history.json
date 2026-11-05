@@ -329,5 +329,43 @@
    "Asan və sərfəli"
   ],
   "caption_first_line": "Kirayə ev dəyişirsiniz? Kiçik köçü də biz edirik! 🏠📦"
+ },
+ {
+  "style": "editorial",
+  "music": "music/mixkit-678.mp3",
+  "clips": [
+   7210951,
+   7463923,
+   7205558,
+   7647436,
+   5054452,
+   6170612,
+   7347584
+  ],
+  "date": "2026-11-05",
+  "hook": "Başqa şəhərə?",
+  "lines": [
+   [
+    "Şəhərlərarası",
+    "köç də bizdə."
+   ],
+   [
+    "Yükləmə bizdən",
+    "çatdırılma da."
+   ],
+   [
+    "Bütün ölkə",
+    "üzrə yanınızda"
+   ]
+  ],
+  "final": [
+   "Yeni şəhər,",
+   "yeni ev!"
+  ],
+  "cover": [
+   "Başqa şəhərə köçürsən?",
+   "Biz çatdıraq"
+  ],
+  "caption_first_line": "Başqa şəhərə köçürsünüz? Yük.az yanınızdadır! 🗺️🚚"
  }
 ]
