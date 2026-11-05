@@ -367,5 +367,43 @@
    "Biz çatdıraq"
   ],
   "caption_first_line": "Başqa şəhərə köçürsünüz? Yük.az yanınızdadır! 🗺️🚚"
+ },
+ {
+  "style": "bold_bar",
+  "music": "music/mixkit-635.mp3",
+  "clips": [
+   6342204,
+   7205560,
+   7210963,
+   7647451,
+   6342201,
+   7210950,
+   7424467
+  ],
+  "date": "2026-11-06",
+  "hook": "Zədə qorxusu?",
+  "lines": [
+   [
+    "Hər daşınma",
+    "pulsuz sığortalı."
+   ],
+   [
+    "Mebel bükülür,",
+    "qutular qorunur."
+   ],
+   [
+    "Narahatlıq",
+    "bizə qalsın"
+   ]
+  ],
+  "final": [
+   "Siz arxayın,",
+   "biz diqqətli"
+  ],
+  "cover": [
+   "Hər əşyanız sığortalı",
+   "Arxayın köçün"
+  ],
+  "caption_first_line": "Əşyalarınız üçün narahat olmayın — hər daşınma sığortalıdır! 🛡️📦"
  }
 ]
