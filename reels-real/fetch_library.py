@@ -154,6 +154,8 @@ def main():
     cat_path = os.path.join(LIB, "catalog.json")
     cat = json.load(open(cat_path)) if os.path.exists(cat_path) else []
     have = {c["id"] for c in cat}
+    review = json.load(open(REVIEW)) if os.path.exists(REVIEW) else {}
+    bad_ids = {k for k, v in review.items() if v == "bad"}   # silinmiş "bad" kliplər yenidən yüklənməsin
     os.makedirs(os.path.join(LIB, "clips"), exist_ok=True)
     today = datetime.date.today().isoformat()
     rnd = random.Random(today)
@@ -184,7 +186,7 @@ def main():
         per_q = 0
         for v in vids:
             if len(added) >= WANT or per_q >= 3: break
-            if v["id"] in have or not (5 <= v.get("duration", 0) <= 20): continue
+            if v["id"] in have or str(v["id"]) in bad_ids or not (5 <= v.get("duration", 0) <= 20): continue
             tags = v.get("tags") or ""
             tags = " ".join(map(str, tags)) if isinstance(tags, list) else str(tags)
             url = ((v.get("url") or "") + " " + tags).lower()
@@ -212,7 +214,6 @@ def main():
                         "author": (v.get("user") or {}).get("name", ""), "url": v.get("url", ""), "added": today, "review": "pending"})
             have.add(v["id"]); added.append(v["id"]); per_q += 1; print("added", src, v["id"], role, q, flush=True)
     # 1) "bad" kimi yoxlanmış kliplər heç vaxt istifadə olunmur → kitabxanadan silinir (yer yeni kliplərə qalır)
-    review = json.load(open(REVIEW)) if os.path.exists(REVIEW) else {}
     def drop(c):
         cat.remove(c)
         p = os.path.join(LIB, c["file"])
