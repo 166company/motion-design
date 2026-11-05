@@ -1,15 +1,15 @@
 {
- "date": "2026-11-04",
- "style": "condensed",
- "release": true,
- "hook": "Kiçik köç?",
+ "date": "2026-11-05",
+ "style": "editorial",
+ "release": false,
+ "hook": "Başqa şəhərə?",
  "lines": [
-  ["Kiçik köç də", "böyük qayğı ilə."],
-  ["Bir neçə qutu?", "gəlib aparırıq."],
-  ["Bakı daxili", "20 AZN-dən"]
+  ["Şəhərlərarası", "köç də bizdə."],
+  ["Yükləmə bizdən", "çatdırılma da."],
+  ["Bütün ölkə", "üzrə yanınızda"]
  ],
- "final": ["Yeni mənzil,", "xoş gəldin!"],
- "cover": ["Kirayə ev dəyişirsən?", "Asan və sərfəli"],
- "prefer": ["boxes", "apartment", "carrying boxes", "packing", "taping", "hand truck", "small move"],
- "caption": "Kirayə ev dəyişirsiniz? Kiçik köçü də biz edirik! 🏠📦\n\nTələbə otağından kiçik mənzilə qədər — Yük.az bir neçə qutunu da böyük diqqətlə daşıyır. Bakı daxili daşınma 20 AZN-dən başlayır, qiymət isə əvvəlcədən razılaşdırılır. ✅\n\n🛡️ Hər daşınma pulsuz sığortalıdır\n🕐 7/24 – istənilən gün və saatda xidmətinizdəyik\n💰 Qiymət əvvəlcədən razılaşdırılır, əlavə ödəniş yoxdur\n📍 Bakı, Sumqayıt, Gəncə və bütün Azərbaycan üzrə\n\nYükünüz bizə əmanət! 🧡\n\n📞 Pulsuz qiymət təklifi üçün zəng edin və ya WhatsApp-da yazın: 050 209 62 99\n🌐 yuk.az\n\n#yükaz #yükdaşıma #köçmə #evdaşınması #ofisdaşınması #baki #azerbaijan #yükdaşımaxidməti #evakuasiya #sumqayıt #gəncə"
+ "final": ["Yeni şəhər,", "yeni ev!"],
+ "cover": ["Başqa şəhərə köçürsən?", "Biz çatdıraq"],
+ "prefer": ["loading van", "moving truck", "van", "carrying boxes", "boxes", "packing", "hand truck"],
+ "caption": "Başqa şəhərə köçürsünüz? Yük.az yanınızdadır! 🗺️🚚\n\nBakıdan Sumqayıta, Gəncəyə və ölkənin istənilən ünvanına — əşyalarınızı paketləyir, yükləyir və çatdırırıq. Təlimli yükdaşıyanlarımız hər əşyanı diqqətlə yerləşdirir, qiymət isə əvvəlcədən razılaşdırılır. ✅\n\n🛡️ Hər daşınma pulsuz sığortalıdır\n🕐 7/24 – istənilən gün və saatda xidmətinizdəyik\n💰 Qiymət əvvəlcədən razılaşdırılır, əlavə ödəniş yoxdur\n📍 Bakı, Sumqayıt, Gəncə və bütün Azərbaycan üzrə\n\nYükünüz bizə əmanət! 🧡\n\n📞 Pulsuz qiymət təklifi üçün zəng edin və ya WhatsApp-da yazın: 050 209 62 99\n🌐 yuk.az\n\n#yükaz #yükdaşıma #köçmə #evdaşınması #ofisdaşınması #baki #azerbaijan #yükdaşımaxidməti #evakuasiya #sumqayıt #gəncə"
 }
