@@ -1,7 +1,7 @@
 {
  "date": "2026-11-07",
  "style": "split",
- "release": false,
+ "release": true,
  "hook": "Kimə etibar?",
  "lines": [
   ["2020-dən bəri", "köç bizim işimiz."],
