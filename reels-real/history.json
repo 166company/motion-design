@@ -405,5 +405,43 @@
    "Arxayın köçün"
   ],
   "caption_first_line": "Əşyalarınız üçün narahat olmayın — hər daşınma sığortalıdır! 🛡️📦"
+ },
+ {
+  "style": "split",
+  "music": "music/mixkit-644.mp3",
+  "clips": [
+   7210983,
+   5054372,
+   7647340,
+   7210946,
+   7205557,
+   7647341,
+   7287302
+  ],
+  "date": "2026-11-07",
+  "hook": "Kimə etibar?",
+  "lines": [
+   [
+    "2020-dən bəri",
+    "köç bizim işimiz."
+   ],
+   [
+    "Təlimli əllər",
+    "hər əşyanı qoruyur."
+   ],
+   [
+    "Başdan sona",
+    "tək bir zəng"
+   ]
+  ],
+  "final": [
+   "Təcrübə",
+   "fərq yaradır"
+  ],
+  "cover": [
+   "2020-dən sizinləyik",
+   "Təcrübəli əllər"
+  ],
+  "caption_first_line": "Köçünüzü təcrübəli komandaya etibar edin! 🤝📦"
  }
 ]
