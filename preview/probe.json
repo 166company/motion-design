@@ -1,0 +1,15 @@
+{
+    "programs": [
+
+    ],
+    "streams": [
+        {
+            "codec_type": "video",
+            "duration": "18.400000"
+        },
+        {
+            "codec_type": "audio",
+            "duration": "18.400000"
+        }
+    ]
+}
