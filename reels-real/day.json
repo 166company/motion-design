@@ -1,7 +1,7 @@
 {
  "date": "2026-11-08",
  "style": "mono",
- "release": false,
+ "release": true,
  "hook": "Ailəlik köç?",
  "lines": [
   ["Bütün ev", "qutu-qutu yığılır."],
