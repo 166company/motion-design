@@ -443,5 +443,43 @@
    "Təcrübəli əllər"
   ],
   "caption_first_line": "Köçünüzü təcrübəli komandaya etibar edin! 🤝📦"
+ },
+ {
+  "style": "mono",
+  "music": "music/mixkit-1147.mp3",
+  "clips": [
+   7210882,
+   4170834,
+   7216703,
+   6342195,
+   7210981,
+   7210961,
+   7288126
+  ],
+  "date": "2026-11-08",
+  "hook": "Ailəlik köç?",
+  "lines": [
+   [
+    "Bütün ev",
+    "qutu-qutu yığılır."
+   ],
+   [
+    "Hər otaq",
+    "ehtiyatla qablanır."
+   ],
+   [
+    "Siz ailəyə,",
+    "biz yükə baxaq"
+   ]
+  ],
+  "final": [
+   "Yeni ev,",
+   "yeni xatirə"
+  ],
+  "cover": [
+   "Bütün ailə köçür?",
+   "Yükü bizə verin"
+  ],
+  "caption_first_line": "Ailəlik köç? Yükü bizə həvalə edin! 🏡📦"
  }
 ]
