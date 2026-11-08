@@ -481,5 +481,43 @@
    "Yükü bizə verin"
   ],
   "caption_first_line": "Ailəlik köç? Yükü bizə həvalə edin! 🏡📦"
+ },
+ {
+  "style": "card",
+  "music": "music/mixkit-829.mp3",
+  "clips": [
+   5054364,
+   5054452,
+   6170599,
+   6170610,
+   5054455,
+   7210879,
+   7647326
+  ],
+  "date": "2026-11-09",
+  "hook": "Tək divan?",
+  "lines": [
+   [
+    "Bir divan da",
+    "ehtiyatla bükülür."
+   ],
+   [
+    "Pilləkən, lift",
+    "təlimli əllərdə."
+   ],
+   [
+    "Evdən evə",
+    "salamat çatır"
+   ]
+  ],
+  "final": [
+   "Sizə rahat,",
+   "bizə yük"
+  ],
+  "cover": [
+   "Tək bir əşya da olsa",
+   "Biz daşıyırıq"
+  ],
+  "caption_first_line": "Tək divan, soyuducu və ya şkaf? Daşımağı bizə buraxın! 🛋️🚚"
  }
 ]
