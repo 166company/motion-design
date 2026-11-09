@@ -519,5 +519,43 @@
    "Biz daşıyırıq"
   ],
   "caption_first_line": "Tək divan, soyuducu və ya şkaf? Daşımağı bizə buraxın! 🛋️🚚"
+ },
+ {
+  "style": "condensed",
+  "music": "music/mixkit-403.mp3",
+  "clips": [
+   13441324,
+   6170595,
+   5054864,
+   6169119,
+   6170061,
+   6170601,
+   7647447
+  ],
+  "date": "2026-11-10",
+  "hook": "Furqona sığar?",
+  "lines": [
+   [
+    "Yükləmə də",
+    "bir sənətdir."
+   ],
+   [
+    "Ağırı alta,",
+    "kövrəyi üstə."
+   ],
+   [
+    "Ünvana qədər",
+    "tərpənmədən"
+   ]
+  ],
+  "final": [
+   "Düzgün yük,",
+   "salamat yol"
+  ],
+  "cover": [
+   "Hər şey furqona sığar?",
+   "Biz yerləşdirək"
+  ],
+  "caption_first_line": "Yükləməni peşəkarlara həvalə edin! 🚚📦"
  }
 ]
