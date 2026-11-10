@@ -1,7 +1,7 @@
 {
  "date": "2026-11-11",
  "style": "editorial",
- "release": false,
+ "release": true,
  "hook": "Yeni ofis?",
  "lines": [["Hər masa", "paketlənib yüklənir."], ["Sənədlər", "qutularda qorunur."], ["İstədiyiniz", "gün və saatda"]],
  "final": ["Yeni ofisə", "hazırsınız"],
