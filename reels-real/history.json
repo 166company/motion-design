@@ -557,5 +557,43 @@
    "Biz yerləşdirək"
   ],
   "caption_first_line": "Yükləməni peşəkarlara həvalə edin! 🚚📦"
+ },
+ {
+  "style": "editorial",
+  "music": "music/mixkit-79.mp3",
+  "clips": [
+   6342201,
+   7210948,
+   7210946,
+   6342192,
+   7217128,
+   5054372,
+   7217125
+  ],
+  "date": "2026-11-11",
+  "hook": "Yeni ofis?",
+  "lines": [
+   [
+    "Hər masa",
+    "paketlənib yüklənir."
+   ],
+   [
+    "Sənədlər",
+    "qutularda qorunur."
+   ],
+   [
+    "İstədiyiniz",
+    "gün və saatda"
+   ]
+  ],
+  "final": [
+   "Yeni ofisə",
+   "hazırsınız"
+  ],
+  "cover": [
+   "Ofis yerini dəyişir?",
+   "Rahat keçid edin"
+  ],
+  "caption_first_line": "Ofisiniz yeni ünvana köçür? Yük.az hazırdır! 🏢📦"
  }
 ]
