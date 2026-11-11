@@ -1,7 +1,7 @@
 {
  "date": "2026-11-12",
  "style": "bold_bar",
- "release": false,
+ "release": true,
  "hook": "Qutulamaq?",
  "lines": [["Qutulama", "bizim işimizdir."], ["Hər əşya", "yerinə qablanır."], ["Siz dincəlin,", "biz yığırıq"]],
  "final": ["Qutular", "hazırdır!"],
