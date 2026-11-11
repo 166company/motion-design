@@ -595,5 +595,43 @@
    "Rahat keçid edin"
   ],
   "caption_first_line": "Ofisiniz yeni ünvana köçür? Yük.az hazırdır! 🏢📦"
+ },
+ {
+  "style": "bold_bar",
+  "music": "music/mixkit-33.mp3",
+  "clips": [
+   6170608,
+   7216702,
+   7210955,
+   4170834,
+   7210882,
+   7210961,
+   7647437
+  ],
+  "date": "2026-11-12",
+  "hook": "Qutulamaq?",
+  "lines": [
+   [
+    "Qutulama",
+    "bizim işimizdir."
+   ],
+   [
+    "Hər əşya",
+    "yerinə qablanır."
+   ],
+   [
+    "Siz dincəlin,",
+    "biz yığırıq"
+   ]
+  ],
+  "final": [
+   "Qutular",
+   "hazırdır!"
+  ],
+  "cover": [
+   "Qutulamağa vaxtın yox?",
+   "Paketləmə bizdən"
+  ],
+  "caption_first_line": "Qutulamağa vaxtınız yoxdur? Paketləməni bizə tapşırın! 📦✨"
  }
 ]
