@@ -1,7 +1,7 @@
 {
  "date": "2026-11-13",
  "style": "split",
- "release": false,
+ "release": true,
  "hook": "Soyuducu?",
  "lines": [["Ağır texnika", "xüsusi araba ilə."], ["Cızıq yox,", "zədə yox, stres yox."], ["İstənilən saat", "zənglə gəlirik"]],
  "final": ["Ağır yükü", "bizə verin"],
