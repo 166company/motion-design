@@ -633,5 +633,43 @@
    "Paketləmə bizdən"
   ],
   "caption_first_line": "Qutulamağa vaxtınız yoxdur? Paketləməni bizə tapşırın! 📦✨"
+ },
+ {
+  "style": "split",
+  "music": "music/mixkit-780.mp3",
+  "clips": [
+   6169417,
+   7463923,
+   6170599,
+   7647449,
+   7210878,
+   7217139,
+   7647329
+  ],
+  "date": "2026-11-13",
+  "hook": "Soyuducu?",
+  "lines": [
+   [
+    "Ağır texnika",
+    "xüsusi araba ilə."
+   ],
+   [
+    "Cızıq yox,",
+    "zədə yox, stres yox."
+   ],
+   [
+    "İstənilən saat",
+    "zənglə gəlirik"
+   ]
+  ],
+  "final": [
+   "Ağır yükü",
+   "bizə verin"
+  ],
+  "cover": [
+   "Soyuducu, paltaryuyan?",
+   "Biz daşıyaq"
+  ],
+  "caption_first_line": "Soyuducu, paltaryuyan və ya plitə? Ağır texnikanı bizə həvalə edin! 🔌🚚"
  }
 ]
