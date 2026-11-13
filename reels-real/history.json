@@ -671,5 +671,43 @@
    "Biz daşıyaq"
   ],
   "caption_first_line": "Soyuducu, paltaryuyan və ya plitə? Ağır texnikanı bizə həvalə edin! 🔌🚚"
+ },
+ {
+  "style": "card",
+  "music": "music/mixkit-130.mp3",
+  "clips": [
+   7348148,
+   7217134,
+   7210876,
+   6169615,
+   7210960,
+   7205515,
+   7348162
+  ],
+  "date": "2026-11-14",
+  "hook": "Kövrək yük?",
+  "lines": [
+   [
+    "Hər boşqab",
+    "ayrıca bükülür."
+   ],
+   [
+    "Güzgü, şüşə,",
+    "xüsusi qorunma ilə."
+   ],
+   [
+    "Qapıdan qapıya",
+    "sağ-salamat"
+   ]
+  ],
+  "final": [
+   "Kövrək yük,",
+   "möhkəm qayğı"
+  ],
+  "cover": [
+   "Şüşə, çini, güzgü?",
+   "Diqqətlə bükürük"
+  ],
+  "caption_first_line": "Çini, şüşə, güzgü? Kövrək əşyalarınız etibarlı əllərdə! 🥂📦"
  }
 ]
