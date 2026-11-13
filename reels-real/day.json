@@ -1,11 +1,39 @@
 {
- "date": "2026-11-13",
- "style": "split",
- "release": true,
- "hook": "Soyuducu?",
- "lines": [["Ağır texnika", "xüsusi araba ilə."], ["Cızıq yox,", "zədə yox, stres yox."], ["İstənilən saat", "zənglə gəlirik"]],
- "final": ["Ağır yükü", "bizə verin"],
- "cover": ["Soyuducu, paltaryuyan?", "Biz daşıyaq"],
- "prefer": ["refrigerator", "appliance", "hand truck", "dolly", "carrying", "movers", "wrapping furniture", "moving van"],
- "caption": "Soyuducu, paltaryuyan və ya plitə? Ağır texnikanı bizə həvalə edin! 🔌🚚\n\nYük.az ilə məişət texnikasının daşınması rahat, sürətli və təhlükəsizdir. Təlimli yükdaşıyanlarımız hər cihazı diqqətlə paketləyir, yükləyir və yeni ünvana salamat çatdırır. ✅\n\n🛡️ Hər daşınma pulsuz sığortalıdır\n🕐 7/24 – istənilən gün və saatda xidmətinizdəyik\n💰 Qiymət əvvəlcədən razılaşdırılır, əlavə ödəniş yoxdur\n📍 Bakı, Sumqayıt, Gəncə və bütün Azərbaycan üzrə\n\nYükünüz bizə əmanət! 🧡\n\n📞 Pulsuz qiymət təklifi üçün zəng edin və ya WhatsApp-da yazın: 050 209 62 99\n🌐 yuk.az\n\n#yükaz #yükdaşıma #köçmə #evdaşınması #ofisdaşınması #baki #azerbaijan #yükdaşımaxidməti #evakuasiya #sumqayıt #gəncə"
+ "date": "2026-11-14",
+ "style": "card",
+ "release": false,
+ "hook": "Kövrək yük?",
+ "lines": [
+  [
+   "Hər boşqab",
+   "ayrıca bükülür."
+  ],
+  [
+   "Güzgü, şüşə,",
+   "xüsusi qorunma ilə."
+  ],
+  [
+   "Qapıdan qapıya",
+   "sağ-salamat"
+  ]
+ ],
+ "final": [
+  "Kövrək yük,",
+  "möhkəm qayğı"
+ ],
+ "cover": [
+  "Şüşə, çini, güzgü?",
+  "Diqqətlə bükürük"
+ ],
+ "prefer": [
+  "bubble wrap",
+  "wrapping",
+  "fragile",
+  "packing",
+  "taping",
+  "boxes",
+  "carrying",
+  "moving van"
+ ],
+ "caption": "Çini, şüşə, güzgü? Kövrək əşyalarınız etibarlı əllərdə! 🥂📦\n\nYük.az ilə kövrək əşyaların daşınması rahat, sürətli və təhlükəsizdir. Təlimli yükdaşıyanlarımız hər qabı və şüşəni diqqətlə paketləyir, yükləyir və yeni ünvana salamat çatdırır. ✅\n\n🛡️ Hər daşınma pulsuz sığortalıdır\n🕐 7/24 – istənilən gün və saatda xidmətinizdəyik\n💰 Qiymət əvvəlcədən razılaşdırılır, əlavə ödəniş yoxdur\n📍 Bakı, Sumqayıt, Gəncə və bütün Azərbaycan üzrə\n\nYükünüz bizə əmanət! 🧡\n\n📞 Pulsuz qiymət təklifi üçün zəng edin və ya WhatsApp-da yazın: 050 209 62 99\n🌐 yuk.az\n\n#yükaz #yükdaşıma #köçmə #evdaşınması #ofisdaşınması #baki #azerbaijan #yükdaşımaxidməti #evakuasiya #sumqayıt #gəncə"
 }
