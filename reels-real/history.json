@@ -709,5 +709,43 @@
    "Diqqətlə bükürük"
   ],
   "caption_first_line": "Çini, şüşə, güzgü? Kövrək əşyalarınız etibarlı əllərdə! 🥂📦"
+ },
+ {
+  "style": "mono",
+  "music": "assets/music/mixkit-927.mp3",
+  "clips": [
+   6347120,
+   7210978,
+   7217132,
+   5054378,
+   7205554,
+   5054454,
+   7210964
+  ],
+  "date": "2026-11-15",
+  "hook": "Lift yoxdur?",
+  "lines": [
+   [
+    "Pilləkən də",
+    "bizə maneə deyil."
+   ],
+   [
+    "Təlimli əllər",
+    "hər mərtəbəyə."
+   ],
+   [
+    "Mərtəbədən",
+    "furqona qədər"
+   ]
+  ],
+  "final": [
+   "Mərtəbə",
+   "fərq etməz"
+  ],
+  "cover": [
+   "Yuxarı mərtəbədəsən?",
+   "Biz qaldırırıq"
+  ],
+  "caption_first_line": "Lift yoxdur? Yuxarı mərtəbəyə köç də rahatdır! 🏢💪"
  }
 ]
