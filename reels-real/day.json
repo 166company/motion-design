@@ -1,39 +1,39 @@
 {
- "date": "2026-11-14",
- "style": "card",
- "release": true,
- "hook": "Kövrək yük?",
+ "date": "2026-11-15",
+ "style": "mono",
+ "release": false,
+ "hook": "Lift yoxdur?",
  "lines": [
   [
-   "Hər boşqab",
-   "ayrıca bükülür."
+   "Pilləkən də",
+   "bizə maneə deyil."
   ],
   [
-   "Güzgü, şüşə,",
-   "xüsusi qorunma ilə."
+   "Təlimli əllər",
+   "hər mərtəbəyə."
   ],
   [
-   "Qapıdan qapıya",
-   "sağ-salamat"
+   "Mərtəbədən",
+   "furqona qədər"
   ]
  ],
  "final": [
-  "Kövrək yük,",
-  "möhkəm qayğı"
+  "Mərtəbə",
+  "fərq etməz"
  ],
  "cover": [
-  "Şüşə, çini, güzgü?",
-  "Diqqətlə bükürük"
+  "Yuxarı mərtəbədəsən?",
+  "Biz qaldırırıq"
  ],
  "prefer": [
-  "bubble wrap",
-  "wrapping",
-  "fragile",
-  "packing",
-  "taping",
-  "boxes",
+  "stairs",
   "carrying",
-  "moving van"
+  "carrying furniture",
+  "sofa",
+  "hand truck",
+  "boxes",
+  "moving van",
+  "loading"
  ],
- "caption": "Çini, şüşə, güzgü? Kövrək əşyalarınız etibarlı əllərdə! 🥂📦\n\nYük.az ilə kövrək əşyaların daşınması rahat, sürətli və təhlükəsizdir. Təlimli yükdaşıyanlarımız hər qabı və şüşəni diqqətlə paketləyir, yükləyir və yeni ünvana salamat çatdırır. ✅\n\n🛡️ Hər daşınma pulsuz sığortalıdır\n🕐 7/24 – istənilən gün və saatda xidmətinizdəyik\n💰 Qiymət əvvəlcədən razılaşdırılır, əlavə ödəniş yoxdur\n📍 Bakı, Sumqayıt, Gəncə və bütün Azərbaycan üzrə\n\nYükünüz bizə əmanət! 🧡\n\n📞 Pulsuz qiymət təklifi üçün zəng edin və ya WhatsApp-da yazın: 050 209 62 99\n🌐 yuk.az\n\n#yükaz #yükdaşıma #köçmə #evdaşınması #ofisdaşınması #baki #azerbaijan #yükdaşımaxidməti #evakuasiya #sumqayıt #gəncə"
+ "caption": "Lift yoxdur? Yuxarı mərtəbəyə köç də rahatdır! 🏢💪\n\nYük.az ilə liftsiz binalardan və yuxarı mərtəbələrdən köç rahat, sürətli və təhlükəsizdir. Təlimli yükdaşıyanlarımız əşyalarınızı diqqətlə paketləyir, pilləkənlə ehtiyatla daşıyır və yeni ünvana çatdırır. ✅\n\n🛡️ Hər daşınma pulsuz sığortalıdır\n🕐 7/24 – istənilən gün və saatda xidmətinizdəyik\n💰 Qiymət əvvəlcədən razılaşdırılır, əlavə ödəniş yoxdur\n📍 Bakı, Sumqayıt, Gəncə və bütün Azərbaycan üzrə\n\nYükünüz bizə əmanət! 🧡\n\n📞 Pulsuz qiymət təklifi üçün zəng edin və ya WhatsApp-da yazın: 050 209 62 99\n🌐 yuk.az\n\n#yükaz #yükdaşıma #köçmə #evdaşınması #ofisdaşınması #baki #azerbaijan #yükdaşımaxidməti #evakuasiya #sumqayıt #gəncə"
 }
