@@ -1,0 +1,6 @@
+OK /home/runner/work/motion-design/motion-design/src/reels-real/out/2026-11-15/yukaz_reel_2026-11-15.mp4 17.88s mono
+stil: mono, musiqi: assets/music/mixkit-927.mp3, video 65.4 MB -> /home/runner/work/motion-design/motion-design/src/reels-real/out/2026-11-15
+remote: warning: See https://gh.io/lfs for more information.        
+remote: warning: File 2026-11-15/yukaz_reel_2026-11-15.mp4 is 62.38 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: GH001: Large files detected. You may want to try Git Large File Storage - https://git-lfs.github.com.        
+pushed: reels-drop/2026-11-15
