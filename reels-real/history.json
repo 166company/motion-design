@@ -747,5 +747,43 @@
    "Biz qaldırırıq"
   ],
   "caption_first_line": "Lift yoxdur? Yuxarı mərtəbəyə köç də rahatdır! 🏢💪"
+ },
+ {
+  "style": "editorial",
+  "music": "music/mixkit-175.mp3",
+  "clips": [
+   7210951,
+   7647340,
+   6170601,
+   6170610,
+   5054452,
+   7205558,
+   7424467
+  ],
+  "date": "2026-11-16",
+  "hook": "Ağır şkaf?",
+  "lines": [
+   [
+    "Ağır mebel",
+    "güclü komanda ilə."
+   ],
+   [
+    "Hər künc",
+    "ehtiyatla bükülür."
+   ],
+   [
+    "Qapıdan keçir,",
+    "salamat çatır"
+   ]
+  ],
+  "final": [
+   "Ağır yük,",
+   "yüngül köç"
+  ],
+  "cover": [
+   "Ağır mebel daşınır?",
+   "Güclü əllərdə"
+  ],
+  "caption_first_line": "Ağır şkaf və ya komod? Güclü komandamız hazırdır! 💪🛋️"
  }
 ]
