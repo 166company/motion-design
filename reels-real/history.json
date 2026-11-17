@@ -785,5 +785,43 @@
    "Güclü əllərdə"
   ],
   "caption_first_line": "Ağır şkaf və ya komod? Güclü komandamız hazırdır! 💪🛋️"
+ },
+ {
+  "style": "condensed",
+  "music": "music/mixkit-288.mp3",
+  "clips": [
+   7647341,
+   4170834,
+   5054870,
+   7217128,
+   6342201,
+   7210946,
+   7348056
+  ],
+  "date": "2026-11-18",
+  "hook": "Gecə köçü?",
+  "lines": [
+   [
+    "Səhər tezdən",
+    "ya gecə yarısı."
+   ],
+   [
+    "Həftə sonu da",
+    "komanda hazırdır."
+   ],
+   [
+    "7/24 xidmət",
+    "sizin saatınızla"
+   ]
+  ],
+  "final": [
+   "Vaxt sizin,",
+   "köç bizdən"
+  ],
+  "cover": [
+   "Köç üçün vaxtın azdır?",
+   "7/24 yanındayıq"
+  ],
+  "caption_first_line": "Gecə, səhər və ya həftə sonu — köç vaxtını siz seçin! 🕐🚚"
  }
 ]
