@@ -823,5 +823,43 @@
    "7/24 yanındayıq"
   ],
   "caption_first_line": "Gecə, səhər və ya həftə sonu — köç vaxtını siz seçin! 🕐🚚"
+ },
+ {
+  "style": "split",
+  "music": "music/mixkit-1029.mp3",
+  "clips": [
+   4553201,
+   7210985,
+   7210949,
+   7210884,
+   4554442,
+   4553290,
+   6169107
+  ],
+  "date": "2026-11-19",
+  "hook": "Gizli ödəniş?",
+  "lines": [
+   [
+    "Qiymət əvvəl",
+    "razılaşdırılır."
+   ],
+   [
+    "Sürpriz yox,",
+    "əlavə ödəniş yoxdur."
+   ],
+   [
+    "Pulsuz təklif",
+    "bir zəngə"
+   ]
+  ],
+  "final": [
+   "Dəqiq qiymət",
+   "rahat köç"
+  ],
+  "cover": [
+   "Köçün qiyməti bəllidir",
+   "Əlavə ödəniş yox"
+  ],
+  "caption_first_line": "Köçün qiyməti əvvəlcədən bəllidir — sürpriz ödəniş yoxdur! 💰📦"
  }
 ]
