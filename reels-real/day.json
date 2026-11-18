@@ -1,7 +1,7 @@
 {
  "date": "2026-11-18",
  "style": "condensed",
- "release": true,
+ "release": false,
  "hook": "Gecə köçü?",
  "lines": [
   ["Səhər tezdən", "ya gecə yarısı."],
