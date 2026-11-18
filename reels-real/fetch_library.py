@@ -49,7 +49,16 @@ QUERIES = {
                "woman unpacking boxes", "man unpacking boxes", "empty apartment boxes", "new office boxes unpacking", "happy couple boxes", "unpacking boxes living room", "family carrying boxes home",
                "office moving boxes desk", "couple relaxing new home", "couple entering new apartment boxes", "family sofa new home"],
 }
-BAD_WORDS = ["fedex", "ups", "dhl", "amazon", "usps", "christmas", "halloween", "santa", "covid", "mask", "coronavirus"]
+# Uyğunluq filtri: Pexels URL slug-ında / Pixabay teqlərində bu sözlərdən ən azı biri olmalıdır.
+# (Əks halda "workers carrying furniture" sorğusu iskele, helikopter, dəniz kimi əlaqəsiz kadrlar gətirir.)
+RELEVANT = ["box", "boxes", "cardboard", "carton", "moving", "mover", "movers", "move", "packing", "pack", "unpacking",
+            "unpack", "relocation", "relocating", "sofa", "couch", "furniture", "wardrobe", "cabinet", "dresser",
+            "mattress", "van", "truck", "dolly", "tape", "taping", "bubble", "parcel", "package", "packages",
+            "new-home", "new home", "new apartment", "moving-in", "moving in"]
+BAD_WORDS = ["fedex", "ups", "dhl", "amazon", "usps", "christmas", "halloween", "santa", "covid", "mask", "coronavirus",
+             "gift", "gifts", "present", "unboxing", "birthday", "food", "pizza", "helicopter", "beach", "sea", "ocean",
+             "drone", "aerial", "highway", "road", "forest", "mountain", "wedding", "toy", "toys", "shoes", "clothes",
+             "makeup", "mirror selfie", "inventory", "tablet", "scaffolding", "construction", "real estate", "realtor"]
 
 def api(url):
     req = urllib.request.Request(url, headers={"Authorization": KEY, "User-Agent": "yukaz-reels"})
@@ -108,9 +117,9 @@ def coverr(q, page):
     return out
 
 def best_file(v):
-    files = [f for f in v.get("video_files", []) if f.get("height") and f.get("width") and f["height"] > f["width"]]
-    exact = [f for f in files if f["width"] == 1080 and f["height"] == 1920]
-    return exact[0] if exact else None
+    """Şaquli, eni ≥1080 olan ən kiçik fayl (1080x1920, 1440x2560, 4K...) — compress() onu 1080x1920-yə salır."""
+    files = [f for f in v.get("video_files", []) if f.get("height") and f.get("width") and f["height"] > f["width"] >= 1080]
+    return min(files, key=lambda f: f["width"]) if files else None
 
 def too_small(path, min_w=1000):
     """ffprobe varsa, faktiki eni yoxla (Coverr kimi mənbələr aşağı keyfiyyətli fayl verə bilir)."""
@@ -156,6 +165,11 @@ def main():
     have = {c["id"] for c in cat}
     review = json.load(open(REVIEW)) if os.path.exists(REVIEW) else {}
     bad_ids = {k for k, v in review.items() if v == "bad"}   # silinmiş "bad" kliplər yenidən yüklənməsin
+    # Bir dəfə videoda işlənmiş klip bir daha istifadə olunmur → kitabxanadan silinir və yenidən yüklənmir.
+    hist_path = os.path.join(os.path.dirname(REVIEW), "history.json")
+    hist = json.load(open(hist_path)) if os.path.exists(hist_path) else []
+    used_ids = {str(i) for h in hist for i in h.get("clips", [])}
+    seen = bad_ids | used_ids | set(review)                    # artıq qərar verilmiş və ya işlənmiş heç nə təkrar gəlməsin
     os.makedirs(os.path.join(LIB, "clips"), exist_ok=True)
     today = datetime.date.today().isoformat()
     rnd = random.Random(today)
@@ -185,18 +199,19 @@ def main():
         rnd.shuffle(vids)
         per_q = 0
         for v in vids:
-            if len(added) >= WANT or per_q >= 3: break
-            if v["id"] in have or str(v["id"]) in bad_ids or not (5 <= v.get("duration", 0) <= 20): continue
+            if len(added) >= WANT or per_q >= 4: break
+            if v["id"] in have or str(v["id"]) in seen or not (5 <= v.get("duration", 0) <= 20): continue
             tags = v.get("tags") or ""
             tags = " ".join(map(str, tags)) if isinstance(tags, list) else str(tags)
             url = ((v.get("url") or "") + " " + tags).lower()
-            if re.search(r"\b(" + "|".join(BAD_WORDS) + r")\b", url): continue
+            if re.search(r"\b(" + "|".join(BAD_WORDS) + r")\b", url.replace("-", " ")): continue
+            if not re.search(r"\b(" + "|".join(re.escape(w) for w in RELEVANT) + r")\b", url.replace("-", " ")): continue
             f = v.get("_file") or best_file(v)
             if not f: continue
             fname = f"{v['id']}.mp4" if str(v["id"])[0] in "xc" else f"p{v['id']}.mp4"
             out = os.path.join(LIB, "clips", fname)
             try:
-                download(f.get("link") or f["url"], out, limit=60_000_000)
+                download(f.get("link") or f["url"], out, limit=150_000_000)
             except Exception as e:
                 print("skip", v["id"], e, flush=True)
                 if os.path.exists(out): os.remove(out)
@@ -221,6 +236,9 @@ def main():
     bad = [c for c in cat if review.get(str(c["id"])) == "bad" and not c.get("keep")]
     for c in bad: drop(c)
     print(f"{len(bad)} 'bad' klip silindi", flush=True)
+    usedc = [c for c in cat if str(c["id"]) in used_ids and not c.get("keep")]
+    for c in usedc: drop(c)
+    print(f"{len(usedc)} işlənmiş klip silindi (təkrar istifadə olunmur)", flush=True)
     # 2) limit (say və həcm): əvvəl ən köhnə yoxlanmamışlar, sonra ən köhnə "ok"-lar
     def size():
         return sum(os.path.getsize(os.path.join(LIB, c["file"])) for c in cat if os.path.exists(os.path.join(LIB, c["file"])))

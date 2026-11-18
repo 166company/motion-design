@@ -92,21 +92,19 @@ def plan(day, hist):
     rnd = random.Random(day["date"] + "x")
     recent = hist[-5:]
     style = day.get("style") or rnd.choice([s for s in STYLES if s not in [h.get("style") for h in recent[-4:]]] or STYLES)
-    used = set(i for h in hist[-CLIP_DAYS:] for i in h.get("clips", []))
-    used_short = set(i for h in hist[-3:] for i in h.get("clips", []))
+    # Bir dəfə işlənmiş klip HEÇ VAXT təkrar olunmur (bütün tarixçə).
+    used = set(str(i) for h in hist for i in h.get("clips", []))
     # YALNIZ əl ilə yoxlanmış ("ok") kliplər istifadə olunur — "pending" kliplər heç vaxt videoya düşmür.
-    lib = [c for c in library() if c["review"] == "ok"]
+    lib = [c for c in library() if c["review"] == "ok" and str(c["id"]) not in used]
     prefer = [w.lower() for w in day.get("prefer", [])]   # günün mövzusuna uyğun klip sorğusu açar sözləri
     taken = set()
     def pick(roles, n):
         cand = [c for c in lib if c["role"] in roles and c["id"] not in taken]
         def score(c):
             q = c.get("query", "").lower()
-            return (0 if c["id"] not in used_short else 1,                 # son 3 gündə işlənməyənlər
-                    0 if any(w in q for w in prefer) else 1,             # mövzuya uyğun olanlar əvvəl
-                    0 if c["id"] not in used else 1, rnd.random())
+            return (0 if any(w in q for w in prefer) else 1, rnd.random())   # mövzuya uyğun olanlar əvvəl
         cand.sort(key=score); out = cand[:n]
-        if len(out) < n: raise SystemExit(f"'ok' klip çatmır ({roles}): review.py ilə yeni klipləri yoxla")
+        if len(out) < n: raise SystemExit(f"'ok' klip çatmır ({roles}): işlənməmiş 'ok' klip qalmayıb — kitabxana workflow-unu işə sal və yeni klipləri yoxla")
         taken.update(c["id"] for c in out); return out
     hook = pick(("hook",), 1); acts = pick(("action", "hook"), 10 if style == "split" else 5); end = pick(("ending",), 1)
     rnd.shuffle(acts)

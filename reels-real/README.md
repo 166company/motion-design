@@ -19,6 +19,8 @@ Kompüter açıq olmasa da işləyir. Bu branch (`yukaz-reels-real`) əsas `main
   Hər gün `python3 review.py` bütün pending klipləri vərəqlərə (review_sheet*.png) çıxarır — hamısına baxıb ok/bad yaz.
 - "ok" yalnız birbaşa köçmə/daşıma görünən kadrlara: qutular, paketləmə, mebel daşıma, furqon yükləmə, yeni evdə/ofisdə qutular.
   Yol/şosse, təbiət, paltar/qarderob, yemək, idman, daşınmaz əmlak agenti, ümumi ofis iclası, rəqib loqosu — "bad".
+- Bir dəfə videoda işlənmiş klip HEÇ VAXT təkrar istifadə olunmur (daily.py bütün history.json-a baxır); kitabxana workflow-u işlənmiş klipləri silir və yenidən yükləmir.
+- Kitabxana hər gün 80 yeni klip axtarır (Pexels + Pixabay); Pexels URL slug-ında / Pixabay teqlərində köçmə sözü (box, moving, furniture, van...) olmayan kliplər yüklənmir.
 - `day.json`-da `"prefer": ["office", ...]` — günün mövzusuna uyğun klip sorğusu açar sözləri (əvvəl seçilir).
 - Cover: premium tərtibat (kiçik ağ loqo, eyebrow xətti, ağ + narıncı başlıq, şüşə telefon pill), kadr avtomatik ən kəskin seçilir.
 - Keçidlər yumşaq (dissolve / soft push / slide + qaralma), flash zəif, mətn yumşaq kənarla açılır.

@@ -40,7 +40,7 @@ jobs:
           COVERR_API_KEY: ${{ secrets.COVERR_API_KEY }}
         run: |
           echo "pexels key: ${#PEXELS_API_KEY}, pixabay key: ${#PIXABAY_API_KEY}, coverr key: ${#COVERR_API_KEY}" | tee -a $GITHUB_WORKSPACE/run.log
-          python3 -u src/reels-real/fetch_library.py lib 40 2>&1 | tee -a $GITHUB_WORKSPACE/run.log
+          python3 -u src/reels-real/fetch_library.py lib 80 2>&1 | tee -a $GITHUB_WORKSPACE/run.log
       - name: Yeni musiqi (Mixkit)
         timeout-minutes: 10
         continue-on-error: true
