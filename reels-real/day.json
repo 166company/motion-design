@@ -1,7 +1,7 @@
 {
  "date": "2026-11-19",
  "style": "split",
- "release": false,
+ "release": true,
  "hook": "Gizli ödəniş?",
  "lines": [
   ["Qiymət əvvəl", "razılaşdırılır."],
