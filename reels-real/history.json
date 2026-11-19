@@ -861,5 +861,43 @@
    "Əlavə ödəniş yox"
   ],
   "caption_first_line": "Köçün qiyməti əvvəlcədən bəllidir — sürpriz ödəniş yoxdur! 💰📦"
+ },
+ {
+  "style": "card",
+  "music": "music/mixkit-339.mp3",
+  "clips": [
+   4553291,
+   4553294,
+   7217143,
+   6170058,
+   6170780,
+   7210877,
+   7210962
+  ],
+  "date": "2026-11-20",
+  "hook": "Yataqxanadan?",
+  "lines": [
+   [
+    "Kiçik mənzil,",
+    "kiçik köç də olar."
+   ],
+   [
+    "Qutu, çamadan,",
+    "hamısı ehtiyatla."
+   ],
+   [
+    "Bakı daxili",
+    "20 AZN-dən"
+   ]
+  ],
+  "final": [
+   "Yeni otaq,",
+   "yeni həyat!"
+  ],
+  "cover": [
+   "Kirayə evdən köçürsən?",
+   "20 AZN-dən köç"
+  ],
+  "caption_first_line": "Kirayə mənzildən köçürsünüz? Kiçik köç də Yük.az-la rahatdır! 🔑📦"
  }
 ]
