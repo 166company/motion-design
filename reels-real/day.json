@@ -2,14 +2,38 @@
  "date": "2026-11-20",
  "style": "card",
  "release": false,
- "hook": "Kirayə köçü?",
+ "hook": "Yataqxanadan?",
  "lines": [
-  ["Kiçik mənzil,", "kiçik köç də olar."],
-  ["Qutu, çamadan,", "hamısı ehtiyatla."],
-  ["Bakı daxili", "20 AZN-dən"]
+  [
+   "Kiçik mənzil,",
+   "kiçik köç də olar."
+  ],
+  [
+   "Qutu, çamadan,",
+   "hamısı ehtiyatla."
+  ],
+  [
+   "Bakı daxili",
+   "20 AZN-dən"
+  ]
  ],
- "final": ["Yeni otaq,", "yeni həyat!"],
- "cover": ["Kirayə evdən köçürsən?", "20 AZN-dən köç"],
- "prefer": ["apartment moving", "moving boxes", "carrying boxes", "packing boxes", "taping boxes", "young couple moving", "hand truck", "loading van"],
+ "final": [
+  "Yeni otaq,",
+  "yeni həyat!"
+ ],
+ "cover": [
+  "Kirayə evdən köçürsən?",
+  "20 AZN-dən köç"
+ ],
+ "prefer": [
+  "apartment moving",
+  "moving boxes",
+  "carrying boxes",
+  "packing boxes",
+  "taping boxes",
+  "young couple moving",
+  "hand truck",
+  "loading van"
+ ],
  "caption": "Kirayə mənzildən köçürsünüz? Kiçik köç də Yük.az-la rahatdır! 🔑📦\n\nBir neçə qutu, çamadan və ya tək çarpayı — Bakı daxili minimum qiymət cəmi 20 AZN-dir. Təlimli yükdaşıyanlarımız əşyalarınızı diqqətlə paketləyir, yükləyir və yeni ünvana çatdırır. ✅\n\n🛡️ Hər daşınma pulsuz sığortalıdır\n🕐 7/24 – istənilən gün və saatda xidmətinizdəyik\n💰 Qiymət əvvəlcədən razılaşdırılır, əlavə ödəniş yoxdur\n📍 Bakı, Sumqayıt, Gəncə və bütün Azərbaycan üzrə\n\nYükünüz bizə əmanət! 🧡\n\n📞 Pulsuz qiymət təklifi üçün zəng edin və ya WhatsApp-da yazın: 050 209 62 99\n🌐 yuk.az\n\n#yükaz #yükdaşıma #köçmə #evdaşınması #ofisdaşınması #baki #azerbaijan #yükdaşımaxidməti #evakuasiya #sumqayıt #gəncə"
 }
