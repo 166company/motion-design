@@ -899,5 +899,43 @@
    "20 AZN-dən köç"
   ],
   "caption_first_line": "Kirayə mənzildən köçürsünüz? Kiçik köç də Yük.az-la rahatdır! 🔑📦"
+ },
+ {
+  "style": "bold_bar",
+  "music": "music/mixkit-32.mp3",
+  "clips": [
+   9603569,
+   7217392,
+   7210952,
+   7210869,
+   7210873,
+   6170438,
+   7210868
+  ],
+  "date": "2026-11-21",
+  "hook": "Gəncəyə köç?",
+  "lines": [
+   [
+    "Uzaq ünvan,",
+    "yaxın qayğı ilə."
+   ],
+   [
+    "Hər qutu",
+    "yola hazır bağlanır."
+   ],
+   [
+    "Bütün ölkəyə",
+    "eyni etibarla"
+   ]
+  ],
+  "final": [
+   "Yol uzaq,",
+   "yük salamat"
+  ],
+  "cover": [
+   "Başqa şəhərə köçürsən?",
+   "Yolu bizə verin"
+  ],
+  "caption_first_line": "Başqa şəhərə köçürsünüz? Yük.az bütün Azərbaycan üzrə yanınızdadır! 🗺️🚚"
  }
 ]
