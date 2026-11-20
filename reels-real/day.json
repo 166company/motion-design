@@ -1,7 +1,7 @@
 {
  "date": "2026-11-21",
  "style": "bold_bar",
- "release": false,
+ "release": true,
  "hook": "Gəncəyə köç?",
  "lines": [
   ["Uzaq ünvan,", "yaxın qayğı ilə."],
