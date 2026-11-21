@@ -1,7 +1,7 @@
 {
  "date": "2026-11-22",
  "style": "mono",
- "release": false,
+ "release": true,
  "hook": "Zədə olsa?",
  "lines": [
   ["Hər daşınma", "pulsuz sığortalıdır."],
