@@ -937,5 +937,43 @@
    "Yolu bizə verin"
   ],
   "caption_first_line": "Başqa şəhərə köçürsünüz? Yük.az bütün Azərbaycan üzrə yanınızdadır! 🗺️🚚"
+ },
+ {
+  "style": "mono",
+  "music": "music/mixkit-1119.mp3",
+  "clips": [
+   7217396,
+   4554453,
+   7210986,
+   7210881,
+   7647444,
+   5054382,
+   7210954
+  ],
+  "date": "2026-11-22",
+  "hook": "Zədə olsa?",
+  "lines": [
+   [
+    "Hər daşınma",
+    "pulsuz sığortalıdır."
+   ],
+   [
+    "Əşyanız",
+    "yolda da qorunur."
+   ],
+   [
+    "Narahatlıq",
+    "bizim üzərimizdə"
+   ]
+  ],
+  "final": [
+   "Siz rahat,",
+   "yük əmanət"
+  ],
+  "cover": [
+   "Əşyan sığortalıdır?",
+   "Pulsuz sığorta"
+  ],
+  "caption_first_line": "Əşyalarınız üçün narahatsınız? Hər daşınma pulsuz sığortalıdır! 🛡️📦"
  }
 ]
