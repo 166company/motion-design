@@ -975,5 +975,43 @@
    "Pulsuz sığorta"
   ],
   "caption_first_line": "Əşyalarınız üçün narahatsınız? Hər daşınma pulsuz sığortalıdır! 🛡️📦"
+ },
+ {
+  "style": "editorial",
+  "music": "music/mixkit-256.mp3",
+  "clips": [
+   7463922,
+   7210875,
+   7210887,
+   4554443,
+   7210953,
+   7217124,
+   7205553
+  ],
+  "date": "2026-11-23",
+  "hook": "Köç günü?",
+  "lines": [
+   [
+    "Səhər qutular,",
+    "axşam yeni ev."
+   ],
+   [
+    "Paketləmə,",
+    "yükləmə, çatdırılma."
+   ],
+   [
+    "2020-dən bəri",
+    "eyni qayğı ilə"
+   ]
+  ],
+  "final": [
+   "Bir zəng,",
+   "tam köç"
+  ],
+  "cover": [
+   "Köç günü yaxınlaşır?",
+   "Hamısı bir əldə"
+  ],
+  "caption_first_line": "Köç günü yaxınlaşır? Paketləmədən çatdırılmaya hər şey bizdən! 📦🚚"
  }
 ]
