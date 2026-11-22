@@ -1,7 +1,7 @@
 {
  "date": "2026-11-23",
  "style": "editorial",
- "release": false,
+ "release": true,
  "hook": "Köç günü?",
  "lines": [
   ["Səhər qutular,", "axşam yeni ev."],
