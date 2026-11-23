@@ -1013,5 +1013,43 @@
    "Hamısı bir əldə"
   ],
   "caption_first_line": "Köç günü yaxınlaşır? Paketləmədən çatdırılmaya hər şey bizdən! 📦🚚"
+ },
+ {
+  "style": "condensed",
+  "music": "music/mixkit-1000.mp3",
+  "clips": [
+   4553195,
+   5054383,
+   4553200,
+   5054379,
+   4553202,
+   6170600,
+   7217398
+  ],
+  "date": "2026-11-24",
+  "hook": "Yeni açar?",
+  "lines": [
+   [
+    "Ev hazırdır,",
+    "köçü bizə verin."
+   ],
+   [
+    "Hər qutu",
+    "yeni ünvana çatır."
+   ],
+   [
+    "Otaq-otaq",
+    "yerinə qədər"
+   ]
+  ],
+  "final": [
+   "Açar sizdə,",
+   "köç bizdə"
+  ],
+  "cover": [
+   "Açar artıq səndədir?",
+   "Köçü biz edək"
+  ],
+  "caption_first_line": "Yeni evin açarı əlinizdədir? Köçü Yük.az-a həvalə edin! 🔑🏠"
  }
 ]
