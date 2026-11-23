@@ -1,7 +1,7 @@
 {
  "date": "2026-11-24",
  "style": "condensed",
- "release": false,
+ "release": true,
  "hook": "Yeni açar?",
  "lines": [
   ["Ev hazırdır,", "köçü bizə verin."],
