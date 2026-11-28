@@ -1,0 +1,1802 @@
+[
+ {
+  "id": "124",
+  "file": "music/mixkit-124.mp3",
+  "genre": "deep-house",
+  "bpm": 123.0,
+  "beat": 0.4876,
+  "starts": [
+   58.12,
+   89.09,
+   27.17
+  ],
+  "dur": 133.8,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-01"
+ },
+ {
+  "id": "706",
+  "file": "music/mixkit-706.mp3",
+  "genre": "upbeat",
+  "bpm": 143.6,
+  "beat": 0.418,
+  "starts": [
+   69.52,
+   52.36,
+   4.37
+  ],
+  "dur": 118.3,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-01"
+ },
+ {
+  "id": "780",
+  "file": "music/mixkit-780.mp3",
+  "genre": "dance-pop",
+  "bpm": 152.0,
+  "beat": 0.3947,
+  "starts": [
+   96.64,
+   28.49,
+   81.15
+  ],
+  "dur": 120.4,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-01"
+ },
+ {
+  "id": "646",
+  "file": "music/mixkit-646.mp3",
+  "genre": "chill",
+  "bpm": 112.3,
+  "beat": 0.5341,
+  "starts": [
+   24.06,
+   58.98,
+   98.24
+  ],
+  "dur": 136.4,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-01"
+ },
+ {
+  "id": "186",
+  "file": "music/mixkit-186.mp3",
+  "genre": "deep-house",
+  "bpm": 117.5,
+  "beat": 0.5108,
+  "starts": [
+   224.56,
+   60.07,
+   196.56
+  ],
+  "dur": 296.0,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-03"
+ },
+ {
+  "id": "79",
+  "file": "music/mixkit-79.mp3",
+  "genre": "cinematic",
+  "bpm": 89.1,
+  "beat": 0.6734,
+  "starts": [
+   42.89,
+   26.87,
+   58.86
+  ],
+  "dur": 108.2,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-03"
+ },
+ {
+  "id": "1000",
+  "file": "music/mixkit-1000.mp3",
+  "genre": "dance-pop",
+  "bpm": 123.0,
+  "beat": 0.4876,
+  "starts": [
+   31.25,
+   73.49,
+   15.86
+  ],
+  "dur": 109.8,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-03"
+ },
+ {
+  "id": "34",
+  "file": "music/mixkit-34.mp3",
+  "genre": "corporate",
+  "bpm": 112.3,
+  "beat": 0.5341,
+  "starts": [
+   70.4,
+   35.5,
+   52.94
+  ],
+  "dur": 97.6,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-03"
+ },
+ {
+  "id": "1003",
+  "file": "music/mixkit-1003.mp3",
+  "genre": "funk",
+  "bpm": 95.7,
+  "beat": 0.6269,
+  "starts": [
+   74.88,
+   40.24,
+   20.43
+  ],
+  "dur": 150.9,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-05"
+ },
+ {
+  "id": "543",
+  "file": "music/mixkit-543.mp3",
+  "genre": "cinematic",
+  "bpm": 129.2,
+  "beat": 0.4644,
+  "starts": [
+   54.68,
+   32.18,
+   69.71
+  ],
+  "dur": 99.4,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-05"
+ },
+ {
+  "id": "25",
+  "file": "music/mixkit-25.mp3",
+  "genre": "chill",
+  "bpm": 161.5,
+  "beat": 0.3715,
+  "starts": [
+   104.7,
+   119.84,
+   86.8
+  ],
+  "dur": 149.8,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-05"
+ },
+ {
+  "id": "911",
+  "file": "music/mixkit-911.mp3",
+  "genre": "disco",
+  "bpm": 117.5,
+  "beat": 0.5108,
+  "starts": [
+   80.53,
+   64.53,
+   48.53
+  ],
+  "dur": 112.9,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-05"
+ },
+ {
+  "id": "623",
+  "file": "music/mixkit-623.mp3",
+  "genre": "deep-house",
+  "bpm": 123.0,
+  "beat": 0.4876,
+  "starts": [
+   172.06,
+   187.55,
+   156.57
+  ],
+  "dur": 288.7,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-05"
+ },
+ {
+  "id": "476",
+  "file": "music/mixkit-476.mp3",
+  "genre": "hip-hop",
+  "bpm": 95.7,
+  "beat": 0.6269,
+  "starts": [
+   20.87,
+   66.34,
+   51.2
+  ],
+  "dur": 97.3,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-05"
+ },
+ {
+  "id": "1054",
+  "file": "music/mixkit-1054.mp3",
+  "genre": "funk",
+  "bpm": 112.3,
+  "beat": 0.5341,
+  "starts": [
+   80.55,
+   51.08,
+   110.04
+  ],
+  "dur": 142.7,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-05"
+ },
+ {
+  "id": "765",
+  "file": "music/mixkit-765.mp3",
+  "genre": "chill",
+  "bpm": 129.2,
+  "beat": 0.4644,
+  "starts": [
+   69.64,
+   88.07,
+   3.83
+  ],
+  "dur": 113.3,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-05"
+ },
+ {
+  "id": "416",
+  "file": "music/mixkit-416.mp3",
+  "genre": "corporate",
+  "bpm": 129.2,
+  "beat": 0.4644,
+  "starts": [
+   25.87,
+   62.79,
+   44.33
+  ],
+  "dur": 99.5,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-05"
+ },
+ {
+  "id": "1185",
+  "file": "music/mixkit-1185.mp3",
+  "genre": "disco",
+  "bpm": 99.4,
+  "beat": 0.6037,
+  "starts": [
+   87.05,
+   24.64,
+   67.85
+  ],
+  "dur": 120.4,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-05"
+ },
+ {
+  "id": "469",
+  "file": "music/mixkit-469.mp3",
+  "genre": "deep-house",
+  "bpm": 123.0,
+  "beat": 0.4876,
+  "starts": [
+   67.85,
+   25.15,
+   9.54
+  ],
+  "dur": 111.2,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-05"
+ },
+ {
+  "id": "399",
+  "file": "music/mixkit-399.mp3",
+  "genre": "hip-hop",
+  "bpm": 152.0,
+  "beat": 0.3947,
+  "starts": [
+   57.63,
+   19.23,
+   41.66
+  ],
+  "dur": 105.4,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-05"
+ },
+ {
+  "id": "797",
+  "file": "music/mixkit-797.mp3",
+  "genre": "cinematic",
+  "bpm": 112.3,
+  "beat": 0.5341,
+  "starts": [
+   45.05,
+   96.46,
+   27.89
+  ],
+  "dur": 148.6,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-06"
+ },
+ {
+  "id": "781",
+  "file": "music/mixkit-781.mp3",
+  "genre": "dance-pop",
+  "bpm": 152.0,
+  "beat": 0.3947,
+  "starts": [
+   20.04,
+   122.44,
+   77.65
+  ],
+  "dur": 145.6,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-06"
+ },
+ {
+  "id": "473",
+  "file": "music/mixkit-473.mp3",
+  "genre": "deep-house",
+  "bpm": 123.0,
+  "beat": 0.4876,
+  "starts": [
+   71.84,
+   24.61,
+   56.1
+  ],
+  "dur": 114.1,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-06"
+ },
+ {
+  "id": "441",
+  "file": "music/mixkit-441.mp3",
+  "genre": "corporate",
+  "bpm": 117.5,
+  "beat": 0.5108,
+  "starts": [
+   30.23,
+   58.54,
+   74.51
+  ],
+  "dur": 118.1,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-06"
+ },
+ {
+  "id": "684",
+  "file": "music/mixkit-684.mp3",
+  "genre": "upbeat",
+  "bpm": 92.3,
+  "beat": 0.6502,
+  "starts": [
+   23.61,
+   86.63,
+   7.13
+  ],
+  "dur": 137.1,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-07"
+ },
+ {
+  "id": "827",
+  "file": "music/mixkit-827.mp3",
+  "genre": "dance-pop",
+  "bpm": 129.2,
+  "beat": 0.4644,
+  "starts": [
+   55.22,
+   37.01,
+   18.81
+  ],
+  "dur": 93.4,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-07"
+ },
+ {
+  "id": "23",
+  "file": "music/mixkit-23.mp3",
+  "genre": "chill",
+  "bpm": 161.5,
+  "beat": 0.3715,
+  "starts": [
+   72.42,
+   33.41,
+   48.41
+  ],
+  "dur": 109.9,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-07"
+ },
+ {
+  "id": "258",
+  "file": "music/mixkit-258.mp3",
+  "genre": "hip-hop",
+  "bpm": 161.5,
+  "beat": 0.3715,
+  "starts": [
+   69.03,
+   30.02,
+   12.03
+  ],
+  "dur": 96.6,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-07"
+ },
+ {
+  "id": "1109",
+  "file": "music/mixkit-1109.mp3",
+  "genre": "funk",
+  "bpm": 89.1,
+  "beat": 0.6734,
+  "starts": [
+   70.03,
+   91.72,
+   43.37
+  ],
+  "dur": 114.4,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-08"
+ },
+ {
+  "id": "256",
+  "file": "music/mixkit-256.mp3",
+  "genre": "chill",
+  "bpm": 136.0,
+  "beat": 0.4412,
+  "starts": [
+   17.81,
+   35.6,
+   78.25
+  ],
+  "dur": 159.1,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-08"
+ },
+ {
+  "id": "2",
+  "file": "music/mixkit-2.mp3",
+  "genre": "corporate",
+  "bpm": 143.6,
+  "beat": 0.418,
+  "starts": [
+   47.83,
+   30.7,
+   3.69
+  ],
+  "dur": 114.4,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-08"
+ },
+ {
+  "id": "3",
+  "file": "music/mixkit-3.mp3",
+  "genre": "dance-pop",
+  "bpm": 86.1,
+  "beat": 0.6966,
+  "starts": [
+   102.93,
+   6.94,
+   46.46
+  ],
+  "dur": 142.1,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-08"
+ },
+ {
+  "id": "851",
+  "file": "music/mixkit-851.mp3",
+  "genre": "upbeat",
+  "bpm": 129.2,
+  "beat": 0.4644,
+  "starts": [
+   127.66,
+   45.19,
+   105.16
+  ],
+  "dur": 157.5,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-09"
+ },
+ {
+  "id": "272",
+  "file": "music/mixkit-272.mp3",
+  "genre": "cinematic",
+  "bpm": 152.0,
+  "beat": 0.3947,
+  "starts": [
+   57.24,
+   98.89,
+   41.22
+  ],
+  "dur": 128.7,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-09"
+ },
+ {
+  "id": "850",
+  "file": "music/mixkit-850.mp3",
+  "genre": "funk",
+  "bpm": 107.7,
+  "beat": 0.5573,
+  "starts": [
+   49.48,
+   31.7,
+   13.93
+  ],
+  "dur": 124.8,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-09"
+ },
+ {
+  "id": "468",
+  "file": "music/mixkit-468.mp3",
+  "genre": "deep-house",
+  "bpm": 129.2,
+  "beat": 0.4644,
+  "starts": [
+   69.73,
+   24.82,
+   9.71
+  ],
+  "dur": 96.4,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-09"
+ },
+ {
+  "id": "89",
+  "file": "music/mixkit-89.mp3",
+  "genre": "cinematic",
+  "bpm": 86.1,
+  "beat": 0.6966,
+  "starts": [
+   84.92,
+   56.68,
+   28.44
+  ],
+  "dur": 111.7,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-10"
+ },
+ {
+  "id": "303",
+  "file": "music/mixkit-303.mp3",
+  "genre": "hip-hop",
+  "bpm": 136.0,
+  "beat": 0.4412,
+  "starts": [
+   70.52,
+   45.81,
+   21.06
+  ],
+  "dur": 96.9,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-10"
+ },
+ {
+  "id": "729",
+  "file": "music/mixkit-729.mp3",
+  "genre": "corporate",
+  "bpm": 107.7,
+  "beat": 0.5573,
+  "starts": [
+   13.28,
+   30.91,
+   66.13
+  ],
+  "dur": 96.9,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-10"
+ },
+ {
+  "id": "830",
+  "file": "music/mixkit-830.mp3",
+  "genre": "dance-pop",
+  "bpm": 129.2,
+  "beat": 0.4644,
+  "starts": [
+   63.2,
+   33.67,
+   15.21
+  ],
+  "dur": 87.9,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-10"
+ },
+ {
+  "id": "32",
+  "file": "music/mixkit-32.mp3",
+  "genre": "upbeat",
+  "bpm": 99.4,
+  "beat": 0.6037,
+  "starts": [
+   67.41,
+   48.18,
+   29.0
+  ],
+  "dur": 102.2,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-11"
+ },
+ {
+  "id": "609",
+  "file": "music/mixkit-609.mp3",
+  "genre": "cinematic",
+  "bpm": 99.4,
+  "beat": 0.6037,
+  "starts": [
+   119.75,
+   80.55,
+   139.32
+  ],
+  "dur": 204.7,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-11"
+ },
+ {
+  "id": "824",
+  "file": "music/mixkit-824.mp3",
+  "genre": "funk",
+  "bpm": 80.7,
+  "beat": 0.743,
+  "starts": [
+   47.48,
+   23.57,
+   83.57
+  ],
+  "dur": 121.9,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-11"
+ },
+ {
+  "id": "305",
+  "file": "music/mixkit-305.mp3",
+  "genre": "hip-hop",
+  "bpm": 152.0,
+  "beat": 0.3947,
+  "starts": [
+   13.07,
+   50.97,
+   28.86
+  ],
+  "dur": 107.4,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-11"
+ },
+ {
+  "id": "834",
+  "file": "music/mixkit-834.mp3",
+  "genre": "upbeat",
+  "bpm": 107.7,
+  "beat": 0.5573,
+  "starts": [
+   39.33,
+   69.89,
+   21.87
+  ],
+  "dur": 96.6,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-12"
+ },
+ {
+  "id": "494",
+  "file": "music/mixkit-494.mp3",
+  "genre": "chill",
+  "bpm": 152.0,
+  "beat": 0.3947,
+  "starts": [
+   12.42,
+   74.4,
+   58.93
+  ],
+  "dur": 99.9,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-12"
+ },
+ {
+  "id": "199",
+  "file": "music/mixkit-199.mp3",
+  "genre": "deep-house",
+  "bpm": 117.5,
+  "beat": 0.5108,
+  "starts": [
+   58.0,
+   41.66,
+   74.35
+  ],
+  "dur": 105.2,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-12"
+ },
+ {
+  "id": "671",
+  "file": "music/mixkit-671.mp3",
+  "genre": "cinematic",
+  "bpm": 143.6,
+  "beat": 0.418,
+  "starts": [
+   81.36,
+   17.58,
+   34.41
+  ],
+  "dur": 113.0,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-12"
+ },
+ {
+  "id": "963",
+  "file": "music/mixkit-963.mp3",
+  "genre": "upbeat",
+  "bpm": 95.7,
+  "beat": 0.6269,
+  "starts": [
+   95.67,
+   60.67,
+   80.67
+  ],
+  "dur": 124.7,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-13"
+ },
+ {
+  "id": "389",
+  "file": "music/mixkit-389.mp3",
+  "genre": "hip-hop",
+  "bpm": 89.1,
+  "beat": 0.6734,
+  "starts": [
+   40.05,
+   24.03,
+   56.05
+  ],
+  "dur": 96.0,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-13"
+ },
+ {
+  "id": "133",
+  "file": "music/mixkit-133.mp3",
+  "genre": "funk",
+  "bpm": 123.0,
+  "beat": 0.4876,
+  "starts": [
+   31.09,
+   62.32,
+   46.7
+  ],
+  "dur": 101.5,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-13"
+ },
+ {
+  "id": "439",
+  "file": "music/mixkit-439.mp3",
+  "genre": "chill",
+  "bpm": 107.7,
+  "beat": 0.5573,
+  "starts": [
+   32.48,
+   89.28,
+   71.47
+  ],
+  "dur": 120.0,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-13"
+ },
+ {
+  "id": "11",
+  "file": "music/mixkit-11.mp3",
+  "genre": "dance-pop",
+  "bpm": 117.5,
+  "beat": 0.5108,
+  "starts": [
+   156.15,
+   8.15,
+   92.16
+  ],
+  "dur": 178.9,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-14"
+ },
+ {
+  "id": "129",
+  "file": "music/mixkit-129.mp3",
+  "genre": "deep-house",
+  "bpm": 117.5,
+  "beat": 0.5108,
+  "starts": [
+   28.14,
+   76.14,
+   12.14
+  ],
+  "dur": 114.0,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-14"
+ },
+ {
+  "id": "339",
+  "file": "music/mixkit-339.mp3",
+  "genre": "upbeat",
+  "bpm": 143.6,
+  "beat": 0.418,
+  "starts": [
+   20.6,
+   70.15,
+   37.38
+  ],
+  "dur": 102.8,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-14"
+ },
+ {
+  "id": "470",
+  "file": "music/mixkit-470.mp3",
+  "genre": "corporate",
+  "bpm": 129.2,
+  "beat": 0.4644,
+  "starts": [
+   54.36,
+   13.03,
+   39.24
+  ],
+  "dur": 95.5,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-14"
+ },
+ {
+  "id": "839",
+  "file": "music/mixkit-839.mp3",
+  "genre": "upbeat",
+  "bpm": 123.0,
+  "beat": 0.4876,
+  "starts": [
+   109.16,
+   93.67,
+   58.84
+  ],
+  "dur": 140.2,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-15"
+ },
+ {
+  "id": "1029",
+  "file": "music/mixkit-1029.mp3",
+  "genre": "funk",
+  "bpm": 117.5,
+  "beat": 0.5108,
+  "starts": [
+   21.25,
+   66.5,
+   4.69
+  ],
+  "dur": 99.6,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-15"
+ },
+ {
+  "id": "228",
+  "file": "music/mixkit-228.mp3",
+  "genre": "dance-pop",
+  "bpm": 103.4,
+  "beat": 0.5805,
+  "starts": [
+   46.32,
+   28.05,
+   64.6
+  ],
+  "dur": 144.0,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-15"
+ },
+ {
+  "id": "257",
+  "file": "music/mixkit-257.mp3",
+  "genre": "hip-hop",
+  "bpm": 129.2,
+  "beat": 0.4644,
+  "starts": [
+   66.92,
+   15.23,
+   48.46
+  ],
+  "dur": 118.6,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-15"
+ },
+ {
+  "id": "27",
+  "file": "music/mixkit-27.mp3",
+  "genre": "chill",
+  "bpm": 143.6,
+  "beat": 0.418,
+  "starts": [
+   79.53,
+   7.55,
+   24.68
+  ],
+  "dur": 118.5,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-17"
+ },
+ {
+  "id": "13",
+  "file": "music/mixkit-13.mp3",
+  "genre": "cinematic",
+  "bpm": 117.5,
+  "beat": 0.5108,
+  "starts": [
+   109.09,
+   46.49,
+   8.89
+  ],
+  "dur": 138.8,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-17"
+ },
+ {
+  "id": "1116",
+  "file": "music/mixkit-1116.mp3",
+  "genre": "upbeat",
+  "bpm": 117.5,
+  "beat": 0.5108,
+  "starts": [
+   93.69,
+   40.8,
+   8.27
+  ],
+  "dur": 124.8,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-17"
+ },
+ {
+  "id": "1027",
+  "file": "music/mixkit-1027.mp3",
+  "genre": "funk",
+  "bpm": 99.4,
+  "beat": 0.6037,
+  "starts": [
+   84.03,
+   64.85,
+   40.84
+  ],
+  "dur": 115.2,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-17"
+ },
+ {
+  "id": "113",
+  "file": "music/mixkit-113.mp3",
+  "genre": "deep-house",
+  "bpm": 123.0,
+  "beat": 0.4876,
+  "starts": [
+   46.76,
+   73.84,
+   15.79
+  ],
+  "dur": 135.6,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-18"
+ },
+ {
+  "id": "970",
+  "file": "music/mixkit-970.mp3",
+  "genre": "corporate",
+  "bpm": 89.1,
+  "beat": 0.6734,
+  "starts": [
+   160.71,
+   144.71,
+   112.71
+  ],
+  "dur": 257.1,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-18"
+ },
+ {
+  "id": "767",
+  "file": "music/mixkit-767.mp3",
+  "genre": "chill",
+  "bpm": 86.1,
+  "beat": 0.6966,
+  "starts": [
+   56.56,
+   22.69,
+   39.64
+  ],
+  "dur": 125.6,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-18"
+ },
+ {
+  "id": "762",
+  "file": "music/mixkit-762.mp3",
+  "genre": "dance-pop",
+  "bpm": 129.2,
+  "beat": 0.4644,
+  "starts": [
+   75.46,
+   37.66,
+   18.99
+  ],
+  "dur": 107.9,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-18"
+ },
+ {
+  "id": "180",
+  "file": "music/mixkit-180.mp3",
+  "genre": "deep-house",
+  "bpm": 129.2,
+  "beat": 0.4644,
+  "starts": [
+   200.41,
+   94.57,
+   215.53
+  ],
+  "dur": 245.7,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-18"
+ },
+ {
+  "id": "452",
+  "file": "music/mixkit-452.mp3",
+  "genre": "hip-hop",
+  "bpm": 107.7,
+  "beat": 0.5573,
+  "starts": [
+   61.9,
+   12.79,
+   30.49
+  ],
+  "dur": 97.3,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-18"
+ },
+ {
+  "id": "597",
+  "file": "music/mixkit-597.mp3",
+  "genre": "cinematic",
+  "bpm": 129.2,
+  "beat": 0.4644,
+  "starts": [
+   130.98,
+   145.98,
+   161.24
+  ],
+  "dur": 190.6,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-18"
+ },
+ {
+  "id": "568",
+  "file": "music/mixkit-568.mp3",
+  "genre": "corporate",
+  "bpm": 112.3,
+  "beat": 0.5341,
+  "starts": [
+   202.69,
+   177.4,
+   219.52
+  ],
+  "dur": 285.9,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-18"
+ },
+ {
+  "id": "106",
+  "file": "music/mixkit-106.mp3",
+  "genre": "deep-house",
+  "bpm": 117.5,
+  "beat": 0.5108,
+  "starts": [
+   74.81,
+   91.37,
+   58.44
+  ],
+  "dur": 153.6,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-19"
+ },
+ {
+  "id": "64",
+  "file": "music/mixkit-64.mp3",
+  "genre": "cinematic",
+  "bpm": 117.5,
+  "beat": 0.5108,
+  "starts": [
+   72.17,
+   40.17,
+   16.16
+  ],
+  "dur": 106.1,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-19"
+ },
+ {
+  "id": "757",
+  "file": "music/mixkit-757.mp3",
+  "genre": "funk",
+  "bpm": 112.3,
+  "beat": 0.5341,
+  "starts": [
+   41.66,
+   24.82,
+   7.85
+  ],
+  "dur": 105.3,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-19"
+ },
+ {
+  "id": "1210",
+  "file": "music/mixkit-1210.mp3",
+  "genre": "upbeat",
+  "bpm": 152.0,
+  "beat": 0.3947,
+  "starts": [
+   67.64,
+   48.44,
+   32.44
+  ],
+  "dur": 90.6,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-19"
+ },
+ {
+  "id": "134",
+  "file": "music/mixkit-134.mp3",
+  "genre": "corporate",
+  "bpm": 123.0,
+  "beat": 0.4876,
+  "starts": [
+   69.29,
+   7.83,
+   53.92
+  ],
+  "dur": 122.5,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-20"
+ },
+ {
+  "id": "306",
+  "file": "music/mixkit-306.mp3",
+  "genre": "hip-hop",
+  "bpm": 161.5,
+  "beat": 0.3715,
+  "starts": [
+   61.9,
+   25.91,
+   76.9
+  ],
+  "dur": 99.6,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-20"
+ },
+ {
+  "id": "821",
+  "file": "music/mixkit-821.mp3",
+  "genre": "dance-pop",
+  "bpm": 112.3,
+  "beat": 0.5341,
+  "starts": [
+   21.71,
+   64.95,
+   39.01
+  ],
+  "dur": 90.9,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-20"
+ },
+ {
+  "id": "892",
+  "file": "music/mixkit-892.mp3",
+  "genre": "cinematic",
+  "bpm": 152.0,
+  "beat": 0.3947,
+  "starts": [
+   42.05,
+   67.64,
+   26.03
+  ],
+  "dur": 99.6,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-20"
+ },
+ {
+  "id": "1060",
+  "file": "music/mixkit-1060.mp3",
+  "genre": "funk",
+  "bpm": 95.7,
+  "beat": 0.6269,
+  "starts": [
+   74.58,
+   59.42,
+   44.26
+  ],
+  "dur": 105.5,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-21"
+ },
+ {
+  "id": "281",
+  "file": "music/mixkit-281.mp3",
+  "genre": "hip-hop",
+  "bpm": 107.7,
+  "beat": 0.5573,
+  "starts": [
+   69.85,
+   25.98,
+   52.2
+  ],
+  "dur": 109.4,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-21"
+ },
+ {
+  "id": "759",
+  "file": "music/mixkit-759.mp3",
+  "genre": "corporate",
+  "bpm": 89.1,
+  "beat": 0.6734,
+  "starts": [
+   48.09,
+   32.09,
+   64.09
+  ],
+  "dur": 112.0,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-21"
+ },
+ {
+  "id": "282",
+  "file": "music/mixkit-282.mp3",
+  "genre": "chill",
+  "bpm": 152.0,
+  "beat": 0.3947,
+  "starts": [
+   40.7,
+   24.92,
+   9.13
+  ],
+  "dur": 98.7,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-21"
+ },
+ {
+  "id": "298",
+  "file": "music/mixkit-298.mp3",
+  "genre": "hip-hop",
+  "bpm": 80.7,
+  "beat": 0.743,
+  "starts": [
+   72.79,
+   13.79,
+   31.28
+  ],
+  "dur": 98.3,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-22"
+ },
+ {
+  "id": "858",
+  "file": "music/mixkit-858.mp3",
+  "genre": "funk",
+  "bpm": 123.0,
+  "beat": 0.4876,
+  "starts": [
+   31.86,
+   63.6,
+   12.0
+  ],
+  "dur": 108.5,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-22"
+ },
+ {
+  "id": "553",
+  "file": "music/mixkit-553.mp3",
+  "genre": "dance-pop",
+  "bpm": 117.5,
+  "beat": 0.5108,
+  "starts": [
+   65.48,
+   89.47,
+   33.46
+  ],
+  "dur": 128.0,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-22"
+ },
+ {
+  "id": "327",
+  "file": "music/mixkit-327.mp3",
+  "genre": "deep-house",
+  "bpm": 112.3,
+  "beat": 0.5341,
+  "starts": [
+   48.02,
+   30.58,
+   65.48
+  ],
+  "dur": 97.5,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-22"
+ },
+ {
+  "id": "966",
+  "file": "music/mixkit-966.mp3",
+  "genre": "disco",
+  "bpm": 123.0,
+  "beat": 0.4876,
+  "starts": [
+   96.66,
+   39.17,
+   23.8
+  ],
+  "dur": 128.6,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-23"
+ },
+ {
+  "id": "162",
+  "file": "music/mixkit-162.mp3",
+  "genre": "corporate",
+  "bpm": 129.2,
+  "beat": 0.4644,
+  "starts": [
+   93.6,
+   14.84,
+   78.6
+  ],
+  "dur": 123.7,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-23"
+ },
+ {
+  "id": "676",
+  "file": "music/mixkit-676.mp3",
+  "genre": "cinematic",
+  "bpm": 143.6,
+  "beat": 0.418,
+  "starts": [
+   57.98,
+   8.31,
+   41.42
+  ],
+  "dur": 105.9,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-23"
+ },
+ {
+  "id": "699",
+  "file": "music/mixkit-699.mp3",
+  "genre": "hip-hop",
+  "bpm": 89.1,
+  "beat": 0.6734,
+  "starts": [
+   91.37,
+   27.38,
+   64.71
+  ],
+  "dur": 130.7,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-23"
+ },
+ {
+  "id": "1119",
+  "file": "music/mixkit-1119.mp3",
+  "genre": "disco",
+  "bpm": 117.5,
+  "beat": 0.5108,
+  "starts": [
+   53.03,
+   36.8,
+   20.78
+  ],
+  "dur": 111.5,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-25"
+ },
+ {
+  "id": "250",
+  "file": "music/mixkit-250.mp3",
+  "genre": "dance-pop",
+  "bpm": 136.0,
+  "beat": 0.4412,
+  "starts": [
+   38.8,
+   20.34,
+   71.56
+  ],
+  "dur": 101.6,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-25"
+ },
+ {
+  "id": "726",
+  "file": "music/mixkit-726.mp3",
+  "genre": "corporate",
+  "bpm": 89.1,
+  "beat": 0.6734,
+  "starts": [
+   28.75,
+   50.46,
+   66.59
+  ],
+  "dur": 96.0,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-25"
+ },
+ {
+  "id": "171",
+  "file": "music/mixkit-171.mp3",
+  "genre": "deep-house",
+  "bpm": 123.0,
+  "beat": 0.4876,
+  "starts": [
+   15.44,
+   66.18,
+   34.95
+  ],
+  "dur": 109.2,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-25"
+ },
+ {
+  "id": "1140",
+  "file": "music/mixkit-1140.mp3",
+  "genre": "disco",
+  "bpm": 117.5,
+  "beat": 0.5108,
+  "starts": [
+   52.78,
+   16.79,
+   68.78
+  ],
+  "dur": 98.1,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-25"
+ },
+ {
+  "id": "764",
+  "file": "music/mixkit-764.mp3",
+  "genre": "chill",
+  "bpm": 83.4,
+  "beat": 0.7198,
+  "starts": [
+   23.5,
+   41.05,
+   58.63
+  ],
+  "dur": 98.2,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-25"
+ },
+ {
+  "id": "1151",
+  "file": "music/mixkit-1151.mp3",
+  "genre": "upbeat",
+  "bpm": 99.4,
+  "beat": 0.6037,
+  "starts": [
+   10.54,
+   29.74,
+   48.95
+  ],
+  "dur": 98.5,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-25"
+ },
+ {
+  "id": "680",
+  "file": "music/mixkit-680.mp3",
+  "genre": "cinematic",
+  "bpm": 152.0,
+  "beat": 0.3947,
+  "starts": [
+   65.64,
+   8.06,
+   33.65
+  ],
+  "dur": 102.4,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-25"
+ },
+ {
+  "id": "16",
+  "file": "music/mixkit-16.mp3",
+  "genre": "chill",
+  "bpm": 95.7,
+  "beat": 0.6269,
+  "starts": [
+   66.69,
+   81.83,
+   36.43
+  ],
+  "dur": 124.7,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-26"
+ },
+ {
+  "id": "1098",
+  "file": "music/mixkit-1098.mp3",
+  "genre": "dance-pop",
+  "bpm": 123.0,
+  "beat": 0.4876,
+  "starts": [
+   3.88,
+   65.32,
+   19.25
+  ],
+  "dur": 136.7,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-26"
+ },
+ {
+  "id": "72",
+  "file": "music/mixkit-72.mp3",
+  "genre": "funk",
+  "bpm": 129.2,
+  "beat": 0.4644,
+  "starts": [
+   51.85,
+   14.93,
+   77.69
+  ],
+  "dur": 102.1,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-26"
+ },
+ {
+  "id": "594",
+  "file": "music/mixkit-594.mp3",
+  "genre": "cinematic",
+  "bpm": 117.5,
+  "beat": 0.5108,
+  "starts": [
+   127.83,
+   188.55,
+   111.85
+  ],
+  "dur": 270.0,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-26"
+ },
+ {
+  "id": "897",
+  "file": "music/mixkit-897.mp3",
+  "genre": "upbeat",
+  "bpm": 112.3,
+  "beat": 0.5341,
+  "starts": [
+   69.06,
+   35.09,
+   52.08
+  ],
+  "dur": 130.1,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-26"
+ },
+ {
+  "id": "860",
+  "file": "music/mixkit-860.mp3",
+  "genre": "funk",
+  "bpm": 117.5,
+  "beat": 0.5108,
+  "starts": [
+   28.07,
+   52.08,
+   80.09
+  ],
+  "dur": 111.5,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-26"
+ },
+ {
+  "id": "862",
+  "file": "music/mixkit-862.mp3",
+  "genre": "corporate",
+  "bpm": 112.3,
+  "beat": 0.5341,
+  "starts": [
+   39.87,
+   105.3,
+   57.31
+  ],
+  "dur": 132.3,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-26"
+ },
+ {
+  "id": "357",
+  "file": "music/mixkit-357.mp3",
+  "genre": "hip-hop",
+  "bpm": 73.8,
+  "beat": 0.8127,
+  "starts": [
+   26.8,
+   65.71,
+   46.25
+  ],
+  "dur": 97.3,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-26"
+ },
+ {
+  "id": "775",
+  "file": "music/mixkit-775.mp3",
+  "genre": "deep-house",
+  "bpm": 123.0,
+  "beat": 0.4876,
+  "starts": [
+   242.3,
+   39.98,
+   226.44
+  ],
+  "dur": 293.6,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-27"
+ },
+ {
+  "id": "331",
+  "file": "music/mixkit-331.mp3",
+  "genre": "chill",
+  "bpm": 80.7,
+  "beat": 0.743,
+  "starts": [
+   48.79,
+   12.79,
+   30.79
+  ],
+  "dur": 97.7,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-27"
+ },
+ {
+  "id": "1124",
+  "file": "music/mixkit-1124.mp3",
+  "genre": "dance-pop",
+  "bpm": 92.3,
+  "beat": 0.6502,
+  "starts": [
+   5.71,
+   57.33,
+   21.2
+  ],
+  "dur": 101.2,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-27"
+ },
+ {
+  "id": "724",
+  "file": "music/mixkit-724.mp3",
+  "genre": "corporate",
+  "bpm": 123.0,
+  "beat": 0.4876,
+  "starts": [
+   5.29,
+   48.34,
+   21.13
+  ],
+  "dur": 96.0,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-27"
+ },
+ {
+  "id": "175",
+  "file": "music/mixkit-175.mp3",
+  "genre": "upbeat",
+  "bpm": 129.2,
+  "beat": 0.4644,
+  "starts": [
+   29.95,
+   67.18,
+   48.58
+  ],
+  "dur": 101.0,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-27"
+ },
+ {
+  "id": "522",
+  "file": "music/mixkit-522.mp3",
+  "genre": "chill",
+  "bpm": 123.0,
+  "beat": 0.4876,
+  "starts": [
+   30.81,
+   46.18,
+   15.46
+  ],
+  "dur": 97.0,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-27"
+ },
+ {
+  "id": "598",
+  "file": "music/mixkit-598.mp3",
+  "genre": "cinematic",
+  "bpm": 76.0,
+  "beat": 0.7895,
+  "starts": [
+   200.34,
+   131.75,
+   113.03
+  ],
+  "dur": 269.3,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-27"
+ },
+ {
+  "id": "1156",
+  "file": "music/mixkit-1156.mp3",
+  "genre": "deep-house",
+  "bpm": 117.5,
+  "beat": 0.5108,
+  "starts": [
+   55.36,
+   17.79,
+   38.66
+  ],
+  "dur": 110.0,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-27"
+ },
+ {
+  "id": "776",
+  "file": "music/mixkit-776.mp3",
+  "genre": "disco",
+  "bpm": 117.5,
+  "beat": 0.5108,
+  "starts": [
+   93.88,
+   110.41,
+   249.22
+  ],
+  "dur": 300.0,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-28"
+ },
+ {
+  "id": "738",
+  "file": "music/mixkit-738.mp3",
+  "genre": "upbeat",
+  "bpm": 95.7,
+  "beat": 0.6269,
+  "starts": [
+   39.68,
+   59.16,
+   19.88
+  ],
+  "dur": 115.0,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-28"
+ },
+ {
+  "id": "831",
+  "file": "music/mixkit-831.mp3",
+  "genre": "dance-pop",
+  "bpm": 117.5,
+  "beat": 0.5108,
+  "starts": [
+   58.07,
+   42.07,
+   26.08
+  ],
+  "dur": 92.1,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-28"
+ },
+ {
+  "id": "408",
+  "file": "music/mixkit-408.mp3",
+  "genre": "hip-hop",
+  "bpm": 99.4,
+  "beat": 0.6037,
+  "starts": [
+   27.03,
+   65.25,
+   46.35
+  ],
+  "dur": 102.4,
+  "source": "https://mixkit.co (Mixkit License)",
+  "added": "2026-11-28"
+ }
+]
